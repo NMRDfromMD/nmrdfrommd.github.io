@@ -1,0 +1,62 @@
+    # MDAnalysis files
+**/*xtc_offsets.*
+**/*xtc_offsets.*
+
+# pycharm virtual environment stuff:
+venv
+.idea
+
+# python files:
+**/__pycache__
+
+# jupyter-notebook files:
+**/.ipynb_checkpoints/
+
+# sphinx build:
+docs/build
+
+# own stuff
+nmrformd.egg-info/
+dist/
+build/
+**/_*
+save.sh
+
+.tox/
+docs/bin/
+docs/lib/
+docs/pyvenv.cfg
+
+# LAMMPS files
+**/log.lammps
+
+# raw rata file
+### bulk water
+examples/raw-data/bulk-water/*
+!examples/raw-data/bulk-water/N280/
+examples/raw-data/bulk-water/N280/log.*
+examples/raw-data/bulk-water/N280/*.lammpstrj
+examples/raw-data/bulk-water/N280/*.lammps
+examples/raw-data/bulk-water/N280/*.sh
+### polymer in water
+examples/raw-data/polymer-in-water/*
+!examples/raw-data/polymer-in-water/N20/
+examples/raw-data/polymer-in-water/N20/log.*
+examples/raw-data/polymer-in-water/N20/*.lammpstrj
+examples/raw-data/polymer-in-water/N20/*.lammps
+examples/raw-data/polymer-in-water/N20/*.sh
+### water in silica
+examples/raw-data/water-in-silica/*
+!examples/raw-data/water-in-silica/N50-coarse/
+examples/raw-data/water-in-silica/N50-coarse/nvt.*
+examples/raw-data/water-in-silica/N50-coarse/npt.*
+examples/raw-data/water-in-silica/N50-coarse/ff/
+examples/raw-data/water-in-silica/N50-coarse/input/
+examples/raw-data/water-in-silica/N50-coarse/emd.*
+examples/raw-data/water-in-silica/N50-coarse/*.sh
+examples/raw-data/water-in-silica/N50-coarse/*.cpt
+# HEWL-in-water
+examples/raw-data/HEWL-in-water/*
+
+# include static path
+!**/_static/
