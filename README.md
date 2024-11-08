@@ -1,4 +1,6 @@
-# NMRforMD
+# NMRDfrorMD (former NMRforMD)
+
+This code is a work in progress.
 
 <a href="webp">
   <img src="docs/source/figures/logo/logo-b.png" align="right" width="30%"/>
