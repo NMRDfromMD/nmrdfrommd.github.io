@@ -42,9 +42,9 @@ jobs:
           pip install sphinxcontrib.bibtex
           pip install sphinx-tabs
 
-          pip install scipy
-          pip install MDAnalysis
-          pip install .
+          # pip install scipy
+          # pip install MDAnalysis
+          # pip install .
           
       - name: Build
         run: |
