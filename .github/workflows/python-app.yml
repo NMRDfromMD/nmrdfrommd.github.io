@@ -41,10 +41,7 @@ jobs:
           pip install sphinx-favicon
           pip install sphinxcontrib.bibtex
           pip install sphinx-tabs
-
-          # pip install scipy
-          # pip install MDAnalysis
-          # pip install .
+          pip install nbsphinx
           
       - name: Build
         run: |
