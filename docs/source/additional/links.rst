@@ -1,0 +1,19 @@
+.. |MDAnalysis| raw:: html
+
+   <a href="https://www.mdanalysis.org/" target="_blank">MDAnalysis</a>
+
+.. |LAMMPS| raw:: html
+
+   <a href="https://www.lammps.org/" target="_blank">LAMMPS</a>
+
+.. |GROMACS| raw:: html
+
+   <a href="https://www.gromacs.org/" target="_blank">GROMACS</a>
+
+.. |polymer in water| raw:: html
+
+   <a href="https://github.com/simongravelle/polymer-in-water.git" target="_blank">polymer in water</a>
+
+.. |water confined in silica| raw:: html
+
+   <a href="https://github.com/simongravelle/water-in-silica.git" target="_blank">water confined in silica</a>

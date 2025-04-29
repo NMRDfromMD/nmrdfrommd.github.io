@@ -1,5 +1,7 @@
-NMR fom MD
-==========
+.. include:: additional/links.rst
+
+NMRD from MD
+============
 
 Dipolar Nuclear Magnetic Resonance from Molecular Dynamics
 (*NMRDfromMD*) is a Python toolkit designed for the
@@ -8,18 +10,6 @@ computation of dipolar NMR relaxation times (the so-called :math:`T_1` and
 with |MDAnalysis|, NMRforMD allows for the analysis of
 trajectory files from any MDAnalysis-compatible simulation package, including
 |LAMMPS| and |GROMACS|.
-
-.. |MDAnalysis| raw:: html
-
-   <a href="https://www.mdanalysis.org/" target="_blank">MDAnalysis</a>
-
-.. |LAMMPS| raw:: html
-
-   <a href="https://www.lammps.org/" target="_blank">LAMMPS</a>
-
-.. |GROMACS| raw:: html
-
-   <a href="https://www.gromacs.org/" target="_blank">GROMACS</a>
 
 .. image:: ../../avatars/avatars.png
     :class: only-dark
@@ -46,14 +36,6 @@ Datasets
     and a |water confined in silica| system generated
     using GROMACS. The datasets can be downloaded
     to follow the tutorials.
-
-.. |polymer in water| raw:: html
-
-   <a href="https://github.com/simongravelle/polymer-in-water.git" target="_blank">polymer in water</a>
-
-.. |water confined in silica| raw:: html
-
-   <a href="https://github.com/simongravelle/water-in-silica.git" target="_blank">water confined in silica</a>
 
 .. toctree::
    :maxdepth: 2
