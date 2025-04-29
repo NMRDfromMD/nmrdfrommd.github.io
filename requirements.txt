@@ -1,3 +1,8 @@
-flake8
-pytest
-coverage
+sphinx
+sphinx-favicon
+sphinxcontrib.bibtex
+sphinx-press-theme
+nbsphinx
+furo
+scipy
+MDAnalysis
