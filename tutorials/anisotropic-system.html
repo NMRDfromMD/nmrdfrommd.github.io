@@ -282,20 +282,18 @@ tutorial on <a class="reference internal" href="isotropic-system.html#isotropic-
 <div class="hatnote docutils container">
 <p>Measuring the NMR relaxation time of nanoconfined water</p>
 </div>
-<a class="only-dark reference internal image-reference" href="../_images/snapshot-dark2.png"><img alt="Water confined in silica slit - Dipolar NMR relaxation time calculation" class="only-dark align-right" src="../_images/snapshot-dark2.png" style="width: 250px;" />
+<a class="only-dark reference internal image-reference" href="../_images/snapshot-dark2.png"><img alt="Water confined in silica slit with GROMACS - Dipolar NMR relaxation time calculation" class="only-dark align-right" src="../_images/snapshot-dark2.png" style="width: 250px;" />
 </a>
-<a class="only-light reference internal image-reference" href="../_images/snapshot-light2.png"><img alt="Water confined in silica slit - Dipolar NMR relaxation time calculation" class="only-light align-right" src="../_images/snapshot-light2.png" style="width: 250px;" />
+<a class="only-light reference internal image-reference" href="../_images/snapshot-light2.png"><img alt="Water confined in silica slit with GROMACS - Dipolar NMR relaxation time calculation" class="only-light align-right" src="../_images/snapshot-light2.png" style="width: 250px;" />
 </a>
-<p>The system is made of 602 <span class="math notranslate nohighlight">\(\text{TIP4P}-\epsilon\)</span> water molecules
-in a slit silica nanopore. The trajectory was recorded
-during a <span class="math notranslate nohighlight">\(10\,\text{ns}\)</span> production run performed with the open source code GROMACS
-in the anisotropic NPzT ensemble using a timestep of <span class="math notranslate nohighlight">\(1\,\text{fs}\)</span>.
-In order to balance the charge of the surface, 20 sodium ions are
-present in the slit.
-The imposed was temperature <span class="math notranslate nohighlight">\(T = 300\,\text{K}\)</span>, and the pressure
-<span class="math notranslate nohighlight">\(p = 1\,\text{bar}\)</span>. The positions of the atoms were recorded in
-the <em>prod.xtc</em> file
-every <span class="math notranslate nohighlight">\(2\,\text{ps}\)</span>.</p>
+<p>The system is composed of 602 <span class="math notranslate nohighlight">\(\text{TIP4P}-\epsilon\)</span> water molecules
+confined in a slit silica nanopore. The trajectory was recorded during a
+<span class="math notranslate nohighlight">\(10\,\text{ns}\)</span> production run performed using the open-source code GROMACS,
+in the anisotropic <span class="math notranslate nohighlight">\(NP_zT\)</span> ensemble, with a timestep of <span class="math notranslate nohighlight">\(1\,\text{fs}\)</span>.
+To balance the surface charge, 20 sodium ions are present in the slit.
+The imposed temperature was <span class="math notranslate nohighlight">\(T = 300\,\text{K}\)</span>, and the pressure
+was <span class="math notranslate nohighlight">\(p = 1\,\text{bar}\)</span>. Atomic positions were saved in the <strong>prod.xtc</strong>
+file every <span class="math notranslate nohighlight">\(2\,\text{ps}\)</span>.</p>
 <div class="non-title-info admonition">
 <p class="admonition-title">Note</p>
 <p>If you’d like to learn GROMACS and generate your own trajectories, beginner
@@ -304,47 +302,35 @@ every <span class="math notranslate nohighlight">\(2\,\text{ps}\)</span>.</p>
 </section>
 <section id="file-preparation">
 <h2>File preparation<a class="headerlink" href="#file-preparation" title="Link to this heading">¶</a></h2>
-<div class="justify docutils container">
-<p>To access all trajectory and input files, download
-the <em>water-in-silica</em> repository from Github, or simply
-clone it on your computer using:</p>
-</div>
+<p>To access all trajectory and input files, download the
+<code class="docutils literal notranslate"><span class="pre">water-in-silica</span></code> repository from GitHub, or simply clone it
+to your computer using:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/simongravelle/water-in-silica.git
 </pre></div>
 </div>
-<div class="justify docutils container">
-<p>The dataset required to follow this tutorial is located
-in <em>raw-data/N50/</em>.</p>
-</div>
+<p>The dataset required to follow this tutorial is located in
+<code class="docutils literal notranslate"><span class="pre">raw-data/N50/</span></code>.</p>
 </section>
 <section id="create-a-mdanalysis-universe">
 <h2>Create a MDAnalysis universe<a class="headerlink" href="#create-a-mdanalysis-universe" title="Link to this heading">¶</a></h2>
-<div class="justify docutils container">
 <p>Open a new Python script or a new notebook, and define
 the path to the data files:</p>
-</div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">datapath</span> <span class="o">=</span> <span class="s2">&quot;mypath/water-in-silica/raw-data/N50/&quot;</span>
 </pre></div>
 </div>
-<div class="justify docutils container">
-<p>Then, import numpy, MDAnalysis, and NMRforMD:</p>
-</div>
+<p>Then, import NumPy, MDAnalysis, and NMRforMD:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">MDAnalysis</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mda</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">nmrformd</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nmrmd</span>
 </pre></div>
 </div>
-<div class="justify docutils container">
-<p>From the trajectory files, let us create a MDAnalysis universe.
-Import the configuration file and the trajectory:</p>
-</div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">u</span> <span class="o">=</span> <span class="n">mda</span><span class="o">.</span><span class="n">Universe</span><span class="p">(</span><span class="n">datapath</span><span class="o">+</span><span class="s2">&quot;prod.tpr&quot;</span><span class="p">,</span> <span class="n">datapath</span><span class="o">+</span><span class="s2">&quot;prod.xtc&quot;</span><span class="p">)</span>
+<p>From the trajectory files, create a MDAnalysis universe by
+loading the configuration file and the trajectory:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">u</span> <span class="o">=</span> <span class="n">mda</span><span class="o">.</span><span class="n">Universe</span><span class="p">(</span><span class="n">datapath</span> <span class="o">+</span> <span class="s2">&quot;prod.tpr&quot;</span><span class="p">,</span> <span class="n">datapath</span> <span class="o">+</span> <span class="s2">&quot;prod.xtc&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="justify docutils container">
-<p>Let us extract a few information from the universe,
-such as number of molecules, timestep, and total duration:</p>
-</div>
+<p>Next, extract some basic information from the universe, such as
+the number of molecules, the timestep, and the total duration:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">n_molecules</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">atoms</span><span class="o">.</span><span class="n">n_residues</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The number of molecules is </span><span class="si">{</span><span class="n">n_molecules</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="n">timestep</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">dt</span><span class="p">)</span>
@@ -353,6 +339,7 @@ such as number of molecules, timestep, and total duration:</p>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The total simulation time is </span><span class="si">{</span><span class="n">total_time</span><span class="si">}</span><span class="s2"> ps&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>Running this will return:</p>
 <div class="highlight-bw notranslate"><div class="highlight"><pre><span></span>&gt;&gt; The number of molecules is 623
 &gt;&gt; The timestep is 2 ps
 &gt;&gt; The total simulation time is 10000 ps
@@ -361,22 +348,16 @@ such as number of molecules, timestep, and total duration:</p>
 </section>
 <section id="launch-the-nmr-analysis">
 <h2>Launch the NMR analysis<a class="headerlink" href="#launch-the-nmr-analysis" title="Link to this heading">¶</a></h2>
-<div class="justify docutils container">
-<p>Let us create 3 atoms groups for respectively the hydrogen
-atoms of the silica, the hydrogen
-atoms of the water, and all the hydrogen atoms:</p>
-</div>
+<p>Let us create three atom groups corresponding to: the hydrogen atoms of the silica,
+the hydrogen atoms of the water, and all the hydrogen atoms combined:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">H_H2O</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">select_atoms</span><span class="p">(</span><span class="s2">&quot;name HW1 HW2&quot;</span><span class="p">)</span>
 <span class="n">H_SIL</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">select_atoms</span><span class="p">(</span><span class="s2">&quot;name H&quot;</span><span class="p">)</span>
 <span class="n">H_ALL</span> <span class="o">=</span> <span class="n">H_H2O</span> <span class="o">+</span> <span class="n">H_SIL</span>
 </pre></div>
 </div>
-<div class="justify docutils container">
-<p>Then, let us run 3 separate NMR analyses, one for the
-water-silica interaction only, one for the intra-molecular
-interaction of water, and one for the inter-molecular inter-molecular interaction
-of water:</p>
-</div>
+<p>Then, let us run three separate NMR analyses: one for the water-silica interaction only,
+one for the intra-molecular interaction of water, and one for the inter-molecular
+interaction of water:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">nmr_H2O_SIL</span> <span class="o">=</span> <span class="n">nmrmd</span><span class="o">.</span><span class="n">NMR</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">atom_group</span> <span class="o">=</span> <span class="n">H_H2O</span><span class="p">,</span>
                     <span class="n">neighbor_group</span> <span class="o">=</span> <span class="n">H_SIL</span><span class="p">,</span> <span class="n">number_i</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">isotropic</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">nmr_H2O_INTRA</span> <span class="o">=</span> <span class="n">nmrmd</span><span class="o">.</span><span class="n">NMR</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">atom_group</span> <span class="o">=</span> <span class="n">H_H2O</span><span class="p">,</span> <span class="n">neighbor_group</span> <span class="o">=</span> <span class="n">H_H2O</span><span class="p">,</span> <span class="n">number_i</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span>
@@ -385,31 +366,15 @@ of water:</p>
                         <span class="n">type_analysis</span> <span class="o">=</span> <span class="s1">&#39;inter_molecular&#39;</span><span class="p">,</span> <span class="n">isotropic</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="justify docutils container">
-<p>Note the use of <em>isotropic = False</em>, which is necessary here since the
-system is non-isotropic.</p>
-</div>
+<p>Note the use of <code class="docutils literal notranslate"><span class="pre">isotropic=False</span></code>, which is required here because the system is anisotropic.</p>
 </section>
 <section id="extract-the-nmr-spectra">
 <h2>Extract the NMR spectra<a class="headerlink" href="#extract-the-nmr-spectra" title="Link to this heading">¶</a></h2>
-<div class="justify docutils container">
 <p>Let us access the NMR relaxation rate <span class="math notranslate nohighlight">\(R_1\)</span>:</p>
-</div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">R1_spectrum_H2O_SIL</span> <span class="o">=</span> <span class="n">nmr_H2O_SIL</span><span class="o">.</span><span class="n">R1</span>
 <span class="n">R1_spectrum_H2O_INTRA</span> <span class="o">=</span> <span class="n">nmr_H2O_INTRA</span><span class="o">.</span><span class="n">R1</span>
 <span class="n">R1_spectrum_H2O_INTER</span> <span class="o">=</span> <span class="n">nmr_H2O_INTER</span><span class="o">.</span><span class="n">R1</span>
 <span class="n">f</span> <span class="o">=</span> <span class="n">nmr_H2O_SIL</span><span class="o">.</span><span class="n">f</span>
-</pre></div>
-</div>
-<div class="justify docutils container">
-<p>The 3 spectra <span class="math notranslate nohighlight">\(R_1\)</span> can be
-plotted as a function of <span class="math notranslate nohighlight">\(f\)</span> using pyplot.</p>
-</div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">R1_spectrum_H2O_SIL</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">R1_spectrum_H2O_INTRA</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">R1_spectrum_H2O_INTER</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 <img alt="NMR results obtained from the GROMACS simulation of water in silica" class="only-dark" src="../_images/spectra-dark.png" />
@@ -418,12 +383,10 @@ plotted as a function of <span class="math notranslate nohighlight">\(f\)</span>
 <p>Figure: NMR relaxation rates <span class="math notranslate nohighlight">\(R_1\)</span> for the water confined in
 a silica slit.</p>
 </div>
-<div class="justify docutils container">
-<p>Note that the <span class="math notranslate nohighlight">\(\text{H}_2\text{O}-\text{silica}\)</span> contribution is
-much smaller than the intra and inter molecular contribution from the
-water. This can be explained by the comparatively small number of hydrogen
-atoms from the silica: 92, compared to the 1204 hydrogen atoms from the water.</p>
-</div>
+<p>Note that the <span class="math notranslate nohighlight">\(\text{H}_2\text{O}-\text{silica}\)</span> contribution is much
+smaller than the intra- and intermolecular contributions from the water. This
+is due to the relatively small number of hydrogen atoms from the silica (92),
+compared to the 1204 hydrogen atoms from the water.</p>
 </section>
 </section>
 
