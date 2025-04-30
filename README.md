@@ -1,4 +1,4 @@
-# NMRDfrorMD
+# NMRDfromMD
 
 <a href="webp">
   <img src="docs/source/figures/logo/logo-b.png" align="right" width="30%"/>
@@ -71,5 +71,3 @@ pull request that will be reviewed. Find more instructions
 This project has received funding from the European Union's Horizon 2020
 research and innovation programme under the Marie Skłodowska-Curie grant
 agreement No 101065060.
-
-![MSCA image](docs/source/figures/logo/msca.png)
