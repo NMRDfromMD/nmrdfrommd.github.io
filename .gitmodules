@@ -1,0 +1,3 @@
+[submodule ".submodules/dataset-LJ-fluid"]
+	path = .submodules/dataset-LJ-fluid
+	url = git@github.com:NMRDfromMD/dataset-LJ-fluid.git
