@@ -270,50 +270,37 @@
         <article role="main" id="furo-main-content">
           <section id="isotropic-systems">
 <span id="isotropic-label"></span><h1>Isotropic systems<a class="headerlink" href="#isotropic-systems" title="Link to this heading">¶</a></h1>
-<div class="justify docutils container">
 <p>In this tutorial, the NMR relaxation times <span class="math notranslate nohighlight">\(T_1\)</span> and <span class="math notranslate nohighlight">\(T_2\)</span>
 are measured from a bulk polymer-water mixture using <a href="https://nmrformd.readthedocs.io" target="_blank">NMRforMD</a>.
-To follow the tutorial, <a href="https://www.mdanalysis.org" target="_blank">MDAnalysis</a>,
-<a href="https://www.numpy.org" target="_blank">numpy</a>, and
-<a href="https://www.matplotlib.org" target="_blank">matplotlib</a> must be installed.</p>
-</div>
+To follow the tutorial, <a href="https://www.mdanalysis.org/" target="_blank">MDAnalysis</a>, <a href="https://www.numpy.org" target="_blank">NumPy</a>, and
+<a href="https://www.matplotlib.org" target="_blank">Matplotlib</a> must be installed.</p>
 <section id="md-system">
 <h2>MD system<a class="headerlink" href="#md-system" title="Link to this heading">¶</a></h2>
-<div class="hatnote docutils container">
-<p>Measuring the NMR relaxation time from a bulk water-polymer mixture</p>
-</div>
 <a class="only-dark reference internal image-reference" href="../_images/snapshot-dark3.png"><img alt="PEG-water mixture simulated with LAMMPS - Dipolar NMR relaxation time calculation" class="only-dark align-right" src="../_images/snapshot-dark3.png" style="width: 250px;" />
 </a>
 <a class="only-light reference internal image-reference" href="../_images/snapshot-light3.png"><img alt="PEG-water mixture simulated with LAMMPS - Dipolar NMR relaxation time calculation" class="only-light align-right" src="../_images/snapshot-light3.png" style="width: 250px;" />
 </a>
-<div class="justify docutils container">
 <p>The system is made of a bulk mixture of 320 <span class="math notranslate nohighlight">\(\text{TIP4P}-\epsilon\)</span> water molecules
 and 32 <span class="math notranslate nohighlight">\(\text{PEG}300\)</span> polymer molecules. The trajectory was recorded
 during a <span class="math notranslate nohighlight">\(10\,\text{ns}\)</span> production run performed with the open source code LAMMPS
-in the NPT ensemble using a timestep of <span class="math notranslate nohighlight">\(1\,\text{fs}\)</span>.
+in the <em>NpT</em> ensemble using a timestep of <span class="math notranslate nohighlight">\(1\,\text{fs}\)</span>.
 The imposed was temperature <span class="math notranslate nohighlight">\(T = 300\,^\circ\text{K}\)</span>, and the pressure
 <span class="math notranslate nohighlight">\(p = 1\,\text{atm}\)</span>. The positions of the atoms were recorded in
 the <em>prod.xtc</em> file
 every <span class="math notranslate nohighlight">\(1\,\text{ps}\)</span>.</p>
-</div>
-<div class="justify docutils container">
-<p>If you are not familiar with LAMMPS, you can find <a href="https://lammpstutorials.github.io/" target="_blank">tutorials</a> here.</p>
-</div>
+<p>In case you want to learn LAMMPS and generate your own trajectories,
+you can find <a href="https://lammpstutorials.github.io/" target="_blank">tutorials</a> for beginners here.</p>
 </section>
 <section id="file-preparation">
 <h2>File preparation<a class="headerlink" href="#file-preparation" title="Link to this heading">¶</a></h2>
-<div class="justify docutils container">
 <p>To access all trajectory and input files, download
-the <em>polymer-in-water</em> repository from Github, or simply
+the polymer-in-water repository from GitHub, or simply
 clone it on your computer using:</p>
-</div>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/simongravelle/polymer-in-water.git
 </pre></div>
 </div>
-<div class="justify docutils container">
 <p>The dataset required to follow this tutorial is located
-in <em>raw-data/NPEG32/</em>.</p>
-</div>
+in raw-data/NPEG32/.</p>
 </section>
 <section id="create-a-mdanalysis-universe">
 <h2>Create a MDAnalysis universe<a class="headerlink" href="#create-a-mdanalysis-universe" title="Link to this heading">¶</a></h2>
