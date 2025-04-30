@@ -33,3 +33,7 @@
 .. |lammps-tutorials| raw:: html
 
    <a href="https://lammpstutorials.github.io/" target="_blank">tutorials</a>
+
+.. |gromacs-tutorials| raw:: html
+
+   <a href="https://gromacstutorials.github.io/" target="_blank">tutorials</a>

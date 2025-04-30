@@ -10,7 +10,7 @@
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=302659d7" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=22d2b077" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a7c5f2ce" />
     
     
 
@@ -280,184 +280,153 @@ To follow the tutorial, <a href="https://www.mdanalysis.org/" target="_blank">MD
 </a>
 <a class="only-light reference internal image-reference" href="../_images/snapshot-light3.png"><img alt="PEG-water mixture simulated with LAMMPS - Dipolar NMR relaxation time calculation" class="only-light align-right" src="../_images/snapshot-light3.png" style="width: 250px;" />
 </a>
-<p>The system is made of a bulk mixture of 320 <span class="math notranslate nohighlight">\(\text{TIP4P}-\epsilon\)</span> water molecules
-and 32 <span class="math notranslate nohighlight">\(\text{PEG}300\)</span> polymer molecules. The trajectory was recorded
-during a <span class="math notranslate nohighlight">\(10\,\text{ns}\)</span> production run performed with the open source code LAMMPS
-in the <em>NpT</em> ensemble using a timestep of <span class="math notranslate nohighlight">\(1\,\text{fs}\)</span>.
-The imposed was temperature <span class="math notranslate nohighlight">\(T = 300\,^\circ\text{K}\)</span>, and the pressure
-<span class="math notranslate nohighlight">\(p = 1\,\text{atm}\)</span>. The positions of the atoms were recorded in
-the <em>prod.xtc</em> file
-every <span class="math notranslate nohighlight">\(1\,\text{ps}\)</span>.</p>
-<p>In case you want to learn LAMMPS and generate your own trajectories,
-you can find <a href="https://lammpstutorials.github.io/" target="_blank">tutorials</a> for beginners here.</p>
+<p>The system consists of a bulk mixture of 320 <span class="math notranslate nohighlight">\(\text{H}_2\text{O}\)</span> water
+molecules and 32 <span class="math notranslate nohighlight">\(\text{PEG 300}\)</span> polymer molecules. The <span class="math notranslate nohighlight">\(\text{TIP4P}-\epsilon\)</span>
+is used for the water <span id="id1">[<a class="reference internal" href="../additional/bibliography.html#id148" title="Raúl Fuentes-Azcatl and José Alejandre. Non-Polarizable Force Field of Water Based on the Dielectric Constant: TIP4P/epsilon. The Journal of Physical Chemistry B, 118(5):1263–1272, February 2014. doi:10.1021/jp410865y.">1</a>]</span>.
+<span class="math notranslate nohighlight">\(\text{PEG 300}\)</span> refers to polyethylene glycol chains with a molar mass of
+<span class="math notranslate nohighlight">\(300~\text{g/mol}\)</span>. The trajectory was recorded during a
+<span class="math notranslate nohighlight">\(10~\text{ns}\)</span> production run performed using the open-source code
+LAMMPS in the <span class="math notranslate nohighlight">\(NpT\)</span> ensemble with a timestep of <span class="math notranslate nohighlight">\(1~\text{fs}\)</span>.
+The temperature was set to <span class="math notranslate nohighlight">\(T = 300~\text{K}\)</span> and the pressure to
+<span class="math notranslate nohighlight">\(p = 1~\text{atm}\)</span>. Atomic positions were saved in the <strong>prod.xtc</strong> file
+every <span class="math notranslate nohighlight">\(1~\text{ps}\)</span>.</p>
+<div class="non-title-info admonition">
+<p class="admonition-title">Note</p>
+<p>If you’d like to learn LAMMPS and generate your own trajectories, beginner
+<a href="https://lammpstutorials.github.io/" target="_blank">tutorials</a> are available here.</p>
+</div>
 </section>
 <section id="file-preparation">
 <h2>File preparation<a class="headerlink" href="#file-preparation" title="Link to this heading">¶</a></h2>
-<p>To access all trajectory and input files, download
-the polymer-in-water repository from GitHub, or simply
-clone it on your computer using:</p>
+<p>To access all trajectory and input files, download the <code class="docutils literal notranslate"><span class="pre">polymer-in-water</span></code>
+repository from GitHub, or simply clone it using:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/simongravelle/polymer-in-water.git
 </pre></div>
 </div>
-<p>The dataset required to follow this tutorial is located
-in raw-data/NPEG32/.</p>
+<p>The dataset required to follow this tutorial is located in
+<code class="docutils literal notranslate"><span class="pre">raw-data/NPEG32/</span></code>.</p>
 </section>
 <section id="create-a-mdanalysis-universe">
 <h2>Create a MDAnalysis universe<a class="headerlink" href="#create-a-mdanalysis-universe" title="Link to this heading">¶</a></h2>
-<div class="justify docutils container">
-<p>Open a new Python script or a new notebook, and define
-the path to the data files:</p>
-</div>
+<p>Open a new Python script or Notebook, and define the path to the data files:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">datapath</span> <span class="o">=</span> <span class="s2">&quot;mypath/polymer-in-water/raw-data/NPEG32/&quot;</span>
 </pre></div>
 </div>
-<div class="justify docutils container">
-<p>Then, import numpy, MDAnalysis, and NMRforMD:</p>
-</div>
+<p>Then, import NumPy, MDAnalysis, and NMRDfromMD:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">MDAnalysis</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mda</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">nmrformd</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nmrmd</span>
 </pre></div>
 </div>
-<div class="justify docutils container">
-<p>From the trajectory files, let us create a MDAnalysis universe.
-Import the configuration file and the trajectory:</p>
-</div>
+<p>From the trajectory files, create a MDAnalysis universe by loading the
+configuration file and trajectory:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">u</span> <span class="o">=</span> <span class="n">mda</span><span class="o">.</span><span class="n">Universe</span><span class="p">(</span><span class="n">datapath</span><span class="o">+</span><span class="s2">&quot;init.data&quot;</span><span class="p">,</span> <span class="n">datapath</span><span class="o">+</span><span class="s2">&quot;prod.xtc&quot;</span><span class="p">)</span>
 <span class="n">u</span><span class="o">.</span><span class="n">transfer_to_memory</span><span class="p">(</span><span class="n">stop</span><span class="o">=</span><span class="mi">501</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="justify docutils container">
-<p>The <em>u.transfer_to_memory(stop=501)</em>, is optional, it only serve to
-reduce the number of frames, and therefore reduce the duration of
-the calculation. Feel free to remove it, or increase its value.
-The figures here have been generated using the
-full trajectory (i.e. without the <em>transfer_to_memory</em> command).</p>
-</div>
-<div class="justify docutils container">
-<p>The MDAnalysis universe <em>u</em> contains both topology (atoms types, masses, etc.)
-and trajectory (atom positions at every frame).</p>
-</div>
-<div class="justify docutils container">
-<p>Let us extract a few information from the universe,
-such as number of molecules (water + PEG), timestep, and total duration:</p>
-</div>
+<p>The command <code class="docutils literal notranslate"><span class="pre">u.transfer_to_memory(stop=501)</span></code> is optional. It simply reduces
+the number of frames loaded into memory, which speeds up the calculation.
+Feel free to remove it or increase the value. The figures in this tutorial
+were generated using the full trajectory (i.e., without the
+<code class="docutils literal notranslate"><span class="pre">u.transfer_to_memory(stop=501)</span></code> command).</p>
+<p>The MDAnalysis universe <code class="docutils literal notranslate"><span class="pre">u</span></code> contains both the topology (atom types, masses,
+etc.) and the trajectory (atom positions at each frame).</p>
+<p>Let us now extract some basic information from the universe, such as the number
+of molecules (water and PEG),  <code class="docutils literal notranslate"><span class="pre">n_molecules</span></code>, the timestep, <code class="docutils literal notranslate"><span class="pre">timestep</span></code> and
+the total duration of the simulation, <code class="docutils literal notranslate"><span class="pre">total_time</span></code>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">n_molecules</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">atoms</span><span class="o">.</span><span class="n">n_residues</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The number of molecules is </span><span class="si">{</span><span class="n">n_molecules</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-bw notranslate"><div class="highlight"><pre><span></span>&gt;&gt; The number of molecules is 352
-</pre></div>
-</div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">timestep</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">dt</span><span class="p">)</span>
+<span class="n">timestep</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">dt</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The timestep is </span><span class="si">{</span><span class="n">timestep</span><span class="si">}</span><span class="s2"> ps&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-bw notranslate"><div class="highlight"><pre><span></span>&gt;&gt; The timestep is 1 ps
-</pre></div>
-</div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">total_time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">totaltime</span><span class="p">)</span>
+<span class="n">total_time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">totaltime</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The total simulation time is </span><span class="si">{</span><span class="n">total_time</span><span class="si">}</span><span class="s2"> ps&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-bw notranslate"><div class="highlight"><pre><span></span>&gt;&gt; The total simulation time is 1000 ps
+<p>Executing the script using Python will return:</p>
+<div class="highlight-bw notranslate"><div class="highlight"><pre><span></span>&gt;&gt; The number of molecules is 352
+&gt;&gt; The timestep is 1 ps
+&gt;&gt; The total simulation time is 1000 ps
 </pre></div>
 </div>
-<div class="justify docutils container">
-<p>Note that in the context of MDAnalysis,
-the <em>timestep</em> refers to the duration
-between two recorded frames, which is different from the actual
-timestep of <span class="math notranslate nohighlight">\(1\,\text{fs}\)</span> used for the LAMMPS
-molecular dynamics simulation.</p>
+<div class="non-title-info admonition">
+<p class="admonition-title">Note</p>
+<p>In the context of MDAnalysis, the timestep refers to the duration between
+two recorded frames, which is different from the actual timestep of
+<span class="math notranslate nohighlight">\(1\,\text{fs}\)</span> used in the LAMMPS molecular dynamics simulation.</p>
 </div>
 </section>
 <section id="launch-the-nmr-analysis">
 <h2>Launch the NMR analysis<a class="headerlink" href="#launch-the-nmr-analysis" title="Link to this heading">¶</a></h2>
-<div class="justify docutils container">
-<p>Let us create 3 atom groups for respectively the hydrogen
-atoms of the PEG, the hydrogen
-atoms of the water, and all the hydrogen atoms:</p>
-</div>
+<p>Let us create three atom groups: the hydrogen atoms of the PEG, the hydrogen
+atoms of the water, and all hydrogen atoms:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">H_PEG</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">select_atoms</span><span class="p">(</span><span class="s2">&quot;type 3 5&quot;</span><span class="p">)</span>
 <span class="n">H_H2O</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">select_atoms</span><span class="p">(</span><span class="s2">&quot;type 7&quot;</span><span class="p">)</span>
 <span class="n">H_ALL</span> <span class="o">=</span> <span class="n">H_PEG</span> <span class="o">+</span> <span class="n">H_H2O</span>
 </pre></div>
 </div>
-<div class="justify docutils container">
-<p>Then, let us run NMRforMD for all the hydrogen atoms:</p>
-</div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">nmr_ALL</span> <span class="o">=</span> <span class="n">nmrmd</span><span class="o">.</span><span class="n">NMR</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">atom_group</span> <span class="o">=</span> <span class="n">H_ALL</span><span class="p">,</span> <span class="n">neighbor_group</span> <span class="o">=</span> <span class="n">H_ALL</span><span class="p">,</span> <span class="n">number_i</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
+<p>Then, let us first run NMRforMD for all hydrogen atoms:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">nmr_ALL</span> <span class="o">=</span> <span class="n">nmrmd</span><span class="o">.</span><span class="n">NMR</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">atom_group</span><span class="o">=</span><span class="n">H_ALL</span><span class="p">,</span> <span class="n">neighbor_group</span><span class="o">=</span><span class="n">H_ALL</span><span class="p">,</span> <span class="n">number_i</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="justify docutils container">
-<p>With ‘number_i = 40’, only 40 randomly selected atoms within ‘H_ALL’ are
-considered for the calculation. Increase this number for better resolution,
-and use ‘number_i = 0’ to consider all the atoms.</p>
-</div>
+<p>With <code class="docutils literal notranslate"><span class="pre">number_i</span> <span class="pre">=</span> <span class="pre">40</span></code>, only 40 randomly selected atoms from <code class="docutils literal notranslate"><span class="pre">H_ALL</span></code> are
+used in the calculation. Increase this number for better statistical resolution,
+or set <code class="docutils literal notranslate"><span class="pre">number_i</span> <span class="pre">=</span> <span class="pre">0</span></code> to include all atoms in the group.</p>
 </section>
 <section id="extract-the-nmr-spectra">
 <h2>Extract the NMR spectra<a class="headerlink" href="#extract-the-nmr-spectra" title="Link to this heading">¶</a></h2>
-<div class="justify docutils container">
-<p>Let us access the calculated value of the NMR relaxation time <span class="math notranslate nohighlight">\(T_1\)</span>:</p>
-</div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">T1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">nmr_ALL</span><span class="o">.</span><span class="n">T1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<p>Let us access the calculated value of the NMR relaxation time <span class="math notranslate nohighlight">\(T_1\)</span> by
+adding the following lines to the Python script:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">T1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">nmr_ALL</span><span class="o">.</span><span class="n">T1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The total NMR relaxation time is T1 = </span><span class="si">{</span><span class="n">T1</span><span class="si">}</span><span class="s2"> s&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>which should return:</p>
 <div class="highlight-bw notranslate"><div class="highlight"><pre><span></span>&gt;&gt; NMR relaxation time T1 = 2.53 s
 </pre></div>
 </div>
-<div class="justify docutils container">
-<p>The value you obtain may vary, depending on which hydrogen atoms
-were randomly selected for the calculation.</p>
-</div>
-<div class="justify docutils container">
-<p>The full <span class="math notranslate nohighlight">\(T_1\)</span> and <span class="math notranslate nohighlight">\(T_2\)</span> spectra can be extracted as well
-as 1/nmr_ALL.R1 and 1/nmr_ALL.R2, respectively,
-and the corresponding frequency is given by nmr_ALL.f.</p>
-</div>
+<p>The exact value you obtain may vary depending on which hydrogen atoms were
+randomly selected for the calculation.</p>
+<p>The full <span class="math notranslate nohighlight">\(T_1\)</span> and <span class="math notranslate nohighlight">\(T_2\)</span> spectra can be extracted as
+<code class="docutils literal notranslate"><span class="pre">1/nmr_ALL.R1</span></code> and <code class="docutils literal notranslate"><span class="pre">1/nmr_ALL.R2</span></code>, respectively. The corresponding
+frequencies are stored in <code class="docutils literal notranslate"><span class="pre">nmr_ALL.f</span></code>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">R1_spectrum</span> <span class="o">=</span> <span class="n">nmr_ALL</span><span class="o">.</span><span class="n">R1</span>
 <span class="n">R2_spectrum</span> <span class="o">=</span> <span class="n">nmr_ALL</span><span class="o">.</span><span class="n">R2</span>
-<span class="n">T1_spectrum</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">R1_spectrum</span>
-<span class="n">T2_spectrum</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">R2_spectrum</span>
+<span class="n">T1_spectrum</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">R1_spectrum</span>
+<span class="n">T2_spectrum</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">R2_spectrum</span>
 <span class="n">f</span> <span class="o">=</span> <span class="n">nmr_ALL</span><span class="o">.</span><span class="n">f</span>
 </pre></div>
 </div>
-<div class="justify docutils container">
-<p>The spectra <span class="math notranslate nohighlight">\(T_1\)</span> and <span class="math notranslate nohighlight">\(T_2\)</span> can then be
-plotted as a function of <span class="math notranslate nohighlight">\(f\)</span> using pyplot.</p>
-</div>
+<p>The spectra <span class="math notranslate nohighlight">\(T_1\)</span> and <span class="math notranslate nohighlight">\(T_2\)</span> can then be plotted as a function of
+<span class="math notranslate nohighlight">\(f\)</span> using <code class="docutils literal notranslate"><span class="pre">pyplot</span></code>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">T1_spectrum</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">T2_spectrum</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">T1_spectrum</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;T1&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">T2_spectrum</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;T2&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;f (MHz)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;T1, T2 (s)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-dark" src="../_images/T1-dark.png" />
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-light" src="../_images/T1-light.png" />
 <div class="figurelegend docutils container">
-<p>Figure: NMR relaxation times <span class="math notranslate nohighlight">\(T_1\)</span> (disks) and
-<span class="math notranslate nohighlight">\(T_2\)</span> (squares) as a function
-of the frequency <span class="math notranslate nohighlight">\(f\)</span> for
-the <span class="math notranslate nohighlight">\(\text{PEG-H}_2\text{O}\)</span> bulk mixture.</p>
+<p>Figure: NMR relaxation times <span class="math notranslate nohighlight">\(T_1\)</span> (disks) and <span class="math notranslate nohighlight">\(T_2\)</span> (squares)
+as a function of the frequency <span class="math notranslate nohighlight">\(f\)</span> for the
+<span class="math notranslate nohighlight">\(\text{PEG-H}_2\text{O}\)</span> bulk mixture.</p>
 </div>
 </section>
 <section id="calculate-the-intra-molecular-nmr-relaxation">
 <h2>Calculate the intra-molecular NMR relaxation<a class="headerlink" href="#calculate-the-intra-molecular-nmr-relaxation" title="Link to this heading">¶</a></h2>
-<div class="justify docutils container">
-<p>Let us measuring the intra-molecular contribution to the NMR
-relaxation time measurement. To make the analysis easier,
-let us also differentiate between PEG and <span class="math notranslate nohighlight">\(\text{H}_2\text{O}\)</span>
-molecule, and perform 2 separate analyses.</p>
-</div>
+<p>Let us measure the intra-molecular contribution to the NMR relaxation time.
+To simplify the analysis, we will differentiate between PEG and
+<span class="math notranslate nohighlight">\(\text{H}_2\text{O}\)</span> molecules and perform two separate analyses.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">nmr_H2O_intra</span> <span class="o">=</span> <span class="n">nmrmd</span><span class="o">.</span><span class="n">NMR</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">atom_group</span> <span class="o">=</span> <span class="n">H_H2O</span><span class="p">,</span> <span class="n">type_analysis</span><span class="o">=</span><span class="s2">&quot;intra_molecular&quot;</span><span class="p">,</span> <span class="n">number_i</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
 <span class="n">nmr_PEG_intra</span> <span class="o">=</span> <span class="n">nmrmd</span><span class="o">.</span><span class="n">NMR</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">atom_group</span> <span class="o">=</span> <span class="n">H_PEG</span><span class="p">,</span> <span class="n">type_analysis</span><span class="o">=</span><span class="s2">&quot;intra_molecular&quot;</span><span class="p">,</span> <span class="n">number_i</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="justify docutils container">
-<p>The correlation function Gij can be accessed from nmr_H2O_intra.gij[0],
-and the time  from nmr_H2O_intra.t.</p>
-</div>
+<p>The correlation function <span class="math notranslate nohighlight">\(G_{ij}\)</span> can be accessed from
+<code class="docutils literal notranslate"><span class="pre">nmr_H2O_intra.gij[0]</span></code>, and the corresponding time values from
+<code class="docutils literal notranslate"><span class="pre">nmr_H2O_intra.t</span></code>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">nmr_PEG_intra</span><span class="o">.</span><span class="n">t</span>
 <span class="n">G_intra_H2O</span> <span class="o">=</span> <span class="n">nmr_H2O_intra</span><span class="o">.</span><span class="n">gij</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">G_intra_PEG</span> <span class="o">=</span> <span class="n">nmr_PEG_intra</span><span class="o">.</span><span class="n">gij</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -466,19 +435,19 @@ and the time  from nmr_H2O_intra.t.</p>
 <img alt="NMR results obtained from the LAMMPS simulation of water-PEG" class="only-dark" src="../_images/Gintra-dark.png" />
 <img alt="NMR results obtained from the LAMMPS simulation of water-PEG" class="only-light" src="../_images/Gintra-light.png" />
 <div class="figurelegend docutils container">
-<p>Figure: Intra-molecular correlation function <span class="math notranslate nohighlight">\(G_\text{R}\)</span>
-for both PEG (squares) and <span class="math notranslate nohighlight">\(\text{H}_2\text{O}\)</span> (disks).</p>
+<p>Figure: Intra-molecular correlation function <span class="math notranslate nohighlight">\(G_\text{R}\)</span> for both
+PEG (squares) and <span class="math notranslate nohighlight">\(\text{H}_2\text{O}\)</span> (disks).</p>
 </div>
-<div class="justify docutils container">
-<p>From the correlation functions, one can obtain the typical
-rotational time of the molecules.</p>
-</div>
+<p>From the correlation functions, one can obtain the typical rotational
+time of the molecules:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tau_rot_H2O</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">trapz</span><span class="p">(</span><span class="n">G_intra_H2O</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span><span class="o">/</span><span class="n">G_intra_H2O</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">tau_rot_PEG</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">trapz</span><span class="p">(</span><span class="n">G_intra_PEG</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span><span class="o">/</span><span class="n">G_intra_PEG</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">2</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The rotational time of H2O is = </span><span class="si">{</span><span class="n">tau_rot_H2O</span><span class="si">}</span><span class="s2"> ps&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The rotational time of PEG is = </span><span class="si">{</span><span class="n">tau_rot_PEG</span><span class="si">}</span><span class="s2"> ps&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>This should return (again, the exact values will likely differ in your
+case):</p>
 <div class="highlight-bw notranslate"><div class="highlight"><pre><span></span>&gt;&gt; The rotational time of H2O is = 6.35 ps
 &gt;&gt; The rotational time of PEG is = 8.34 ps
 </pre></div>

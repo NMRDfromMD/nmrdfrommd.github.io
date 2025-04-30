@@ -10,7 +10,7 @@
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=302659d7" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=22d2b077" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a7c5f2ce" />
     
     
 
@@ -270,13 +270,12 @@
         <article role="main" id="furo-main-content">
           <section id="anisotropic-systems">
 <span id="anisotropic-label"></span><h1>Anisotropic systems<a class="headerlink" href="#anisotropic-systems" title="Link to this heading">¶</a></h1>
-<div class="justify docutils container">
-<p>In this tutorial, the NMR relaxation rate <span class="math notranslate nohighlight">\(R_1\)</span>
-is measured from water confined in a nanoslit os silica.</p>
-</div>
-<div class="justify docutils container">
-<p>I recommend you to follow
-this tutorial on a simpler <a class="reference internal" href="isotropic-system.html#isotropic-label"><span class="std std-ref">Isotropic systems</span></a> first.</p>
+<p>In this tutorial, the NMR relaxation rate <span class="math notranslate nohighlight">\(R_1\)</span> is measured from water
+confined in a nanoslit of silica.</p>
+<div class="non-title-info admonition">
+<p class="admonition-title">Note</p>
+<p>If you are new to NMRDfromMD, it is recommended that you follow this simpler
+tutorial on <a class="reference internal" href="isotropic-system.html#isotropic-label"><span class="std std-ref">Isotropic systems</span></a> first.</p>
 </div>
 <section id="md-system">
 <h2>MD system<a class="headerlink" href="#md-system" title="Link to this heading">¶</a></h2>
@@ -287,7 +286,6 @@ this tutorial on a simpler <a class="reference internal" href="isotropic-system.
 </a>
 <a class="only-light reference internal image-reference" href="../_images/snapshot-light2.png"><img alt="Water confined in silica slit - Dipolar NMR relaxation time calculation" class="only-light align-right" src="../_images/snapshot-light2.png" style="width: 250px;" />
 </a>
-<div class="justify docutils container">
 <p>The system is made of 602 <span class="math notranslate nohighlight">\(\text{TIP4P}-\epsilon\)</span> water molecules
 in a slit silica nanopore. The trajectory was recorded
 during a <span class="math notranslate nohighlight">\(10\,\text{ns}\)</span> production run performed with the open source code GROMACS
@@ -298,9 +296,10 @@ The imposed was temperature <span class="math notranslate nohighlight">\(T = 300
 <span class="math notranslate nohighlight">\(p = 1\,\text{bar}\)</span>. The positions of the atoms were recorded in
 the <em>prod.xtc</em> file
 every <span class="math notranslate nohighlight">\(2\,\text{ps}\)</span>.</p>
-</div>
-<div class="justify docutils container">
-<p>If you are not familiar with GROMACS, you can find <a href="https://gromacstutorials.github.io/" target="_blank">tutorials</a> here.</p>
+<div class="non-title-info admonition">
+<p class="admonition-title">Note</p>
+<p>If you’d like to learn GROMACS and generate your own trajectories, beginner
+<a href="https://gromacstutorials.github.io/" target="_blank">tutorials</a> are available here.</p>
 </div>
 </section>
 <section id="file-preparation">

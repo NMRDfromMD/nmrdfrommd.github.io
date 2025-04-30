@@ -10,7 +10,7 @@
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=302659d7" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=22d2b077" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a7c5f2ce" />
     
     
 
@@ -286,14 +286,14 @@ was associated with a mass <span class="math notranslate nohighlight">\(m = 1\,\
 and LJ parameters <span class="math notranslate nohighlight">\(\sigma = 3\,\text{Å}\)</span>
 and <span class="math notranslate nohighlight">\(\epsilon = 0.1\,\text{kcal/mol}\)</span>. The volume of
 the box <span class="math notranslate nohighlight">\((37.5\,\text{Å})^3\)</span>  was chosen to match the
-density of the paper by Grivet <span id="id1">[<a class="reference internal" href="../additional/bibliography.html#id181" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">1</a>]</span>.
+density of the paper by Grivet <span id="id1">[<a class="reference internal" href="../additional/bibliography.html#id181" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">2</a>]</span>.
 Calculations were made at constant volume and energy, in the NVE ensemble.
 The total duration of the simulation was 11000 steps, and the data were recorded every 10 steps
 with a timestep of <span class="math notranslate nohighlight">\(1.16\,\text{fs}\)</span>. The imposed temperatures
 were ranging from <span class="math notranslate nohighlight">\(T = 30\)</span> to <span class="math notranslate nohighlight">\(160\,\text{K}\)</span>.</p>
 </div>
 <div class="justify docutils container">
-<p>The parameters were chosen to match the reduced parameters used by Grivet <span id="id2">[<a class="reference internal" href="../additional/bibliography.html#id181" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">1</a>]</span>,
+<p>The parameters were chosen to match the reduced parameters used by Grivet <span id="id2">[<a class="reference internal" href="../additional/bibliography.html#id181" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">2</a>]</span>,
 namely a reduced temperature ranging from <span class="math notranslate nohighlight">\(T^* = 0.8\)</span> to 3.0,
 a density <span class="math notranslate nohighlight">\(\rho^* = 0.84\)</span>. Note however, a smaller number of particles was used,
 as well as a smaller timestep, and a slightly longer cut-off.</p>
@@ -303,7 +303,7 @@ as well as a smaller timestep, and a slightly longer cut-off.</p>
 <h2>Results<a class="headerlink" href="#results" title="Link to this heading">¶</a></h2>
 <div class="justify docutils container">
 <p>The correlation function <span class="math notranslate nohighlight">\(G^{(0)}\)</span> was first extracted for two temperatures, <span class="math notranslate nohighlight">\(T = 50\)</span>
-and <span class="math notranslate nohighlight">\(140\,\text{K}\)</span>, and compared with the correlation functions reported by Grivet <span id="id3">[<a class="reference internal" href="../additional/bibliography.html#id181" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">1</a>]</span>.
+and <span class="math notranslate nohighlight">\(140\,\text{K}\)</span>, and compared with the correlation functions reported by Grivet <span id="id3">[<a class="reference internal" href="../additional/bibliography.html#id181" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">2</a>]</span>.
 Our results show an excellent agreement with the results from Grivet, thus validating the
 NMR formalism used here as well as the LJ system and parameters.</p>
 </div>
@@ -311,13 +311,13 @@ NMR formalism used here as well as the LJ system and parameters.</p>
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-light" src="../_images/G_correlation-light.png" />
 <div class="figurelegend docutils container">
 <p>Figure: Correlation function <span class="math notranslate nohighlight">\(G^{(0)}\)</span> as extracted from the LJ fluid simulation
-for two different temperatures, and compared with the data from Grivet <span id="id4">[<a class="reference internal" href="../additional/bibliography.html#id181" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">1</a>]</span> (open symbols).</p>
+for two different temperatures, and compared with the data from Grivet <span id="id4">[<a class="reference internal" href="../additional/bibliography.html#id181" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">2</a>]</span> (open symbols).</p>
 </div>
 <div class="justify docutils container">
 <p>The NMR relaxation rates <span class="math notranslate nohighlight">\(R_1\)</span>
 and <span class="math notranslate nohighlight">\(R_2\)</span> was also extracted for all the temperatures, at
 a frequency <span class="math notranslate nohighlight">\(f_0 = 150\,\text{GHz}\)</span>. Our results
-show a good agreement with the data from Grivet <span id="id5">[<a class="reference internal" href="../additional/bibliography.html#id181" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">1</a>]</span>.</p>
+show a good agreement with the data from Grivet <span id="id5">[<a class="reference internal" href="../additional/bibliography.html#id181" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">2</a>]</span>.</p>
 </div>
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-dark" src="../_images/R1_spectra-dark.png" />
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-light" src="../_images/R1_spectra-light.png" />
@@ -325,7 +325,7 @@ show a good agreement with the data from Grivet <span id="id5">[<a class="refere
 <p>Figure: NMR relaxation rates <span class="math notranslate nohighlight">\(R_1\)</span>
 and <span class="math notranslate nohighlight">\(R_2\)</span> at
 a frequency <span class="math notranslate nohighlight">\(f_0 = 150\,\text{GHz}\)</span>.
-The data from Grivet <span id="id6">[<a class="reference internal" href="../additional/bibliography.html#id181" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">1</a>]</span> are shown with open symbols.</p>
+The data from Grivet <span id="id6">[<a class="reference internal" href="../additional/bibliography.html#id181" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">2</a>]</span> are shown with open symbols.</p>
 </div>
 </section>
 </section>
