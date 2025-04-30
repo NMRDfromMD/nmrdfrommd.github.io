@@ -1,17 +1,17 @@
+.. include:: ../additional/links.rst
 .. _anisotropic-label:
 
 Anisotropic systems
 ===================
 
-.. container:: justify
+In this tutorial, the NMR relaxation rate :math:`R_1` is measured from water
+confined in a nanoslit of silica.
 
-    In this tutorial, the NMR relaxation rate :math:`R_1`
-    is measured from water confined in a nanoslit os silica.
-
-.. container:: justify
-
-    I recommend you to follow
-    this tutorial on a simpler :ref:`isotropic-label` first.
+.. admonition:: Note
+    :class: non-title-info
+    
+    If you are new to NMRDfromMD, it is recommended that you follow this simpler
+    tutorial on :ref:`isotropic-label` first.
 
 MD system
 ---------
@@ -32,26 +32,22 @@ MD system
     :width: 250
     :align: right
 
-.. container:: justify
+The system is made of 602 :math:`\text{TIP4P}-\epsilon` water molecules
+in a slit silica nanopore. The trajectory was recorded
+during a :math:`10\,\text{ns}` production run performed with the open source code GROMACS
+in the anisotropic NPzT ensemble using a timestep of :math:`1\,\text{fs}`.
+In order to balance the charge of the surface, 20 sodium ions are
+present in the slit.
+The imposed was temperature :math:`T = 300\,\text{K}`, and the pressure
+:math:`p = 1\,\text{bar}`. The positions of the atoms were recorded in
+the *prod.xtc* file
+every :math:`2\,\text{ps}`.
 
-    The system is made of 602 :math:`\text{TIP4P}-\epsilon` water molecules
-    in a slit silica nanopore. The trajectory was recorded
-    during a :math:`10\,\text{ns}` production run performed with the open source code GROMACS
-    in the anisotropic NPzT ensemble using a timestep of :math:`1\,\text{fs}`.
-    In order to balance the charge of the surface, 20 sodium ions are
-    present in the slit.
-    The imposed was temperature :math:`T = 300\,\text{K}`, and the pressure
-    :math:`p = 1\,\text{bar}`. The positions of the atoms were recorded in
-    the *prod.xtc* file
-    every :math:`2\,\text{ps}`.
+.. admonition:: Note
+    :class: non-title-info
 
-.. container:: justify
-
-    If you are not familiar with GROMACS, you can find |gromacs-tutorials| here.
-
-.. |gromacs-tutorials| raw:: html
-
-   <a href="https://gromacstutorials.github.io/" target="_blank">tutorials</a>
+    If you'd like to learn GROMACS and generate your own trajectories, beginner
+    |gromacs-tutorials| are available here.
 
 File preparation
 ----------------
