@@ -17,3 +17,19 @@
 .. |water confined in silica| raw:: html
 
    <a href="https://github.com/simongravelle/water-in-silica.git" target="_blank">water confined in silica</a>
+
+.. |NMRforMD| raw:: html
+
+   <a href="https://nmrformd.readthedocs.io" target="_blank">NMRforMD</a>
+
+.. |NumPy| raw:: html
+
+   <a href="https://www.numpy.org" target="_blank">NumPy</a>
+
+.. |Matplotlib| raw:: html
+
+   <a href="https://www.matplotlib.org" target="_blank">Matplotlib</a>
+
+.. |lammps-tutorials| raw:: html
+
+   <a href="https://lammpstutorials.github.io/" target="_blank">tutorials</a>

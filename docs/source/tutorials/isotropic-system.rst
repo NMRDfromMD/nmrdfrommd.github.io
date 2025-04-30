@@ -1,38 +1,16 @@
+.. include:: ../additional/links.rst
 .. _isotropic-label:
 
 Isotropic systems
 =================
 
-.. container:: justify
-
-    In this tutorial, the NMR relaxation times :math:`T_1` and :math:`T_2`
-    are measured from a bulk polymer-water mixture using |NMRforMD|.
-    To follow the tutorial, |MDAnalysis|,
-    |numpy|, and
-    |matplotlib| must be installed.
-
-.. |NMRforMD| raw:: html
-
-   <a href="https://nmrformd.readthedocs.io" target="_blank">NMRforMD</a>
-
-.. |MDAnalysis| raw:: html
-
-   <a href="https://www.mdanalysis.org" target="_blank">MDAnalysis</a>
-
-.. |numpy| raw:: html
-
-   <a href="https://www.numpy.org" target="_blank">numpy</a>
-
-.. |matplotlib| raw:: html
-
-   <a href="https://www.matplotlib.org" target="_blank">matplotlib</a>
+In this tutorial, the NMR relaxation times :math:`T_1` and :math:`T_2`
+are measured from a bulk polymer-water mixture using |NMRforMD|.
+To follow the tutorial, |MDAnalysis|, |NumPy|, and
+|Matplotlib| must be installed.
 
 MD system
 ---------
-
-.. container:: hatnote
-
-   Measuring the NMR relaxation time from a bulk water-polymer mixture
 
 .. image:: ../figures/tutorials/isotropic-systems/snapshot-dark.png
     :class: only-dark
@@ -46,42 +24,31 @@ MD system
     :width: 250
     :align: right
 
-.. container:: justify
+The system is made of a bulk mixture of 320 :math:`\text{TIP4P}-\epsilon` water molecules
+and 32 :math:`\text{PEG}300` polymer molecules. The trajectory was recorded
+during a :math:`10\,\text{ns}` production run performed with the open source code LAMMPS
+in the *NpT* ensemble using a timestep of :math:`1\,\text{fs}`.
+The imposed was temperature :math:`T = 300\,^\circ\text{K}`, and the pressure
+:math:`p = 1\,\text{atm}`. The positions of the atoms were recorded in
+the *prod.xtc* file
+every :math:`1\,\text{ps}`.
 
-    The system is made of a bulk mixture of 320 :math:`\text{TIP4P}-\epsilon` water molecules
-    and 32 :math:`\text{PEG}300` polymer molecules. The trajectory was recorded
-    during a :math:`10\,\text{ns}` production run performed with the open source code LAMMPS
-    in the NPT ensemble using a timestep of :math:`1\,\text{fs}`.
-    The imposed was temperature :math:`T = 300\,^\circ\text{K}`, and the pressure
-    :math:`p = 1\,\text{atm}`. The positions of the atoms were recorded in
-    the *prod.xtc* file
-    every :math:`1\,\text{ps}`.
-
-.. container:: justify
-
-    If you are not familiar with LAMMPS, you can find |lammps-tutorials| here.
-
-.. |lammps-tutorials| raw:: html
-
-   <a href="https://lammpstutorials.github.io/" target="_blank">tutorials</a>
+In case you want to learn LAMMPS and generate your own trajectories,
+you can find |lammps-tutorials| for beginners here.
 
 File preparation
 ----------------
 
-.. container:: justify
-
-    To access all trajectory and input files, download 
-    the *polymer-in-water* repository from Github, or simply
-    clone it on your computer using:
+To access all trajectory and input files, download 
+the polymer-in-water repository from GitHub, or simply
+clone it on your computer using:
 
 .. code-block:: bash
 
     git clone https://github.com/simongravelle/polymer-in-water.git
 
-.. container:: justify
-
-    The dataset required to follow this tutorial is located
-    in *raw-data/NPEG32/*.
+The dataset required to follow this tutorial is located
+in raw-data/NPEG32/.
 
 Create a MDAnalysis universe
 ----------------------------
