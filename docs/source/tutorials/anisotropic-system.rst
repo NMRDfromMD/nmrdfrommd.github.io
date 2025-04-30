@@ -22,26 +22,24 @@ MD system
 
 .. image:: ../figures/tutorials/anisotropic-systems/snapshot-dark.png
     :class: only-dark
-    :alt: Water confined in silica slit - Dipolar NMR relaxation time calculation
+    :alt: Water confined in silica slit with GROMACS - Dipolar NMR relaxation time calculation
     :width: 250
     :align: right
 
 .. image:: ../figures/tutorials/anisotropic-systems/snapshot-light.png
     :class: only-light
-    :alt: Water confined in silica slit - Dipolar NMR relaxation time calculation
+    :alt: Water confined in silica slit with GROMACS - Dipolar NMR relaxation time calculation
     :width: 250
     :align: right
 
-The system is made of 602 :math:`\text{TIP4P}-\epsilon` water molecules
-in a slit silica nanopore. The trajectory was recorded
-during a :math:`10\,\text{ns}` production run performed with the open source code GROMACS
-in the anisotropic NPzT ensemble using a timestep of :math:`1\,\text{fs}`.
-In order to balance the charge of the surface, 20 sodium ions are
-present in the slit.
-The imposed was temperature :math:`T = 300\,\text{K}`, and the pressure
-:math:`p = 1\,\text{bar}`. The positions of the atoms were recorded in
-the *prod.xtc* file
-every :math:`2\,\text{ps}`.
+The system is composed of 602 :math:`\text{TIP4P}-\epsilon` water molecules
+confined in a slit silica nanopore. The trajectory was recorded during a
+:math:`10\,\text{ns}` production run performed using the open-source code GROMACS,
+in the anisotropic :math:`NP_zT` ensemble, with a timestep of :math:`1\,\text{fs}`.
+To balance the surface charge, 20 sodium ions are present in the slit.
+The imposed temperature was :math:`T = 300\,\text{K}`, and the pressure
+was :math:`p = 1\,\text{bar}`. Atomic positions were saved in the **prod.xtc**
+file every :math:`2\,\text{ps}`.
 
 .. admonition:: Note
     :class: non-title-info
@@ -52,56 +50,44 @@ every :math:`2\,\text{ps}`.
 File preparation
 ----------------
 
-.. container:: justify
-
-    To access all trajectory and input files, download 
-    the *water-in-silica* repository from Github, or simply
-    clone it on your computer using:
+To access all trajectory and input files, download the
+``water-in-silica`` repository from GitHub, or simply clone it
+to your computer using:
 
 .. code-block:: bash
 
     git clone https://github.com/simongravelle/water-in-silica.git
 
-.. container:: justify
-
-    The dataset required to follow this tutorial is located
-    in *raw-data/N50/*.
+The dataset required to follow this tutorial is located in
+``raw-data/N50/``.
 
 Create a MDAnalysis universe
 ----------------------------
 
-.. container:: justify
-
-    Open a new Python script or a new notebook, and define
-    the path to the data files:
+Open a new Python script or a new notebook, and define
+the path to the data files:
 
 .. code-block:: python
 
-	datapath = "mypath/water-in-silica/raw-data/N50/"
+    datapath = "mypath/water-in-silica/raw-data/N50/"
 
-.. container:: justify
-
-    Then, import numpy, MDAnalysis, and NMRforMD:
+Then, import NumPy, MDAnalysis, and NMRforMD:
 
 .. code-block:: python
 
-	import numpy as np
-	import MDAnalysis as mda
-	import nmrformd as nmrmd
+    import numpy as np
+    import MDAnalysis as mda
+    import nmrformd as nmrmd
 
-.. container:: justify
-
-    From the trajectory files, let us create a MDAnalysis universe.
-    Import the configuration file and the trajectory:
+From the trajectory files, create a MDAnalysis universe by
+loading the configuration file and the trajectory:
 
 .. code-block:: python
 
-    u = mda.Universe(datapath+"prod.tpr", datapath+"prod.xtc")
+    u = mda.Universe(datapath + "prod.tpr", datapath + "prod.xtc")
 
-.. container:: justify
-
-    Let us extract a few information from the universe,
-    such as number of molecules, timestep, and total duration:
+Next, extract some basic information from the universe, such as
+the number of molecules, the timestep, and the total duration:
 
 .. code-block:: python
 
@@ -112,6 +98,8 @@ Create a MDAnalysis universe
     total_time = np.int32(u.trajectory.totaltime)
     print(f"The total simulation time is {total_time} ps")
 
+Running this will return:
+
 .. code-block:: bw
 
     >> The number of molecules is 623
@@ -121,11 +109,8 @@ Create a MDAnalysis universe
 Launch the NMR analysis
 -----------------------
 
-.. container:: justify
-
-    Let us create 3 atoms groups for respectively the hydrogen
-    atoms of the silica, the hydrogen
-    atoms of the water, and all the hydrogen atoms:
+Let us create three atom groups corresponding to: the hydrogen atoms of the silica,
+the hydrogen atoms of the water, and all the hydrogen atoms combined:
 
 .. code-block:: python
 
@@ -133,12 +118,9 @@ Launch the NMR analysis
     H_SIL = u.select_atoms("name H")
     H_ALL = H_H2O + H_SIL
 
-.. container:: justify
-
-    Then, let us run 3 separate NMR analyses, one for the 
-    water-silica interaction only, one for the intra-molecular
-    interaction of water, and one for the inter-molecular inter-molecular interaction
-    of water:
+Then, let us run three separate NMR analyses: one for the water-silica interaction only,
+one for the intra-molecular interaction of water, and one for the inter-molecular
+interaction of water:
 
 .. code-block:: python
 
@@ -149,17 +131,12 @@ Launch the NMR analysis
     nmr_H2O_INTER = nmrmd.NMR(u, atom_group = H_H2O, neighbor_group = H_H2O, number_i=40,
                             type_analysis = 'inter_molecular', isotropic=False)
 
-.. container:: justify
-
-    Note the use of *isotropic = False*, which is necessary here since the
-    system is non-isotropic.
+Note the use of ``isotropic=False``, which is required here because the system is anisotropic.
 
 Extract the NMR spectra
 -----------------------
 
-.. container:: justify
-
-    Let us access the NMR relaxation rate :math:`R_1`:
+Let us access the NMR relaxation rate :math:`R_1`:
 
 .. code-block:: python
 
@@ -167,19 +144,6 @@ Extract the NMR spectra
     R1_spectrum_H2O_INTRA = nmr_H2O_INTRA.R1
     R1_spectrum_H2O_INTER = nmr_H2O_INTER.R1
     f = nmr_H2O_SIL.f
-
-.. container:: justify
-
-    The 3 spectra :math:`R_1` can be
-    plotted as a function of :math:`f` using pyplot.
-
-.. code-block:: python
-
-    from matplotlib import pyplot as plt
-    plt.loglog(f, R1_spectrum_H2O_SIL, 'o')
-    plt.loglog(f, R1_spectrum_H2O_INTRA, 's')
-    plt.loglog(f, R1_spectrum_H2O_INTER, 'd')
-    plt.show()
 
 .. image:: ../figures/tutorials/anisotropic-systems/spectra-dark.png
     :class: only-dark
@@ -194,9 +158,7 @@ Extract the NMR spectra
     Figure: NMR relaxation rates :math:`R_1` for the water confined in
     a silica slit.
 
-.. container:: justify
-
-    Note that the :math:`\text{H}_2\text{O}-\text{silica}` contribution is 
-    much smaller than the intra and inter molecular contribution from the
-    water. This can be explained by the comparatively small number of hydrogen
-    atoms from the silica: 92, compared to the 1204 hydrogen atoms from the water.
+Note that the :math:`\text{H}_2\text{O}-\text{silica}` contribution is much
+smaller than the intra- and intermolecular contributions from the water. This
+is due to the relatively small number of hydrogen atoms from the silica (92),
+compared to the 1204 hydrogen atoms from the water.
