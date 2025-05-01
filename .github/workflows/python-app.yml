@@ -41,7 +41,7 @@ jobs:
           pip install sphinx-favicon
           pip install sphinxcontrib.bibtex
           pip install sphinx-tabs
-          pip install nbsphinx
+          # pip install nbsphinx
           
       - name: Build
         run: |
