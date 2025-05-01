@@ -10,13 +10,13 @@ to the results from Ref. :cite:`grivetNMRRelaxationParameters2005`.
 MD system
 ---------
 
-.. image:: ../figures/illustrations/lennard-jones-fluid/snapshot-dark.png
+.. image:: lennard-jones-fluids/lj-dark.png
     :class: only-dark
     :alt: LJ fluid simulated with LAMMPS - Dipolar NMR relaxation time calculation
     :width: 250
     :align: right
 
-.. image:: ../figures/illustrations/lennard-jones-fluid/snapshot-light.png
+.. image:: lennard-jones-fluids/lj-light.png
     :class: only-light
     :alt: LJ fluid simulated with LAMMPS - Dipolar NMR relaxation time calculation
     :width: 250
