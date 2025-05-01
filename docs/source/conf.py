@@ -20,7 +20,6 @@ release = '0.1.1'
 
 extensions = [
     'sphinx.ext.autodoc',
-    'nbsphinx',
     'sphinx_favicon',
     'sphinxcontrib.bibtex',
 ]
