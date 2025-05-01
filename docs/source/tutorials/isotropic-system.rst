@@ -39,7 +39,7 @@ every :math:`1~\text{ps}`.
     :class: non-title-info
 
     If you'd like to learn LAMMPS and generate your own trajectories, beginner
-    |lammps-tutorials| are available here.
+    |lammps-tutorials| are available here :cite:`gravelleSetTutorialsLAMMPS2025`.
 
 File preparation
 ----------------
