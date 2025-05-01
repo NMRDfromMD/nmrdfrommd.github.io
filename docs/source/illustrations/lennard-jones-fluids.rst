@@ -48,6 +48,35 @@ on GitHub; see |dataset-LJ-fluid|.
 Results
 -------
 
+.. image:: lennard-jones-fluids/nmr-relaxation-rates-spectra-dm.png
+    :class: only-dark
+    :alt: NMR relaxation rate of a LJ fluid simulated with LAMMPS
+
+.. image:: lennard-jones-fluids/nmr-relaxation-rates-spectra.png
+    :class: only-light
+    :alt: NMR relaxation rate of a LJ fluid simulated with LAMMPS
+
+.. container:: figurelegend
+
+    Figure: NMR relaxation rates :math:`R_1` (A) and :math:`R_2` (B)
+    as a function of the frequency :math:`f`.
+
+.. image:: lennard-jones-fluids/nmr-relaxation-rates-at-target-dm.png
+    :class: only-dark
+    :alt: NMR relaxation rate of a LJ fluid simulated with LAMMPS
+
+.. image:: lennard-jones-fluids/nmr-relaxation-rates-at-target.png
+    :class: only-light
+    :alt: NMR relaxation rate of a LJ fluid simulated with LAMMPS
+
+.. container:: figurelegend
+
+    Figure: NMR relaxation rates :math:`R_1` (A) and :math:`R_2` (B) at
+    a frequency 0.07 (dimensionless), or :math:`f_0 = 151\,\text{GHz}`.
+    The data from Grivet :cite:`grivetNMRRelaxationParameters2005` are shown
+    with gray symbols.
+
+
 The correlation function :math:`G^{(0)}` was first extracted for two temperatures, :math:`T = 50`
 and :math:`140\,\text{K}`, and compared with the correlation functions reported by Grivet :cite:`grivetNMRRelaxationParameters2005`.
 Our results show an excellent agreement with the results from Grivet, thus validating the
