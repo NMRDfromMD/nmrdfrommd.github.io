@@ -37,3 +37,7 @@
 .. |gromacs-tutorials| raw:: html
 
    <a href="https://gromacstutorials.github.io/" target="_blank">tutorials</a>
+
+.. |dataset-LJ-fluid| raw:: html
+
+   <a href="https://github.com/NMRDfromMD/dataset-LJ-fluid" target="_blank">dataset-LJ-fluid</a>

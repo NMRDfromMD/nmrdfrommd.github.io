@@ -1,3 +1,4 @@
+.. include:: ../additional/links.rst
 .. _lennard-jones-label:
 
 Lennard-Jones fluid
@@ -22,9 +23,11 @@ MD system
     :align: right
 
 The system consists of 16,000 particles interacting via the classical 
-Lennard-Jones (LJ) 12-6 potential. Each particle has a mass 
+Lennard-Jones (LJ) 12-6 potential and simulated using
+LAMMPS :cite:`thompsonLAMMPSFlexibleSimulation2022`.
+Each particle has a mass 
 :math:`m = 1\,\text{g/mol}`, and LJ parameters 
-:math:`\sigma = 3\,\text{Å}` and :math:`\epsilon = 0.1\,\text{kcal/mol}`. 
+:math:`\sigma = 3\,\text{Å}` and :math:`\epsilon = 0.1\,\text{kcal/mol}`.
 All reduced parameters were taken to match the study by Grivet 
 :cite:`grivetNMRRelaxationParameters2005`.
 A cutoff of :math:`4 \sigma` was used for the LJ interactions. The 
@@ -38,6 +41,9 @@ were recorded every 10 timesteps. A timestep of
 The imposed temperatures ranged from :math:`T = 30` to 
 :math:`160\,\text{K}`, corresponding to reduced temperatures from 
 :math:`T^* = 0.8` to :math:`3.0`.
+
+All LAMMPS input scripts and analysis scripts written in Python are provided
+on GitHub; see |dataset-LJ-fluid|.
 
 Results
 -------

@@ -271,7 +271,7 @@
           <section id="lennard-jones-fluid">
 <span id="lennard-jones-label"></span><h1>Lennard-Jones fluid<a class="headerlink" href="#lennard-jones-fluid" title="Link to this heading">¶</a></h1>
 <p>Here, NMR relaxation rates are measured from a Lennard-Jones fluid, and compared
-to the results from Ref. <span id="id1">[<a class="reference internal" href="../additional/bibliography.html#id181" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">2</a>]</span>.</p>
+to the results from Ref. <span id="id1">[<a class="reference internal" href="../additional/bibliography.html#id182" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">3</a>]</span>.</p>
 <section id="md-system">
 <h2>MD system<a class="headerlink" href="#md-system" title="Link to this heading">¶</a></h2>
 <a class="only-dark reference internal image-reference" href="../_images/snapshot-dark.png"><img alt="LJ fluid simulated with LAMMPS - Dipolar NMR relaxation time calculation" class="only-dark align-right" src="../_images/snapshot-dark.png" style="width: 250px;" />
@@ -279,11 +279,13 @@ to the results from Ref. <span id="id1">[<a class="reference internal" href="../
 <a class="only-light reference internal image-reference" href="../_images/snapshot-light.png"><img alt="LJ fluid simulated with LAMMPS - Dipolar NMR relaxation time calculation" class="only-light align-right" src="../_images/snapshot-light.png" style="width: 250px;" />
 </a>
 <p>The system consists of 16,000 particles interacting via the classical
-Lennard-Jones (LJ) 12-6 potential. Each particle has a mass
+Lennard-Jones (LJ) 12-6 potential and simulated using
+LAMMPS <span id="id2">[<a class="reference internal" href="../additional/bibliography.html#id494" title="Aidan P. Thompson, H. Metin Aktulga, Richard Berger, Dan S. Bolintineanu, W. Michael Brown, Paul S. Crozier, Pieter J. In 'T Veld, Axel Kohlmeyer, Stan G. Moore, Trung Dac Nguyen, Ray Shan, Mark J. Stevens, Julien Tranchida, Christian Trott, and Steven J. Plimpton. LAMMPS - a flexible simulation tool for particle-based materials modeling at the atomic, meso, and continuum scales. Computer Physics Communications, 271:108171, February 2022. doi:10.1016/j.cpc.2021.108171.">4</a>]</span>.
+Each particle has a mass
 <span class="math notranslate nohighlight">\(m = 1\,\text{g/mol}\)</span>, and LJ parameters
 <span class="math notranslate nohighlight">\(\sigma = 3\,\text{Å}\)</span> and <span class="math notranslate nohighlight">\(\epsilon = 0.1\,\text{kcal/mol}\)</span>.
 All reduced parameters were taken to match the study by Grivet
-<span id="id2">[<a class="reference internal" href="../additional/bibliography.html#id181" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">2</a>]</span>.
+<span id="id3">[<a class="reference internal" href="../additional/bibliography.html#id182" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">3</a>]</span>.
 A cutoff of <span class="math notranslate nohighlight">\(4 \sigma\)</span> was used for the LJ interactions. The
 simulation box has a volume of <span class="math notranslate nohighlight">\((26.9~\sigma)^3\)</span>, chosen to match
 the reduced density of <span class="math notranslate nohighlight">\(\rho^* = 0.84\)</span>.
@@ -295,30 +297,32 @@ were recorded every 10 timesteps. A timestep of
 The imposed temperatures ranged from <span class="math notranslate nohighlight">\(T = 30\)</span> to
 <span class="math notranslate nohighlight">\(160\,\text{K}\)</span>, corresponding to reduced temperatures from
 <span class="math notranslate nohighlight">\(T^* = 0.8\)</span> to <span class="math notranslate nohighlight">\(3.0\)</span>.</p>
+<p>All LAMMPS input scripts and analysis scripts written in Python are provided
+on GitHub; see <a href="https://github.com/NMRDfromMD/dataset-LJ-fluid" target="_blank">dataset-LJ-fluid</a>.</p>
 </section>
 <section id="results">
 <h2>Results<a class="headerlink" href="#results" title="Link to this heading">¶</a></h2>
 <p>The correlation function <span class="math notranslate nohighlight">\(G^{(0)}\)</span> was first extracted for two temperatures, <span class="math notranslate nohighlight">\(T = 50\)</span>
-and <span class="math notranslate nohighlight">\(140\,\text{K}\)</span>, and compared with the correlation functions reported by Grivet <span id="id3">[<a class="reference internal" href="../additional/bibliography.html#id181" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">2</a>]</span>.
+and <span class="math notranslate nohighlight">\(140\,\text{K}\)</span>, and compared with the correlation functions reported by Grivet <span id="id4">[<a class="reference internal" href="../additional/bibliography.html#id182" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">3</a>]</span>.
 Our results show an excellent agreement with the results from Grivet, thus validating the
 NMR formalism used here as well as the LJ system and parameters.</p>
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-dark" src="../_images/G_correlation-dark.png" />
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-light" src="../_images/G_correlation-light.png" />
 <div class="figurelegend docutils container">
 <p>Figure: Correlation function <span class="math notranslate nohighlight">\(G^{(0)}\)</span> as extracted from the LJ fluid simulation
-for two different temperatures, and compared with the data from Grivet <span id="id4">[<a class="reference internal" href="../additional/bibliography.html#id181" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">2</a>]</span> (open symbols).</p>
+for two different temperatures, and compared with the data from Grivet <span id="id5">[<a class="reference internal" href="../additional/bibliography.html#id182" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">3</a>]</span> (open symbols).</p>
 </div>
 <p>The NMR relaxation rates <span class="math notranslate nohighlight">\(R_1\)</span>
 and <span class="math notranslate nohighlight">\(R_2\)</span> was also extracted for all the temperatures, at
 a frequency <span class="math notranslate nohighlight">\(f_0 = 150\,\text{GHz}\)</span>. Our results
-show a good agreement with the data from Grivet <span id="id5">[<a class="reference internal" href="../additional/bibliography.html#id181" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">2</a>]</span>.</p>
+show a good agreement with the data from Grivet <span id="id6">[<a class="reference internal" href="../additional/bibliography.html#id182" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">3</a>]</span>.</p>
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-dark" src="../_images/R1_spectra-dark.png" />
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-light" src="../_images/R1_spectra-light.png" />
 <div class="figurelegend docutils container">
 <p>Figure: NMR relaxation rates <span class="math notranslate nohighlight">\(R_1\)</span>
 and <span class="math notranslate nohighlight">\(R_2\)</span> at
 a frequency <span class="math notranslate nohighlight">\(f_0 = 150\,\text{GHz}\)</span>.
-The data from Grivet <span id="id6">[<a class="reference internal" href="../additional/bibliography.html#id181" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">2</a>]</span> are shown with open symbols.</p>
+The data from Grivet <span id="id7">[<a class="reference internal" href="../additional/bibliography.html#id182" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">3</a>]</span> are shown with open symbols.</p>
 </div>
 </section>
 </section>
