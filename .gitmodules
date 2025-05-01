@@ -1,9 +1,8 @@
 [submodule ".submodules/dataset-LJ-fluid"]
 	path = .submodules/dataset-LJ-fluid
 	url = git@github.com:NMRDfromMD/dataset-LJ-fluid.git
-[submodule ".dependencies/pyplot-perso"]
-	path = .dependencies/pyplot-perso
+	branch = main
+[submodule ".submodules/pyplot-perso"]
+	path = .submodules/pyplot-perso
 	url = git@github.com:simongravelle/pyplot-perso.git
 	branch = LAMMPS-livecom
-
-
