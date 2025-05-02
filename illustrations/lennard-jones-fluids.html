@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="../_static/favicon-32x32.png" sizes="32x32" rel="icon" type="image/png"><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Bulk water" href="bulk-water.html" /><link rel="prev" title="Anisotropic systems" href="../tutorials/anisotropic-system.html" />
+    <link href="../_static/favicon-32x32.png" sizes="32x32" rel="icon" type="image/png"><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Molecular system" href="bulk-water.html" /><link rel="prev" title="Anisotropic systems" href="../tutorials/anisotropic-system.html" />
 
     <!-- Generated with Sphinx 7.4.7 and Furo 2024.08.06 -->
-        <title>Lennard-Jones fluid - </title>
+        <title>Simple fluid - </title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=302659d7" />
@@ -214,8 +214,8 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Illustrations</span></p>
 <ul class="current">
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Lennard-Jones fluid</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bulk-water.html">Bulk water</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Simple fluid</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bulk-water.html">Molecular system</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lysozyme-in-water.html">Lysozyme in water</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Theory</span></p>
@@ -268,12 +268,12 @@
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section id="lennard-jones-fluid">
-<span id="lennard-jones-label"></span><h1>Lennard-Jones fluid<a class="headerlink" href="#lennard-jones-fluid" title="Link to this heading">¶</a></h1>
+          <section id="simple-fluid">
+<span id="lennard-jones-label"></span><h1>Simple fluid<a class="headerlink" href="#simple-fluid" title="Link to this heading">¶</a></h1>
 <p>Here, NMR relaxation rates are measured from a Lennard-Jones fluid, and compared
 to the results from Ref. <span id="id1">[<a class="reference internal" href="../additional/bibliography.html#id182" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">3</a>]</span>.</p>
-<section id="md-system">
-<h2>MD system<a class="headerlink" href="#md-system" title="Link to this heading">¶</a></h2>
+<section id="system">
+<h2>System<a class="headerlink" href="#system" title="Link to this heading">¶</a></h2>
 <a class="only-dark reference internal image-reference" href="../_images/lj-dark.png"><img alt="LJ fluid simulated with LAMMPS - Dipolar NMR relaxation time calculation" class="only-dark align-right" src="../_images/lj-dark.png" style="width: 250px;" />
 </a>
 <a class="only-light reference internal image-reference" href="../_images/lj-light.png"><img alt="LJ fluid simulated with LAMMPS - Dipolar NMR relaxation time calculation" class="only-light align-right" src="../_images/lj-light.png" style="width: 250px;" />
@@ -285,9 +285,9 @@ Each particle has a mass
 <span class="math notranslate nohighlight">\(m = 1\,\text{g/mol}\)</span>, and LJ parameters
 <span class="math notranslate nohighlight">\(\sigma = 3\,\text{Å}\)</span> and <span class="math notranslate nohighlight">\(\epsilon = 0.1\,\text{kcal/mol}\)</span>.
 All reduced parameters were taken to match the study by Grivet
-<span id="id3">[<a class="reference internal" href="../additional/bibliography.html#id182" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">3</a>]</span>.
-A cutoff of <span class="math notranslate nohighlight">\(4 \sigma\)</span> was used for the LJ interactions. The
-simulation box has a volume of <span class="math notranslate nohighlight">\((26.9~\sigma)^3\)</span>, chosen to match
+<span id="id3">[<a class="reference internal" href="../additional/bibliography.html#id182" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">3</a>]</span>. Specifically,
+a cutoff of <span class="math notranslate nohighlight">\(4 \sigma\)</span> was used for the LJ interactions, the
+simulation box has a volume of <span class="math notranslate nohighlight">\((26.9~\sigma)^3\)</span> to match
 the reduced density of <span class="math notranslate nohighlight">\(\rho^* = 0.84\)</span>.
 Production runs were performed in the microcanonical (NVE) ensemble,
 during which 10,000 timesteps were executed, equivalent to 50 times
@@ -300,8 +300,8 @@ The imposed temperatures ranged from <span class="math notranslate nohighlight">
 <p>All LAMMPS input scripts and analysis scripts written in Python are provided
 on GitHub; see <a href="https://github.com/NMRDfromMD/dataset-LJ-fluid" target="_blank">dataset-LJ-fluid</a>.</p>
 </section>
-<section id="results">
-<h2>Results<a class="headerlink" href="#results" title="Link to this heading">¶</a></h2>
+<section id="reproducing-grivet-s-results-for-a-simple-fluid">
+<h2>Reproducing Grivet’s results for a simple fluid<a class="headerlink" href="#reproducing-grivet-s-results-for-a-simple-fluid" title="Link to this heading">¶</a></h2>
 <p>The correlation function <span class="math notranslate nohighlight">\(G_{ij}^{(0)}\)</span> was first extracted for all
 temperatures. For the two extreme values of <span class="math notranslate nohighlight">\(T\)</span>, namely
 <span class="math notranslate nohighlight">\(T = 50\)</span> and <span class="math notranslate nohighlight">\(140\,\text{K}\)</span>, the functions
@@ -357,7 +357,7 @@ with gray symbols.</p>
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Bulk water</div>
+                <div class="title">Molecular system</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
@@ -402,9 +402,9 @@ with gray symbols.</p>
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">Lennard-Jones fluid</a><ul>
-<li><a class="reference internal" href="#md-system">MD system</a></li>
-<li><a class="reference internal" href="#results">Results</a></li>
+<li><a class="reference internal" href="#">Simple fluid</a><ul>
+<li><a class="reference internal" href="#system">System</a></li>
+<li><a class="reference internal" href="#reproducing-grivet-s-results-for-a-simple-fluid">Reproducing Grivet’s results for a simple fluid</a></li>
 </ul>
 </li>
 </ul>

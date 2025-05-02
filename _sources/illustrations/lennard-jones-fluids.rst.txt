@@ -1,14 +1,14 @@
 .. include:: ../additional/links.rst
 .. _lennard-jones-label:
 
-Lennard-Jones fluid
-===================
+Simple fluid
+============
 
 Here, NMR relaxation rates are measured from a Lennard-Jones fluid, and compared
 to the results from Ref. :cite:`grivetNMRRelaxationParameters2005`.
 
-MD system
----------
+System
+------
 
 .. image:: lennard-jones-fluids/lj-dark.png
     :class: only-dark
@@ -29,9 +29,9 @@ Each particle has a mass
 :math:`m = 1\,\text{g/mol}`, and LJ parameters 
 :math:`\sigma = 3\,\text{Å}` and :math:`\epsilon = 0.1\,\text{kcal/mol}`.
 All reduced parameters were taken to match the study by Grivet 
-:cite:`grivetNMRRelaxationParameters2005`.
-A cutoff of :math:`4 \sigma` was used for the LJ interactions. The 
-simulation box has a volume of :math:`(26.9~\sigma)^3`, chosen to match 
+:cite:`grivetNMRRelaxationParameters2005`. Specifically,
+a cutoff of :math:`4 \sigma` was used for the LJ interactions, the 
+simulation box has a volume of :math:`(26.9~\sigma)^3` to match 
 the reduced density of :math:`\rho^* = 0.84`.
 Production runs were performed in the microcanonical (NVE) ensemble, 
 during which 10,000 timesteps were executed, equivalent to 50 times 
@@ -45,8 +45,8 @@ The imposed temperatures ranged from :math:`T = 30` to
 All LAMMPS input scripts and analysis scripts written in Python are provided
 on GitHub; see |dataset-LJ-fluid|.
 
-Results
--------
+Reproducing Grivet's results for a simple fluid
+-----------------------------------------------
 
 The correlation function :math:`G_{ij}^{(0)}` was first extracted for all
 temperatures. For the two extreme values of :math:`T`, namely
