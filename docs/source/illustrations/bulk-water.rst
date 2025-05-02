@@ -1,11 +1,11 @@
 .. _bulk-water-label:
 
-Bulk water
-==========
+Molecular system
+================
 
-.. container:: hatnote
-
-   Measuring the NMR relaxation time of water
+H-NMR relaxation rates are measured from a molecular system:
+liquid water. Intramolecular and intermolecular contributions to
+the relaxation rates are discussed separately.
 
 MD system
 ---------
