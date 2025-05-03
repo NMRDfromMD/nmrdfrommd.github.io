@@ -271,7 +271,6 @@
 <h1>Best practice<a class="headerlink" href="#best-practice" title="Link to this heading">¶</a></h1>
 <section id="choosing-the-right-force-field">
 <h2>Choosing the right force field<a class="headerlink" href="#choosing-the-right-force-field" title="Link to this heading">¶</a></h2>
-<div class="justify docutils container">
 <p>The agreement between experiments and simulations can only be as good as the
 force field used in the simulations. Although it has been shown that some
 force fields lead to excellent agreement with experimental data, as for instance
@@ -282,8 +281,6 @@ to reproduce thermodynamic quantities, such as solvation energy.
 However, NMR relaxation times depend on both structural
 and dynamical quantities, and large differences between experiments
 and simulations are expected for poorly accurate force fields.</p>
-</div>
-<div class="justify docutils container">
 <p>As an illustration, the NMR relaxation time <span class="math notranslate nohighlight">\(T_1\)</span>
 of bulk water was measured as a function of the temperature
 for three different water models:
@@ -301,7 +298,6 @@ by Calero et al. <span id="id7">[<a class="reference internal" href="../addition
 used <span class="math notranslate nohighlight">\(\text{TIP4P}-2005\)</span> water model instead of the <span class="math notranslate nohighlight">\(\text{TIP4P}-\epsilon\)</span> model used here,
 however these two models show very similar structures and viscosities for liquid water <span id="id8">[<a class="reference internal" href="../additional/bibliography.html#id148" title="Raúl Fuentes-Azcatl and José Alejandre. Non-Polarizable Force Field of Water Based on the Dielectric Constant: TIP4P/epsilon. The Journal of Physical Chemistry B, 118(5):1263–1272, February 2014. doi:10.1021/jp410865y.">22</a>]</span>,
 and are thus expected to yield similar relaxation times.</p>
-</div>
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-dark" src="../_images/experimental_comparison-dark.png" />
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-light" src="../_images/experimental_comparison-light.png" />
 <div class="figurelegend docutils container">
@@ -317,15 +313,12 @@ and from Hindman et al. <span id="id13">[<a class="reference internal" href="../
 </section>
 <section id="simulation-accuracy">
 <h2>Simulation accuracy<a class="headerlink" href="#simulation-accuracy" title="Link to this heading">¶</a></h2>
-<div class="justify docutils container">
 <p>NMR relaxation measurements are sensitive both thermodynamic and dynamic quantities,
 and it is therefore important to ensure the accuracy of the molecular simulation.
 Several parameters are known to affect the accuracy of the simulations,
 such as the force field (as discussed previously), the time step, the cut-offs,
 or the sampling time
 <span id="id14">[<a class="reference internal" href="../additional/bibliography.html#id145" title="Daan Frenkel and Berend Smit. Understanding Molecular Simulation: From Algorithms to Applications. Number Volume 1 in Computational Science Series. Academic press, San Diego, 2nd ed edition, 2002. ISBN 978-0-12-267351-1.">32</a>, <a class="reference internal" href="../additional/bibliography.html#id10" title="M. P. Allen and D. J. Tildesley. Computer Simulation of Liquids. Oxford University Press, Oxford, United Kingdom, second edition edition, 2017. ISBN 978-0-19-880319-5 978-0-19-880320-1.">33</a>]</span>.</p>
-</div>
-<div class="justify docutils container">
 <p>As an illustration, the NMR relaxation time <span class="math notranslate nohighlight">\(T_1\)</span>
 of bulk water was measured as a function of the LJ cut-off.
 Our results show that, for the smallest cut-off,
@@ -338,7 +331,6 @@ about 1,% is induced. These observations are consistent
 with previous measurements <span id="id15">[<a class="reference internal" href="../additional/bibliography.html#id175" title="Simon Gravelle, Sabina Haber-Pohlmeier, Carlos Mattea, Siegfried Stapf, Christian Holm, and Alexander Schlaich. NMR Investigation of Water in Salt Crusts: Insights from Experiments and Molecular Simulations. Langmuir, 39(22):7548–7556, June 2023. doi:10.1021/acs.langmuir.3c00036.">12</a>]</span>,
 and confirm that care must be taken if one attempt in reproducing
 accurately NMR quantities.</p>
-</div>
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-dark" src="../_images/effect_cutoff-dark.png" />
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-light" src="../_images/effect_cutoff-light.png" />
 <div class="figurelegend docutils container">
@@ -350,11 +342,8 @@ as a function of LJ cut-off.</p>
 </section>
 <section id="box-size">
 <h2>Box size<a class="headerlink" href="#box-size" title="Link to this heading">¶</a></h2>
-<div class="justify docutils container">
 <p>NMR relaxation measurements are sensitive to the
 finite-size effects that can occur with small simulation boxes <span id="id16">[<a class="reference internal" href="../additional/bibliography.html#id182" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">5</a>]</span>.</p>
-</div>
-<div class="justify docutils container">
 <p>As an illustration, the NMR relaxation rate <span class="math notranslate nohighlight">\(R_1\)</span>
 was measured for water with different number of molecules
 <span class="math notranslate nohighlight">\(N \in [100,\,10000]\)</span>, which correspond to equilibrium
@@ -369,7 +358,6 @@ Note that <span class="math notranslate nohighlight">\(R_1^\text{intra}\)</span>
 <span class="math notranslate nohighlight">\(R_1\)</span> for water at ambient temperature, is barely affected
 by the box size and therefore the resulting error induced on the
 total relaxation rate <span class="math notranslate nohighlight">\(R_1\)</span> remains small for <span class="math notranslate nohighlight">\(N &gt; 1000\)</span>.</p>
-</div>
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-dark" src="../_images/effect_L_on_R1-dark.png" />
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-light" src="../_images/effect_L_on_R1-light.png" />
 <div class="figurelegend docutils container">
@@ -382,7 +370,6 @@ for two different numbers of molecules.</p>
 </section>
 <section id="dumping-frequency">
 <h2>Dumping frequency<a class="headerlink" href="#dumping-frequency" title="Link to this heading">¶</a></h2>
-<div class="justify docutils container">
 <p>The dumping frequency sets the temporal resolution of the analysis.
 The maximum dumping period that can be used is system-dependent
 and must typically be much smaller than the correlation times.
@@ -393,8 +380,6 @@ Note however than using a high dumping frequency
 increases the size of the trajectory files, which in turn
 can make the computation of NMR relaxation rates
 computationally expensive.</p>
-</div>
-<div class="justify docutils container">
 <p>As an illustration, the NMR relaxation time <span class="math notranslate nohighlight">\(T_1\)</span> was measured
 for an increasing dumping period from <span class="math notranslate nohighlight">\(\Delta t = 0.02\,\text{ps}\)</span>
 to <span class="math notranslate nohighlight">\(5\,\text{ps}\)</span>. Our results show that using a dumping period
@@ -402,7 +387,6 @@ larger than about <span class="math notranslate nohighlight">\(\Delta t = 0.5\,\
 of the measured relaxation time <span class="math notranslate nohighlight">\(T_1\)</span>. The decrease in <span class="math notranslate nohighlight">\(T_1\)</span>
 is accompanied by an increase of the measured inter-molecular
 relaxation times <span class="math notranslate nohighlight">\(\tau_\text{inter}\)</span>.</p>
-</div>
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-dark" src="../_images/effect_dumping_frequency-dark.png" />
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-light" src="../_images/effect_dumping_frequency-light.png" />
 <div class="figurelegend docutils container">
