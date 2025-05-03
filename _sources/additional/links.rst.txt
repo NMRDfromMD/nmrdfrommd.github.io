@@ -18,6 +18,10 @@
 
    <a href="https://github.com/simongravelle/water-in-silica.git" target="_blank">water confined in silica</a>
 
+.. |NMRforMD| raw:: html
+
+   <a href="https://nmrformd.readthedocs.io" target="_blank">NMRforMD</a>
+
 .. |NMRDfromMD-doc| raw:: html
 
    <a href="https://github.com/NMRDfromMD/nmrdfrommd.github.io" target="_blank">NMRDfromMD</a>
