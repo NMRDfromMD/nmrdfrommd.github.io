@@ -1,35 +1,34 @@
+.. include:: ../additional/links.rst
+
 Installation
 ============
 
-Install the last published version
-----------------------------------
+Install the latest published version
+------------------------------------
 
-Simply type in a terminal:
-
-.. code-block:: bash
-
-	pip3 install nmrformd
-
-
-Install the last (development) version
---------------------------------------
-
-To get the last version of NMRforMD, clone the repository from `Github`_ on your computer
-and use pip3 from the main directory:
-
-.. _`Github`: https://github.com/simongravelle/nmrformd
+To install the latest stable release, run the following command in a terminal:
 
 .. code-block:: bash
 
-	git clone https://github.com/simongravelle/nmrformd.git
-	
-	cd nmrformd/
+    pip install nmrdfrommd
 
-	pip install .
-	
-You can run the tests using pytest:
-	
-.. code-block:: bash	
-	
-	cd tests
-	pytest .
+Install the development version
+-------------------------------
+
+To install the latest development version of NMRDfromMD, clone the repository
+from |NMRDfromMD-code| and use ``pip`` from the main directory:
+
+.. code-block:: bash
+
+    git clone https://github.com/NMRDfromMD/nmrdfrommd.git
+
+    cd nmrdfrommd/
+
+    pip install .
+
+You can then run the test suite using ``pytest``:
+
+.. code-block:: bash
+
+    cd tests
+    pytest .

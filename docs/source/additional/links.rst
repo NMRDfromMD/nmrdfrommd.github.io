@@ -22,6 +22,14 @@
 
    <a href="https://nmrformd.readthedocs.io" target="_blank">NMRforMD</a>
 
+.. |NMRDfromMD-doc| raw:: html
+
+   <a href="https://github.com/NMRDfromMD/nmrdfrommd.github.io" target="_blank">NMRDfromMD</a>
+
+.. |NMRDfromMD-code| raw:: html
+
+   <a href="https://github.com/NMRDfromMD/nmrdfrommd" target="_blank">NMRDfromMD</a>
+
 .. |NumPy| raw:: html
 
    <a href="https://www.numpy.org" target="_blank">NumPy</a>
