@@ -1,11 +1,12 @@
 .. include:: ../additional/links.rst
 .. _isotropic-label:
 
-Isotropic systems
-=================
+Isotropic system
+================
 
-In this tutorial, the NMR relaxation times :math:`T_1` and :math:`T_2`
-are measured from a bulk polymer-water mixture using |NMRforMD|.
+Here, we illustrate how the ``NMRDfromMD`` package can be applied to a
+simple MD simulation. The NMR relaxation times :math:`T_1` and :math:`T_2`
+are measured from a bulk polymer-water mixture using ``NMRDfromMD``.
 To follow the tutorial, |MDAnalysis|, |NumPy|, and
 |Matplotlib| must be installed.
 
