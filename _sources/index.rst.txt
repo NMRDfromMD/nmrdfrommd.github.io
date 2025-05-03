@@ -11,6 +11,8 @@ with |MDAnalysis|, NMRforMD allows for the analysis of
 trajectory files from any MDAnalysis-compatible simulation package, including
 |LAMMPS| and |GROMACS|.
 
+This package builds on the now discontinued |NMRforMD|.
+
 .. image:: ../../avatars/avatars.png
     :class: only-dark
     :alt: molecular dynamics systems used in these examples 

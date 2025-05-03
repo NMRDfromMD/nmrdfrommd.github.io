@@ -15,8 +15,8 @@ To install the latest stable release, run the following command in a terminal:
 Install the development version
 -------------------------------
 
-To install the latest development version of NMRDfromMD, clone the repository
-from |NMRDfromMD-code| and use ``pip`` from the main directory:
+To install the latest development version of NMRDfromMD, clone the repository,
+|NMRDfromMD-code|, from GitHub, and use ``pip`` from the main directory:
 
 .. code-block:: bash
 
