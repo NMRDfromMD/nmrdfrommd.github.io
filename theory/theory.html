@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="../_static/favicon-32x32.png" sizes="32x32" rel="icon" type="image/png"><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Installation" href="../tutorials/installation.html" /><link rel="prev" title="Parameters" href="NMR.html" />
+    <link href="../_static/favicon-32x32.png" sizes="32x32" rel="icon" type="image/png"><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Installation" href="../tutorials/installation.html" /><link rel="prev" title="Context" href="context.html" />
 
     <!-- Generated with Sphinx 7.4.7 and Furo 2024.08.06 -->
-        <title>Utilities - </title>
+        <title>Theory - </title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=302659d7" />
@@ -179,7 +179,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
         <div class="visually-hidden">Toggle table of contents sidebar</div>
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
@@ -202,9 +202,10 @@
   <input type="hidden" name="area" value="default">
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
-  <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="NMR.html">Parameters</a></li>
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Utilities</a></li>
+  <p class="caption" role="heading"><span class="caption-text">Theory</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="context.html">Context</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Theory</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
@@ -218,11 +219,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../illustrations/bulk-water.html">Molecular system</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../illustrations/lysozyme-in-water.html">Lysozyme in water</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Theory</span></p>
+<p class="caption" role="heading"><span class="caption-text">Best practices</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../theory/context.html">Context</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../theory/dipolar_relaxation.html">Dipolar relaxation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../theory/best-practice.html">Best practice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="best-practice.html">Best practice</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Additional</span></p>
 <ul>
@@ -248,7 +247,7 @@
         </a>
         <div class="content-icon-container">
           <div class="view-this-page">
-  <a class="muted-link" href="../_sources/modules/utilities.rst.txt" title="View this page">
+  <a class="muted-link" href="../_sources/theory/theory.rst.txt" title="View this page">
     <svg><use href="#svg-eye"></use></svg>
     <span class="visually-hidden">View this page</span>
   </a>
@@ -262,14 +261,133 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
             <div class="visually-hidden">Toggle table of contents sidebar</div>
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section id="utilities">
-<h1>Utilities<a class="headerlink" href="#utilities" title="Link to this heading">¶</a></h1>
+          <section id="theory">
+<h1>Theory<a class="headerlink" href="#theory" title="Link to this heading">¶</a></h1>
+<p>The system of interest here is an ensemble of identical spins characterized
+by a gyromagnetic ratio <span class="math notranslate nohighlight">\(\gamma_I\)</span> and spin quantum number
+<span class="math notranslate nohighlight">\(I\)</span>. For <span class="math notranslate nohighlight">\(^{1} \text{H}\)</span>, the most abundant isotope of hydrogen,
+<span class="math notranslate nohighlight">\(I = 1/2\)</span> and <span class="math notranslate nohighlight">\(\gamma_I = 26.752\)</span> rad/T/s. For <span class="math notranslate nohighlight">\(^{13} \text{C}\)</span>,
+a natural and stable isotope of carbon, <span class="math notranslate nohighlight">\(I = 1/2\)</span> and
+<span class="math notranslate nohighlight">\(\gamma_I = 6.728\)</span> rad/T/s <span id="id1">[<a class="reference internal" href="../additional/bibliography.html#id269" title="Józef Kowalewski and Lena Mäler. Nuclear Spin Relaxation in Liquids: Theory, Experiments, and Applications. Number 2 in Series in Chemical Physics. Taylor &amp; Francis, New York, 2006. ISBN 978-0-7503-0964-6.">19</a>]</span>.</p>
+<p>One assumption behind the theory presented here is that cross-correlation terms
+can be neglected; see Ref. <span id="id2">[<a class="reference internal" href="../additional/bibliography.html#id299" title="G. Lippens, D. Van Belle, S.J. Wodak, and J. Jeener. T1 relaxation time of water from a molecular dynamics simulation. Molecular Physics, 80(6):1469–1484, December 1993. doi:10.1080/00268979300103151.">6</a>]</span>.</p>
+<p>When spin-lattice relaxation is dominated by fluctuations of the magnetic
+dipole-dipole interaction, as is the case for protons in molecular systems,
+the rates <span class="math notranslate nohighlight">\(R_1 (\omega)\)</span> and <span class="math notranslate nohighlight">\(R_2 (\omega)\)</span> are related to the
+spectral densities <span class="math notranslate nohighlight">\(J^{(m)}(\omega)\)</span> of these fluctuations via the
+Bloembergen-Purcell-Pound (BPP) equations
+<span id="id3">[<a class="reference internal" href="../additional/bibliography.html#id47" title="N. Bloembergen, E. M. Purcell, and R. V. Pound. Relaxation Effects in Nuclear Magnetic Resonance Absorption. Physical Review, 73(7):679–712, April 1948. doi:10.1103/PhysRev.73.679.">20</a>]</span>:</p>
+<div class="math-wrapper docutils container" id="equation-eq-bpp">
+<div class="math notranslate nohighlight" id="equation-eq-bpp">
+<span class="eqno">(1)<a class="headerlink" href="#equation-eq-bpp" title="Link to this equation">¶</a></span>\[ \begin{align}\begin{aligned}R_1 (\omega) &amp; = &amp; K \left[ J^{(1)} (\omega) + J^{(2)} (2 \omega) \right],\\R_2 (\omega) &amp; = &amp; K \left[ J^{(0)} (0) + 10 J^{(1)} (\omega)
++ J^{(2)} (2 \omega) \right] / 4,\end{aligned}\end{align} \]</div>
+</div>
+<p>where</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[K = \dfrac{3}{2}\left(\dfrac{\mu_0}{4 \pi}\right)^2 \hbar^2 \gamma^4 I (I+1),\]</div>
+</div>
+<p>where <span class="math notranslate nohighlight">\(\mu_0\)</span> is the vacuum permeability, and <span class="math notranslate nohighlight">\(\hbar\)</span> the Planck
+constant (divided by <span class="math notranslate nohighlight">\(2 \pi\)</span>). The constant <span class="math notranslate nohighlight">\(K\)</span> has units of
+<span class="math notranslate nohighlight">\(\text{m}^6/\text{s}^2\)</span>. The spectral densities <span class="math notranslate nohighlight">\(J^{(m)} (\omega)\)</span> in
+Eq. <a class="reference internal" href="#equation-eq-bpp">(1)</a> can be obtained as the Fourier transform of the
+autocorrelation functions <span class="math notranslate nohighlight">\(G^{(m)}(\tau)\)</span>:</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[J^{(m)} (\omega) = \int_0^\infty G^{(m)} (\tau) \cos(\omega \tau) \mathrm d \tau.\]</div>
+</div>
+<p>The spectral densities are a measure of the distribution of the fluctuations
+of <span class="math notranslate nohighlight">\(G^{(m)}(\tau)\)</span> among different frequencies. They provide information
+on the distribution of the power available for causing spin transitions at
+different frequencies. The autocorrelation functions <span class="math notranslate nohighlight">\(G^{(m)}(\tau)\)</span>
+are given by</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[G^{(m)} (\tau) = \left&lt; F_2^{(m)} [\textbf{r}_{ij} (t)]
+F_2^{*(m)} [\textbf{r}_{ij} (0)] \right&gt;\]</div>
+</div>
+<p>where <span class="math notranslate nohighlight">\(F_2^{(m)}\)</span> are complex functions of the vector
+<span class="math notranslate nohighlight">\(\textbf{r}_{ij}\)</span> between spin pairs, with norm <span class="math notranslate nohighlight">\(r_{ij}\)</span> and
+orientation <span class="math notranslate nohighlight">\(\Omega_{ij}\)</span> with respect to a reference applied magnetic
+field, assumed to be in the <span class="math notranslate nohighlight">\(\textbf{e}_z\)</span> direction. The functions
+<span class="math notranslate nohighlight">\(F_2^{(m)}\)</span> are defined as</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[F_2^{(m)} [\textbf{r}_{ij} (t)] = \alpha_m \dfrac{Y_2^{(m)} [\Omega_{ij} (t)]}{r_{ij}^3 (t)}\]</div>
+</div>
+<p>where <span class="math notranslate nohighlight">\(Y_2^{(m)}\)</span> are normalized spherical harmonics and
+<span class="math notranslate nohighlight">\(\alpha_0^2 = 16 \pi /5\)</span>, <span class="math notranslate nohighlight">\(\alpha_1^2 = 8 \pi /15\)</span>, and
+<span class="math notranslate nohighlight">\(\alpha_2^2 = 32 \pi / 15\)</span>. Therefore, the correlation functions can be
+written as:</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[G^{(m)} (\tau) = \dfrac{\alpha_m^2}{N} \sum_i \sum_{j \ne i}
+\dfrac{Y_2^{(m)} [\Omega_{ij} (0)]}{r_{ij}^3 (0)}
+\dfrac{Y_2^{*(m)} [\Omega_{ij} (\tau)]}{r_{ij}^3 (\tau)},\]</div>
+</div>
+<p>where <span class="math notranslate nohighlight">\(N\)</span> is the number of spins.</p>
+<section id="intra-inter-contributions">
+<h2>Intra/inter contributions<a class="headerlink" href="#intra-inter-contributions" title="Link to this heading">¶</a></h2>
+<p>Intra-molecular and inter-molecular contributions to <span class="math notranslate nohighlight">\(R_1\)</span> and
+<span class="math notranslate nohighlight">\(R_2\)</span> can be extracted separately by splitting the correlation functions
+as:</p>
+<div class="math-wrapper docutils container" id="equation-g-intra">
+<div class="math notranslate nohighlight" id="equation-g-intra">
+<span class="eqno">(2)<a class="headerlink" href="#equation-g-intra" title="Link to this equation">¶</a></span>\[G^{(m)}_\text{intra} (t) = \dfrac{\alpha_m^2}{N}
+\sum_i \sum_{j \in M_i} \dfrac{Y_2^{(m)} [\Omega_{ij} (0)]}{r_{ij}^3 (0)}
+\dfrac{Y_2^{*(m)} [\Omega_{ij} (\tau)]}{r_{ij}^3 (\tau)},\]</div>
+</div>
+<div class="math-wrapper docutils container" id="equation-g-inter">
+<div class="math notranslate nohighlight" id="equation-g-inter">
+<span class="eqno">(3)<a class="headerlink" href="#equation-g-inter" title="Link to this equation">¶</a></span>\[G^{(m)}_\text{inter} (t) = \dfrac{\alpha_m^2}{N}
+\sum_i \sum_{j \notin M_i} \dfrac{Y_2^{(m)} [\Omega_{ij} (0)]}{r_{ij}^3 (0)}
+\dfrac{Y_2^{*(m)} [\Omega_{ij} (\tau)]}{r_{ij}^3 (\tau)},\]</div>
+</div>
+<p>where <span class="math notranslate nohighlight">\(j \in M_i\)</span> and <span class="math notranslate nohighlight">\(j \notin M_i\)</span> refer to spins from the same
+molecule as <span class="math notranslate nohighlight">\(i\)</span>, and from different molecules than <span class="math notranslate nohighlight">\(i\)</span>,
+respectively.</p>
+<p>Intra-molecular relaxation is usually attributed to the rotational motion of
+the molecules, and inter-molecular relaxation to their translational motion.
+Although this assumption facilitates interpretation, it is not exact and
+must be applied cautiously <span id="id4">[<a class="reference internal" href="../additional/bibliography.html#id224" title="Paul S. Hubbard. Theory of Nuclear Magnetic Relaxation by Spin-Rotational Interactions in Liquids. Physical Review, 131(3):1155–1165, August 1963. doi:10.1103/PhysRev.131.1155.">21</a>]</span>.</p>
+</section>
+<section id="isotropic-system">
+<h2>Isotropic system<a class="headerlink" href="#isotropic-system" title="Link to this heading">¶</a></h2>
+<p>For isotropic systems, the correlation functions are proportional to each
+other: <span class="math notranslate nohighlight">\(G^{(0)} = 6 G^{(1)}\)</span>, and <span class="math notranslate nohighlight">\(G^{(0)} = 6 / 4 G^{(2)}\)</span>
+<span id="id5">[<a class="reference internal" href="../additional/bibliography.html#id33" title="M. Becher, T. Wohlfromm, E. A. Rössler, and M. Vogel. Molecular dynamics simulations vs field-cycling NMR relaxometry: Structural relaxation mechanisms in the glass-former glycerol revisited. The Journal of Chemical Physics, 154(12):124503, March 2021. doi:10.1063/5.0048131.">13</a>]</span>. Therefore, there is no need to
+calculate all three correlation functions, and <span class="math notranslate nohighlight">\(G^{(0)} (t)\)</span> is usually
+the only one computed, which considerably reduces the computational effort.</p>
+<p>In that case, the rates <span class="math notranslate nohighlight">\(R_1 (\omega)\)</span> and <span class="math notranslate nohighlight">\(R_2 (\omega)\)</span> can be
+written as:</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}R_1 &amp;=&amp;  \frac{K}{6} \left[ J^{(0)} (\omega_0) + 4 J^{(0)} (2 \omega_0) \right],\\R_2 &amp;=&amp; \frac{K}{6} \left[ J^{(0)} (0) + \frac{5}{2} J^{(0)} (\omega_0) + J^{(0)} (2 \omega_0) \right],\end{aligned}\end{align} \]</div>
+</div>
+<p>where</p>
+<div class="math-wrapper docutils container" id="equation-f-2-0">
+<div class="math notranslate nohighlight" id="equation-f-2-0">
+<span class="eqno">(4)<a class="headerlink" href="#equation-f-2-0" title="Link to this equation">¶</a></span>\[ \begin{align}\begin{aligned}F_2^{(0)} [\textbf{r}_{ij} (t)] &amp; = &amp; \alpha_m \dfrac{Y_2^{(0)} [\Omega_{ij} (t)]}{r_{ij}^3 (t)}\\&amp; = &amp; \dfrac{3 \cos^2 \theta_\text{ij} (t) - 1}{r_{ij}^3 (t)}\end{aligned}\end{align} \]</div>
+</div>
+<p>Here, we check the validity of the relation
+<span class="math notranslate nohighlight">\(G^{(0)} = 6 G^{(1)} = 6 / 4 G^{(2)}\)</span> on a simple bulk water system with
+4000 molecules, similar to the approach taken in
+<span id="id6">[<a class="reference internal" href="../additional/bibliography.html#id33" title="M. Becher, T. Wohlfromm, E. A. Rössler, and M. Vogel. Molecular dynamics simulations vs field-cycling NMR relaxometry: Structural relaxation mechanisms in the glass-former glycerol revisited. The Journal of Chemical Physics, 154(12):124503, March 2021. doi:10.1063/5.0048131.">13</a>]</span> with glycerol. The proportionality
+relation is well verified (Figure below).</p>
+<img alt="NMR results obtained from the LAMMPS simulation of water" class="only-dark" src="../_images/effect_of_anisotropy-dark.png" />
+<img alt="NMR results obtained from the LAMMPS simulation of water" class="only-light" src="../_images/effect_of_anisotropy-light.png" />
+<div class="figurelegend docutils container">
+<p>Figure: Test of the validity of the relation
+<span class="math notranslate nohighlight">\(G^{(0)} = 6 G^{(1)} = 6 / 4 G^{(2)}\)</span> on a bulk water system; see text
+for details.</p>
+</div>
+</section>
 </section>
 
         </article>
@@ -286,14 +404,14 @@
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="NMR.html">
+          <a class="prev-page" href="context.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Parameters</div>
+                <div class="title">Context</div>
                 
               </div>
             </a>
@@ -315,8 +433,28 @@
         
       </footer>
     </div>
-    <aside class="toc-drawer no-toc">
+    <aside class="toc-drawer">
       
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Theory</a><ul>
+<li><a class="reference internal" href="#intra-inter-contributions">Intra/inter contributions</a></li>
+<li><a class="reference internal" href="#isotropic-system">Isotropic system</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
       
       
     </aside>
@@ -325,5 +463,6 @@
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/furo.js?v=5fa4622c"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     </body>
 </html>

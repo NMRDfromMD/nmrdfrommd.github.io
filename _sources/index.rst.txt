@@ -35,10 +35,11 @@ tutorials or simply to test NMRDfromMD.
 
 .. toctree::
    :maxdepth: 2
+   :caption: Theory
    :hidden:
 
-   modules/NMR
-   modules/utilities
+   theory/context
+   theory/theory
 
 .. toctree::
    :maxdepth: 2
@@ -60,11 +61,9 @@ tutorials or simply to test NMRDfromMD.
 
 .. toctree::
    :maxdepth: 2
-   :caption: Theory
+   :caption: Best practices
    :hidden:
 
-   theory/context
-   theory/dipolar_relaxation
    theory/best-practice
 
 .. toctree::
