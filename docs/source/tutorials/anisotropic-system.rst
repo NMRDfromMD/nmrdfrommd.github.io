@@ -5,13 +5,14 @@ Anisotropic systems
 ===================
 
 In this tutorial, the H-NMR relaxation rates :math:`R_1` and :math:`R_2` are
-measured for water confined within a nanoslit composed of silica. The hydrogen
+measured for water confined within a nanoslit composed of silica. 
+This system illustrates an anisotropic case, where all three correlation functions,
+:math:`G^{(1)}`, :math:`G^{(2)}`, and :math:`G^{(3)}`, must be evaluated,
+and the rates must be calculated from Eq. :eq:`eq_BPP`. The hydrogen
 atoms of interest include those in the water molecules and those in the surface
 hydroxyl (-OH) groups of the silica. The individual contributions to
-:math:`R_1` and :math:`R_2`—namely, intra-molecular, inter-molecular, and
-water-hydroxyl interactions—are computed separately. This system illustrates
-an anisotropic case, where all three correlation functions,
-:math:`G^{(1)}`, :math:`G^{(2)}`, and :math:`G^{(3)}`, must be evaluated.
+:math:`R_1` and :math:`R_2` -- namely, intra-molecular, inter-molecular, and
+water-hydroxyl interactions -- are computed separately.
 
 .. admonition:: Note
     :class: non-title-info
