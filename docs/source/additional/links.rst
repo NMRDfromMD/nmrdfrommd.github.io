@@ -49,3 +49,16 @@
 .. |dataset-LJ-fluid| raw:: html
 
    <a href="https://github.com/NMRDfromMD/dataset-LJ-fluid" target="_blank">dataset-LJ-fluid</a>
+
+.. |zip-water-in-silica| raw:: html
+
+   <a href="https://github.com/NMRDfromMD/dataset-water-in-silica/archive/refs/tags/v1.0-beta.zip" target="_blank">zip</a>
+
+.. |dataset-water-in-silica| raw:: html
+
+   <a href="https://github.com/NMRDfromMD/dataset-water-in-silica" target="_blank">dataset-water-in-silica</a>
+
+
+
+
+
