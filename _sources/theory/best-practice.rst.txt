@@ -1,37 +1,40 @@
-Best practice
-=============
+Best practices
+==============
 
-Choosing the right force field
-------------------------------
+Here, a set of best practive for performing accurate dipolar NMR
+calculations from NMR is provided.
 
-The agreement between experiments and simulations can only be as good as the
-force field used in the simulations. Although it has been shown that some
-force fields lead to excellent agreement with experimental data, as for instance
-for water, hydrocarbons, or polymer melts
-:cite:`singerMolecularDynamicsSimulations2017,gravelleNMRInvestigationWater2023,gravelleAssessingValidityNMR2023`,
-it is important to keep in mind that force fields are often parametrized
-to reproduce thermodynamic quantities, such as solvation energy.
-However, NMR relaxation times depend on both structural
-and dynamical quantities, and large differences between experiments
-and simulations are expected for poorly accurate force fields.
+Choosing the Force Field
+------------------------
 
-As an illustration, the NMR relaxation time :math:`T_1`
-of bulk water was measured as a function of the temperature
-for three different water models:
+The agreement between experiments and simulations can only be as accurate as
+the force field used. While some force fields show excellent agreement with
+experimental data -- for instance, in simulations of water, hydrocarbons, or
+polymer melts
+:cite:`singerMolecularDynamicsSimulations2017,gravelleNMRInvestigationWater2023,gravelleAssessingValidityNMR2023`
+-- it is important to remember that force fields are often parametrized to
+reproduce thermodynamic properties, such as solvation energy. However, NMR
+relaxation times depend on both structural and dynamical quantities. Thus,
+substantial discrepancies between simulations and experiments may occur with
+inaccurate force fields.
+
+As an example, the NMR relaxation time :math:`T_1` of bulk water was measured
+as a function of temperature for three water models:
 :math:`\text{TIP4P}-\epsilon` :cite:`fuentes-azcatlNonPolarizableForceField2014`,
-:math:`\text{SPC/E}` :cite:`berendsenMissingTermEffective1987`,
-and :math:`\text{TIP3P}` :cite:`jorgensenComparisonSimplePotential1983`.
-Our results show that the :math:`\text{TIP4P}-\epsilon` water models
-is in excellent agreement with experimental measurements from 
-Krynicki et al. :cite:`krynickiProtonSpinlatticeRelaxation1966`
-and Hindman et al. :cite:`hindmanRelaxationProcessesWater2003`.
-By contrast, :math:`\text{SPC/E}` and :math:`\text{TIP3P}`
-both overestimate the NMR relaxation time :math:`T_1`, in 
-excellent agreement with previous results
-by Calero et al. :cite:`calero1HNuclearSpin2015`. Note that Calero et al.
-used :math:`\text{TIP4P}-2005` water model instead of the :math:`\text{TIP4P}-\epsilon` model used here,
-however these two models show very similar structures and viscosities for liquid water :cite:`fuentes-azcatlNonPolarizableForceField2014`,
-and are thus expected to yield similar relaxation times.
+:math:`\text{SPC/E}` :cite:`berendsenMissingTermEffective1987`, and
+:math:`\text{TIP3P}` :cite:`jorgensenComparisonSimplePotential1983`.
+Our results show that the :math:`\text{TIP4P}-\epsilon` model is in excellent
+agreement with experimental measurements by Krynicki et al.
+:cite:`krynickiProtonSpinlatticeRelaxation1966` and Hindman et al.
+:cite:`hindmanRelaxationProcessesWater2003`. By contrast, both
+:math:`\text{SPC/E}` and :math:`\text{TIP3P}` overestimate the relaxation time
+:math:`T_1`, consistent with earlier results by Calero et al.
+:cite:`calero1HNuclearSpin2015`.
+
+Note that Calero et al. used the :math:`\text{TIP4P}-2005` model rather than
+:math:`\text{TIP4P}-\epsilon`, but the two models yield very similar structures
+and viscosities :cite:`fuentes-azcatlNonPolarizableForceField2014` and are thus
+expected to produce similar relaxation times.
 
 .. image:: ../figures/illustrations/bulk-water/experimental_comparison-dark.png
     :class: only-dark
@@ -43,24 +46,23 @@ and are thus expected to yield similar relaxation times.
 
 .. container:: figurelegend
 
-    Figure: NMR relaxation time :math:`T_1` between MD simulations of bulk 
-    water obtained with three different water models:
+    Figure: NMR relaxation time :math:`T_1` from MD simulations of bulk water
+    using three water models:
     :math:`\text{TIP4P}-\epsilon` :cite:`fuentes-azcatlNonPolarizableForceField2014`,
-    :math:`\text{SPC/E}` :cite:`berendsenMissingTermEffective1987`,
-    and :math:`\text{TIP3P}` :cite:`jorgensenComparisonSimplePotential1983`.
-    Results are compared with experiments 
-    from Krynicki et al. :cite:`krynickiProtonSpinlatticeRelaxation1966`
-    and from Hindman et al. :cite:`hindmanRelaxationProcessesWater2003`.
+    :math:`\text{SPC/E}` :cite:`berendsenMissingTermEffective1987`, and
+    :math:`\text{TIP3P}` :cite:`jorgensenComparisonSimplePotential1983`. Results
+    are compared with experiments by Krynicki et al.
+    :cite:`krynickiProtonSpinlatticeRelaxation1966` and Hindman et al.
+    :cite:`hindmanRelaxationProcessesWater2003`.
 
 Simulation accuracy
 -------------------
 
-NMR relaxation measurements are sensitive both thermodynamic and dynamic quantities, 
-and it is therefore important to ensure the accuracy of the molecular simulation.
-Several parameters are known to affect the accuracy of the simulations,
-such as the force field (as discussed previously), the time step, the cut-offs,
-or the sampling time
-:cite:`frenkelUnderstandingMolecularSimulation2002,allenComputerSimulationLiquids2017`.
+NMR relaxation measurements are sensitive to both thermodynamic and dynamic
+properties. To ensure accurate simulations, key parameters must be carefully
+chosen - including the force field (as discussed above), the integration time
+step, cutoff distances, and the simulation length
+:cite:`frenkelUnderstandingMolecularSimulation2002, allenComputerSimulationLiquids2017`.
 
 As an illustration, the NMR relaxation time :math:`T_1`
 of bulk water was measured as a function of the LJ cut-off.

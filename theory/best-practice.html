@@ -6,7 +6,7 @@
     <link href="../_static/favicon-32x32.png" sizes="32x32" rel="icon" type="image/png"><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Bibliography" href="../additional/bibliography.html" /><link rel="prev" title="Lysozyme in water" href="../illustrations/lysozyme-in-water.html" />
 
     <!-- Generated with Sphinx 7.4.7 and Furo 2024.08.06 -->
-        <title>Best practice - </title>
+        <title>Best practices - </title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=302659d7" />
@@ -221,7 +221,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Best practices</span></p>
 <ul class="current">
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Best practice</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Best practices</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Additional</span></p>
 <ul>
@@ -267,57 +267,57 @@
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section id="best-practice">
-<h1>Best practice<a class="headerlink" href="#best-practice" title="Link to this heading">¶</a></h1>
-<section id="choosing-the-right-force-field">
-<h2>Choosing the right force field<a class="headerlink" href="#choosing-the-right-force-field" title="Link to this heading">¶</a></h2>
-<p>The agreement between experiments and simulations can only be as good as the
-force field used in the simulations. Although it has been shown that some
-force fields lead to excellent agreement with experimental data, as for instance
-for water, hydrocarbons, or polymer melts
-<span id="id1">[<a class="reference internal" href="../additional/bibliography.html#id468" title="Philip M. Singer, Dilip Asthagiri, Walter G. Chapman, and George J. Hirasaki. Molecular dynamics simulations of NMR relaxation and diffusion of bulk hydrocarbons and water. Journal of Magnetic Resonance, 277:15–24, April 2017. doi:10.1016/j.jmr.2017.02.001.">8</a>, <a class="reference internal" href="../additional/bibliography.html#id175" title="Simon Gravelle, Sabina Haber-Pohlmeier, Carlos Mattea, Siegfried Stapf, Christian Holm, and Alexander Schlaich. NMR Investigation of Water in Salt Crusts: Insights from Experiments and Molecular Simulations. Langmuir, 39(22):7548–7556, June 2023. doi:10.1021/acs.langmuir.3c00036.">12</a>, <a class="reference internal" href="../additional/bibliography.html#id172" title="Simon Gravelle, David Beyer, Mariano Brito, Alexander Schlaich, and Christian Holm. Assessing the Validity of NMR Relaxation Rates Obtained from Coarse-Grained Simulations of PEG–Water Mixtures. The Journal of Physical Chemistry B, 127(25):5601–5608, June 2023. doi:10.1021/acs.jpcb.3c01646.">18</a>]</span>,
-it is important to keep in mind that force fields are often parametrized
-to reproduce thermodynamic quantities, such as solvation energy.
-However, NMR relaxation times depend on both structural
-and dynamical quantities, and large differences between experiments
-and simulations are expected for poorly accurate force fields.</p>
-<p>As an illustration, the NMR relaxation time <span class="math notranslate nohighlight">\(T_1\)</span>
-of bulk water was measured as a function of the temperature
-for three different water models:
+          <section id="best-practices">
+<h1>Best practices<a class="headerlink" href="#best-practices" title="Link to this heading">¶</a></h1>
+<p>Here, a set of best practive for performing accurate dipolar NMR
+calculations from NMR is provided.</p>
+<section id="choosing-the-force-field">
+<h2>Choosing the Force Field<a class="headerlink" href="#choosing-the-force-field" title="Link to this heading">¶</a></h2>
+<p>The agreement between experiments and simulations can only be as accurate as
+the force field used. While some force fields show excellent agreement with
+experimental data – for instance, in simulations of water, hydrocarbons, or
+polymer melts
+<span id="id1">[<a class="reference internal" href="../additional/bibliography.html#id468" title="Philip M. Singer, Dilip Asthagiri, Walter G. Chapman, and George J. Hirasaki. Molecular dynamics simulations of NMR relaxation and diffusion of bulk hydrocarbons and water. Journal of Magnetic Resonance, 277:15–24, April 2017. doi:10.1016/j.jmr.2017.02.001.">8</a>, <a class="reference internal" href="../additional/bibliography.html#id175" title="Simon Gravelle, Sabina Haber-Pohlmeier, Carlos Mattea, Siegfried Stapf, Christian Holm, and Alexander Schlaich. NMR Investigation of Water in Salt Crusts: Insights from Experiments and Molecular Simulations. Langmuir, 39(22):7548–7556, June 2023. doi:10.1021/acs.langmuir.3c00036.">12</a>, <a class="reference internal" href="../additional/bibliography.html#id172" title="Simon Gravelle, David Beyer, Mariano Brito, Alexander Schlaich, and Christian Holm. Assessing the Validity of NMR Relaxation Rates Obtained from Coarse-Grained Simulations of PEG–Water Mixtures. The Journal of Physical Chemistry B, 127(25):5601–5608, June 2023. doi:10.1021/acs.jpcb.3c01646.">18</a>]</span>
+– it is important to remember that force fields are often parametrized to
+reproduce thermodynamic properties, such as solvation energy. However, NMR
+relaxation times depend on both structural and dynamical quantities. Thus,
+substantial discrepancies between simulations and experiments may occur with
+inaccurate force fields.</p>
+<p>As an example, the NMR relaxation time <span class="math notranslate nohighlight">\(T_1\)</span> of bulk water was measured
+as a function of temperature for three water models:
 <span class="math notranslate nohighlight">\(\text{TIP4P}-\epsilon\)</span> <span id="id2">[<a class="reference internal" href="../additional/bibliography.html#id148" title="Raúl Fuentes-Azcatl and José Alejandre. Non-Polarizable Force Field of Water Based on the Dielectric Constant: TIP4P/epsilon. The Journal of Physical Chemistry B, 118(5):1263–1272, February 2014. doi:10.1021/jp410865y.">22</a>]</span>,
-<span class="math notranslate nohighlight">\(\text{SPC/E}\)</span> <span id="id3">[<a class="reference internal" href="../additional/bibliography.html#id38" title="H. J. C. Berendsen, J. R. Grigera, and T. P. Straatsma. The missing term in effective pair potentials. The Journal of Physical Chemistry, 91(24):6269–6271, November 1987. doi:10.1021/j100308a038.">28</a>]</span>,
-and <span class="math notranslate nohighlight">\(\text{TIP3P}\)</span> <span id="id4">[<a class="reference internal" href="../additional/bibliography.html#id242" title="William L. Jorgensen, Jayaraman Chandrasekhar, Jeffry D. Madura, Roger W. Impey, and Michael L. Klein. Comparison of simple potential functions for simulating liquid water. The Journal of Chemical Physics, 79(2):926–935, July 1983. doi:10.1063/1.445869.">29</a>]</span>.
-Our results show that the <span class="math notranslate nohighlight">\(\text{TIP4P}-\epsilon\)</span> water models
-is in excellent agreement with experimental measurements from
-Krynicki et al. <span id="id5">[<a class="reference internal" href="../additional/bibliography.html#id273" title="K. Krynicki. Proton spin-lattice relaxation in pure water between 0°C and 100°C. Physica, 32(1):167–178, January 1966. doi:10.1016/0031-8914(66)90113-3.">30</a>]</span>
-and Hindman et al. <span id="id6">[<a class="reference internal" href="../additional/bibliography.html#id213" title="J. C. Hindman, A. Svirmickas, and M. Wood. Relaxation processes in water. A study of the proton spin-lattice relaxation time. The Journal of Chemical Physics, 59(3):1517–1522, September 2003. doi:10.1063/1.1680209.">31</a>]</span>.
-By contrast, <span class="math notranslate nohighlight">\(\text{SPC/E}\)</span> and <span class="math notranslate nohighlight">\(\text{TIP3P}\)</span>
-both overestimate the NMR relaxation time <span class="math notranslate nohighlight">\(T_1\)</span>, in
-excellent agreement with previous results
-by Calero et al. <span id="id7">[<a class="reference internal" href="../additional/bibliography.html#id65" title="C. Calero, J. Martí, and E. Guàrdia. 1H Nuclear Spin Relaxation of Liquid Water from Molecular Dynamics Simulations. The Journal of Physical Chemistry B, 119(5):1966–1973, February 2015. doi:10.1021/jp510013q.">7</a>]</span>. Note that Calero et al.
-used <span class="math notranslate nohighlight">\(\text{TIP4P}-2005\)</span> water model instead of the <span class="math notranslate nohighlight">\(\text{TIP4P}-\epsilon\)</span> model used here,
-however these two models show very similar structures and viscosities for liquid water <span id="id8">[<a class="reference internal" href="../additional/bibliography.html#id148" title="Raúl Fuentes-Azcatl and José Alejandre. Non-Polarizable Force Field of Water Based on the Dielectric Constant: TIP4P/epsilon. The Journal of Physical Chemistry B, 118(5):1263–1272, February 2014. doi:10.1021/jp410865y.">22</a>]</span>,
-and are thus expected to yield similar relaxation times.</p>
+<span class="math notranslate nohighlight">\(\text{SPC/E}\)</span> <span id="id3">[<a class="reference internal" href="../additional/bibliography.html#id38" title="H. J. C. Berendsen, J. R. Grigera, and T. P. Straatsma. The missing term in effective pair potentials. The Journal of Physical Chemistry, 91(24):6269–6271, November 1987. doi:10.1021/j100308a038.">28</a>]</span>, and
+<span class="math notranslate nohighlight">\(\text{TIP3P}\)</span> <span id="id4">[<a class="reference internal" href="../additional/bibliography.html#id242" title="William L. Jorgensen, Jayaraman Chandrasekhar, Jeffry D. Madura, Roger W. Impey, and Michael L. Klein. Comparison of simple potential functions for simulating liquid water. The Journal of Chemical Physics, 79(2):926–935, July 1983. doi:10.1063/1.445869.">29</a>]</span>.
+Our results show that the <span class="math notranslate nohighlight">\(\text{TIP4P}-\epsilon\)</span> model is in excellent
+agreement with experimental measurements by Krynicki et al.
+<span id="id5">[<a class="reference internal" href="../additional/bibliography.html#id273" title="K. Krynicki. Proton spin-lattice relaxation in pure water between 0°C and 100°C. Physica, 32(1):167–178, January 1966. doi:10.1016/0031-8914(66)90113-3.">30</a>]</span> and Hindman et al.
+<span id="id6">[<a class="reference internal" href="../additional/bibliography.html#id213" title="J. C. Hindman, A. Svirmickas, and M. Wood. Relaxation processes in water. A study of the proton spin-lattice relaxation time. The Journal of Chemical Physics, 59(3):1517–1522, September 2003. doi:10.1063/1.1680209.">31</a>]</span>. By contrast, both
+<span class="math notranslate nohighlight">\(\text{SPC/E}\)</span> and <span class="math notranslate nohighlight">\(\text{TIP3P}\)</span> overestimate the relaxation time
+<span class="math notranslate nohighlight">\(T_1\)</span>, consistent with earlier results by Calero et al.
+<span id="id7">[<a class="reference internal" href="../additional/bibliography.html#id65" title="C. Calero, J. Martí, and E. Guàrdia. 1H Nuclear Spin Relaxation of Liquid Water from Molecular Dynamics Simulations. The Journal of Physical Chemistry B, 119(5):1966–1973, February 2015. doi:10.1021/jp510013q.">7</a>]</span>.</p>
+<p>Note that Calero et al. used the <span class="math notranslate nohighlight">\(\text{TIP4P}-2005\)</span> model rather than
+<span class="math notranslate nohighlight">\(\text{TIP4P}-\epsilon\)</span>, but the two models yield very similar structures
+and viscosities <span id="id8">[<a class="reference internal" href="../additional/bibliography.html#id148" title="Raúl Fuentes-Azcatl and José Alejandre. Non-Polarizable Force Field of Water Based on the Dielectric Constant: TIP4P/epsilon. The Journal of Physical Chemistry B, 118(5):1263–1272, February 2014. doi:10.1021/jp410865y.">22</a>]</span> and are thus
+expected to produce similar relaxation times.</p>
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-dark" src="../_images/experimental_comparison-dark.png" />
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-light" src="../_images/experimental_comparison-light.png" />
 <div class="figurelegend docutils container">
-<p>Figure: NMR relaxation time <span class="math notranslate nohighlight">\(T_1\)</span> between MD simulations of bulk
-water obtained with three different water models:
+<p>Figure: NMR relaxation time <span class="math notranslate nohighlight">\(T_1\)</span> from MD simulations of bulk water
+using three water models:
 <span class="math notranslate nohighlight">\(\text{TIP4P}-\epsilon\)</span> <span id="id9">[<a class="reference internal" href="../additional/bibliography.html#id148" title="Raúl Fuentes-Azcatl and José Alejandre. Non-Polarizable Force Field of Water Based on the Dielectric Constant: TIP4P/epsilon. The Journal of Physical Chemistry B, 118(5):1263–1272, February 2014. doi:10.1021/jp410865y.">22</a>]</span>,
-<span class="math notranslate nohighlight">\(\text{SPC/E}\)</span> <span id="id10">[<a class="reference internal" href="../additional/bibliography.html#id38" title="H. J. C. Berendsen, J. R. Grigera, and T. P. Straatsma. The missing term in effective pair potentials. The Journal of Physical Chemistry, 91(24):6269–6271, November 1987. doi:10.1021/j100308a038.">28</a>]</span>,
-and <span class="math notranslate nohighlight">\(\text{TIP3P}\)</span> <span id="id11">[<a class="reference internal" href="../additional/bibliography.html#id242" title="William L. Jorgensen, Jayaraman Chandrasekhar, Jeffry D. Madura, Roger W. Impey, and Michael L. Klein. Comparison of simple potential functions for simulating liquid water. The Journal of Chemical Physics, 79(2):926–935, July 1983. doi:10.1063/1.445869.">29</a>]</span>.
-Results are compared with experiments
-from Krynicki et al. <span id="id12">[<a class="reference internal" href="../additional/bibliography.html#id273" title="K. Krynicki. Proton spin-lattice relaxation in pure water between 0°C and 100°C. Physica, 32(1):167–178, January 1966. doi:10.1016/0031-8914(66)90113-3.">30</a>]</span>
-and from Hindman et al. <span id="id13">[<a class="reference internal" href="../additional/bibliography.html#id213" title="J. C. Hindman, A. Svirmickas, and M. Wood. Relaxation processes in water. A study of the proton spin-lattice relaxation time. The Journal of Chemical Physics, 59(3):1517–1522, September 2003. doi:10.1063/1.1680209.">31</a>]</span>.</p>
+<span class="math notranslate nohighlight">\(\text{SPC/E}\)</span> <span id="id10">[<a class="reference internal" href="../additional/bibliography.html#id38" title="H. J. C. Berendsen, J. R. Grigera, and T. P. Straatsma. The missing term in effective pair potentials. The Journal of Physical Chemistry, 91(24):6269–6271, November 1987. doi:10.1021/j100308a038.">28</a>]</span>, and
+<span class="math notranslate nohighlight">\(\text{TIP3P}\)</span> <span id="id11">[<a class="reference internal" href="../additional/bibliography.html#id242" title="William L. Jorgensen, Jayaraman Chandrasekhar, Jeffry D. Madura, Roger W. Impey, and Michael L. Klein. Comparison of simple potential functions for simulating liquid water. The Journal of Chemical Physics, 79(2):926–935, July 1983. doi:10.1063/1.445869.">29</a>]</span>. Results
+are compared with experiments by Krynicki et al.
+<span id="id12">[<a class="reference internal" href="../additional/bibliography.html#id273" title="K. Krynicki. Proton spin-lattice relaxation in pure water between 0°C and 100°C. Physica, 32(1):167–178, January 1966. doi:10.1016/0031-8914(66)90113-3.">30</a>]</span> and Hindman et al.
+<span id="id13">[<a class="reference internal" href="../additional/bibliography.html#id213" title="J. C. Hindman, A. Svirmickas, and M. Wood. Relaxation processes in water. A study of the proton spin-lattice relaxation time. The Journal of Chemical Physics, 59(3):1517–1522, September 2003. doi:10.1063/1.1680209.">31</a>]</span>.</p>
 </div>
 </section>
 <section id="simulation-accuracy">
 <h2>Simulation accuracy<a class="headerlink" href="#simulation-accuracy" title="Link to this heading">¶</a></h2>
-<p>NMR relaxation measurements are sensitive both thermodynamic and dynamic quantities,
-and it is therefore important to ensure the accuracy of the molecular simulation.
-Several parameters are known to affect the accuracy of the simulations,
-such as the force field (as discussed previously), the time step, the cut-offs,
-or the sampling time
+<p>NMR relaxation measurements are sensitive to both thermodynamic and dynamic
+properties. To ensure accurate simulations, key parameters must be carefully
+chosen - including the force field (as discussed above), the integration time
+step, cutoff distances, and the simulation length
 <span id="id14">[<a class="reference internal" href="../additional/bibliography.html#id145" title="Daan Frenkel and Berend Smit. Understanding Molecular Simulation: From Algorithms to Applications. Number Volume 1 in Computational Science Series. Academic press, San Diego, 2nd ed edition, 2002. ISBN 978-0-12-267351-1.">32</a>, <a class="reference internal" href="../additional/bibliography.html#id10" title="M. P. Allen and D. J. Tildesley. Computer Simulation of Liquids. Oxford University Press, Oxford, United Kingdom, second edition edition, 2017. ISBN 978-0-19-880319-5 978-0-19-880320-1.">33</a>]</span>.</p>
 <p>As an illustration, the NMR relaxation time <span class="math notranslate nohighlight">\(T_1\)</span>
 of bulk water was measured as a function of the LJ cut-off.
@@ -456,8 +456,8 @@ a function of <span class="math notranslate nohighlight">\(\Delta t\)</span>.</p
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">Best practice</a><ul>
-<li><a class="reference internal" href="#choosing-the-right-force-field">Choosing the right force field</a></li>
+<li><a class="reference internal" href="#">Best practices</a><ul>
+<li><a class="reference internal" href="#choosing-the-force-field">Choosing the Force Field</a></li>
 <li><a class="reference internal" href="#simulation-accuracy">Simulation accuracy</a></li>
 <li><a class="reference internal" href="#box-size">Box size</a></li>
 <li><a class="reference internal" href="#dumping-frequency">Dumping frequency</a></li>
