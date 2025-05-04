@@ -4,21 +4,23 @@
 Anisotropic systems
 ===================
 
-In this tutorial, the NMR relaxation rate :math:`R_1` is measured from water
-confined in a nanoslit of silica.
+In this tutorial, the H-NMR relaxation rates :math:`R_1` and :math:`R_2` are
+measured for water confined within a nanoslit composed of silica. The hydrogen
+atoms of interest include those in the water molecules and those in the surface
+hydroxyl (-OH) groups of the silica. The individual contributions to
+:math:`R_1` and :math:`R_2`—namely, intra-molecular, inter-molecular, and
+water-hydroxyl interactions—are computed separately. This system illustrates
+an anisotropic case, where all three correlation functions,
+:math:`G^{(1)}`, :math:`G^{(2)}`, and :math:`G^{(3)}`, must be evaluated.
 
 .. admonition:: Note
     :class: non-title-info
-    
-    If you are new to NMRDfromMD, it is recommended that you follow this simpler
-    tutorial on :ref:`isotropic-label` first.
+
+    If you are new to NMRDfromMD, it is recommended to begin with the simpler
+    tutorial on :ref:`isotropic-label`.
 
 MD system
 ---------
-
-.. container:: hatnote
-
-   Measuring the NMR relaxation time of nanoconfined water
 
 .. image:: ../figures/tutorials/anisotropic-systems/snapshot-dark.png
     :class: only-dark
@@ -32,34 +34,34 @@ MD system
     :width: 250
     :align: right
 
-The system is composed of 602 :math:`\text{TIP4P}-\epsilon` water molecules
-confined in a slit silica nanopore. The trajectory was recorded during a
-:math:`10\,\text{ns}` production run performed using the open-source code GROMACS,
-in the anisotropic :math:`NP_zT` ensemble, with a timestep of :math:`1\,\text{fs}`.
-To balance the surface charge, 20 sodium ions are present in the slit.
-The imposed temperature was :math:`T = 300\,\text{K}`, and the pressure
-was :math:`p = 1\,\text{bar}`. Atomic positions were saved in the **prod.xtc**
-file every :math:`2\,\text{ps}`.
+The system consists of 602 :math:`\text{TIP4P}-\epsilon` water molecules
+confined within a silica slit nanopore. The trajectory was recorded during a
+:math:`10\,\text{ns}` production run performed using the open-source GROMACS
+software, in the anisotropic :math:`NP_zT` ensemble, with a timestep of
+:math:`1\,\text{fs}`. To balance the surface charge, 20 sodium ions were added
+to the slit. The system was maintained at a temperature of :math:`T = 300\,\text{K}`
+and a pressure of :math:`p = 1\,\text{bar}`. Atomic positions were saved to the
+**prod.xtc** file every :math:`2\,\text{ps}`.
 
 .. admonition:: Note
     :class: non-title-info
 
-    If you'd like to learn GROMACS and generate your own trajectories, beginner
-    |gromacs-tutorials| are available here.
+    If you are interested in learning GROMACS and generating your own
+    trajectories, beginner |gromacs-tutorials| are available here.
 
 File preparation
 ----------------
 
-To access all trajectory and input files, download the
-``water-in-silica`` repository from GitHub, or simply clone it
-to your computer using:
+To access the GROMACS input files and pre-computed trajectory data, download
+the |zip-water-in-silica| archive, or clone the
+|dataset-water-in-silica| repository using:
 
 .. code-block:: bash
 
-    git clone https://github.com/simongravelle/water-in-silica.git
+    git clone https://github.com/NMRDfromMD/dataset-water-in-silica.git
 
-The dataset required to follow this tutorial is located in
-``raw-data/N50/``.
+The necessary trajectory files for this tutorial are located in the ``data/``
+directory.
 
 Create a MDAnalysis universe
 ----------------------------

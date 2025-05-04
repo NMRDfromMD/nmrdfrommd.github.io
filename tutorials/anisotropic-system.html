@@ -269,46 +269,49 @@
         <article role="main" id="furo-main-content">
           <section id="anisotropic-systems">
 <span id="anisotropic-label"></span><h1>Anisotropic systems<a class="headerlink" href="#anisotropic-systems" title="Link to this heading">¶</a></h1>
-<p>In this tutorial, the NMR relaxation rate <span class="math notranslate nohighlight">\(R_1\)</span> is measured from water
-confined in a nanoslit of silica.</p>
+<p>In this tutorial, the H-NMR relaxation rates <span class="math notranslate nohighlight">\(R_1\)</span> and <span class="math notranslate nohighlight">\(R_2\)</span> are
+measured for water confined within a nanoslit composed of silica. The hydrogen
+atoms of interest include those in the water molecules and those in the surface
+hydroxyl (-OH) groups of the silica. The individual contributions to
+<span class="math notranslate nohighlight">\(R_1\)</span> and <span class="math notranslate nohighlight">\(R_2\)</span>—namely, intra-molecular, inter-molecular, and
+water-hydroxyl interactions—are computed separately. This system illustrates
+an anisotropic case, where all three correlation functions,
+<span class="math notranslate nohighlight">\(G^{(1)}\)</span>, <span class="math notranslate nohighlight">\(G^{(2)}\)</span>, and <span class="math notranslate nohighlight">\(G^{(3)}\)</span>, must be evaluated.</p>
 <div class="non-title-info admonition">
 <p class="admonition-title">Note</p>
-<p>If you are new to NMRDfromMD, it is recommended that you follow this simpler
-tutorial on <a class="reference internal" href="isotropic-system.html#isotropic-label"><span class="std std-ref">Isotropic system</span></a> first.</p>
+<p>If you are new to NMRDfromMD, it is recommended to begin with the simpler
+tutorial on <a class="reference internal" href="isotropic-system.html#isotropic-label"><span class="std std-ref">Isotropic system</span></a>.</p>
 </div>
 <section id="md-system">
 <h2>MD system<a class="headerlink" href="#md-system" title="Link to this heading">¶</a></h2>
-<div class="hatnote docutils container">
-<p>Measuring the NMR relaxation time of nanoconfined water</p>
-</div>
 <a class="only-dark reference internal image-reference" href="../_images/snapshot-dark1.png"><img alt="Water confined in silica slit with GROMACS - Dipolar NMR relaxation time calculation" class="only-dark align-right" src="../_images/snapshot-dark1.png" style="width: 250px;" />
 </a>
 <a class="only-light reference internal image-reference" href="../_images/snapshot-light1.png"><img alt="Water confined in silica slit with GROMACS - Dipolar NMR relaxation time calculation" class="only-light align-right" src="../_images/snapshot-light1.png" style="width: 250px;" />
 </a>
-<p>The system is composed of 602 <span class="math notranslate nohighlight">\(\text{TIP4P}-\epsilon\)</span> water molecules
-confined in a slit silica nanopore. The trajectory was recorded during a
-<span class="math notranslate nohighlight">\(10\,\text{ns}\)</span> production run performed using the open-source code GROMACS,
-in the anisotropic <span class="math notranslate nohighlight">\(NP_zT\)</span> ensemble, with a timestep of <span class="math notranslate nohighlight">\(1\,\text{fs}\)</span>.
-To balance the surface charge, 20 sodium ions are present in the slit.
-The imposed temperature was <span class="math notranslate nohighlight">\(T = 300\,\text{K}\)</span>, and the pressure
-was <span class="math notranslate nohighlight">\(p = 1\,\text{bar}\)</span>. Atomic positions were saved in the <strong>prod.xtc</strong>
-file every <span class="math notranslate nohighlight">\(2\,\text{ps}\)</span>.</p>
+<p>The system consists of 602 <span class="math notranslate nohighlight">\(\text{TIP4P}-\epsilon\)</span> water molecules
+confined within a silica slit nanopore. The trajectory was recorded during a
+<span class="math notranslate nohighlight">\(10\,\text{ns}\)</span> production run performed using the open-source GROMACS
+software, in the anisotropic <span class="math notranslate nohighlight">\(NP_zT\)</span> ensemble, with a timestep of
+<span class="math notranslate nohighlight">\(1\,\text{fs}\)</span>. To balance the surface charge, 20 sodium ions were added
+to the slit. The system was maintained at a temperature of <span class="math notranslate nohighlight">\(T = 300\,\text{K}\)</span>
+and a pressure of <span class="math notranslate nohighlight">\(p = 1\,\text{bar}\)</span>. Atomic positions were saved to the
+<strong>prod.xtc</strong> file every <span class="math notranslate nohighlight">\(2\,\text{ps}\)</span>.</p>
 <div class="non-title-info admonition">
 <p class="admonition-title">Note</p>
-<p>If you’d like to learn GROMACS and generate your own trajectories, beginner
-<a href="https://gromacstutorials.github.io/" target="_blank">tutorials</a> are available here.</p>
+<p>If you are interested in learning GROMACS and generating your own
+trajectories, beginner <a href="https://gromacstutorials.github.io/" target="_blank">tutorials</a> are available here.</p>
 </div>
 </section>
 <section id="file-preparation">
 <h2>File preparation<a class="headerlink" href="#file-preparation" title="Link to this heading">¶</a></h2>
-<p>To access all trajectory and input files, download the
-<code class="docutils literal notranslate"><span class="pre">water-in-silica</span></code> repository from GitHub, or simply clone it
-to your computer using:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/simongravelle/water-in-silica.git
+<p>To access the GROMACS input files and pre-computed trajectory data, download
+the <a href="https://github.com/NMRDfromMD/dataset-water-in-silica/archive/refs/tags/v1.0-beta.zip" target="_blank">zip</a> archive, or clone the
+<a href="https://github.com/NMRDfromMD/dataset-water-in-silica" target="_blank">dataset-water-in-silica</a> repository using:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/NMRDfromMD/dataset-water-in-silica.git
 </pre></div>
 </div>
-<p>The dataset required to follow this tutorial is located in
-<code class="docutils literal notranslate"><span class="pre">raw-data/N50/</span></code>.</p>
+<p>The necessary trajectory files for this tutorial are located in the <code class="docutils literal notranslate"><span class="pre">data/</span></code>
+directory.</p>
 </section>
 <section id="create-a-mdanalysis-universe">
 <h2>Create a MDAnalysis universe<a class="headerlink" href="#create-a-mdanalysis-universe" title="Link to this heading">¶</a></h2>
