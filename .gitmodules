@@ -6,3 +6,6 @@
 	path = .submodules/pyplot-perso
 	url = git@github.com:simongravelle/pyplot-perso.git
 	branch = LAMMPS-livecom
+[submodule ".submodules/dataset-peg-water-mixture"]
+	path = .submodules/dataset-peg-water-mixture
+	url = git@github.com:NMRDfromMD/dataset-peg-water-mixture.git
