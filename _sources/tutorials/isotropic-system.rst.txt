@@ -45,15 +45,16 @@ every :math:`1~\text{ps}`.
 File preparation
 ----------------
 
-To access all trajectory and input files, download the ``polymer-in-water``
-repository from GitHub, or simply clone it using:
+To access the LAMMPS input files and pre-computed trajectory
+data, download the |zip-peg-water-mixture| archive, or clone the
+|dataset-peg-water-mixture| repository using:
 
 .. code-block:: bash
 
-    git clone https://github.com/simongravelle/polymer-in-water.git
+    git clone https://github.com/NMRDfromMD/dataset-peg-water-mixture.git
 
-The dataset required to follow this tutorial is located in
-``raw-data/NPEG32/``.
+The necessary trajectory files for this tutorial are located in the ``data/``
+directory.
 
 Create a MDAnalysis universe
 ----------------------------
