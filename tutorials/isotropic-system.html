@@ -310,54 +310,65 @@ directory.</p>
 <section id="create-a-mdanalysis-universe">
 <h2>Create a MDAnalysis universe<a class="headerlink" href="#create-a-mdanalysis-universe" title="Link to this heading">¶</a></h2>
 <p>Open a new Python script or Notebook, and define the path to the data files:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">datapath</span> <span class="o">=</span> <span class="s2">&quot;mypath/polymer-in-water/raw-data/NPEG32/&quot;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">datapath</span> <span class="o">=</span> <span class="s2">&quot;mypath/polymer-in-water/data/&quot;</span>
 </pre></div>
 </div>
-<p>Then, import NumPy, MDAnalysis, and NMRDfromMD:</p>
+<p>Then, import <code class="docutils literal notranslate"><span class="pre">NumPy</span></code>, <code class="docutils literal notranslate"><span class="pre">MDAnalysis</span></code>, and the <code class="docutils literal notranslate"><span class="pre">NMRD</span></code>
+module of <code class="docutils literal notranslate"><span class="pre">NMRDfromMD</span></code>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">MDAnalysis</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mda</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">nmrformd</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nmrmd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nmrdfrommd</span><span class="w"> </span><span class="kn">import</span> <span class="n">NMRD</span>
 </pre></div>
 </div>
-<p>From the trajectory files, create a MDAnalysis universe by loading the
+<p>From the trajectory files, create a <code class="docutils literal notranslate"><span class="pre">universe</span></code> by loading the
 configuration file and trajectory:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">u</span> <span class="o">=</span> <span class="n">mda</span><span class="o">.</span><span class="n">Universe</span><span class="p">(</span><span class="n">datapath</span><span class="o">+</span><span class="s2">&quot;init.data&quot;</span><span class="p">,</span> <span class="n">datapath</span><span class="o">+</span><span class="s2">&quot;prod.xtc&quot;</span><span class="p">)</span>
-<span class="n">u</span><span class="o">.</span><span class="n">transfer_to_memory</span><span class="p">(</span><span class="n">stop</span><span class="o">=</span><span class="mi">501</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>The command <code class="docutils literal notranslate"><span class="pre">u.transfer_to_memory(stop=501)</span></code> is optional. It simply reduces
-the number of frames loaded into memory, which speeds up the calculation.
-Feel free to remove it or increase the value. The figures in this tutorial
-were generated using the full trajectory (i.e., without the
-<code class="docutils literal notranslate"><span class="pre">u.transfer_to_memory(stop=501)</span></code> command).</p>
-<p>The MDAnalysis universe <code class="docutils literal notranslate"><span class="pre">u</span></code> contains both the topology (atom types, masses,
-etc.) and the trajectory (atom positions at each frame).</p>
-<p>Let us now extract some basic information from the universe, such as the number
-of molecules (water and PEG),  <code class="docutils literal notranslate"><span class="pre">n_molecules</span></code>, the timestep, <code class="docutils literal notranslate"><span class="pre">timestep</span></code> and
-the total duration of the simulation, <code class="docutils literal notranslate"><span class="pre">total_time</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">n_molecules</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">atoms</span><span class="o">.</span><span class="n">n_residues</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The number of molecules is </span><span class="si">{</span><span class="n">n_molecules</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="n">timestep</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">dt</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The timestep is </span><span class="si">{</span><span class="n">timestep</span><span class="si">}</span><span class="s2"> ps&quot;</span><span class="p">)</span>
-<span class="n">total_time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">totaltime</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The total simulation time is </span><span class="si">{</span><span class="n">total_time</span><span class="si">}</span><span class="s2"> ps&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>Executing the script using Python will return:</p>
-<div class="highlight-bw notranslate"><div class="highlight"><pre><span></span>&gt;&gt; The number of molecules is 352
-&gt;&gt; The timestep is 1 ps
-&gt;&gt; The total simulation time is 1000 ps
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">u</span> <span class="o">=</span> <span class="n">mda</span><span class="o">.</span><span class="n">Universe</span><span class="p">(</span><span class="n">datapath</span><span class="o">+</span><span class="s2">&quot;production.data&quot;</span><span class="p">,</span>
+                 <span class="n">datapath</span><span class="o">+</span><span class="s2">&quot;production.xtc&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="non-title-info admonition">
 <p class="admonition-title">Note</p>
-<p>In the context of MDAnalysis, the timestep refers to the duration between
+<p>The MDAnalysis <code class="docutils literal notranslate"><span class="pre">universe</span></code>, <code class="docutils literal notranslate"><span class="pre">u</span></code>, contains both the topology
+(atom types, masses, etc.) and the trajectory (atom positions
+at each frame). These informations are used by <code class="docutils literal notranslate"><span class="pre">NMRDfromMD</span></code>
+for the calculation of NMR properties.</p>
+</div>
+<p>Let us print some basic information from the <code class="docutils literal notranslate"><span class="pre">universe</span></code>, such as the number
+of molecules (water and PEG):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">n_TOT</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">atoms</span><span class="o">.</span><span class="n">n_residues</span>
+<span class="n">n_H2O</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">select_atoms</span><span class="p">(</span><span class="s2">&quot;type 6 7&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">n_residues</span>
+<span class="n">n_PEG</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">select_atoms</span><span class="p">(</span><span class="s2">&quot;type 1 2 3 4 5&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">n_residues</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The total number of molecules is </span><span class="si">{</span><span class="n">n_TOT</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">n_H2O</span><span class="si">}</span><span class="s2"> H2O, </span><span class="si">{</span><span class="n">n_PEG</span><span class="si">}</span><span class="s2"> PEG)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Executing the script using Python will return:</p>
+<div class="highlight-bw notranslate"><div class="highlight"><pre><span></span>The total number of molecules is 450 (420 H2O, 30 PEG)
+</pre></div>
+</div>
+<p>Let us also print information concerning the trajectory,
+namely the timestep, <code class="docutils literal notranslate"><span class="pre">timestep</span></code> and
+the total duration of the simulation, <code class="docutils literal notranslate"><span class="pre">total_time</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">timestep</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">dt</span><span class="p">)</span>
+<span class="n">total_time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">totaltime</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The timestep is </span><span class="si">{</span><span class="n">timestep</span><span class="si">}</span><span class="s2"> ps&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The total simulation time is </span><span class="si">{</span><span class="n">total_time</span><span class="o">//</span><span class="mi">1000</span><span class="si">}</span><span class="s2"> ns&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Executing the script using Python will return:</p>
+<div class="highlight-bw notranslate"><div class="highlight"><pre><span></span>The timestep is 2 ps
+The total simulation time is 10 ns
+</pre></div>
+</div>
+<div class="non-title-info admonition">
+<p class="admonition-title">Note</p>
+<p>In the context of <code class="docutils literal notranslate"><span class="pre">MDAnalysis</span></code>, the <code class="docutils literal notranslate"><span class="pre">timestep</span></code> refers to the duration between
 two recorded frames, which is different from the actual timestep of
 <span class="math notranslate nohighlight">\(1\,\text{fs}\)</span> used in the LAMMPS molecular dynamics simulation.</p>
 </div>
 </section>
-<section id="launch-the-nmr-analysis">
-<h2>Launch the NMR analysis<a class="headerlink" href="#launch-the-nmr-analysis" title="Link to this heading">¶</a></h2>
+<section id="launch-the-h-nmr-analysis">
+<h2>Launch the H-NMR analysis<a class="headerlink" href="#launch-the-h-nmr-analysis" title="Link to this heading">¶</a></h2>
 <p>Let us create three atom groups: the hydrogen atoms of the PEG, the hydrogen
 atoms of the water, and all hydrogen atoms:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">H_PEG</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">select_atoms</span><span class="p">(</span><span class="s2">&quot;type 3 5&quot;</span><span class="p">)</span>
@@ -365,28 +376,38 @@ atoms of the water, and all hydrogen atoms:</p>
 <span class="n">H_ALL</span> <span class="o">=</span> <span class="n">H_PEG</span> <span class="o">+</span> <span class="n">H_H2O</span>
 </pre></div>
 </div>
-<p>Then, let us first run NMRforMD for all hydrogen atoms:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">nmr_ALL</span> <span class="o">=</span> <span class="n">nmrmd</span><span class="o">.</span><span class="n">NMR</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">atom_group</span><span class="o">=</span><span class="n">H_ALL</span><span class="p">,</span> <span class="n">neighbor_group</span><span class="o">=</span><span class="n">H_ALL</span><span class="p">,</span> <span class="n">number_i</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
+<p>Then, let us first run NMRDfromMD for all hydrogen atoms:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">nmr_all</span> <span class="o">=</span> <span class="n">NMRD</span><span class="p">(</span>
+    <span class="n">u</span><span class="o">=</span><span class="n">u</span><span class="p">,</span>
+    <span class="n">atom_group</span><span class="o">=</span><span class="n">H_ALL</span><span class="p">,</span>
+    <span class="n">neighbor_group</span> <span class="o">=</span> <span class="n">H_ALL</span><span class="p">,</span>
+    <span class="n">number_i</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
+<span class="n">nmr_all</span><span class="o">.</span><span class="n">run_analysis</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>With <code class="docutils literal notranslate"><span class="pre">number_i</span> <span class="pre">=</span> <span class="pre">40</span></code>, only 40 randomly selected atoms from <code class="docutils literal notranslate"><span class="pre">H_ALL</span></code> are
 used in the calculation. Increase this number for better statistical resolution,
-or set <code class="docutils literal notranslate"><span class="pre">number_i</span> <span class="pre">=</span> <span class="pre">0</span></code> to include all atoms in the group.</p>
+or set <code class="docutils literal notranslate"><span class="pre">number_i</span> <span class="pre">=</span> <span class="pre">0</span></code> to include all atoms in the group. Here, <code class="docutils literal notranslate"><span class="pre">H_ALL</span></code>
+is specified as both the <code class="docutils literal notranslate"><span class="pre">atom_group</span></code> and <code class="docutils literal notranslate"><span class="pre">neighbor_group</span></code>.</p>
+<p>Run the script using Python.</p>
 </section>
 <section id="extract-the-nmr-spectra">
 <h2>Extract the NMR spectra<a class="headerlink" href="#extract-the-nmr-spectra" title="Link to this heading">¶</a></h2>
-<p>Let us access the calculated value of the NMR relaxation time <span class="math notranslate nohighlight">\(T_1\)</span> by
-adding the following lines to the Python script:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">T1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">nmr_ALL</span><span class="o">.</span><span class="n">T1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The total NMR relaxation time is T1 = </span><span class="si">{</span><span class="n">T1</span><span class="si">}</span><span class="s2"> s&quot;</span><span class="p">)</span>
+<p>Let us access the calculated value of the NMR relaxation time <span class="math notranslate nohighlight">\(T_1\)</span>
+in <span class="math notranslate nohighlight">\(f \to 0\)</span> by adding the following lines to the Python script:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">T1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">nmr_all</span><span class="o">.</span><span class="n">T1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The NMR relaxation time is T1 = </span><span class="si">{</span><span class="n">T1</span><span class="si">}</span><span class="s2"> s&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>which should return:</p>
-<div class="highlight-bw notranslate"><div class="highlight"><pre><span></span>&gt;&gt; NMR relaxation time T1 = 2.53 s
+<div class="highlight-bw notranslate"><div class="highlight"><pre><span></span>The NMR relaxation time is T1 = 1.59 s
 </pre></div>
 </div>
-<p>The exact value you obtain may vary depending on which hydrogen atoms were
-randomly selected for the calculation.</p>
+<p>The exact value you obtain will be different, as it depends on which hydrogen
+atoms were randomly selected for the calculation. With the small value
+<code class="docutils literal notranslate"><span class="pre">number_i</span> <span class="pre">=</span> <span class="pre">40</span></code>, the noise is important. You can increase that number
+for more precise result, but this will obviously increase the computation time.</p>
 <p>The full <span class="math notranslate nohighlight">\(T_1\)</span> and <span class="math notranslate nohighlight">\(T_2\)</span> spectra can be extracted as
 <code class="docutils literal notranslate"><span class="pre">1/nmr_ALL.R1</span></code> and <code class="docutils literal notranslate"><span class="pre">1/nmr_ALL.R2</span></code>, respectively. The corresponding
 frequencies are stored in <code class="docutils literal notranslate"><span class="pre">nmr_ALL.f</span></code>.</p>
@@ -515,7 +536,7 @@ case):</p>
 <li><a class="reference internal" href="#md-system">MD system</a></li>
 <li><a class="reference internal" href="#file-preparation">File preparation</a></li>
 <li><a class="reference internal" href="#create-a-mdanalysis-universe">Create a MDAnalysis universe</a></li>
-<li><a class="reference internal" href="#launch-the-nmr-analysis">Launch the NMR analysis</a></li>
+<li><a class="reference internal" href="#launch-the-h-nmr-analysis">Launch the H-NMR analysis</a></li>
 <li><a class="reference internal" href="#extract-the-nmr-spectra">Extract the NMR spectra</a></li>
 <li><a class="reference internal" href="#calculate-the-intra-molecular-nmr-relaxation">Calculate the intra-molecular NMR relaxation</a></li>
 </ul>
