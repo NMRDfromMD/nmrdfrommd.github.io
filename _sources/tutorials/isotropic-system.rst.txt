@@ -160,11 +160,6 @@ used in the calculation. Increase this number for better statistical resolution,
 or set ``number_i = 0`` to include all atoms in the group. Here, ``H_ALL``
 is specified as both the ``atom_group`` and ``neighbor_group``.
 
-Run the script using Python.
-
-Extract the NMR spectra
------------------------
-
 Let us access the calculated value of the NMR relaxation time :math:`T_1`
 in :math:`f \to 0` by adding the following lines to the Python script:
 
@@ -185,7 +180,10 @@ atoms were randomly selected for the calculation. With the small value
 ``number_i = 40``, the noise is important. You can increase that number
 for more precise result, but this will obviously increase the computation time.
 
-The full :math:`T_1` and :math:`T_2` spectra can be extracted as
+Extract the NMR spectra
+-----------------------
+
+The full :math:`R_1` and :math:`T_2` spectra can be extracted as
 ``1/nmr_ALL.R1`` and ``1/nmr_ALL.R2``, respectively. The corresponding
 frequencies are stored in ``nmr_ALL.f``.
 

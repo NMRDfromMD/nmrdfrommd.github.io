@@ -389,10 +389,6 @@ atoms of the water, and all hydrogen atoms:</p>
 used in the calculation. Increase this number for better statistical resolution,
 or set <code class="docutils literal notranslate"><span class="pre">number_i</span> <span class="pre">=</span> <span class="pre">0</span></code> to include all atoms in the group. Here, <code class="docutils literal notranslate"><span class="pre">H_ALL</span></code>
 is specified as both the <code class="docutils literal notranslate"><span class="pre">atom_group</span></code> and <code class="docutils literal notranslate"><span class="pre">neighbor_group</span></code>.</p>
-<p>Run the script using Python.</p>
-</section>
-<section id="extract-the-nmr-spectra">
-<h2>Extract the NMR spectra<a class="headerlink" href="#extract-the-nmr-spectra" title="Link to this heading">¶</a></h2>
 <p>Let us access the calculated value of the NMR relaxation time <span class="math notranslate nohighlight">\(T_1\)</span>
 in <span class="math notranslate nohighlight">\(f \to 0\)</span> by adding the following lines to the Python script:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">T1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">nmr_all</span><span class="o">.</span><span class="n">T1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
@@ -408,7 +404,10 @@ in <span class="math notranslate nohighlight">\(f \to 0\)</span> by adding the f
 atoms were randomly selected for the calculation. With the small value
 <code class="docutils literal notranslate"><span class="pre">number_i</span> <span class="pre">=</span> <span class="pre">40</span></code>, the noise is important. You can increase that number
 for more precise result, but this will obviously increase the computation time.</p>
-<p>The full <span class="math notranslate nohighlight">\(T_1\)</span> and <span class="math notranslate nohighlight">\(T_2\)</span> spectra can be extracted as
+</section>
+<section id="extract-the-nmr-spectra">
+<h2>Extract the NMR spectra<a class="headerlink" href="#extract-the-nmr-spectra" title="Link to this heading">¶</a></h2>
+<p>The full <span class="math notranslate nohighlight">\(R_1\)</span> and <span class="math notranslate nohighlight">\(T_2\)</span> spectra can be extracted as
 <code class="docutils literal notranslate"><span class="pre">1/nmr_ALL.R1</span></code> and <code class="docutils literal notranslate"><span class="pre">1/nmr_ALL.R2</span></code>, respectively. The corresponding
 frequencies are stored in <code class="docutils literal notranslate"><span class="pre">nmr_ALL.f</span></code>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">R1_spectrum</span> <span class="o">=</span> <span class="n">nmr_ALL</span><span class="o">.</span><span class="n">R1</span>
