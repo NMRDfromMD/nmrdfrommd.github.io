@@ -63,63 +63,77 @@ Open a new Python script or Notebook, and define the path to the data files:
 
 .. code-block:: python
 
-	datapath = "mypath/polymer-in-water/raw-data/NPEG32/"
+	datapath = "mypath/polymer-in-water/data/"
 
-Then, import NumPy, MDAnalysis, and NMRDfromMD:
+Then, import ``NumPy``, ``MDAnalysis``, and the ``NMRD``
+module of ``NMRDfromMD``:
 
 .. code-block:: python
 
 	import numpy as np
 	import MDAnalysis as mda
-	import nmrformd as nmrmd
+	from nmrdfrommd import NMRD
 
-From the trajectory files, create a MDAnalysis universe by loading the
+From the trajectory files, create a ``universe`` by loading the
 configuration file and trajectory:
 
 .. code-block:: python
 
-    u = mda.Universe(datapath+"init.data", datapath+"prod.xtc")
-    u.transfer_to_memory(stop=501)
+    u = mda.Universe(datapath+"production.data",
+                     datapath+"production.xtc")
 
-The command ``u.transfer_to_memory(stop=501)`` is optional. It simply reduces
-the number of frames loaded into memory, which speeds up the calculation.
-Feel free to remove it or increase the value. The figures in this tutorial
-were generated using the full trajectory (i.e., without the
-``u.transfer_to_memory(stop=501)`` command).
+.. admonition:: Note
+    :class: non-title-info
+        
+    The MDAnalysis ``universe``, ``u``, contains both the topology
+    (atom types, masses, etc.) and the trajectory (atom positions
+    at each frame). These informations are used by ``NMRDfromMD``
+    for the calculation of NMR properties.
 
-The MDAnalysis universe ``u`` contains both the topology (atom types, masses,
-etc.) and the trajectory (atom positions at each frame).
-
-Let us now extract some basic information from the universe, such as the number
-of molecules (water and PEG),  ``n_molecules``, the timestep, ``timestep`` and
-the total duration of the simulation, ``total_time``:
+Let us print some basic information from the ``universe``, such as the number
+of molecules (water and PEG):
 
 .. code-block:: python
 
-    n_molecules = u.atoms.n_residues
-    print(f"The number of molecules is {n_molecules}")
-    timestep = np.int32(u.trajectory.dt)
-    print(f"The timestep is {timestep} ps")
-    total_time = np.int32(u.trajectory.totaltime)
-    print(f"The total simulation time is {total_time} ps")
+    n_TOT = u.atoms.n_residues
+    n_H2O = u.select_atoms("type 6 7").n_residues
+    n_PEG = u.select_atoms("type 1 2 3 4 5").n_residues
+    print(f"The total number of molecules is {n_TOT} ({n_H2O} H2O, {n_PEG} PEG)")
 
 Executing the script using Python will return:
 
 .. code-block:: bw
 
-    >> The number of molecules is 352
-    >> The timestep is 1 ps
-    >> The total simulation time is 1000 ps
+    The total number of molecules is 450 (420 H2O, 30 PEG)
+
+Let us also print information concerning the trajectory,
+namely the timestep, ``timestep`` and
+the total duration of the simulation, ``total_time``:
+
+.. code-block:: python
+
+    timestep = np.int32(u.trajectory.dt)
+    total_time = np.int32(u.trajectory.totaltime)
+
+    print(f"The timestep is {timestep} ps")
+    print(f"The total simulation time is {total_time//1000} ns")
+
+Executing the script using Python will return:
+
+.. code-block:: bw
+
+    The timestep is 2 ps
+    The total simulation time is 10 ns
 
 .. admonition:: Note
     :class: non-title-info
 
-    In the context of MDAnalysis, the timestep refers to the duration between
+    In the context of ``MDAnalysis``, the ``timestep`` refers to the duration between
     two recorded frames, which is different from the actual timestep of
     :math:`1\,\text{fs}` used in the LAMMPS molecular dynamics simulation.
 
-Launch the NMR analysis
------------------------
+Launch the H-NMR analysis
+-------------------------
 
 Let us create three atom groups: the hydrogen atoms of the PEG, the hydrogen
 atoms of the water, and all hydrogen atoms:
@@ -130,35 +144,46 @@ atoms of the water, and all hydrogen atoms:
     H_H2O = u.select_atoms("type 7")
     H_ALL = H_PEG + H_H2O
 
-Then, let us first run NMRforMD for all hydrogen atoms:
+Then, let us first run NMRDfromMD for all hydrogen atoms:
 
 .. code-block:: python
 
-    nmr_ALL = nmrmd.NMR(u, atom_group=H_ALL, neighbor_group=H_ALL, number_i=40)
+    nmr_all = NMRD(
+        u=u,
+        atom_group=H_ALL,
+        neighbor_group = H_ALL,
+        number_i=40)
+    nmr_all.run_analysis()
 
 With ``number_i = 40``, only 40 randomly selected atoms from ``H_ALL`` are
 used in the calculation. Increase this number for better statistical resolution,
-or set ``number_i = 0`` to include all atoms in the group.
+or set ``number_i = 0`` to include all atoms in the group. Here, ``H_ALL``
+is specified as both the ``atom_group`` and ``neighbor_group``.
+
+Run the script using Python.
 
 Extract the NMR spectra
 -----------------------
 
-Let us access the calculated value of the NMR relaxation time :math:`T_1` by
-adding the following lines to the Python script:
+Let us access the calculated value of the NMR relaxation time :math:`T_1`
+in :math:`f \to 0` by adding the following lines to the Python script:
 
 .. code-block:: python
 
-    T1 = np.round(nmr_ALL.T1, 2)
-    print(f"The total NMR relaxation time is T1 = {T1} s")
+    T1 = np.round(nmr_all.T1, 2)
+
+    print(f"The NMR relaxation time is T1 = {T1} s")
 
 which should return:
 
 .. code-block:: bw
 
-    >> NMR relaxation time T1 = 2.53 s
+    The NMR relaxation time is T1 = 1.59 s
 
-The exact value you obtain may vary depending on which hydrogen atoms were
-randomly selected for the calculation.
+The exact value you obtain will be different, as it depends on which hydrogen
+atoms were randomly selected for the calculation. With the small value
+``number_i = 40``, the noise is important. You can increase that number
+for more precise result, but this will obviously increase the computation time.
 
 The full :math:`T_1` and :math:`T_2` spectra can be extracted as
 ``1/nmr_ALL.R1`` and ``1/nmr_ALL.R2``, respectively. The corresponding
