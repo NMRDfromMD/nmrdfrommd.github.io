@@ -56,9 +56,13 @@
 
 .. |dataset-water-in-silica| raw:: html
 
-   <a href="https://github.com/NMRDfromMD/dataset-water-in-silica" target="_blank">dataset-water-in-silica</a>
+   <a href="https://github.com/NMRDfromMD/dataset-water-in-silica" target="_blank">water-in-silica dataset</a>
 
+.. |zip-peg-water-mixture| raw:: html
 
+   <a href="https://github.com/NMRDfromMD/dataset-peg-water-mixture/archive/refs/tags/v1.0-beta.zip" target="_blank">zip</a>
 
+.. |dataset-peg-water-mixture| raw:: html
 
+   <a href="https://github.com/NMRDfromMD/dataset-peg-water-mixture" target="_blank">peg-water-mixture dataset</a>
 
