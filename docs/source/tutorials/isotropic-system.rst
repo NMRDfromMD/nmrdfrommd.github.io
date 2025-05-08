@@ -282,6 +282,14 @@ Importandly, when no ``neighbor_group`` group is specified, ``atom_group``
 is used for the neighbor group. Therefore, here, the intermolecar contributions
 are calculated between molecules of the same type only.
 
+If we compare the NMR spectra, ``nmr_h2o_inter.R1`` and ``nmr_h2o_intra.R1``,
+it can be seen that the intramolecular contributions to R1 are larger than the
+intramolecular contributions in this case. The intramolecular and intramolecular spectra
+also show different scalling with the frequency, :math:`f`, due to the contribution to these
+terms. Roughly speaking, the intramolecular contribution :math:`R_{1 \text{R}}` is mainly
+linked to the rotational motion of the molecules, and :math:`R_{1 \text{T}}` to their
+translational motions.
+
 .. image:: isotropic-system/nmr-intra-dm.png
     :class: only-dark
     :alt: NMR results obtained from the LAMMPS simulation of water
@@ -297,3 +305,5 @@ are calculated between molecules of the same type only.
     as a function of the frequency :math:`f` for the
     :math:`\text{PEG-H}_2\text{O}` bulk mixture. Results are provided for
     :math:`n_i = 1280`.
+
+The correlation functions can also be extracted from NMRDfromMD.
