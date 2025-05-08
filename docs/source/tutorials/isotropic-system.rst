@@ -136,8 +136,8 @@ Executing the script using Python will return:
 Launch the H-NMR analysis
 -------------------------
 
-Let us create three atom groups: the hydrogen atoms of the PEG, the hydrogen
-atoms of the water, and all hydrogen atoms:
+First, we create three atom groups: the hydrogen atoms of the PEG, the
+hydrogen atoms of the water, and all hydrogen atoms:
 
 .. code-block:: python
 
@@ -145,7 +145,7 @@ atoms of the water, and all hydrogen atoms:
     H_H2O = u.select_atoms("type 7")
     H_ALL = H_PEG + H_H2O
 
-Then, let us first run NMRDfromMD for all hydrogen atoms:
+Next, we run ``NMRDfromMD`` for all hydrogen atoms:
 
 .. code-block:: python
 
@@ -157,12 +157,13 @@ Then, let us first run NMRDfromMD for all hydrogen atoms:
     nmr_all.run_analysis()
 
 With ``number_i = 20``, only 20 randomly selected atoms from ``H_ALL`` are
-used in the calculation. Increase this number for better statistical resolution,
-or set ``number_i = 0`` to include all atoms in the group. Here, ``H_ALL``
-is specified as both the ``atom_group`` and ``neighbor_group``.
+included in the calculation. Increasing this number improves statistical
+resolution, while setting ``number_i = 0`` includes all atoms in the group.
+Here, ``H_ALL`` is specified as both the ``atom_group`` and the
+``neighbor_group``.
 
-Let us access the calculated value of the NMR relaxation time :math:`T_1`
-in :math:`f \to 0` by adding the following lines to the Python script:
+To access the calculated value of the NMR relaxation time :math:`T_1` in
+the limit :math:`f \to 0`, add the following lines to your Python script:
 
 .. code-block:: python
 
@@ -170,24 +171,25 @@ in :math:`f \to 0` by adding the following lines to the Python script:
 
     print(f"The NMR relaxation time is T1 = {T1} s")
 
-which should return:
+The output should be similar to:
 
 .. code-block:: bw
 
     The NMR relaxation time is T1 = 1.59 s
 
-The exact value you obtain will likely be different, as it depends on which hydrogen
-atoms were randomly selected for the calculation. With the relatively small value
-``number_i = 20``, the uncertainty is important. You can increase that number
-for more precise result, but this will increase the computation time.
+The exact value you obtain may differ, as it depends on the specific hydrogen
+atoms that were randomly selected for the calculation. With the relatively
+small value of ``number_i = 20``, the uncertainty is significant. Increasing
+``number_i`` will yield more precise results but at the cost of increased
+computation time.
 
 Extract the NMR spectra
 -----------------------
 
-The relaxation rates :math:`R_1 (f) = 1/T_1 (f)` (in units of :math:`\text{s}^{-1}`)
-and :math:`R_2 (f) = 1/T_2 (f)` spectra can be extracted for all
-frequency :math:`f` (in MHz) as ``nmr_all.R1`` and ``nmr_all.R2``, respectively.
-The corresponding frequencies are stored in ``nmr_all.f``.
+The relaxation rates :math:`R_1 (f) = 1/T_1 (f)` (in units of 
+:math:`\text{s}^{-1}`) and :math:`R_2 (f) = 1/T_2 (f)` can be extracted for
+all frequencies :math:`f` (in MHz) as ``nmr_all.R1`` and ``nmr_all.R2``,
+respectively. The corresponding frequencies are stored in ``nmr_all.f``.
 
 .. code-block:: python
 
@@ -195,7 +197,7 @@ The corresponding frequencies are stored in ``nmr_all.f``.
     R2_spectrum = nmr_all.R2
     f = nmr_all.f
 
-The spectra :math:`R_1 (t)` and :math:`R_2 (f)` can then be plotted as a
+The spectra :math:`R_1 (f)` and :math:`R_2 (f)` can then be plotted as a
 function of :math:`f` using ``pyplot``:
 
 .. code-block:: python
@@ -228,21 +230,21 @@ function of :math:`f` using ``pyplot``:
 
 .. container:: figurelegend
 
-    Figure: NMR relaxation rates :math:`R_1` (A) and :math:`R_2` (B)
-    as a function of the frequency :math:`f` for the
-    :math:`\text{PEG-H}_2\text{O}` bulk mixture. Results are provided for
-    two different values of ``number_i``, :math:`n_i`.
+    Figure: NMR relaxation rates :math:`R_1` (A) and :math:`R_2` (B) as a
+    function of the frequency :math:`f` for the 
+    :math:`\text{PEG-H}_2\text{O}` bulk mixture. Results are shown for two
+    different values of ``number_i``, :math:`n_i`.
 
-Separating intra- from inter- contributions.
---------------------------------------------
+Separating intra from intermolecular contributions
+--------------------------------------------------
 
-So far, calculations were done for the two molecules types PEG and H2O,
-without separating intra from inter molecular contributions.
-Such separation is however meaningfull and allow for identifying
-the main contributors to the relaxation.
+So far, the calculations were performed for the two molecule types, PEG and 
+:math:`\text{H}_2\text{O}`, without distinguishing between intra and intermolecular 
+contributions. However, this separation is meaningful and allows for 
+identifying the primary contributors to the relaxation process.
 
-Let us extract the intramolecular contributions to the relaxation
-for both water and PEG, separately:
+Let us extract the intramolecular contributions to the relaxation for 
+both water and PEG, separately:
 
 .. code-block:: python
 
@@ -260,7 +262,7 @@ for both water and PEG, separately:
         number_i=200)
     nmr_peg_intra.run_analysis()
 
-We can also measure the the intermolecular contributions:
+We can also measure the intermolecular contributions:
 
 .. code-block:: python
 
@@ -278,17 +280,16 @@ We can also measure the the intermolecular contributions:
         number_i=200)
     nmr_peg_inter.run_analysis()
 
-Importandly, when no ``neighbor_group`` group is specified, ``atom_group``
-is used for the neighbor group. Therefore, here, the intermolecar contributions
-are calculated between molecules of the same type only.
+Importantly, when no ``neighbor_group`` is specified, the ``atom_group`` is 
+used as the neighbor group. Thus, in this case, intermolecular 
+contributions are calculated between molecules of the same type only.
 
-If we compare the NMR spectra, ``nmr_h2o_inter.R1`` and ``nmr_h2o_intra.R1``,
-it can be seen that the intramolecular contributions to R1 are larger than the
-intramolecular contributions in this case. The intramolecular and intramolecular spectra
-also show different scalling with the frequency, :math:`f`, due to the contribution to these
-terms. Roughly speaking, the intramolecular contribution :math:`R_{1 \text{R}}` is mainly
-linked to the rotational motion of the molecules, and :math:`R_{1 \text{T}}` to their
-translational motions.
+When comparing the NMR spectra ``nmr_h2o_inter.R1`` and ``nmr_h2o_intra.R1``, 
+you may observe that the intramolecular contributions to :math:`R_1` are 
+larger than the intermolecular contributions. Additionally, the 
+intra- and intermolecular spectra display different scaling with 
+frequency :math:`f`, reflecting distinct motion types contributing to each 
+term.
 
 .. image:: isotropic-system/nmr-intra-dm.png
     :class: only-dark
@@ -301,9 +302,7 @@ translational motions.
 .. container:: figurelegend
 
     Figure: Intramolecular NMR relaxation rates :math:`R_{1 \text{R}}` (A) and
-    Intermolecular NMR relaxation rates :math:`R_{1 \text{T}}` (B)
-    as a function of the frequency :math:`f` for the
-    :math:`\text{PEG-H}_2\text{O}` bulk mixture. Results are provided for
+    Intermolecular NMR relaxation rates :math:`R_{1 \text{T}}` (B) as a
+    function of the frequency :math:`f` for the 
+    :math:`\text{PEG-H}_2\text{O}` bulk mixture. Results are shown for 
     :math:`n_i = 1280`.
-
-The correlation functions can also be extracted from NMRDfromMD.
