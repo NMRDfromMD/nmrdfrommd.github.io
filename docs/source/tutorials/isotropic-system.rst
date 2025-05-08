@@ -13,20 +13,20 @@ To follow the tutorial, |MDAnalysis|, |NumPy|, and
 MD system
 ---------
 
-.. image:: ../figures/tutorials/isotropic-systems/snapshot-dark.png
+.. image:: isotropic-system/snapshot-dark.png
     :class: only-dark
     :alt: PEG-water mixture simulated with LAMMPS - Dipolar NMR relaxation time calculation
     :width: 250
     :align: right
 
-.. image:: ../figures/tutorials/isotropic-systems/snapshot-light.png
+.. image:: isotropic-system/snapshot-light.png
     :class: only-light
     :alt: PEG-water mixture simulated with LAMMPS - Dipolar NMR relaxation time calculation
     :width: 250
     :align: right
 
-The system consists of a bulk mixture of 320 :math:`\text{H}_2\text{O}` water
-molecules and 32 :math:`\text{PEG 300}` polymer molecules. The :math:`\text{TIP4P}-\epsilon`
+The system consists of a bulk mixture of 420 :math:`\text{H}_2\text{O}` water
+molecules and 30 :math:`\text{PEG 300}` polymer molecules. The :math:`\text{TIP4P}-\epsilon`
 is used for the water :cite:`fuentes-azcatlNonPolarizableForceField2014`.
 :math:`\text{PEG 300}` refers to polyethylene glycol chains with a molar mass of
 :math:`300~\text{g/mol}`. The trajectory was recorded during a
@@ -34,7 +34,7 @@ is used for the water :cite:`fuentes-azcatlNonPolarizableForceField2014`.
 LAMMPS in the :math:`NpT` ensemble with a timestep of :math:`1~\text{fs}`.
 The temperature was set to :math:`T = 300~\text{K}` and the pressure to
 :math:`p = 1~\text{atm}`. Atomic positions were saved in the **prod.xtc** file
-every :math:`1~\text{ps}`.
+every :math:`2~\text{ps}`.
 
 .. admonition:: Note
     :class: non-title-info
@@ -98,6 +98,7 @@ of molecules (water and PEG):
     n_TOT = u.atoms.n_residues
     n_H2O = u.select_atoms("type 6 7").n_residues
     n_PEG = u.select_atoms("type 1 2 3 4 5").n_residues
+
     print(f"The total number of molecules is {n_TOT} ({n_H2O} H2O, {n_PEG} PEG)")
 
 Executing the script using Python will return:
@@ -152,10 +153,10 @@ Then, let us first run NMRDfromMD for all hydrogen atoms:
         u=u,
         atom_group=H_ALL,
         neighbor_group = H_ALL,
-        number_i=40)
+        number_i=20)
     nmr_all.run_analysis()
 
-With ``number_i = 40``, only 40 randomly selected atoms from ``H_ALL`` are
+With ``number_i = 20``, only 20 randomly selected atoms from ``H_ALL`` are
 used in the calculation. Increase this number for better statistical resolution,
 or set ``number_i = 0`` to include all atoms in the group. Here, ``H_ALL``
 is specified as both the ``atom_group`` and ``neighbor_group``.
@@ -175,102 +176,124 @@ which should return:
 
     The NMR relaxation time is T1 = 1.59 s
 
-The exact value you obtain will be different, as it depends on which hydrogen
-atoms were randomly selected for the calculation. With the small value
-``number_i = 40``, the noise is important. You can increase that number
-for more precise result, but this will obviously increase the computation time.
+The exact value you obtain will likely be different, as it depends on which hydrogen
+atoms were randomly selected for the calculation. With the relatively small value
+``number_i = 20``, the uncertainty is important. You can increase that number
+for more precise result, but this will increase the computation time.
 
 Extract the NMR spectra
 -----------------------
 
-The full :math:`R_1` and :math:`T_2` spectra can be extracted as
-``1/nmr_ALL.R1`` and ``1/nmr_ALL.R2``, respectively. The corresponding
-frequencies are stored in ``nmr_ALL.f``.
+The relaxation rates :math:`R_1 (f) = 1/T_1 (f)` (in units of :math:`\text{s}^{-1}`)
+and :math:`R_2 (f) = 1/T_2 (f)` spectra can be extracted for all
+frequency :math:`f` (in MHz) as ``nmr_all.R1`` and ``nmr_all.R2``, respectively.
+The corresponding frequencies are stored in ``nmr_all.f``.
 
 .. code-block:: python
 
-    R1_spectrum = nmr_ALL.R1
-    R2_spectrum = nmr_ALL.R2
-    T1_spectrum = 1 / R1_spectrum
-    T2_spectrum = 1 / R2_spectrum
-    f = nmr_ALL.f
+    R1_spectrum = nmr_all.R1
+    R2_spectrum = nmr_all.R2
+    f = nmr_all.f
 
-The spectra :math:`T_1` and :math:`T_2` can then be plotted as a function of
-:math:`f` using ``pyplot``:
+The spectra :math:`R_1 (t)` and :math:`R_2 (f)` can then be plotted as a
+function of :math:`f` using ``pyplot``:
 
 .. code-block:: python
 
     from matplotlib import pyplot as plt
-    plt.loglog(f, T1_spectrum, 'o', label='T1')
-    plt.loglog(f, T2_spectrum, 's', label='T2')
-    plt.xlabel("f (MHz)")
-    plt.ylabel("T1, T2 (s)")
+
+    # Plot settings
+    plt.figure(figsize=(8, 5))
+    plt.loglog(f, R1_spectrum, 'o', label='R1', markersize=5)
+    plt.loglog(f, R2_spectrum, 's', label='R2', markersize=5)
+    # Labels and Title
+    plt.xlabel("Frequency (MHz)", fontsize=12)
+    plt.ylabel("Relaxation Rates (s⁻¹)", fontsize=12)
+    # Grid and boundaries
+    plt.grid(True, which="both", linestyle='--', linewidth=0.7)
+    plt.xlim(80, 1e5)
+    plt.ylim(0.05, 2)
+    # Legend
     plt.legend()
+    plt.tight_layout()
     plt.show()
 
-.. image:: ../figures/tutorials/isotropic-systems/T1-dark.png
+.. image:: isotropic-system/nmr-total-dm.png
     :class: only-dark
     :alt: NMR results obtained from the LAMMPS simulation of water
 
-.. image:: ../figures/tutorials/isotropic-systems/T1-light.png
+.. image:: isotropic-system/nmr-total.png
     :class: only-light
     :alt: NMR results obtained from the LAMMPS simulation of water
 
 .. container:: figurelegend
 
-    Figure: NMR relaxation times :math:`T_1` (disks) and :math:`T_2` (squares)
+    Figure: NMR relaxation rates :math:`R_1` (A) and :math:`R_2` (B)
     as a function of the frequency :math:`f` for the
-    :math:`\text{PEG-H}_2\text{O}` bulk mixture.
+    :math:`\text{PEG-H}_2\text{O}` bulk mixture. Results are provided for
+    two different values of ``number_i``, :math:`n_i`.
 
-Calculate the intra-molecular NMR relaxation
+Separating intra- from inter- contributions.
 --------------------------------------------
 
-Let us measure the intra-molecular contribution to the NMR relaxation time.
-To simplify the analysis, we will differentiate between PEG and
-:math:`\text{H}_2\text{O}` molecules and perform two separate analyses.
+So far, calculations were done for the two molecules types PEG and H2O,
+without separating intra from inter molecular contributions.
+Such separation is however meaningfull and allow for identifying
+the main contributors to the relaxation.
+
+Let us extract the intramolecular contributions to the relaxation
+for both water and PEG, separately:
 
 .. code-block:: python
 
-    nmr_H2O_intra = nmrmd.NMR(u, atom_group = H_H2O, type_analysis="intra_molecular", number_i=40)
-    nmr_PEG_intra = nmrmd.NMR(u, atom_group = H_PEG, type_analysis="intra_molecular", number_i=40)
+    nmr_h2o_intra = NMRD(
+        u=u,
+        atom_group=H_H2O,
+        type_analysis="intra_molecular",
+        number_i=200)
+    nmr_h2o_intra.run_analysis()
 
-The correlation function :math:`G_{ij}` can be accessed from
-``nmr_H2O_intra.gij[0]``, and the corresponding time values from
-``nmr_H2O_intra.t``:
+    nmr_peg_intra = NMRD(
+        u=u,
+        atom_group=H_PEG,
+        type_analysis="intra_molecular",
+        number_i=200)
+    nmr_peg_intra.run_analysis()
+
+We can also measure the the intermolecular contributions:
 
 .. code-block:: python
 
-    t = nmr_PEG_intra.t
-    G_intra_H2O = nmr_H2O_intra.gij[0]
-    G_intra_PEG = nmr_PEG_intra.gij[0]
+    nmr_h2o_inter = NMRD(
+        u=u,
+        atom_group=H_H2O,
+        type_analysis="inter_molecular",
+        number_i=200)
+    nmr_h2o_inter.run_analysis()
 
-.. image:: ../figures/tutorials/isotropic-systems/Gintra-dark.png
+    nmr_peg_inter = NMRD(
+        u=u,
+        atom_group=H_PEG,
+        type_analysis="inter_molecular",
+        number_i=200)
+    nmr_peg_inter.run_analysis()
+
+Importandly, when no ``neighbor_group`` group is specified, ``atom_group``
+is used for the neighbor group. Therefore, here, the intermolecar contributions
+are calculated between molecules of the same type only.
+
+.. image:: isotropic-system/nmr-intra-dm.png
     :class: only-dark
-    :alt: NMR results obtained from the LAMMPS simulation of water-PEG
+    :alt: NMR results obtained from the LAMMPS simulation of water
 
-.. image:: ../figures/tutorials/isotropic-systems/Gintra-light.png
+.. image:: isotropic-system/nmr-intra.png
     :class: only-light
-    :alt: NMR results obtained from the LAMMPS simulation of water-PEG
+    :alt: NMR results obtained from the LAMMPS simulation of water
 
 .. container:: figurelegend
 
-    Figure: Intra-molecular correlation function :math:`G_\text{R}` for both
-    PEG (squares) and :math:`\text{H}_2\text{O}` (disks).
-
-From the correlation functions, one can obtain the typical rotational
-time of the molecules:
-
-.. code-block:: python
-
-    tau_rot_H2O = np.round(np.trapz(G_intra_H2O, t)/G_intra_H2O[0],2)
-    tau_rot_PEG = np.round(np.trapz(G_intra_PEG, t)/G_intra_PEG[0],2)
-    print(f"The rotational time of H2O is = {tau_rot_H2O} ps")
-    print(f"The rotational time of PEG is = {tau_rot_PEG} ps")
-
-This should return (again, the exact values will likely differ in your
-case):
-
-.. code-block:: bw
-
-    >> The rotational time of H2O is = 6.35 ps
-    >> The rotational time of PEG is = 8.34 ps
+    Figure: Intramolecular NMR relaxation rates :math:`R_{1 \text{R}}` (A) and
+    Intermolecular NMR relaxation rates :math:`R_{1 \text{T}}` (B)
+    as a function of the frequency :math:`f` for the
+    :math:`\text{PEG-H}_2\text{O}` bulk mixture. Results are provided for
+    :math:`n_i = 1280`.
