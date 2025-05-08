@@ -270,7 +270,8 @@
           <section id="isotropic-system">
 <span id="isotropic-label"></span><h1>Isotropic system<a class="headerlink" href="#isotropic-system" title="Link to this heading">¶</a></h1>
 <p>Here, we illustrate how the <code class="docutils literal notranslate"><span class="pre">NMRDfromMD</span></code> package can be applied to a
-simple MD simulation. The NMR relaxation times <span class="math notranslate nohighlight">\(T_1\)</span> and <span class="math notranslate nohighlight">\(T_2\)</span>
+simple MD simulation. The <span class="math notranslate nohighlight">\(^1\text{H}\)</span>-NMR relaxation
+times <span class="math notranslate nohighlight">\(T_1\)</span> and <span class="math notranslate nohighlight">\(T_2\)</span>
 are measured from a bulk polymer-water mixture using <code class="docutils literal notranslate"><span class="pre">NMRDfromMD</span></code>.
 To follow the tutorial, <a href="https://www.mdanalysis.org/" target="_blank">MDAnalysis</a>, <a href="https://www.numpy.org" target="_blank">NumPy</a>, and
 <a href="https://www.matplotlib.org" target="_blank">Matplotlib</a> must be installed.</p>
@@ -331,7 +332,7 @@ configuration file and trajectory:</p>
 <p>The MDAnalysis <code class="docutils literal notranslate"><span class="pre">universe</span></code>, <code class="docutils literal notranslate"><span class="pre">u</span></code>, contains both the topology
 (atom types, masses, etc.) and the trajectory (atom positions
 at each frame). These informations are used by <code class="docutils literal notranslate"><span class="pre">NMRDfromMD</span></code>
-for the calculation of NMR properties.</p>
+for the calculation of <span class="math notranslate nohighlight">\(^1\text{H}\)</span>-NMR properties.</p>
 </div>
 <p>Let us print some basic information from the <code class="docutils literal notranslate"><span class="pre">universe</span></code>, such as the number
 of molecules (water and PEG):</p>
@@ -368,10 +369,10 @@ two recorded frames, which is different from the actual timestep of
 <span class="math notranslate nohighlight">\(1\,\text{fs}\)</span> used in the LAMMPS molecular dynamics simulation.</p>
 </div>
 </section>
-<section id="launch-the-h-nmr-analysis">
-<h2>Launch the H-NMR analysis<a class="headerlink" href="#launch-the-h-nmr-analysis" title="Link to this heading">¶</a></h2>
-<p>First, we create three atom groups: the hydrogen atoms of the PEG, the
-hydrogen atoms of the water, and all hydrogen atoms:</p>
+<section id="launch-the-1-text-h-nmr-analysis">
+<h2>Launch the <span class="math notranslate nohighlight">\(^1\text{H}\)</span>-NMR analysis<a class="headerlink" href="#launch-the-1-text-h-nmr-analysis" title="Link to this heading">¶</a></h2>
+<p>First, we create three atom groups: the hydrogen atoms of the PEG, <code class="docutils literal notranslate"><span class="pre">H_PEG</span></code>,
+the hydrogen atoms of the water, <code class="docutils literal notranslate"><span class="pre">H_H2O</span></code> and all hydrogen atoms, <code class="docutils literal notranslate"><span class="pre">H_ALL</span></code>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">H_PEG</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">select_atoms</span><span class="p">(</span><span class="s2">&quot;type 3 5&quot;</span><span class="p">)</span>
 <span class="n">H_H2O</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">select_atoms</span><span class="p">(</span><span class="s2">&quot;type 7&quot;</span><span class="p">)</span>
 <span class="n">H_ALL</span> <span class="o">=</span> <span class="n">H_PEG</span> <span class="o">+</span> <span class="n">H_H2O</span>
@@ -391,8 +392,13 @@ included in the calculation. Increasing this number improves statistical
 resolution, while setting <code class="docutils literal notranslate"><span class="pre">number_i</span> <span class="pre">=</span> <span class="pre">0</span></code> includes all atoms in the group.
 Here, <code class="docutils literal notranslate"><span class="pre">H_ALL</span></code> is specified as both the <code class="docutils literal notranslate"><span class="pre">atom_group</span></code> and the
 <code class="docutils literal notranslate"><span class="pre">neighbor_group</span></code>.</p>
+<div class="non-title-info admonition">
+<p class="admonition-title">Note</p>
+<p>In practice, here we don’t have to specify <code class="docutils literal notranslate"><span class="pre">neighbor_group</span></code> because
+when it is not specified, <code class="docutils literal notranslate"><span class="pre">atom_group</span></code> is used instead.</p>
+</div>
 <p>To access the calculated value of the NMR relaxation time <span class="math notranslate nohighlight">\(T_1\)</span> in
-the limit <span class="math notranslate nohighlight">\(f \to 0\)</span>, add the following lines to your Python script:</p>
+the limit <span class="math notranslate nohighlight">\(f \to 0\)</span>, add the following lines to the Python script:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">T1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">nmr_all</span><span class="o">.</span><span class="n">T1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The NMR relaxation time is T1 = </span><span class="si">{</span><span class="n">T1</span><span class="si">}</span><span class="s2"> s&quot;</span><span class="p">)</span>
@@ -404,12 +410,13 @@ the limit <span class="math notranslate nohighlight">\(f \to 0\)</span>, add the
 </div>
 <p>The exact value you obtain may differ, as it depends on the specific hydrogen
 atoms that were randomly selected for the calculation. With the relatively
-small value of <code class="docutils literal notranslate"><span class="pre">number_i</span> <span class="pre">=</span> <span class="pre">20</span></code>, the uncertainty is significant. Increasing
+small value for the number of atom taken into account for the calculation,
+<code class="docutils literal notranslate"><span class="pre">number_i</span> <span class="pre">=</span> <span class="pre">20</span></code>, the uncertainty is significant. Increasing
 <code class="docutils literal notranslate"><span class="pre">number_i</span></code> will yield more precise results but at the cost of increased
 computation time.</p>
 </section>
-<section id="extract-the-nmr-spectra">
-<h2>Extract the NMR spectra<a class="headerlink" href="#extract-the-nmr-spectra" title="Link to this heading">¶</a></h2>
+<section id="extract-the-1-text-h-nmr-spectra">
+<h2>Extract the <span class="math notranslate nohighlight">\(^1\text{H}\)</span>-NMR spectra<a class="headerlink" href="#extract-the-1-text-h-nmr-spectra" title="Link to this heading">¶</a></h2>
 <p>The relaxation rates <span class="math notranslate nohighlight">\(R_1 (f) = 1/T_1 (f)\)</span> (in units of
 <span class="math notranslate nohighlight">\(\text{s}^{-1}\)</span>) and <span class="math notranslate nohighlight">\(R_2 (f) = 1/T_2 (f)\)</span> can be extracted for
 all frequencies <span class="math notranslate nohighlight">\(f\)</span> (in MHz) as <code class="docutils literal notranslate"><span class="pre">nmr_all.R1</span></code> and <code class="docutils literal notranslate"><span class="pre">nmr_all.R2</span></code>,
@@ -440,17 +447,24 @@ function of <span class="math notranslate nohighlight">\(f\)</span> using <code 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+<p>The curves should ressemble the figure below (panel A). For
+such isotropic systems, one expects <span class="math notranslate nohighlight">\(R_1 (f)\)</span> and <span class="math notranslate nohighlight">\(R_2 (f)\)</span>
+to have similar values in the limit of low frequency.
+The same calculation with a much larger value for <code class="docutils literal notranslate"><span class="pre">number_i</span></code> will lead to
+much smother curves (see panel B).</p>
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-dark" src="../_images/nmr-total-dm.png" />
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-light" src="../_images/nmr-total.png" />
 <div class="figurelegend docutils container">
-<p>Figure: NMR relaxation rates <span class="math notranslate nohighlight">\(R_1\)</span> (A) and <span class="math notranslate nohighlight">\(R_2\)</span> (B) as a
+<p>Figure: (A) <span class="math notranslate nohighlight">\(^1\text{H}\)</span>-NMR relaxation
+rates <span class="math notranslate nohighlight">\(R_1\)</span> and <span class="math notranslate nohighlight">\(R_2\)</span> as a
 function of the frequency <span class="math notranslate nohighlight">\(f\)</span> for the
-<span class="math notranslate nohighlight">\(\text{PEG-H}_2\text{O}\)</span> bulk mixture. Results are shown for two
-different values of <code class="docutils literal notranslate"><span class="pre">number_i</span></code>, <span class="math notranslate nohighlight">\(n_i\)</span>.</p>
+<span class="math notranslate nohighlight">\(\text{PEG-H}_2\text{O}\)</span> bulk mixture. Results are given for
+a small value of <code class="docutils literal notranslate"><span class="pre">number_i</span></code>, <span class="math notranslate nohighlight">\(n_i = 20\)</span>.
+(B) Same quantity as in panel A, but with <span class="math notranslate nohighlight">\(n_i = 1300\)</span>.</p>
 </div>
 </section>
-<section id="separating-intra-from-intermolecular-contributions">
-<h2>Separating intra from intermolecular contributions<a class="headerlink" href="#separating-intra-from-intermolecular-contributions" title="Link to this heading">¶</a></h2>
+<section id="separating-intra-and-intermolecular">
+<h2>Separating intra and intermolecular<a class="headerlink" href="#separating-intra-and-intermolecular" title="Link to this heading">¶</a></h2>
 <p>So far, the calculations were performed for the two molecule types, PEG and
 <span class="math notranslate nohighlight">\(\text{H}_2\text{O}\)</span>, without distinguishing between intra and intermolecular
 contributions. However, this separation is meaningful and allows for
@@ -491,7 +505,8 @@ both water and PEG, separately:</p>
 <p>Importantly, when no <code class="docutils literal notranslate"><span class="pre">neighbor_group</span></code> is specified, the <code class="docutils literal notranslate"><span class="pre">atom_group</span></code> is
 used as the neighbor group. Thus, in this case, intermolecular
 contributions are calculated between molecules of the same type only.</p>
-<p>When comparing the NMR spectra <code class="docutils literal notranslate"><span class="pre">nmr_h2o_inter.R1</span></code> and <code class="docutils literal notranslate"><span class="pre">nmr_h2o_intra.R1</span></code>,
+<p>When comparing the <span class="math notranslate nohighlight">\(^1\text{H}\)</span>-NMR
+spectra <code class="docutils literal notranslate"><span class="pre">nmr_h2o_inter.R1</span></code> and <code class="docutils literal notranslate"><span class="pre">nmr_h2o_intra.R1</span></code>,
 you may observe that the intramolecular contributions to <span class="math notranslate nohighlight">\(R_1\)</span> are
 larger than the intermolecular contributions. Additionally, the
 intra- and intermolecular spectra display different scaling with
@@ -500,11 +515,13 @@ term.</p>
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-dark" src="../_images/nmr-intra-dm.png" />
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-light" src="../_images/nmr-intra.png" />
 <div class="figurelegend docutils container">
-<p>Figure: Intramolecular NMR relaxation rates <span class="math notranslate nohighlight">\(R_{1 \text{R}}\)</span> (A) and
-Intermolecular NMR relaxation rates <span class="math notranslate nohighlight">\(R_{1 \text{T}}\)</span> (B) as a
-function of the frequency <span class="math notranslate nohighlight">\(f\)</span> for the
-<span class="math notranslate nohighlight">\(\text{PEG-H}_2\text{O}\)</span> bulk mixture. Results are shown for
-<span class="math notranslate nohighlight">\(n_i = 1280\)</span>.</p>
+<p>Figure: Intramolecular <span class="math notranslate nohighlight">\(^1\text{H}\)</span>-NMR
+relaxation rates <span class="math notranslate nohighlight">\(R_{1 \text{R}}\)</span> (A) and
+Intermolecular <span class="math notranslate nohighlight">\(^1\text{H}\)</span>-NMR relaxation
+rates <span class="math notranslate nohighlight">\(R_{1 \text{T}}\)</span> (B) as a
+function of the frequency <span class="math notranslate nohighlight">\(f\)</span> for
+PEG and <span class="math notranslate nohighlight">\(\text{H}_2\text{O}\)</span> separately.
+Results are shown for <span class="math notranslate nohighlight">\(n_i = 1280\)</span>.</p>
 </div>
 </section>
 </section>
@@ -568,9 +585,9 @@ function of the frequency <span class="math notranslate nohighlight">\(f\)</span
 <li><a class="reference internal" href="#md-system">MD system</a></li>
 <li><a class="reference internal" href="#file-preparation">File preparation</a></li>
 <li><a class="reference internal" href="#create-a-mdanalysis-universe">Create a MDAnalysis universe</a></li>
-<li><a class="reference internal" href="#launch-the-h-nmr-analysis">Launch the H-NMR analysis</a></li>
-<li><a class="reference internal" href="#extract-the-nmr-spectra">Extract the NMR spectra</a></li>
-<li><a class="reference internal" href="#separating-intra-from-intermolecular-contributions">Separating intra from intermolecular contributions</a></li>
+<li><a class="reference internal" href="#launch-the-1-text-h-nmr-analysis">Launch the <span class="math notranslate nohighlight">\(^1\text{H}\)</span>-NMR analysis</a></li>
+<li><a class="reference internal" href="#extract-the-1-text-h-nmr-spectra">Extract the <span class="math notranslate nohighlight">\(^1\text{H}\)</span>-NMR spectra</a></li>
+<li><a class="reference internal" href="#separating-intra-and-intermolecular">Separating intra and intermolecular</a></li>
 </ul>
 </li>
 </ul>
