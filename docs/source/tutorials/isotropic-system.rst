@@ -5,7 +5,8 @@ Isotropic system
 ================
 
 Here, we illustrate how the ``NMRDfromMD`` package can be applied to a
-simple MD simulation. The NMR relaxation times :math:`T_1` and :math:`T_2`
+simple MD simulation. The :math:`^1\text{H}`-NMR relaxation
+times :math:`T_1` and :math:`T_2`
 are measured from a bulk polymer-water mixture using ``NMRDfromMD``.
 To follow the tutorial, |MDAnalysis|, |NumPy|, and
 |Matplotlib| must be installed.
@@ -88,7 +89,7 @@ configuration file and trajectory:
     The MDAnalysis ``universe``, ``u``, contains both the topology
     (atom types, masses, etc.) and the trajectory (atom positions
     at each frame). These informations are used by ``NMRDfromMD``
-    for the calculation of NMR properties.
+    for the calculation of :math:`^1\text{H}`-NMR properties.
 
 Let us print some basic information from the ``universe``, such as the number
 of molecules (water and PEG):
@@ -133,11 +134,11 @@ Executing the script using Python will return:
     two recorded frames, which is different from the actual timestep of
     :math:`1\,\text{fs}` used in the LAMMPS molecular dynamics simulation.
 
-Launch the H-NMR analysis
--------------------------
+Launch the :math:`^1\text{H}`-NMR analysis
+------------------------------------------
 
-First, we create three atom groups: the hydrogen atoms of the PEG, the
-hydrogen atoms of the water, and all hydrogen atoms:
+First, we create three atom groups: the hydrogen atoms of the PEG, ``H_PEG``,
+the hydrogen atoms of the water, ``H_H2O`` and all hydrogen atoms, ``H_ALL``:
 
 .. code-block:: python
 
@@ -162,8 +163,14 @@ resolution, while setting ``number_i = 0`` includes all atoms in the group.
 Here, ``H_ALL`` is specified as both the ``atom_group`` and the
 ``neighbor_group``.
 
+.. admonition:: Note
+    :class: non-title-info
+
+    In practice, here we don't have to specify ``neighbor_group`` because 
+    when it is not specified, ``atom_group`` is used instead.
+
 To access the calculated value of the NMR relaxation time :math:`T_1` in
-the limit :math:`f \to 0`, add the following lines to your Python script:
+the limit :math:`f \to 0`, add the following lines to the Python script:
 
 .. code-block:: python
 
@@ -179,12 +186,13 @@ The output should be similar to:
 
 The exact value you obtain may differ, as it depends on the specific hydrogen
 atoms that were randomly selected for the calculation. With the relatively
-small value of ``number_i = 20``, the uncertainty is significant. Increasing
+small value for the number of atom taken into account for the calculation,
+``number_i = 20``, the uncertainty is significant. Increasing
 ``number_i`` will yield more precise results but at the cost of increased
 computation time.
 
-Extract the NMR spectra
------------------------
+Extract the :math:`^1\text{H}`-NMR spectra
+------------------------------------------
 
 The relaxation rates :math:`R_1 (f) = 1/T_1 (f)` (in units of 
 :math:`\text{s}^{-1}`) and :math:`R_2 (f) = 1/T_2 (f)` can be extracted for
@@ -220,6 +228,12 @@ function of :math:`f` using ``pyplot``:
     plt.tight_layout()
     plt.show()
 
+The curves should ressemble the figure below (panel A). For
+such isotropic systems, one expects :math:`R_1 (f)` and :math:`R_2 (f)`
+to have similar values in the limit of low frequency.
+The same calculation with a much larger value for ``number_i`` will lead to
+much smother curves (see panel B).
+
 .. image:: isotropic-system/nmr-total-dm.png
     :class: only-dark
     :alt: NMR results obtained from the LAMMPS simulation of water
@@ -230,13 +244,15 @@ function of :math:`f` using ``pyplot``:
 
 .. container:: figurelegend
 
-    Figure: NMR relaxation rates :math:`R_1` (A) and :math:`R_2` (B) as a
+    Figure: (A) :math:`^1\text{H}`-NMR relaxation
+    rates :math:`R_1` and :math:`R_2` as a
     function of the frequency :math:`f` for the 
-    :math:`\text{PEG-H}_2\text{O}` bulk mixture. Results are shown for two
-    different values of ``number_i``, :math:`n_i`.
+    :math:`\text{PEG-H}_2\text{O}` bulk mixture. Results are given for
+    a small value of ``number_i``, :math:`n_i = 20`.
+    (B) Same quantity as in panel A, but with :math:`n_i = 1300`.
 
-Separating intra from intermolecular contributions
---------------------------------------------------
+Separating intra and intermolecular
+-----------------------------------
 
 So far, the calculations were performed for the two molecule types, PEG and 
 :math:`\text{H}_2\text{O}`, without distinguishing between intra and intermolecular 
@@ -284,7 +300,8 @@ Importantly, when no ``neighbor_group`` is specified, the ``atom_group`` is
 used as the neighbor group. Thus, in this case, intermolecular 
 contributions are calculated between molecules of the same type only.
 
-When comparing the NMR spectra ``nmr_h2o_inter.R1`` and ``nmr_h2o_intra.R1``, 
+When comparing the :math:`^1\text{H}`-NMR
+spectra ``nmr_h2o_inter.R1`` and ``nmr_h2o_intra.R1``, 
 you may observe that the intramolecular contributions to :math:`R_1` are 
 larger than the intermolecular contributions. Additionally, the 
 intra- and intermolecular spectra display different scaling with 
@@ -301,8 +318,10 @@ term.
 
 .. container:: figurelegend
 
-    Figure: Intramolecular NMR relaxation rates :math:`R_{1 \text{R}}` (A) and
-    Intermolecular NMR relaxation rates :math:`R_{1 \text{T}}` (B) as a
-    function of the frequency :math:`f` for the 
-    :math:`\text{PEG-H}_2\text{O}` bulk mixture. Results are shown for 
-    :math:`n_i = 1280`.
+    Figure: Intramolecular :math:`^1\text{H}`-NMR
+    relaxation rates :math:`R_{1 \text{R}}` (A) and
+    Intermolecular :math:`^1\text{H}`-NMR relaxation
+    rates :math:`R_{1 \text{T}}` (B) as a
+    function of the frequency :math:`f` for 
+    PEG and :math:`\text{H}_2\text{O}` separately.
+    Results are shown for :math:`n_i = 1280`.
