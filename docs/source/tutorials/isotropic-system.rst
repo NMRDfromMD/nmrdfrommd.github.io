@@ -133,11 +133,11 @@ Executing the script using Python will return:
     two recorded frames, which is different from the actual timestep of
     :math:`1\,\text{fs}` used in the LAMMPS molecular dynamics simulation.
 
-Launch the H-NMR analysis
--------------------------
+Launch the :math:`^1\text{H}`-NMR analysis
+------------------------------------------
 
-First, we create three atom groups: the hydrogen atoms of the PEG, the
-hydrogen atoms of the water, and all hydrogen atoms:
+First, we create three atom groups: the hydrogen atoms of the PEG, ``H_PEG``,
+the hydrogen atoms of the water, ``H_H2O`` and all hydrogen atoms, ``H_ALL``:
 
 .. code-block:: python
 
@@ -235,8 +235,8 @@ function of :math:`f` using ``pyplot``:
     :math:`\text{PEG-H}_2\text{O}` bulk mixture. Results are shown for two
     different values of ``number_i``, :math:`n_i`.
 
-Separating intra from intermolecular contributions
---------------------------------------------------
+Separating intra and intermolecular
+-----------------------------------
 
 So far, the calculations were performed for the two molecule types, PEG and 
 :math:`\text{H}_2\text{O}`, without distinguishing between intra and intermolecular 
