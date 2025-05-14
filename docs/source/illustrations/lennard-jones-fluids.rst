@@ -68,10 +68,10 @@ temperature decreases, as expected from the slowing down of molecular motion.
 .. container:: figurelegend
 
     Figure: A) Correlation function :math:`G_{ij}^{(0)}` as extracted from the LJ
-    fluid simulation for all temperatures. B) :math:`G_{ij}^{(0)}` for two
-    different temperatures compared with the data from Grivet
-    :cite:`grivetNMRRelaxationParameters2005` (gray symbols). The dashed
-    line shows :math:`t^{-3/2}`.
+    fluid simulation for all temperatures. B) Correlation function,:math:`G_{ij}^{(0)}`,
+    for two different temperatures compared with the data from Grivet
+    :cite:`grivetNMRRelaxationParameters2005` (gray squares). The dashed
+    line shows :math:`\propto t^{-3/2}`.
 
 The NMR relaxation rate spectra :math:`R_1` and :math:`R_2` were extracted for
 all temperatures using ``NMRDforMD``. For all temperatures, the spectra show
@@ -100,16 +100,14 @@ agreement with the data from Grivet :cite:`grivetNMRRelaxationParameters2005`.
 .. image:: lennard-jones-fluids/nmr-relaxation-rates-at-target-dm.png
     :class: only-dark
     :alt: NMR relaxation rate of a LJ fluid simulated with LAMMPS
-    :width: 50%
 
 .. image:: lennard-jones-fluids/nmr-relaxation-rates-at-target.png
     :class: only-light
     :alt: NMR relaxation rate of a LJ fluid simulated with LAMMPS
-    :width: 50%
 
 .. container:: figurelegend
 
     Figure: NMR relaxation rates :math:`R_1` (A) and :math:`R_2` (B) at
-    a frequency 0.07 (dimensionless), or :math:`f_0 = 151\,\text{GHz}`.
+    the target frequency 0.07 (dimensionless), or :math:`f_0 = 151\,\text{GHz}`.
     The data from Grivet :cite:`grivetNMRRelaxationParameters2005` are shown
     with gray symbols.
