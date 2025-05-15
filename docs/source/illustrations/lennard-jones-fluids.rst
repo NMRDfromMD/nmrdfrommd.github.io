@@ -4,8 +4,11 @@
 Simple fluid
 ============
 
-Here, NMR relaxation rates are measured from a Lennard-Jones fluid, and compared
-to the results from Ref. :cite:`grivetNMRRelaxationParameters2005`.
+Here, NMR relaxation rates are measured from a bulk Lennard-Jones (LJ) fluid.
+The advantage of LJ fluids, compared to molecular systems made of molecules with more than
+one atom bearing the spin in interest, is the absence of intramolecular
+contribution to the NMR relaxation. To validate the method, results are
+compared to Ref. :cite:`grivetNMRRelaxationParameters2005`.
 
 System
 ------
@@ -34,7 +37,7 @@ a cutoff of :math:`4 \sigma` was used for the LJ interactions, the
 simulation box has a volume of :math:`(26.9~\sigma)^3` to match 
 the reduced density of :math:`\rho^* = 0.84`.
 Production runs were performed in the microcanonical (NVE) ensemble, 
-during which 10,000 timesteps were executed, equivalent to 50 times 
+during which 100,000 timesteps were executed, equivalent to 500 times 
 the reference time :math:`\sqrt{m \sigma^2/\epsilon}`. Configurations 
 were recorded every 10 timesteps. A timestep of 
 :math:`0.005\,\sqrt{m \sigma^2/\epsilon}` was used.
