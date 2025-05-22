@@ -2,12 +2,21 @@
 Theory
 ======
 
-The system of interest here is an ensemble of identical spins characterized
+Here, there theory behind the ``NMRDfromMD`` package is presented.
+
+The system of interest is an ensemble of *identical* spins characterized
 by a gyromagnetic ratio :math:`\gamma_I` and spin quantum number
 :math:`I`. For :math:`^{1} \text{H}`, the most abundant isotope of hydrogen,
 :math:`I = 1/2` and :math:`\gamma_I = 26.752` rad/T/s. For :math:`^{13} \text{C}`,
 a natural and stable isotope of carbon, :math:`I = 1/2` and
 :math:`\gamma_I = 6.728` rad/T/s :cite:`kowalewskiNuclearSpinRelaxation2006`.
+
+.. 
+    S.G.: Find a better place for that, there could be a paragraph explaining
+    the limitation and hypothesis behind the thoery:
+    - dipolar vs quadrupolar --> limited to dipolar because...
+    - limited to systems where cross-correlation can be neglected --> what error?
+    what systems?
 
 One assumption behind the theory presented here is that cross-correlation terms
 can be neglected; see Ref. :cite:`lippensT1RelaxationTime1993`.

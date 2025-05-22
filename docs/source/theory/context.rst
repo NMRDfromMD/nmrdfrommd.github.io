@@ -15,6 +15,7 @@ as well as proteins and other biological systems
     NMR relaxation are directly related.
     S.G.: Give some exp. results/understanding that where made possible thanks
     to NMR relaxations.
+    --> Give some typicall frenquency ranges 
 
 The key ingredient needed for an accurate description of the nuclear spin relaxation
 of :math:`^1 \text{H}` in soft matter systems is a realistic description of the random rotational and
@@ -22,7 +23,11 @@ translational motions that molecules undergo, which makes classical molecular dy
 simulations (MDS) a natural choice.
 
 .. 
-    S.G.: Explain what MD is.
+    S.G.: Explain what classical MD is and its limitations
+    - small systems
+    - small duration --> high frenquency
+    --> some phenomena are still out of reach
+    --> comparison with experiment is limited
 
 For instance, MDS have been used to characterize the
 NMR relaxation properties of Lennard-Jones fluid :cite:`odeliusIntermolecularDipoleDipoleRelaxation1993, grivetNMRRelaxationParameters2005`,
@@ -31,8 +36,6 @@ MDS are also used to study the NMR relaxation properties of molecules confined w
 nanoporous materials :cite:`khudozhitkovDynamicsPropenePropane2020, gravelleNMRInvestigationWater2023`,
 as well as large polymer molecules, lipid membranes, proteins,
 or glass transition phenomenon of glycerol :cite:`becherMolecularDynamicsSimulations2021`.
-
-
 
 In addition to classical MD, Ab initio MD has also been used to extract NMR relaxation time
 from water :cite:`calero1HNuclearSpin2015`. Ab initio and its variants are 
