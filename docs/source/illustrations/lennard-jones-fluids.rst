@@ -60,6 +60,11 @@ agreement with those of Grivet, with however some differences observed at the lo
 temperature. The results show that :math:`G_{ij}^{(0)}` shifts to longer times as the
 temperature decreases, as expected from the slowing down of molecular motion.
 
+..
+    - May be keep only the right panel, and give tau versus T on the right instead.
+    - what information do we get from G(0)? Some structure info? --> does not
+    vary much anyway here (interesting to mention?)
+
 .. image:: lennard-jones-fluids/nmr-correlation-functions-dm.png
     :class: only-dark
     :alt: Correlation functions of a LJ fluid simulated with LAMMPS
@@ -80,6 +85,11 @@ The NMR relaxation rate spectra :math:`R_1` and :math:`R_2` were extracted for
 all temperatures using ``NMRDforMD``. For all temperatures, the spectra show
 a decrease with increasing frequency :math:`f`.
 
+.. 
+    Discuss the decrease, what causes it, that its a generic signature of 
+    molecular motion. Discuss also the plateau for lower frequency, and that
+    usually nothing happens for lower frequency in the case of a bulk fluid.
+
 .. image:: lennard-jones-fluids/nmr-relaxation-rates-spectra-dm.png
     :class: only-dark
     :alt: NMR relaxation rate of a LJ fluid simulated with LAMMPS
@@ -99,6 +109,15 @@ dimensionless units). :math:`R_1(f_0)` shows a maximum at intermediate
 temperature and a minimum at the lowest temperature.
 :math:`R_1(f_0)` decreases with increasing temperature. Our results show good
 agreement with the data from Grivet :cite:`grivetNMRRelaxationParameters2005`.
+
+..
+    S.G.: Discuss the reason for the most efficient relaxation occuring at
+    intermediate frequency. (also why don't we see that in the R1 spectra?)
+    --> this is predicted by theory (cf Grivet) --> BBP theory ? T1 ~ f0^0 (eta/T)^(-1) 
+    --> Compare ! discuss
+    S.G.: Discuss the different tendency for R2. Why R2 only decrease with T?
+    Why are R2 and R1 differents at low temperature, but similar at higher?
+    --> This is expected when correlation time tend to 0, see Grivet <-> Extreme narrowing.
 
 .. image:: lennard-jones-fluids/nmr-relaxation-rates-at-target-dm.png
     :class: only-dark
