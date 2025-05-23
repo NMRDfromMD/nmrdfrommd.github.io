@@ -4,8 +4,11 @@
 Simple fluid
 ============
 
-Here, NMR relaxation rates are measured from a Lennard-Jones fluid, and compared
-to the results from Ref. :cite:`grivetNMRRelaxationParameters2005`.
+Here, NMR relaxation rates are measured from a bulk Lennard-Jones (LJ) fluid.
+The advantage of LJ fluids, compared to molecular systems made of molecules with more than
+one atom bearing the spin in interest, is the absence of intramolecular
+contribution to the NMR relaxation. To validate the method, results are
+compared to Ref. :cite:`grivetNMRRelaxationParameters2005`.
 
 System
 ------
@@ -34,7 +37,7 @@ a cutoff of :math:`4 \sigma` was used for the LJ interactions, the
 simulation box has a volume of :math:`(26.9~\sigma)^3` to match 
 the reduced density of :math:`\rho^* = 0.84`.
 Production runs were performed in the microcanonical (NVE) ensemble, 
-during which 10,000 timesteps were executed, equivalent to 50 times 
+during which 100,000 timesteps were executed, equivalent to 500 times 
 the reference time :math:`\sqrt{m \sigma^2/\epsilon}`. Configurations 
 were recorded every 10 timesteps. A timestep of 
 :math:`0.005\,\sqrt{m \sigma^2/\epsilon}` was used.
@@ -57,6 +60,11 @@ agreement with those of Grivet, with however some differences observed at the lo
 temperature. The results show that :math:`G_{ij}^{(0)}` shifts to longer times as the
 temperature decreases, as expected from the slowing down of molecular motion.
 
+..
+    - May be keep only the right panel, and give tau versus T on the right instead.
+    - what information do we get from G(0)? Some structure info? --> does not
+    vary much anyway here (interesting to mention?)
+
 .. image:: lennard-jones-fluids/nmr-correlation-functions-dm.png
     :class: only-dark
     :alt: Correlation functions of a LJ fluid simulated with LAMMPS
@@ -68,14 +76,19 @@ temperature decreases, as expected from the slowing down of molecular motion.
 .. container:: figurelegend
 
     Figure: A) Correlation function :math:`G_{ij}^{(0)}` as extracted from the LJ
-    fluid simulation for all temperatures. B) :math:`G_{ij}^{(0)}` for two
-    different temperatures compared with the data from Grivet
-    :cite:`grivetNMRRelaxationParameters2005` (gray symbols). The dashed
-    line shows :math:`t^{-3/2}`.
+    fluid simulation for all temperatures. B) Correlation function,:math:`G_{ij}^{(0)}`,
+    for two different temperatures compared with the data from Grivet
+    :cite:`grivetNMRRelaxationParameters2005` (gray squares). The dashed
+    line shows :math:`\propto t^{-3/2}`.
 
 The NMR relaxation rate spectra :math:`R_1` and :math:`R_2` were extracted for
 all temperatures using ``NMRDforMD``. For all temperatures, the spectra show
 a decrease with increasing frequency :math:`f`.
+
+.. 
+    Discuss the decrease, what causes it, that its a generic signature of 
+    molecular motion. Discuss also the plateau for lower frequency, and that
+    usually nothing happens for lower frequency in the case of a bulk fluid.
 
 .. image:: lennard-jones-fluids/nmr-relaxation-rates-spectra-dm.png
     :class: only-dark
@@ -97,19 +110,26 @@ temperature and a minimum at the lowest temperature.
 :math:`R_1(f_0)` decreases with increasing temperature. Our results show good
 agreement with the data from Grivet :cite:`grivetNMRRelaxationParameters2005`.
 
+..
+    S.G.: Discuss the reason for the most efficient relaxation occuring at
+    intermediate frequency. (also why don't we see that in the R1 spectra?)
+    --> this is predicted by theory (cf Grivet) --> BBP theory ? T1 ~ f0^0 (eta/T)^(-1) 
+    --> Compare ! discuss
+    S.G.: Discuss the different tendency for R2. Why R2 only decrease with T?
+    Why are R2 and R1 differents at low temperature, but similar at higher?
+    --> This is expected when correlation time tend to 0, see Grivet <-> Extreme narrowing.
+
 .. image:: lennard-jones-fluids/nmr-relaxation-rates-at-target-dm.png
     :class: only-dark
     :alt: NMR relaxation rate of a LJ fluid simulated with LAMMPS
-    :width: 50%
 
 .. image:: lennard-jones-fluids/nmr-relaxation-rates-at-target.png
     :class: only-light
     :alt: NMR relaxation rate of a LJ fluid simulated with LAMMPS
-    :width: 50%
 
 .. container:: figurelegend
 
     Figure: NMR relaxation rates :math:`R_1` (A) and :math:`R_2` (B) at
-    a frequency 0.07 (dimensionless), or :math:`f_0 = 151\,\text{GHz}`.
+    the target frequency 0.07 (dimensionless), or :math:`f_0 = 151\,\text{GHz}`.
     The data from Grivet :cite:`grivetNMRRelaxationParameters2005` are shown
     with gray symbols.
