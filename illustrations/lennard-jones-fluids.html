@@ -1,15 +1,16 @@
 <!doctype html>
 <html class="no-js" lang="en" data-content_root="../">
-  <head><meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="../_static/favicon-32x32.png" sizes="32x32" rel="icon" type="image/png"><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Molecular system" href="bulk-water.html" /><link rel="prev" title="Anisotropic systems" href="../tutorials/anisotropic-system.html" />
+    <link href="../_static/favicon-32x32.png" sizes="32x32" rel="icon" type="image/png"><link rel="index" title="Index" href="../genindex.html"><link rel="search" title="Search" href="../search.html"><link rel="next" title="Molecular system" href="bulk-water.html"><link rel="prev" title="Anisotropic systems" href="../tutorials/anisotropic-system.html">
+        <link rel="prefetch" href="../_static/logo-b.png" as="image">
 
-    <!-- Generated with Sphinx 7.4.7 and Furo 2024.08.06 -->
+    <!-- Generated with Sphinx 7.4.7 and Furo 2025.12.19 -->
         <title>Simple fluid - </title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=354aac6f" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=302659d7" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=8dab3a3b" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a7c5f2ce" />
     
     
@@ -145,14 +146,10 @@
   </symbol>
 </svg>
 
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
-<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
-<label class="overlay sidebar-overlay" for="__navigation">
-  <div class="visually-hidden">Hide navigation sidebar</div>
-</label>
-<label class="overlay toc-overlay" for="__toc">
-  <div class="visually-hidden">Hide table of contents sidebar</div>
-</label>
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
 
 <a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
 
@@ -162,8 +159,7 @@
   <header class="mobile-header">
     <div class="header-left">
       <label class="nav-overlay-icon" for="__navigation">
-        <div class="visually-hidden">Toggle site navigation sidebar</div>
-        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
       </label>
     </div>
     <div class="header-center">
@@ -171,8 +167,7 @@
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
-        <button class="theme-toggle">
-          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
           <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
           <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
           <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
@@ -180,8 +175,7 @@
         </button>
       </div>
       <label class="toc-overlay-icon toc-header-icon" for="__toc">
-        <div class="visually-hidden">Toggle table of contents sidebar</div>
-        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
       </label>
     </div>
   </header>
@@ -189,7 +183,6 @@
     <div class="sidebar-container">
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
-  
   <div class="sidebar-logo-container">
     <img class="sidebar-logo" src="../_static/logo-b.png" alt="Logo"/>
   </div>
@@ -253,8 +246,7 @@
   </a>
 </div>
 <div class="theme-toggle-container theme-toggle-content">
-            <button class="theme-toggle">
-              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
               <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
               <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
               <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
@@ -262,15 +254,14 @@
             </button>
           </div>
           <label class="toc-overlay-icon toc-content-icon" for="__toc">
-            <div class="visually-hidden">Toggle table of contents sidebar</div>
-            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
           </label>
         </div>
         <article role="main" id="furo-main-content">
           <section id="simple-fluid">
 <span id="lennard-jones-label"></span><h1>Simple fluid<a class="headerlink" href="#simple-fluid" title="Link to this heading">¶</a></h1>
 <p>Here, NMR relaxation rates are measured from a Lennard-Jones fluid, and compared
-to the results from Ref. <span id="id1">[<a class="reference internal" href="../additional/bibliography.html#id182" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">5</a>]</span>.</p>
+to the results from Ref. <span id="id1">[<a class="reference internal" href="../additional/bibliography.html#id184" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">6</a>]</span>.</p>
 <section id="system">
 <h2>System<a class="headerlink" href="#system" title="Link to this heading">¶</a></h2>
 <a class="only-dark reference internal image-reference" href="../_images/lj-dark.png"><img alt="LJ fluid simulated with LAMMPS - Dipolar NMR relaxation time calculation" class="only-dark align-right" src="../_images/lj-dark.png" style="width: 250px;" />
@@ -279,12 +270,12 @@ to the results from Ref. <span id="id1">[<a class="reference internal" href="../
 </a>
 <p>The system consists of 16,000 particles interacting via the classical
 Lennard-Jones (LJ) 12-6 potential and simulated using
-LAMMPS <span id="id2">[<a class="reference internal" href="../additional/bibliography.html#id494" title="Aidan P. Thompson, H. Metin Aktulga, Richard Berger, Dan S. Bolintineanu, W. Michael Brown, Paul S. Crozier, Pieter J. In 'T Veld, Axel Kohlmeyer, Stan G. Moore, Trung Dac Nguyen, Ray Shan, Mark J. Stevens, Julien Tranchida, Christian Trott, and Steven J. Plimpton. LAMMPS - a flexible simulation tool for particle-based materials modeling at the atomic, meso, and continuum scales. Computer Physics Communications, 271:108171, February 2022. doi:10.1016/j.cpc.2021.108171.">24</a>]</span>.
+LAMMPS <span id="id2">[<a class="reference internal" href="../additional/bibliography.html#id502" title="Aidan P. Thompson, H. Metin Aktulga, Richard Berger, Dan S. Bolintineanu, W. Michael Brown, Paul S. Crozier, Pieter J. In 'T Veld, Axel Kohlmeyer, Stan G. Moore, Trung Dac Nguyen, Ray Shan, Mark J. Stevens, Julien Tranchida, Christian Trott, and Steven J. Plimpton. LAMMPS - a flexible simulation tool for particle-based materials modeling at the atomic, meso, and continuum scales. Computer Physics Communications, 271:108171, February 2022. doi:10.1016/j.cpc.2021.108171.">26</a>]</span>.
 Each particle has a mass
 <span class="math notranslate nohighlight">\(m = 1\,\text{g/mol}\)</span>, and LJ parameters
 <span class="math notranslate nohighlight">\(\sigma = 3\,\text{Å}\)</span> and <span class="math notranslate nohighlight">\(\epsilon = 0.1\,\text{kcal/mol}\)</span>.
 All reduced parameters were taken to match the study by Grivet
-<span id="id3">[<a class="reference internal" href="../additional/bibliography.html#id182" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">5</a>]</span>. Specifically,
+<span id="id3">[<a class="reference internal" href="../additional/bibliography.html#id184" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">6</a>]</span>. Specifically,
 a cutoff of <span class="math notranslate nohighlight">\(4 \sigma\)</span> was used for the LJ interactions, the
 simulation box has a volume of <span class="math notranslate nohighlight">\((26.9~\sigma)^3\)</span> to match
 the reduced density of <span class="math notranslate nohighlight">\(\rho^* = 0.84\)</span>.
@@ -305,7 +296,7 @@ on GitHub; see <a href="https://github.com/NMRDfromMD/dataset-LJ-fluid" target="
 temperatures. For the two extreme values of <span class="math notranslate nohighlight">\(T\)</span>, namely
 <span class="math notranslate nohighlight">\(T = 50\)</span> and <span class="math notranslate nohighlight">\(140\,\text{K}\)</span>, the functions
 <span class="math notranslate nohighlight">\(G_{ij}^{(0)}\)</span> are compared with the correlation functions reported by
-Grivet <span id="id4">[<a class="reference internal" href="../additional/bibliography.html#id182" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">5</a>]</span>. Our results show good
+Grivet <span id="id4">[<a class="reference internal" href="../additional/bibliography.html#id184" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">6</a>]</span>. Our results show good
 agreement with those of Grivet, with however some differences observed at the lowest
 temperature. The results show that <span class="math notranslate nohighlight">\(G_{ij}^{(0)}\)</span> shifts to longer times as the
 temperature decreases, as expected from the slowing down of molecular motion.</p>
@@ -315,7 +306,7 @@ temperature decreases, as expected from the slowing down of molecular motion.</p
 <p>Figure: A) Correlation function <span class="math notranslate nohighlight">\(G_{ij}^{(0)}\)</span> as extracted from the LJ
 fluid simulation for all temperatures. B) <span class="math notranslate nohighlight">\(G_{ij}^{(0)}\)</span> for two
 different temperatures compared with the data from Grivet
-<span id="id5">[<a class="reference internal" href="../additional/bibliography.html#id182" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">5</a>]</span> (gray symbols). The dashed
+<span id="id5">[<a class="reference internal" href="../additional/bibliography.html#id184" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">6</a>]</span> (gray symbols). The dashed
 line shows <span class="math notranslate nohighlight">\(t^{-3/2}\)</span>.</p>
 </div>
 <p>The NMR relaxation rate spectra <span class="math notranslate nohighlight">\(R_1\)</span> and <span class="math notranslate nohighlight">\(R_2\)</span> were extracted for
@@ -332,7 +323,7 @@ all temperatures, at a frequency <span class="math notranslate nohighlight">\(f_
 dimensionless units). <span class="math notranslate nohighlight">\(R_1(f_0)\)</span> shows a maximum at intermediate
 temperature and a minimum at the lowest temperature.
 <span class="math notranslate nohighlight">\(R_1(f_0)\)</span> decreases with increasing temperature. Our results show good
-agreement with the data from Grivet <span id="id6">[<a class="reference internal" href="../additional/bibliography.html#id182" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">5</a>]</span>.</p>
+agreement with the data from Grivet <span id="id6">[<a class="reference internal" href="../additional/bibliography.html#id184" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">6</a>]</span>.</p>
 <a class="only-dark reference internal image-reference" href="../_images/nmr-relaxation-rates-at-target-dm.png"><img alt="NMR relaxation rate of a LJ fluid simulated with LAMMPS" class="only-dark" src="../_images/nmr-relaxation-rates-at-target-dm.png" style="width: 50%;" />
 </a>
 <a class="only-light reference internal image-reference" href="../_images/nmr-relaxation-rates-at-target.png"><img alt="NMR relaxation rate of a LJ fluid simulated with LAMMPS" class="only-light" src="../_images/nmr-relaxation-rates-at-target.png" style="width: 50%;" />
@@ -340,7 +331,7 @@ agreement with the data from Grivet <span id="id6">[<a class="reference internal
 <div class="figurelegend docutils container">
 <p>Figure: NMR relaxation rates <span class="math notranslate nohighlight">\(R_1\)</span> (A) and <span class="math notranslate nohighlight">\(R_2\)</span> (B) at
 a frequency 0.07 (dimensionless), or <span class="math notranslate nohighlight">\(f_0 = 151\,\text{GHz}\)</span>.
-The data from Grivet <span id="id7">[<a class="reference internal" href="../additional/bibliography.html#id182" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">5</a>]</span> are shown
+The data from Grivet <span id="id7">[<a class="reference internal" href="../additional/bibliography.html#id184" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">6</a>]</span> are shown
 with gray symbols.</p>
 </div>
 </section>
@@ -418,7 +409,7 @@ with gray symbols.</p>
 </div><script src="../_static/documentation_options.js?v=a58bc63e"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../_static/scripts/furo.js?v=5fa4622c"></script>
+    <script src="../_static/scripts/furo.js?v=46bd48cc"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     </body>
 </html>
