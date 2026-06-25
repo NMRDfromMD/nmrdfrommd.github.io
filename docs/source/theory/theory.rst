@@ -22,9 +22,9 @@ Bloembergen-Purcell-Pound (BPP) equations
 .. math::
     :label: eq_BPP
 
-    R_1 (\omega) & = & K \left[ J^{(1)} (\omega) + J^{(2)} (2 \omega) \right],
+    R_1 (\omega) = K \left[ J^{(1)} (\omega) + J^{(2)} (2 \omega) \right],
 
-    R_2 (\omega) & = & K \left[ J^{(0)} (0) + 10 J^{(1)} (\omega)
+    R_2 (\omega) = K \left[ J^{(0)} (0) + 10 J^{(1)} (\omega)
     + J^{(2)} (2 \omega) \right] / 4,
 
 where
