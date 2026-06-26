@@ -9,12 +9,14 @@ a natural and stable isotope of carbon, :math:`I = 1/2` and
 :math:`\gamma_I = 6.728` :math:`\text{rad} ~ \text{T}^{-1} \, \text{s}^{-1}` :cite:`kowalewskiNuclearSpinRelaxation2006`.
 
 One assumption behind the theory presented here is that cross-correlation terms
-can be neglected; see Ref. :cite:`lippensT1RelaxationTime1993`.
+can be neglected, i.e. that correlated fluctuations of the dipolar interactions
+do not contribute significantly to the relaxation. This approximation is
+discussed in Ref. :cite:`lippensT1RelaxationTime1993`.
 
 When spin-lattice relaxation is dominated by fluctuations of the magnetic
-dipole-dipole interaction, as is the case for protons in molecular systems,
+dipole-dipole interaction, which is often the dominant mechanism for protons in molecular systems,
 the rates :math:`R_1 (\omega_0)` and :math:`R_2 (\omega_0)`,
-where :math:`\omega_0 = \gamma B_0` is the Larmor angular frequency in the
+where :math:`\omega_0 = \gamma_I B_0` is the Larmor angular frequency in the
 static magnetic field :math:`B_0`, are related to the
 spectral densities :math:`J^{(m)}(\omega)` of these fluctuations via the
 Bloembergen-Purcell-Pound (BPP) equations
@@ -112,10 +114,12 @@ where :math:`j \in M_i` and :math:`j \notin M_i` refer to spins from the same
 molecule as :math:`i` (but different from :math:`i`), and from different molecules than :math:`i`,
 respectively.
 
-Intra-molecular relaxation is usually attributed to the rotational motion of
-the molecules, and inter-molecular relaxation to their translational motion.
-Although this assumption facilitates interpretation, it is not exact and
-must be applied cautiously :cite:`hubbardTheoryNuclearMagnetic1963`.
+In isotropic liquids, the intra-molecular contribution is often dominated by
+rotational motion, whereas the inter-molecular contribution is often dominated
+by translational motion. This interpretation is approximate, however, as both
+rotational and translational dynamics contribute to the time dependence of the
+dipolar interaction, and the two cannot be fully decoupled
+:cite:`hubbardTheoryNuclearMagnetic1963`.
 
 Isotropic system
 ----------------
@@ -123,7 +127,7 @@ Isotropic system
 For isotropic systems, the correlation functions are proportional to each
 other: :math:`G^{(0)} = 6 G^{(1)}`, and :math:`G^{(0)} = 6 / 4 G^{(2)}`
 :cite:`becherMolecularDynamicsSimulations2021`. Therefore, there is no need to
-calculate all three correlation functions, and :math:`G^{(0)} (t)` is usually
+calculate all three correlation functions, and :math:`G^{(0)} (\tau)` is usually
 the only one computed, which considerably reduces the computational effort.
 
 In that case, the rates :math:`R_1 (\omega_0)` and :math:`R_2 (\omega_0)` can be
@@ -141,8 +145,7 @@ where
     :label: F_2_0
 
     F_2^{(0)} [\textbf{r}_{ij} (t)] = \alpha_0 \dfrac{Y_2^{(0)} [\Omega_{ij} (t)]}{r_{ij}^3 (t)}
-
-    = \dfrac{3 \cos^2 \theta_\text{ij} (t) - 1}{r_{ij}^3 (t)}
+    = \dfrac{3 \cos^2 \theta_\text{ij} (t) - 1}{r_{ij}^3 (t)}.
 
 Here, we check the validity of the relation
 :math:`G^{(0)} = 6 G^{(1)} = 6 / 4 G^{(2)}` on a simple bulk water system with
