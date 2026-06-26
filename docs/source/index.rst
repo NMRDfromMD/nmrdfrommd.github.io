@@ -39,6 +39,49 @@ This package builds on the now discontinued |NMRforMD|.
    (center) and complex biomolecular environments such as a lysozyme protein
    surrounded by a hydration shell (right).
 
+
+Installation
+------------
+
+..
+    Install the latest published version
+    ------------------------------------
+
+    To install the latest stable release, run the following command in a terminal:
+
+    .. code-block:: bash
+
+        pip install nmrdfrommd
+
+Install the development version
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To install the latest development version of NMRDfromMD, clone the repository,
+|NMRDfromMD-code|, from GitHub, and use ``pip`` from the main directory:
+
+.. code-block:: bash
+
+    git clone https://github.com/NMRDfromMD/nmrdfrommd.git
+
+    cd nmrdfrommd/
+
+    pip install .
+
+Run the tests
+~~~~~~~~~~~~~
+
+To run the test suite, install the testing dependencies:
+
+.. code-block:: bash
+
+    pip install pytest coverage
+
+Then run from the tests folder:
+
+.. code-block:: bash
+
+    pytest
+
 Datasets
 --------
 
@@ -57,21 +100,14 @@ tutorials or simply to test NMRDfromMD.
 
 .. toctree::
    :maxdepth: 2
-   :caption: Tutorials
-   :hidden:
-   
-   tutorials/installation
-   tutorials/isotropic-system
-   tutorials/anisotropic-system
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Illustrations
+   :caption: Applications
    :hidden:
 
-   illustrations/lennard-jones-fluids
-   illustrations/bulk-water
-   illustrations/lysozyme-in-water
+   applications/tutorial
+   applications/lennard-jones-fluids
+   applications/bulk-water
+   applications/lysozyme-in-water
+   applications/anisotropic-system
 
 .. toctree::
    :maxdepth: 2
