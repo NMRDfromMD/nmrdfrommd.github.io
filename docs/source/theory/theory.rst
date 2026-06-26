@@ -1,13 +1,12 @@
-
 Theory
 ======
 
 The system of interest here is an ensemble of identical spins characterized
 by a gyromagnetic ratio :math:`\gamma_I` and spin quantum number
 :math:`I`. For :math:`^{1} \text{H}`, the most abundant isotope of hydrogen,
-:math:`I = 1/2` and :math:`\gamma_I = 26.752` rad/T/s. For :math:`^{13} \text{C}`,
+:math:`I = 1/2` and :math:`\gamma_I = 26.752` :math:`\text{rad} \, \text{T}^{-1} \, \text{s}^{-1}`. For :math:`^{13} \text{C}`,
 a natural and stable isotope of carbon, :math:`I = 1/2` and
-:math:`\gamma_I = 6.728` rad/T/s :cite:`kowalewskiNuclearSpinRelaxation2006`.
+:math:`\gamma_I = 6.728` :math:`\text{rad} ~ \text{T}^{-1} \, \text{s}^{-1}` :cite:`kowalewskiNuclearSpinRelaxation2006`.
 
 One assumption behind the theory presented here is that cross-correlation terms
 can be neglected; see Ref. :cite:`lippensT1RelaxationTime1993`.
@@ -41,7 +40,7 @@ autocorrelation functions :math:`G^{(m)}(\tau)`:
 
 .. math::
 
-    J^{(m)} (\omega) = \int_0^\infty G^{(m)} (\tau) \cos(\omega \tau) \mathrm d \tau.
+    J^{(m)} (\omega) = 2 \int_0^\infty G^{(m)} (\tau) \cos(\omega \tau) \mathrm d \tau.
 
 The spectral densities are a measure of the distribution of the fluctuations
 of :math:`G^{(m)}(\tau)` among different frequencies. They provide information
@@ -51,14 +50,20 @@ are given by
 
 .. math::
 
-    G^{(m)} (\tau) = \left< F_2^{(m)} [\textbf{r}_{ij} (t)]
-    F_2^{*(m)} [\textbf{r}_{ij} (0)] \right>
+    G^{(m)} (\tau) = \left< F_2^{(m)} [\textbf{r}_{ij} (\tau)]
+    F_2^{*(m)} [\textbf{r}_{ij} (0)] \right>_{ij, \tau}
 
 where :math:`F_2^{(m)}` are complex functions of the vector
 :math:`\textbf{r}_{ij}` between spin pairs, with norm :math:`r_{ij}` and
 orientation :math:`\Omega_{ij}` with respect to a reference applied magnetic
-field, assumed to be in the :math:`\textbf{e}_z` direction. The functions
-:math:`F_2^{(m)}` are defined as
+field, assumed to be in the :math:`\textbf{e}_z` direction. Here,
+:math:`\left< \cdot \right>_{ij, \tau}` denotes an average over all spin
+pairs and over time origins :math:`\tau`.
+
+Note, some textbooks absorb numerical factors into :math:`J (m)`, leading to
+different-looking BPP formulas [Eq. :eq:`eq_BPP`].
+
+The functions :math:`F_2^{(m)}` are defined as
 
 .. math::
 
@@ -72,10 +77,12 @@ written as:
 .. math::
 
     G^{(m)} (\tau) = \dfrac{\alpha_m^2}{N} \sum_i \sum_{j \ne i}
-    \dfrac{Y_2^{(m)} [\Omega_{ij} (0)]}{r_{ij}^3 (0)} 
-    \dfrac{Y_2^{*(m)} [\Omega_{ij} (\tau)]}{r_{ij}^3 (\tau)},
+    \left< \dfrac{Y_2^{(m)} [\Omega_{ij} (0)]}{r_{ij}^3 (0)} 
+    \dfrac{Y_2^{*(m)} [\Omega_{ij} (\tau)]}{r_{ij}^3 (\tau)} \right>_{\tau},
 
-where :math:`N` is the number of spins.
+where :math:`N` is the number of spins, the double sum runs over all ordered
+pairs :math:`(i,j)`, and the :math:`1/N` factor averages over spin origins
+:math:`i`. Here, :math:`\left< \cdot \right>_{\tau}` denotes an average over all time origins.
 
 Intra/inter contributions
 -------------------------
@@ -87,20 +94,20 @@ as:
 .. math::
     :label: G_intra
 
-    G^{(m)}_\text{intra} (t) = \dfrac{\alpha_m^2}{N}
-    \sum_i \sum_{j \in M_i} \dfrac{Y_2^{(m)} [\Omega_{ij} (0)]}{r_{ij}^3 (0)}
-    \dfrac{Y_2^{*(m)} [\Omega_{ij} (\tau)]}{r_{ij}^3 (\tau)},
+    G^{(m)}_\text{intra} (\tau) = \dfrac{\alpha_m^2}{N}
+    \left< \sum_i \sum_{j \in M_i} \dfrac{Y_2^{(m)} [\Omega_{ij} (0)]}{r_{ij}^3 (0)}
+    \dfrac{Y_2^{*(m)} [\Omega_{ij} (\tau)]}{r_{ij}^3 (\tau)} \right>_{\tau},
 
 .. math::
     :label: G_inter
 
-    G^{(m)}_\text{inter} (t) = \dfrac{\alpha_m^2}{N}
-    \sum_i \sum_{j \notin M_i} \dfrac{Y_2^{(m)} [\Omega_{ij} (0)]}{r_{ij}^3 (0)}
-    \dfrac{Y_2^{*(m)} [\Omega_{ij} (\tau)]}{r_{ij}^3 (\tau)},
+    G^{(m)}_\text{inter} (\tau) = \dfrac{\alpha_m^2}{N}
+    \left< \sum_i \sum_{j \notin M_i} \dfrac{Y_2^{(m)} [\Omega_{ij} (0)]}{r_{ij}^3 (0)}
+    \dfrac{Y_2^{*(m)} [\Omega_{ij} (\tau)]}{r_{ij}^3 (\tau)} \right>_{\tau},
 
 
 where :math:`j \in M_i` and :math:`j \notin M_i` refer to spins from the same
-molecule as :math:`i`, and from different molecules than :math:`i`,
+molecule as :math:`i` (but different from :math:`i`), and from different molecules than :math:`i`,
 respectively.
 
 Intra-molecular relaxation is usually attributed to the rotational motion of
@@ -122,18 +129,18 @@ written as:
 
 .. math::
 
-    R_1 &=&  \frac{K}{6} \left[ J^{(0)} (\omega_0) + 4 J^{(0)} (2 \omega_0) \right],
+    R_1 =  K \left[ J^{(0)} (\omega_0) + 4 J^{(0)} (2 \omega_0) \right] / 6,
 
-    R_2 &=& \frac{K}{6} \left[ J^{(0)} (0) + \frac{5}{2} J^{(0)} (\omega_0) + J^{(0)} (2 \omega_0) \right],
+    R_2 = K \left[ \frac{3}{2} J^{(0)} (0) + \frac{5}{2} J^{(0)} (\omega_0) + J^{(0)} (2 \omega_0) \right] / 6,
 
 where
 
 .. math::
     :label: F_2_0
 
-    F_2^{(0)} [\textbf{r}_{ij} (t)] & = & \alpha_m \dfrac{Y_2^{(0)} [\Omega_{ij} (t)]}{r_{ij}^3 (t)}
+    F_2^{(0)} [\textbf{r}_{ij} (t)] = \alpha_0 \dfrac{Y_2^{(0)} [\Omega_{ij} (t)]}{r_{ij}^3 (t)}
 
-    & = & \dfrac{3 \cos^2 \theta_\text{ij} (t) - 1}{r_{ij}^3 (t)}
+    = \dfrac{3 \cos^2 \theta_\text{ij} (t) - 1}{r_{ij}^3 (t)}
 
 Here, we check the validity of the relation
 :math:`G^{(0)} = 6 G^{(1)} = 6 / 4 G^{(2)}` on a simple bulk water system with
