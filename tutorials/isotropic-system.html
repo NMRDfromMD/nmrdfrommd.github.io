@@ -321,8 +321,8 @@ data, download the <a href="https://github.com/NMRDfromMD/dataset-peg-water-mixt
 <p>The necessary trajectory files for this tutorial are located in the <code class="docutils literal notranslate"><span class="pre">data/</span></code>
 directory.</p>
 </section>
-<section id="create-a-mdanalysis-universe">
-<h2>Create a MDAnalysis universe<a class="headerlink" href="#create-a-mdanalysis-universe" title="Link to this heading">¶</a></h2>
+<section id="load-the-molecular-dynamics-trajectory">
+<h2>Load the molecular dynamics trajectory<a class="headerlink" href="#load-the-molecular-dynamics-trajectory" title="Link to this heading">¶</a></h2>
 <p>Open a new Python script or Notebook, and define the path to the data files:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">datapath</span> <span class="o">=</span> <span class="s2">&quot;mypath/polymer-in-water/data/&quot;</span>
 </pre></div>
@@ -340,14 +340,12 @@ configuration file and trajectory:</p>
                  <span class="n">datapath</span><span class="o">+</span><span class="s2">&quot;production.xtc&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="non-title-info admonition">
-<p class="admonition-title">Note</p>
-<p>The MDAnalysis <code class="docutils literal notranslate"><span class="pre">universe</span></code>, <code class="docutils literal notranslate"><span class="pre">u</span></code>, contains both the topology
-(atom types, masses, etc.) and the trajectory (atom positions
-at each frame). These informations are used by <code class="docutils literal notranslate"><span class="pre">NMRDfromMD</span></code>
-for the calculation of <span class="math notranslate nohighlight">\(^1\text{H}\)</span>-NMR properties.</p>
-</div>
-<p>Let us print some basic information from the <code class="docutils literal notranslate"><span class="pre">universe</span></code>, such as the number
+<p>The Universe is the central object in MDAnalysis. It combines
+the system topology (atom identities, masses, molecule definitions, etc.)
+with the trajectory (atomic coordinates as a function of time). NMRDfromMD
+uses this object to access both the molecular structure and the atomic motions
+required for the relaxation calculation.</p>
+<p>Let us print some basic information from the Universe, such as the number
 of molecules (water and PEG):</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">n_TOT</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">atoms</span><span class="o">.</span><span class="n">n_residues</span>
 <span class="n">n_H2O</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">select_atoms</span><span class="p">(</span><span class="s2">&quot;type 6 7&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">n_residues</span>
@@ -384,8 +382,9 @@ two recorded frames, which is different from the actual timestep of
 </section>
 <section id="launch-the-1-text-h-nmr-analysis">
 <h2>Launch the <span class="math notranslate nohighlight">\(^1\text{H}\)</span>-NMR analysis<a class="headerlink" href="#launch-the-1-text-h-nmr-analysis" title="Link to this heading">¶</a></h2>
-<p>First, we create three atom groups: the hydrogen atoms of the PEG, <code class="docutils literal notranslate"><span class="pre">H_PEG</span></code>,
-the hydrogen atoms of the water, <code class="docutils literal notranslate"><span class="pre">H_H2O</span></code> and all hydrogen atoms, <code class="docutils literal notranslate"><span class="pre">H_ALL</span></code>:</p>
+<p>The NMR relaxation calculation is performed on selected nuclei. Here we
+create three atom groups: the hydrogen atoms belonging to PEG, the hydrogen atoms
+belonging to water, and the combined set containing all hydrogen atoms:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">H_PEG</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">select_atoms</span><span class="p">(</span><span class="s2">&quot;type 3 5&quot;</span><span class="p">)</span>
 <span class="n">H_H2O</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">select_atoms</span><span class="p">(</span><span class="s2">&quot;type 7&quot;</span><span class="p">)</span>
 <span class="n">H_ALL</span> <span class="o">=</span> <span class="n">H_PEG</span> <span class="o">+</span> <span class="n">H_H2O</span>
@@ -400,11 +399,17 @@ the hydrogen atoms of the water, <code class="docutils literal notranslate"><spa
 <span class="n">nmr_all</span><span class="o">.</span><span class="n">run_analysis</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>With <code class="docutils literal notranslate"><span class="pre">number_i</span> <span class="pre">=</span> <span class="pre">20</span></code>, only 20 randomly selected atoms from <code class="docutils literal notranslate"><span class="pre">H_ALL</span></code> are
-included in the calculation. Increasing this number improves statistical
-resolution, while setting <code class="docutils literal notranslate"><span class="pre">number_i</span> <span class="pre">=</span> <span class="pre">0</span></code> includes all atoms in the group.
-Here, <code class="docutils literal notranslate"><span class="pre">H_ALL</span></code> is specified as both the <code class="docutils literal notranslate"><span class="pre">atom_group</span></code> and the
-<code class="docutils literal notranslate"><span class="pre">neighbor_group</span></code>.</p>
+<p>The parameter <code class="docutils literal notranslate"><span class="pre">number_i</span></code> controls how many reference hydrogen atoms are
+randomly selected for the calculation. Computing the dipolar interaction
+for every hydrogen atom can become computationally expensive in large
+systems. Instead, <code class="docutils literal notranslate"><span class="pre">NMRDfromMD</span></code> samples a subset of reference atoms
+while retaining all neighbouring atoms. This sampling
+reduces the computational cost at the expense of increased statistical
+uncertainty.</p>
+<p>Increasing <code class="docutils literal notranslate"><span class="pre">number_i</span></code> improves the statistical precision of the
+calculated relaxation rates, while setting <code class="docutils literal notranslate"><span class="pre">number_i</span> <span class="pre">=</span> <span class="pre">0</span></code> includes all
+eligible atoms in the calculation. Here, <code class="docutils literal notranslate"><span class="pre">H_ALL</span></code> is specified as both
+the <code class="docutils literal notranslate"><span class="pre">atom_group</span></code> and the <code class="docutils literal notranslate"><span class="pre">neighbor_group</span></code>.</p>
 <div class="non-title-info admonition">
 <p class="admonition-title">Note</p>
 <p>In practice, here we don’t have to specify <code class="docutils literal notranslate"><span class="pre">neighbor_group</span></code> because
@@ -421,19 +426,26 @@ the limit <span class="math notranslate nohighlight">\(f \to 0\)</span>, add the
 <div class="highlight-bw notranslate"><div class="highlight"><pre><span></span>The NMR relaxation time is T1 = 1.59 s
 </pre></div>
 </div>
-<p>The exact value you obtain may differ, as it depends on the specific hydrogen
-atoms that were randomly selected for the calculation. With the relatively
-small value for the number of atom taken into account for the calculation,
-<code class="docutils literal notranslate"><span class="pre">number_i</span> <span class="pre">=</span> <span class="pre">20</span></code>, the uncertainty is significant. Increasing
-<code class="docutils literal notranslate"><span class="pre">number_i</span></code> will yield more precise results but at the cost of increased
-computation time.</p>
+<p>The exact value may vary slightly between runs because the reference
+atoms are selected randomly whenever <code class="docutils literal notranslate"><span class="pre">number_i</span> <span class="pre">&gt;</span> <span class="pre">0</span></code>. Increasing
+<code class="docutils literal notranslate"><span class="pre">number_i</span></code> reduces this statistical uncertainty, whereas setting
+<code class="docutils literal notranslate"><span class="pre">number_i</span> <span class="pre">=</span> <span class="pre">0</span></code> performs the calculation for every hydrogen atom in the
+selected group.</p>
 </section>
 <section id="extract-the-1-text-h-nmr-spectra">
 <h2>Extract the <span class="math notranslate nohighlight">\(^1\text{H}\)</span>-NMR spectra<a class="headerlink" href="#extract-the-1-text-h-nmr-spectra" title="Link to this heading">¶</a></h2>
-<p>The relaxation rates <span class="math notranslate nohighlight">\(R_1 (f) = 1/T_1 (f)\)</span> (in units of
-<span class="math notranslate nohighlight">\(\text{s}^{-1}\)</span>) and <span class="math notranslate nohighlight">\(R_2 (f) = 1/T_2 (f)\)</span> can be extracted for
-all frequencies <span class="math notranslate nohighlight">\(f\)</span> (in MHz) as <code class="docutils literal notranslate"><span class="pre">nmr_all.R1</span></code> and <code class="docutils literal notranslate"><span class="pre">nmr_all.R2</span></code>,
-respectively. The corresponding frequencies are stored in <code class="docutils literal notranslate"><span class="pre">nmr_all.f</span></code>.</p>
+<p>Although the zero-frequency relaxation time is often reported
+experimentally, <code class="docutils literal notranslate"><span class="pre">NMRDfromMD</span></code> computes the complete relaxation
+dispersion over a wide frequency range. The longitudinal and transverse
+relaxation rates,</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[R_1(f)=\frac{1}{T_1(f)}, \qquad
+R_2(f)=\frac{1}{T_2(f)},\]</div>
+</div>
+<p>are available for every frequency <span class="math notranslate nohighlight">\(f\)</span> (in MHz) as <code class="docutils literal notranslate"><span class="pre">nmr_all.R1</span></code>
+and <code class="docutils literal notranslate"><span class="pre">nmr_all.R2</span></code>. The corresponding frequencies are stored in
+<code class="docutils literal notranslate"><span class="pre">nmr_all.f</span></code>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">R1_spectrum</span> <span class="o">=</span> <span class="n">nmr_all</span><span class="o">.</span><span class="n">R1</span>
 <span class="n">R2_spectrum</span> <span class="o">=</span> <span class="n">nmr_all</span><span class="o">.</span><span class="n">R2</span>
 <span class="n">f</span> <span class="o">=</span> <span class="n">nmr_all</span><span class="o">.</span><span class="n">f</span>
@@ -460,11 +472,15 @@ function of <span class="math notranslate nohighlight">\(f\)</span> using <code 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>The curves should ressemble the figure below (panel A). For
-such isotropic systems, one expects <span class="math notranslate nohighlight">\(R_1 (f)\)</span> and <span class="math notranslate nohighlight">\(R_2 (f)\)</span>
-to have similar values in the limit of low frequency.
-The same calculation with a much larger value for <code class="docutils literal notranslate"><span class="pre">number_i</span></code> will lead to
-much smother curves (see panel B).</p>
+<p>The resulting spectra should resemble the figure below (panel A). For an
+isotropic liquid, <span class="math notranslate nohighlight">\(R_1(f)\)</span> and <span class="math notranslate nohighlight">\(R_2(f)\)</span> are expected to
+approach similar values in the low-frequency limit. In this regime, both
+relaxation rates probe the slowly varying part of the spectral density,
+which is governed primarily by isotropic molecular motion.</p>
+<p>Because only <code class="docutils literal notranslate"><span class="pre">number_i</span> <span class="pre">=</span> <span class="pre">20</span></code> reference atoms are sampled here, the
+spectra exhibit noticeable statistical noise. Repeating the calculation
+with a larger value of <code class="docutils literal notranslate"><span class="pre">number_i</span></code> produces much smoother curves, as
+shown in panel B.</p>
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-dark" src="../_images/nmr-total-dm.png" />
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-light" src="../_images/nmr-total.png" />
 <div class="figurelegend docutils container">
@@ -478,10 +494,13 @@ a small value of <code class="docutils literal notranslate"><span class="pre">nu
 </section>
 <section id="separating-intra-and-intermolecular">
 <h2>Separating intra and intermolecular<a class="headerlink" href="#separating-intra-and-intermolecular" title="Link to this heading">¶</a></h2>
-<p>So far, the calculations were performed for the two molecule types, PEG and
-<span class="math notranslate nohighlight">\(\text{H}_2\text{O}\)</span>, without distinguishing between intra and intermolecular
-contributions. However, this separation is meaningful and allows for
-identifying the primary contributors to the relaxation process.</p>
+<p>So far, the relaxation rates were calculated without distinguishing
+between intra- and intermolecular interactions. One of the major
+advantages of molecular dynamics simulations is that every dipolar
+interaction can be classified according to whether it originates from two
+nuclei within the same molecule or from two different molecules. This
+separation is generally not accessible from experimental measurements
+alone.</p>
 <p>Let us extract the intramolecular contributions to the relaxation for
 both water and PEG, separately:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">nmr_h2o_intra</span> <span class="o">=</span> <span class="n">NMRD</span><span class="p">(</span>
@@ -515,16 +534,19 @@ both water and PEG, separately:</p>
 <span class="n">nmr_peg_inter</span><span class="o">.</span><span class="n">run_analysis</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Importantly, when no <code class="docutils literal notranslate"><span class="pre">neighbor_group</span></code> is specified, the <code class="docutils literal notranslate"><span class="pre">atom_group</span></code> is
-used as the neighbor group. Thus, in this case, intermolecular
-contributions are calculated between molecules of the same type only.</p>
-<p>When comparing the <span class="math notranslate nohighlight">\(^1\text{H}\)</span>-NMR
-spectra <code class="docutils literal notranslate"><span class="pre">nmr_h2o_inter.R1</span></code> and <code class="docutils literal notranslate"><span class="pre">nmr_h2o_intra.R1</span></code>,
-you may observe that the intramolecular contributions to <span class="math notranslate nohighlight">\(R_1\)</span> are
-larger than the intermolecular contributions. Additionally, the
-intra- and intermolecular spectra display different scaling with
-frequency <span class="math notranslate nohighlight">\(f\)</span>, reflecting distinct motion types contributing to each
-term.</p>
+<p>When <code class="docutils literal notranslate"><span class="pre">neighbor_group</span></code> is not specified, <code class="docutils literal notranslate"><span class="pre">atom_group</span></code> is used as the
+default neighbour group. Consequently, the intermolecular contribution is
+computed only between molecules belonging to the same chemical species.
+For example, <code class="docutils literal notranslate"><span class="pre">nmr_h2o_inter</span></code> includes interactions between different
+water molecules, but not between water and PEG molecules.</p>
+<p>Comparing <code class="docutils literal notranslate"><span class="pre">nmr_h2o_intra.R1</span></code> and <code class="docutils literal notranslate"><span class="pre">nmr_h2o_inter.R1</span></code> reveals that the
+intramolecular contribution is larger than the intermolecular one for
+this system. More importantly, the two contributions exhibit distinct
+frequency dependences because they originate from different molecular
+motions. Intramolecular relaxation primarily reflects rotational motion
+and internal conformational dynamics, whereas intermolecular relaxation
+is dominated by translational diffusion and collisions between
+molecules.</p>
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-dark" src="../_images/nmr-intra-dm.png" />
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-light" src="../_images/nmr-intra.png" />
 <div class="figurelegend docutils container">
@@ -597,7 +619,7 @@ Results are shown for <span class="math notranslate nohighlight">\(n_i = 1280\)<
 <li><a class="reference internal" href="#">Isotropic system</a><ul>
 <li><a class="reference internal" href="#md-system">MD system</a></li>
 <li><a class="reference internal" href="#file-preparation">File preparation</a></li>
-<li><a class="reference internal" href="#create-a-mdanalysis-universe">Create a MDAnalysis universe</a></li>
+<li><a class="reference internal" href="#load-the-molecular-dynamics-trajectory">Load the molecular dynamics trajectory</a></li>
 <li><a class="reference internal" href="#launch-the-1-text-h-nmr-analysis">Launch the <span class="math notranslate nohighlight">\(^1\text{H}\)</span>-NMR analysis</a></li>
 <li><a class="reference internal" href="#extract-the-1-text-h-nmr-spectra">Extract the <span class="math notranslate nohighlight">\(^1\text{H}\)</span>-NMR spectra</a></li>
 <li><a class="reference internal" href="#separating-intra-and-intermolecular">Separating intra and intermolecular</a></li>
