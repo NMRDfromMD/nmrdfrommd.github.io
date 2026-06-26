@@ -13,7 +13,9 @@ can be neglected; see Ref. :cite:`lippensT1RelaxationTime1993`.
 
 When spin-lattice relaxation is dominated by fluctuations of the magnetic
 dipole-dipole interaction, as is the case for protons in molecular systems,
-the rates :math:`R_1 (\omega)` and :math:`R_2 (\omega)` are related to the
+the rates :math:`R_1 (\omega_0)` and :math:`R_2 (\omega_0)`,
+where :math:`\omega_0 = \gamma B_0` is the Larmor angular frequency in the
+static magnetic field :math:`B_0`, are related to the
 spectral densities :math:`J^{(m)}(\omega)` of these fluctuations via the
 Bloembergen-Purcell-Pound (BPP) equations
 :cite:`bloembergenRelaxationEffectsNuclear1948`:
@@ -21,10 +23,10 @@ Bloembergen-Purcell-Pound (BPP) equations
 .. math::
     :label: eq_BPP
 
-    R_1 (\omega) = K \left[ J^{(1)} (\omega) + J^{(2)} (2 \omega) \right],
+    R_1 (\omega_0) = K \left[ J^{(1)} (\omega_0) + J^{(2)} (2 \omega_0) \right],
 
-    R_2 (\omega) = K \left[ J^{(0)} (0) + 10 J^{(1)} (\omega)
-    + J^{(2)} (2 \omega) \right] / 4,
+    R_2 (\omega_0) = K \left[ J^{(0)} (0) + 10 J^{(1)} (\omega_0)
+    + J^{(2)} (2 \omega_0) \right] / 4,
 
 where
 
@@ -124,14 +126,14 @@ other: :math:`G^{(0)} = 6 G^{(1)}`, and :math:`G^{(0)} = 6 / 4 G^{(2)}`
 calculate all three correlation functions, and :math:`G^{(0)} (t)` is usually
 the only one computed, which considerably reduces the computational effort.
 
-In that case, the rates :math:`R_1 (\omega)` and :math:`R_2 (\omega)` can be
+In that case, the rates :math:`R_1 (\omega_0)` and :math:`R_2 (\omega_0)` can be
 written as:
 
 .. math::
 
-    R_1 =  K \left[ J^{(0)} (\omega_0) + 4 J^{(0)} (2 \omega_0) \right] / 6,
+    R_1 (\omega_0) =  K \left[ J^{(0)} (\omega_0) + 4 J^{(0)} (2 \omega_0) \right] / 6,
 
-    R_2 = K \left[ \frac{3}{2} J^{(0)} (0) + \frac{5}{2} J^{(0)} (\omega_0) + J^{(0)} (2 \omega_0) \right] / 6,
+    R_2 (\omega_0) = K \left[ \frac{3}{2} J^{(0)} (0) + \frac{5}{2} J^{(0)} (\omega_0) + J^{(0)} (2 \omega_0) \right] / 6,
 
 where
 
