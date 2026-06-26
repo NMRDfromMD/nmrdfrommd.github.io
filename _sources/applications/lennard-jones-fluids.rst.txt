@@ -1,11 +1,12 @@
 .. include:: ../additional/links.rst
 .. _lennard-jones-label:
 
-Simple fluid
-============
+Lennard-Jones fluid
+===================
 
-Here, NMR relaxation rates are measured from a Lennard-Jones fluid, and compared
-to the results from Ref. :cite:`grivetNMRRelaxationParameters2005`.
+This section presents NMR relaxation rates of a
+Lennard-Jones fluid and benchmarks them against
+the results of Grivet :cite:`grivetNMRRelaxationParameters2005`.
 
 System
 ------
@@ -45,8 +46,8 @@ The imposed temperatures ranged from :math:`T = 30` to
 All LAMMPS input scripts and analysis scripts written in Python are provided
 on GitHub; see |dataset-LJ-fluid|.
 
-Reproducing Grivet's results for a simple fluid
------------------------------------------------
+Benchmark for a Lennard-Jones fluid
+-----------------------------------
 
 The correlation function :math:`G_{ij}^{(0)}` was first extracted for all
 temperatures. For the two extreme values of :math:`T`, namely
@@ -74,8 +75,19 @@ temperature decreases, as expected from the slowing down of molecular motion.
     line shows :math:`t^{-3/2}`.
 
 The NMR relaxation rate spectra :math:`R_1` and :math:`R_2` were extracted for
-all temperatures using ``NMRDforMD``. For all temperatures, the spectra show
-a decrease with increasing frequency :math:`f`.
+all temperatures using ``NMRDforMD``. 
+
+For all temperatures, the NMR relaxation rate spectra decrease with increasing frequency :math:`f`. This behavior
+reflects the frequency dependence of the spectral density function
+:math:`J(\omega)`, which quantifies how much power molecular motion
+contributes at a given Larmor frequency :math:`\omega = 2\pi f`. At low
+frequencies, relaxation rates probe the long-time diffusive dynamics, where
+:math:`J(\omega)` reaches a plateau. As the frequency increases
+beyond :math:`\omega \sim 1/\tau_c`, where :math:`\tau_c` is the molecular
+correlation time, the spectral density decays as :math:`\omega^{-2}`, causing
+both :math:`R_1` and :math:`R_2` to decrease. This decrease reflects
+the inability of fast molecular fluctuations to efficiently relax nuclear
+spins at high Larmor frequencies.
 
 .. image:: lennard-jones-fluids/nmr-relaxation-rates-spectra-dm.png
     :class: only-dark
@@ -110,6 +122,6 @@ agreement with the data from Grivet :cite:`grivetNMRRelaxationParameters2005`.
 .. container:: figurelegend
 
     Figure: NMR relaxation rates :math:`R_1` (A) and :math:`R_2` (B) at
-    a frequency 0.07 (dimensionless), or :math:`f_0 = 151\,\text{GHz}`.
+    a frequency 0.07 (dimensionless), or :math:`f_0 = 150\,\text{GHz}`.
     The data from Grivet :cite:`grivetNMRRelaxationParameters2005` are shown
     with gray symbols.

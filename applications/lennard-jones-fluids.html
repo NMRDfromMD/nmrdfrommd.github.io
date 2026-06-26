@@ -7,7 +7,7 @@
         <link rel="prefetch" href="../_static/logo-b.png" as="image">
 
     <!-- Generated with Sphinx 7.4.7 and Furo 2025.12.19 -->
-        <title>Simple fluid - </title>
+        <title>Lennard-Jones fluid - </title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=8dab3a3b" />
@@ -203,7 +203,7 @@
 <p class="caption" role="heading"><span class="caption-text">Applications</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Simple fluid</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Lennard-Jones fluid</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bulk-water.html">Molecular system</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lysozyme-in-water.html">Lysozyme in water</a></li>
 <li class="toctree-l1"><a class="reference internal" href="anisotropic-system.html">Anisotropic systems</a></li>
@@ -254,10 +254,11 @@
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section id="simple-fluid">
-<span id="lennard-jones-label"></span><h1>Simple fluid<a class="headerlink" href="#simple-fluid" title="Link to this heading">¶</a></h1>
-<p>Here, NMR relaxation rates are measured from a Lennard-Jones fluid, and compared
-to the results from Ref. <span id="id1">[<a class="reference internal" href="../additional/bibliography.html#id184" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">6</a>]</span>.</p>
+          <section id="lennard-jones-fluid">
+<span id="lennard-jones-label"></span><h1>Lennard-Jones fluid<a class="headerlink" href="#lennard-jones-fluid" title="Link to this heading">¶</a></h1>
+<p>This section presents NMR relaxation rates of a
+Lennard-Jones fluid and benchmarks them against
+the results of Grivet <span id="id1">[<a class="reference internal" href="../additional/bibliography.html#id184" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">6</a>]</span>.</p>
 <section id="system">
 <h2>System<a class="headerlink" href="#system" title="Link to this heading">¶</a></h2>
 <a class="only-dark reference internal image-reference" href="../_images/lj-dark.png"><img alt="LJ fluid simulated with LAMMPS - Dipolar NMR relaxation time calculation" class="only-dark align-right" src="../_images/lj-dark.png" style="width: 250px;" />
@@ -286,8 +287,8 @@ The imposed temperatures ranged from <span class="math notranslate nohighlight">
 <p>All LAMMPS input scripts and analysis scripts written in Python are provided
 on GitHub; see <a href="https://github.com/NMRDfromMD/dataset-LJ-fluid" target="_blank">dataset-LJ-fluid</a>.</p>
 </section>
-<section id="reproducing-grivet-s-results-for-a-simple-fluid">
-<h2>Reproducing Grivet’s results for a simple fluid<a class="headerlink" href="#reproducing-grivet-s-results-for-a-simple-fluid" title="Link to this heading">¶</a></h2>
+<section id="benchmark-for-a-lennard-jones-fluid">
+<h2>Benchmark for a Lennard-Jones fluid<a class="headerlink" href="#benchmark-for-a-lennard-jones-fluid" title="Link to this heading">¶</a></h2>
 <p>The correlation function <span class="math notranslate nohighlight">\(G_{ij}^{(0)}\)</span> was first extracted for all
 temperatures. For the two extreme values of <span class="math notranslate nohighlight">\(T\)</span>, namely
 <span class="math notranslate nohighlight">\(T = 50\)</span> and <span class="math notranslate nohighlight">\(140\,\text{K}\)</span>, the functions
@@ -306,8 +307,18 @@ different temperatures compared with the data from Grivet
 line shows <span class="math notranslate nohighlight">\(t^{-3/2}\)</span>.</p>
 </div>
 <p>The NMR relaxation rate spectra <span class="math notranslate nohighlight">\(R_1\)</span> and <span class="math notranslate nohighlight">\(R_2\)</span> were extracted for
-all temperatures using <code class="docutils literal notranslate"><span class="pre">NMRDforMD</span></code>. For all temperatures, the spectra show
-a decrease with increasing frequency <span class="math notranslate nohighlight">\(f\)</span>.</p>
+all temperatures using <code class="docutils literal notranslate"><span class="pre">NMRDforMD</span></code>.</p>
+<p>For all temperatures, the NMR relaxation rate spectra decrease with increasing frequency <span class="math notranslate nohighlight">\(f\)</span>. This behavior
+reflects the frequency dependence of the spectral density function
+<span class="math notranslate nohighlight">\(J(\omega)\)</span>, which quantifies how much power molecular motion
+contributes at a given Larmor frequency <span class="math notranslate nohighlight">\(\omega = 2\pi f\)</span>. At low
+frequencies, relaxation rates probe the long-time diffusive dynamics, where
+<span class="math notranslate nohighlight">\(J(\omega)\)</span> reaches a plateau. As the frequency increases
+beyond <span class="math notranslate nohighlight">\(\omega \sim 1/\tau_c\)</span>, where <span class="math notranslate nohighlight">\(\tau_c\)</span> is the molecular
+correlation time, the spectral density decays as <span class="math notranslate nohighlight">\(\omega^{-2}\)</span>, causing
+both <span class="math notranslate nohighlight">\(R_1\)</span> and <span class="math notranslate nohighlight">\(R_2\)</span> to decrease. This decrease reflects
+the inability of fast molecular fluctuations to efficiently relax nuclear
+spins at high Larmor frequencies.</p>
 <img alt="NMR relaxation rate of a LJ fluid simulated with LAMMPS" class="only-dark" src="../_images/nmr-relaxation-rates-spectra-dm.png" />
 <img alt="NMR relaxation rate of a LJ fluid simulated with LAMMPS" class="only-light" src="../_images/nmr-relaxation-rates-spectra.png" />
 <div class="figurelegend docutils container">
@@ -326,7 +337,7 @@ agreement with the data from Grivet <span id="id6">[<a class="reference internal
 </a>
 <div class="figurelegend docutils container">
 <p>Figure: NMR relaxation rates <span class="math notranslate nohighlight">\(R_1\)</span> (A) and <span class="math notranslate nohighlight">\(R_2\)</span> (B) at
-a frequency 0.07 (dimensionless), or <span class="math notranslate nohighlight">\(f_0 = 151\,\text{GHz}\)</span>.
+a frequency 0.07 (dimensionless), or <span class="math notranslate nohighlight">\(f_0 = 150\,\text{GHz}\)</span>.
 The data from Grivet <span id="id7">[<a class="reference internal" href="../additional/bibliography.html#id184" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">6</a>]</span> are shown
 with gray symbols.</p>
 </div>
@@ -388,9 +399,9 @@ with gray symbols.</p>
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">Simple fluid</a><ul>
+<li><a class="reference internal" href="#">Lennard-Jones fluid</a><ul>
 <li><a class="reference internal" href="#system">System</a></li>
-<li><a class="reference internal" href="#reproducing-grivet-s-results-for-a-simple-fluid">Reproducing Grivet’s results for a simple fluid</a></li>
+<li><a class="reference internal" href="#benchmark-for-a-lennard-jones-fluid">Benchmark for a Lennard-Jones fluid</a></li>
 </ul>
 </li>
 </ul>
