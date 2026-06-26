@@ -263,9 +263,9 @@
 <p>The system of interest here is an ensemble of identical spins characterized
 by a gyromagnetic ratio <span class="math notranslate nohighlight">\(\gamma_I\)</span> and spin quantum number
 <span class="math notranslate nohighlight">\(I\)</span>. For <span class="math notranslate nohighlight">\(^{1} \text{H}\)</span>, the most abundant isotope of hydrogen,
-<span class="math notranslate nohighlight">\(I = 1/2\)</span> and <span class="math notranslate nohighlight">\(\gamma_I = 26.752\)</span> rad/T/s. For <span class="math notranslate nohighlight">\(^{13} \text{C}\)</span>,
+<span class="math notranslate nohighlight">\(I = 1/2\)</span> and <span class="math notranslate nohighlight">\(\gamma_I = 26.752\)</span> <span class="math notranslate nohighlight">\(\text{rad} \, \text{T}^{-1} \, \text{s}^{-1}\)</span>. For <span class="math notranslate nohighlight">\(^{13} \text{C}\)</span>,
 a natural and stable isotope of carbon, <span class="math notranslate nohighlight">\(I = 1/2\)</span> and
-<span class="math notranslate nohighlight">\(\gamma_I = 6.728\)</span> rad/T/s <span id="id1">[<a class="reference internal" href="../additional/bibliography.html#id274" title="Józef Kowalewski and Lena Mäler. Nuclear Spin Relaxation in Liquids: Theory, Experiments, and Applications. Number 2 in Series in Chemical Physics. Taylor &amp; Francis, New York, 2006. ISBN 978-0-7503-0964-6.">21</a>]</span>.</p>
+<span class="math notranslate nohighlight">\(\gamma_I = 6.728\)</span> <span class="math notranslate nohighlight">\(\text{rad} ~ \text{T}^{-1} \, \text{s}^{-1}\)</span> <span id="id1">[<a class="reference internal" href="../additional/bibliography.html#id274" title="Józef Kowalewski and Lena Mäler. Nuclear Spin Relaxation in Liquids: Theory, Experiments, and Applications. Number 2 in Series in Chemical Physics. Taylor &amp; Francis, New York, 2006. ISBN 978-0-7503-0964-6.">21</a>]</span>.</p>
 <p>One assumption behind the theory presented here is that cross-correlation terms
 can be neglected; see Ref. <span id="id2">[<a class="reference internal" href="../additional/bibliography.html#id304" title="G. Lippens, D. Van Belle, S.J. Wodak, and J. Jeener. T1 relaxation time of water from a molecular dynamics simulation. Molecular Physics, 80(6):1469–1484, December 1993. doi:10.1080/00268979300103151.">7</a>]</span>.</p>
 <p>When spin-lattice relaxation is dominated by fluctuations of the magnetic
@@ -291,7 +291,7 @@ Eq. <a class="reference internal" href="#equation-eq-bpp">(1)</a> can be obtaine
 autocorrelation functions <span class="math notranslate nohighlight">\(G^{(m)}(\tau)\)</span>:</p>
 <div class="math-wrapper docutils container">
 <div class="math notranslate nohighlight">
-\[J^{(m)} (\omega) = \int_0^\infty G^{(m)} (\tau) \cos(\omega \tau) \mathrm d \tau.\]</div>
+\[J^{(m)} (\omega) = 2 \int_0^\infty G^{(m)} (\tau) \cos(\omega \tau) \mathrm d \tau.\]</div>
 </div>
 <p>The spectral densities are a measure of the distribution of the fluctuations
 of <span class="math notranslate nohighlight">\(G^{(m)}(\tau)\)</span> among different frequencies. They provide information
@@ -300,14 +300,18 @@ different frequencies. The autocorrelation functions <span class="math notransla
 are given by</p>
 <div class="math-wrapper docutils container">
 <div class="math notranslate nohighlight">
-\[G^{(m)} (\tau) = \left&lt; F_2^{(m)} [\textbf{r}_{ij} (t)]
-F_2^{*(m)} [\textbf{r}_{ij} (0)] \right&gt;\]</div>
+\[G^{(m)} (\tau) = \left&lt; F_2^{(m)} [\textbf{r}_{ij} (\tau)]
+F_2^{*(m)} [\textbf{r}_{ij} (0)] \right&gt;_{ij, \tau}\]</div>
 </div>
 <p>where <span class="math notranslate nohighlight">\(F_2^{(m)}\)</span> are complex functions of the vector
 <span class="math notranslate nohighlight">\(\textbf{r}_{ij}\)</span> between spin pairs, with norm <span class="math notranslate nohighlight">\(r_{ij}\)</span> and
 orientation <span class="math notranslate nohighlight">\(\Omega_{ij}\)</span> with respect to a reference applied magnetic
-field, assumed to be in the <span class="math notranslate nohighlight">\(\textbf{e}_z\)</span> direction. The functions
-<span class="math notranslate nohighlight">\(F_2^{(m)}\)</span> are defined as</p>
+field, assumed to be in the <span class="math notranslate nohighlight">\(\textbf{e}_z\)</span> direction. Here,
+<span class="math notranslate nohighlight">\(\left&lt; \cdot \right&gt;_{ij, \tau}\)</span> denotes an average over all spin
+pairs and over time origins <span class="math notranslate nohighlight">\(\tau\)</span>.</p>
+<p>Note, some textbooks absorb numerical factors into <span class="math notranslate nohighlight">\(J (m)\)</span>, leading to
+different-looking BPP formulas [Eq. <a class="reference internal" href="#equation-eq-bpp">(1)</a>].</p>
+<p>The functions <span class="math notranslate nohighlight">\(F_2^{(m)}\)</span> are defined as</p>
 <div class="math-wrapper docutils container">
 <div class="math notranslate nohighlight">
 \[F_2^{(m)} [\textbf{r}_{ij} (t)] = \alpha_m \dfrac{Y_2^{(m)} [\Omega_{ij} (t)]}{r_{ij}^3 (t)}\]</div>
@@ -319,10 +323,12 @@ written as:</p>
 <div class="math-wrapper docutils container">
 <div class="math notranslate nohighlight">
 \[G^{(m)} (\tau) = \dfrac{\alpha_m^2}{N} \sum_i \sum_{j \ne i}
-\dfrac{Y_2^{(m)} [\Omega_{ij} (0)]}{r_{ij}^3 (0)}
-\dfrac{Y_2^{*(m)} [\Omega_{ij} (\tau)]}{r_{ij}^3 (\tau)},\]</div>
+\left&lt; \dfrac{Y_2^{(m)} [\Omega_{ij} (0)]}{r_{ij}^3 (0)}
+\dfrac{Y_2^{*(m)} [\Omega_{ij} (\tau)]}{r_{ij}^3 (\tau)} \right&gt;_{\tau},\]</div>
 </div>
-<p>where <span class="math notranslate nohighlight">\(N\)</span> is the number of spins.</p>
+<p>where <span class="math notranslate nohighlight">\(N\)</span> is the number of spins, the double sum runs over all ordered
+pairs <span class="math notranslate nohighlight">\((i,j)\)</span>, and the <span class="math notranslate nohighlight">\(1/N\)</span> factor averages over spin origins
+<span class="math notranslate nohighlight">\(i\)</span>. Here, <span class="math notranslate nohighlight">\(\left&lt; \cdot \right&gt;_{\tau}\)</span> denotes an average over all time origins.</p>
 <section id="intra-inter-contributions">
 <h2>Intra/inter contributions<a class="headerlink" href="#intra-inter-contributions" title="Link to this heading">¶</a></h2>
 <p>Intra-molecular and inter-molecular contributions to <span class="math notranslate nohighlight">\(R_1\)</span> and
@@ -330,18 +336,18 @@ written as:</p>
 as:</p>
 <div class="math-wrapper docutils container" id="equation-g-intra">
 <div class="math notranslate nohighlight" id="equation-g-intra">
-<span class="eqno">(2)<a class="headerlink" href="#equation-g-intra" title="Link to this equation">¶</a></span>\[G^{(m)}_\text{intra} (t) = \dfrac{\alpha_m^2}{N}
-\sum_i \sum_{j \in M_i} \dfrac{Y_2^{(m)} [\Omega_{ij} (0)]}{r_{ij}^3 (0)}
-\dfrac{Y_2^{*(m)} [\Omega_{ij} (\tau)]}{r_{ij}^3 (\tau)},\]</div>
+<span class="eqno">(2)<a class="headerlink" href="#equation-g-intra" title="Link to this equation">¶</a></span>\[G^{(m)}_\text{intra} (\tau) = \dfrac{\alpha_m^2}{N}
+\left&lt; \sum_i \sum_{j \in M_i} \dfrac{Y_2^{(m)} [\Omega_{ij} (0)]}{r_{ij}^3 (0)}
+\dfrac{Y_2^{*(m)} [\Omega_{ij} (\tau)]}{r_{ij}^3 (\tau)} \right&gt;_{\tau},\]</div>
 </div>
 <div class="math-wrapper docutils container" id="equation-g-inter">
 <div class="math notranslate nohighlight" id="equation-g-inter">
-<span class="eqno">(3)<a class="headerlink" href="#equation-g-inter" title="Link to this equation">¶</a></span>\[G^{(m)}_\text{inter} (t) = \dfrac{\alpha_m^2}{N}
-\sum_i \sum_{j \notin M_i} \dfrac{Y_2^{(m)} [\Omega_{ij} (0)]}{r_{ij}^3 (0)}
-\dfrac{Y_2^{*(m)} [\Omega_{ij} (\tau)]}{r_{ij}^3 (\tau)},\]</div>
+<span class="eqno">(3)<a class="headerlink" href="#equation-g-inter" title="Link to this equation">¶</a></span>\[G^{(m)}_\text{inter} (\tau) = \dfrac{\alpha_m^2}{N}
+\left&lt; \sum_i \sum_{j \notin M_i} \dfrac{Y_2^{(m)} [\Omega_{ij} (0)]}{r_{ij}^3 (0)}
+\dfrac{Y_2^{*(m)} [\Omega_{ij} (\tau)]}{r_{ij}^3 (\tau)} \right&gt;_{\tau},\]</div>
 </div>
 <p>where <span class="math notranslate nohighlight">\(j \in M_i\)</span> and <span class="math notranslate nohighlight">\(j \notin M_i\)</span> refer to spins from the same
-molecule as <span class="math notranslate nohighlight">\(i\)</span>, and from different molecules than <span class="math notranslate nohighlight">\(i\)</span>,
+molecule as <span class="math notranslate nohighlight">\(i\)</span> (but different from <span class="math notranslate nohighlight">\(i\)</span>), and from different molecules than <span class="math notranslate nohighlight">\(i\)</span>,
 respectively.</p>
 <p>Intra-molecular relaxation is usually attributed to the rotational motion of
 the molecules, and inter-molecular relaxation to their translational motion.
@@ -359,12 +365,12 @@ the only one computed, which considerably reduces the computational effort.</p>
 written as:</p>
 <div class="math-wrapper docutils container">
 <div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}R_1 &amp;=&amp;  \frac{K}{6} \left[ J^{(0)} (\omega_0) + 4 J^{(0)} (2 \omega_0) \right],\\R_2 &amp;=&amp; \frac{K}{6} \left[ J^{(0)} (0) + \frac{5}{2} J^{(0)} (\omega_0) + J^{(0)} (2 \omega_0) \right],\end{aligned}\end{align} \]</div>
+\[ \begin{align}\begin{aligned}R_1 =  K \left[ J^{(0)} (\omega_0) + 4 J^{(0)} (2 \omega_0) \right] / 6,\\R_2 = K \left[ \frac{3}{2} J^{(0)} (0) + \frac{5}{2} J^{(0)} (\omega_0) + J^{(0)} (2 \omega_0) \right] / 6,\end{aligned}\end{align} \]</div>
 </div>
 <p>where</p>
 <div class="math-wrapper docutils container" id="equation-f-2-0">
 <div class="math notranslate nohighlight" id="equation-f-2-0">
-<span class="eqno">(4)<a class="headerlink" href="#equation-f-2-0" title="Link to this equation">¶</a></span>\[ \begin{align}\begin{aligned}F_2^{(0)} [\textbf{r}_{ij} (t)] &amp; = &amp; \alpha_m \dfrac{Y_2^{(0)} [\Omega_{ij} (t)]}{r_{ij}^3 (t)}\\&amp; = &amp; \dfrac{3 \cos^2 \theta_\text{ij} (t) - 1}{r_{ij}^3 (t)}\end{aligned}\end{align} \]</div>
+<span class="eqno">(4)<a class="headerlink" href="#equation-f-2-0" title="Link to this equation">¶</a></span>\[ \begin{align}\begin{aligned}F_2^{(0)} [\textbf{r}_{ij} (t)] = \alpha_0 \dfrac{Y_2^{(0)} [\Omega_{ij} (t)]}{r_{ij}^3 (t)}\\= \dfrac{3 \cos^2 \theta_\text{ij} (t) - 1}{r_{ij}^3 (t)}\end{aligned}\end{align} \]</div>
 </div>
 <p>Here, we check the validity of the relation
 <span class="math notranslate nohighlight">\(G^{(0)} = 6 G^{(1)} = 6 / 4 G^{(2)}\)</span> on a simple bulk water system with
