@@ -1,8 +1,8 @@
 .. include:: ../additional/links.rst
 .. _isotropic-label:
 
-Isotropic system
-================
+Tutorial
+========
 
 In this tutorial, we compute the proton (:math:`^1\mathrm{H}`) NMR
 relaxation properties of a polymer--water mixture directly from a
