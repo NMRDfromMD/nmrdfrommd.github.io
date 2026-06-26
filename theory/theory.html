@@ -267,11 +267,13 @@ by a gyromagnetic ratio <span class="math notranslate nohighlight">\(\gamma_I\)<
 a natural and stable isotope of carbon, <span class="math notranslate nohighlight">\(I = 1/2\)</span> and
 <span class="math notranslate nohighlight">\(\gamma_I = 6.728\)</span> <span class="math notranslate nohighlight">\(\text{rad} ~ \text{T}^{-1} \, \text{s}^{-1}\)</span> <span id="id1">[<a class="reference internal" href="../additional/bibliography.html#id274" title="Józef Kowalewski and Lena Mäler. Nuclear Spin Relaxation in Liquids: Theory, Experiments, and Applications. Number 2 in Series in Chemical Physics. Taylor &amp; Francis, New York, 2006. ISBN 978-0-7503-0964-6.">21</a>]</span>.</p>
 <p>One assumption behind the theory presented here is that cross-correlation terms
-can be neglected; see Ref. <span id="id2">[<a class="reference internal" href="../additional/bibliography.html#id304" title="G. Lippens, D. Van Belle, S.J. Wodak, and J. Jeener. T1 relaxation time of water from a molecular dynamics simulation. Molecular Physics, 80(6):1469–1484, December 1993. doi:10.1080/00268979300103151.">7</a>]</span>.</p>
+can be neglected, i.e. that correlated fluctuations of the dipolar interactions
+do not contribute significantly to the relaxation. This approximation is
+discussed in Ref. <span id="id2">[<a class="reference internal" href="../additional/bibliography.html#id304" title="G. Lippens, D. Van Belle, S.J. Wodak, and J. Jeener. T1 relaxation time of water from a molecular dynamics simulation. Molecular Physics, 80(6):1469–1484, December 1993. doi:10.1080/00268979300103151.">7</a>]</span>.</p>
 <p>When spin-lattice relaxation is dominated by fluctuations of the magnetic
-dipole-dipole interaction, as is the case for protons in molecular systems,
+dipole-dipole interaction, which is often the dominant mechanism for protons in molecular systems,
 the rates <span class="math notranslate nohighlight">\(R_1 (\omega_0)\)</span> and <span class="math notranslate nohighlight">\(R_2 (\omega_0)\)</span>,
-where <span class="math notranslate nohighlight">\(\omega_0 = \gamma B_0\)</span> is the Larmor angular frequency in the
+where <span class="math notranslate nohighlight">\(\omega_0 = \gamma_I B_0\)</span> is the Larmor angular frequency in the
 static magnetic field <span class="math notranslate nohighlight">\(B_0\)</span>, are related to the
 spectral densities <span class="math notranslate nohighlight">\(J^{(m)}(\omega)\)</span> of these fluctuations via the
 Bloembergen-Purcell-Pound (BPP) equations
@@ -351,17 +353,19 @@ as:</p>
 <p>where <span class="math notranslate nohighlight">\(j \in M_i\)</span> and <span class="math notranslate nohighlight">\(j \notin M_i\)</span> refer to spins from the same
 molecule as <span class="math notranslate nohighlight">\(i\)</span> (but different from <span class="math notranslate nohighlight">\(i\)</span>), and from different molecules than <span class="math notranslate nohighlight">\(i\)</span>,
 respectively.</p>
-<p>Intra-molecular relaxation is usually attributed to the rotational motion of
-the molecules, and inter-molecular relaxation to their translational motion.
-Although this assumption facilitates interpretation, it is not exact and
-must be applied cautiously <span id="id4">[<a class="reference internal" href="../additional/bibliography.html#id227" title="Paul S. Hubbard. Theory of Nuclear Magnetic Relaxation by Spin-Rotational Interactions in Liquids. Physical Review, 131(3):1155–1165, August 1963. doi:10.1103/PhysRev.131.1155.">23</a>]</span>.</p>
+<p>In isotropic liquids, the intra-molecular contribution is often dominated by
+rotational motion, whereas the inter-molecular contribution is often dominated
+by translational motion. This interpretation is approximate, however, as both
+rotational and translational dynamics contribute to the time dependence of the
+dipolar interaction, and the two cannot be fully decoupled
+<span id="id4">[<a class="reference internal" href="../additional/bibliography.html#id227" title="Paul S. Hubbard. Theory of Nuclear Magnetic Relaxation by Spin-Rotational Interactions in Liquids. Physical Review, 131(3):1155–1165, August 1963. doi:10.1103/PhysRev.131.1155.">23</a>]</span>.</p>
 </section>
 <section id="isotropic-system">
 <h2>Isotropic system<a class="headerlink" href="#isotropic-system" title="Link to this heading">¶</a></h2>
 <p>For isotropic systems, the correlation functions are proportional to each
 other: <span class="math notranslate nohighlight">\(G^{(0)} = 6 G^{(1)}\)</span>, and <span class="math notranslate nohighlight">\(G^{(0)} = 6 / 4 G^{(2)}\)</span>
 <span id="id5">[<a class="reference internal" href="../additional/bibliography.html#id33" title="M. Becher, T. Wohlfromm, E. A. Rössler, and M. Vogel. Molecular dynamics simulations vs field-cycling NMR relaxometry: Structural relaxation mechanisms in the glass-former glycerol revisited. The Journal of Chemical Physics, 154(12):124503, March 2021. doi:10.1063/5.0048131.">15</a>]</span>. Therefore, there is no need to
-calculate all three correlation functions, and <span class="math notranslate nohighlight">\(G^{(0)} (t)\)</span> is usually
+calculate all three correlation functions, and <span class="math notranslate nohighlight">\(G^{(0)} (\tau)\)</span> is usually
 the only one computed, which considerably reduces the computational effort.</p>
 <p>In that case, the rates <span class="math notranslate nohighlight">\(R_1 (\omega_0)\)</span> and <span class="math notranslate nohighlight">\(R_2 (\omega_0)\)</span> can be
 written as:</p>
@@ -372,7 +376,8 @@ written as:</p>
 <p>where</p>
 <div class="math-wrapper docutils container" id="equation-f-2-0">
 <div class="math notranslate nohighlight" id="equation-f-2-0">
-<span class="eqno">(4)<a class="headerlink" href="#equation-f-2-0" title="Link to this equation">¶</a></span>\[ \begin{align}\begin{aligned}F_2^{(0)} [\textbf{r}_{ij} (t)] = \alpha_0 \dfrac{Y_2^{(0)} [\Omega_{ij} (t)]}{r_{ij}^3 (t)}\\= \dfrac{3 \cos^2 \theta_\text{ij} (t) - 1}{r_{ij}^3 (t)}\end{aligned}\end{align} \]</div>
+<span class="eqno">(4)<a class="headerlink" href="#equation-f-2-0" title="Link to this equation">¶</a></span>\[F_2^{(0)} [\textbf{r}_{ij} (t)] = \alpha_0 \dfrac{Y_2^{(0)} [\Omega_{ij} (t)]}{r_{ij}^3 (t)}
+= \dfrac{3 \cos^2 \theta_\text{ij} (t) - 1}{r_{ij}^3 (t)}.\]</div>
 </div>
 <p>Here, we check the validity of the relation
 <span class="math notranslate nohighlight">\(G^{(0)} = 6 G^{(1)} = 6 / 4 G^{(2)}\)</span> on a simple bulk water system with
