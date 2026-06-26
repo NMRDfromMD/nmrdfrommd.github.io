@@ -69,23 +69,46 @@ Consequently, the temporal resolution of the calculated correlation
 functions is determined by the trajectory sampling interval
 (:math:`2~\mathrm{ps}`), rather than by the
 :math:`1~\mathrm{fs}` integration timestep used during the molecular
-dynamics simulation.
+dynamics simulation. This distinction is important because all correlation
+functions computed later are limited by this sampling interval.
 
 File preparation
 ----------------
 
-To access the LAMMPS input files and pre-computed trajectory
-data, download the |zip-peg-water-mixture| archive, or clone the
-|dataset-peg-water-mixture| repository using:
+To access the LAMMPS input files and pre-computed trajectory data, either
+download the |zip-peg-water-mixture| archive or clone the
+|dataset-peg-water-mixture| repository:
 
 .. code-block:: bash
 
     git clone https://github.com/NMRDfromMD/dataset-peg-water-mixture.git
 
-The necessary trajectory files for this tutorial are located in the ``data/``
-directory.
+The required trajectory files are located in the ``data/`` directory.
 
-Load the molecular dynamics trajectory
+.. admonition:: Important
+    :class: warning
+
+    The trajectory files are stored using Git Large File Storage (Git LFS).
+    This means that after cloning the repository, you must download the
+    actual trajectory data before using it.
+
+    If Git LFS is not installed, install it first:
+
+.. code-block:: bash
+
+    apt install git-lfs
+    git lfs install
+
+Then retrieve the trajectory files:
+
+.. code-block:: bash
+
+    git lfs pull
+
+Alternatively, you can regenerate the trajectory by rerunning the LAMMPS
+simulation scripts provided in the repository.
+
+Import the simulation data into Python
 --------------------------------------
 
 Open a new Python script or Notebook, and define the path to the data files:
@@ -111,14 +134,14 @@ configuration file and trajectory:
     u = mda.Universe(datapath+"production.data",
                      datapath+"production.xtc")
 
-The Universe is the central object in MDAnalysis. It combines
-the system topology (atom identities, masses, molecule definitions, etc.)
-with the trajectory (atomic coordinates as a function of time). NMRDfromMD
-uses this object to access both the molecular structure and the atomic motions
-required for the relaxation calculation.
+The Universe is the central object in MDAnalysis. It combines the system topology
+(atom identities, masses, molecule definitions, etc.) with the time-dependent
+atomic coordinates. In this tutorial, NMRDfromMD uses the Universe to access both
+the molecular structure and the atomic trajectories required to compute dipolar
+correlation functions and NMR relaxation properties.
 
-Let us print some basic information from the Universe, such as the number
-of molecules (water and PEG):
+Before starting the analysis, it is useful to verify that the system has been
+correctly loaded and to inspect its basic composition.
 
 .. code-block:: python
 
@@ -133,6 +156,9 @@ Executing the script using Python will return:
 .. code-block:: bw
 
     The total number of molecules is 450 (420 H2O, 30 PEG)
+
+This output confirms that the simulation contains the expected 450 molecules,
+correctly partitioned into 420 water molecules and 30 PEG chains.
 
 Let us also print information concerning the trajectory,
 namely the timestep, ``timestep`` and
@@ -153,15 +179,16 @@ Executing the script using Python will return:
     The timestep is 2 ps
     The total simulation time is 10 ns
 
-.. admonition:: Note
-    :class: non-title-info
+In MDAnalysis, the ``timestep`` refers to the time interval between two
+stored frames in the trajectory file, not the integration timestep used
+in the molecular dynamics simulation. In this tutorial, the trajectory was generated with LAMMPS using a
+1 fs integration timestep, but atomic configurations were written to the
+``production.xtc`` file every 2 ps. As a result, the ``timestep`` reported by
+MDAnalysis corresponds to this 2 ps sampling interval, which determines the
+temporal resolution of all subsequent correlation functions and relaxation calculations.
 
-    In the context of ``MDAnalysis``, the ``timestep`` refers to the duration between
-    two recorded frames, which is different from the actual timestep of
-    :math:`1\,\text{fs}` used in the LAMMPS molecular dynamics simulation.
-
-Launch the :math:`^1\text{H}`-NMR analysis
-------------------------------------------
+Run the :math:`^1\text{H}` NMR relaxation analysis
+--------------------------------------------------
 
 The NMR relaxation calculation is performed on selected nuclei. Here we
 create three atom groups: the hydrogen atoms belonging to PEG, the hydrogen atoms
@@ -180,37 +207,39 @@ Next, we run ``NMRDfromMD`` for all hydrogen atoms:
     nmr_all = NMRD(
         u=u,
         atom_group=H_ALL,
-        neighbor_group = H_ALL,
         number_i=20)
-    nmr_all.run_analysis()
+    nmr_results = nmr_all.run_analysis()
+
+On a standard laptop (Intel Core i9-12900H processor), this step
+typically takes 1-2 minutes.
+
+The runtime depends mainly on three factors:
+(i) the number of selected reference atoms (``number_i``),
+(ii) the number of atoms in the system,
+and (iii) the number of saved trajectory frames.
 
 The parameter ``number_i`` controls how many reference hydrogen atoms are
 randomly selected for the calculation. Computing the dipolar interaction
 for every hydrogen atom can become computationally expensive in large
 systems. Instead, ``NMRDfromMD`` samples a subset of reference atoms
-while retaining all neighbouring atoms. This sampling
-reduces the computational cost at the expense of increased statistical
+while retaining all neighbouring atoms.  This strategy provides an unbiased
+estimate of the relaxation rates while reducing computational cost.
+This sampling reduces the computational cost at the expense of increased statistical
 uncertainty.
 
 Increasing ``number_i`` improves the statistical precision of the
 calculated relaxation rates, while setting ``number_i = 0`` includes all
-eligible atoms in the calculation. Here, ``H_ALL`` is specified as both
-the ``atom_group`` and the ``neighbor_group``.
+eligible atoms in the calculation.
 
-.. admonition:: Note
-    :class: non-title-info
-
-    In practice, here we don't have to specify ``neighbor_group`` because 
-    when it is not specified, ``atom_group`` is used instead.
-
-To access the calculated value of the NMR relaxation time :math:`T_1` in
+All calculated values are stored within the ``nmr_results`` dictionary.
+Lets first extract the NMR relaxation time :math:`T_1` in
 the limit :math:`f \to 0`, add the following lines to the Python script:
 
 .. code-block:: python
 
-    T1 = np.round(nmr_all.T1, 2)
+    T1 = nmr_results["T1"]
 
-    print(f"The NMR relaxation time is T1 = {T1} s")
+    print(f"The NMR relaxation time is T1 = {T1:.2f} s")
 
 The output should be similar to:
 
@@ -243,9 +272,9 @@ and ``nmr_all.R2``. The corresponding frequencies are stored in
 
 .. code-block:: python
 
-    R1_spectrum = nmr_all.R1
-    R2_spectrum = nmr_all.R2
-    f = nmr_all.f
+    R1_spectrum = nmr_results["R1"]
+    R2_spectrum = nmr_results["R2"]
+    f = nmr_results["f"]
 
 The spectra :math:`R_1 (f)` and :math:`R_2 (f)` can then be plotted as a
 function of :math:`f` using ``pyplot``:
@@ -272,9 +301,9 @@ function of :math:`f` using ``pyplot``:
 
 The resulting spectra should resemble the figure below (panel A). For an
 isotropic liquid, :math:`R_1(f)` and :math:`R_2(f)` are expected to
-approach similar values in the low-frequency limit. In this regime, both
-relaxation rates probe the slowly varying part of the spectral density,
-which is governed primarily by isotropic molecular motion.
+approach similar values in the low-frequency limit. In this regime, both relaxation
+rates probe the low-frequency limit of the spectral density, which is
+dominated by long-time molecular reorientations and translational diffusion.
 
 Because only ``number_i = 20`` reference atoms are sampled here, the
 spectra exhibit noticeable statistical noise. Repeating the calculation
@@ -319,16 +348,16 @@ both water and PEG, separately:
         atom_group=H_H2O,
         type_analysis="intra_molecular",
         number_i=200)
-    nmr_h2o_intra.run_analysis()
+    result_h2o_intra = nmr_h2o_intra.run_analysis()
 
     nmr_peg_intra = NMRD(
         u=u,
         atom_group=H_PEG,
         type_analysis="intra_molecular",
         number_i=200)
-    nmr_peg_intra.run_analysis()
+    result_peg_intra = nmr_peg_intra.run_analysis()
 
-We can also measure the intermolecular contributions:
+Similarly, we can also measure the intermolecular contributions:
 
 .. code-block:: python
 
@@ -336,30 +365,45 @@ We can also measure the intermolecular contributions:
         u=u,
         atom_group=H_H2O,
         type_analysis="inter_molecular",
-        number_i=200)
-    nmr_h2o_inter.run_analysis()
+        number_i=20)
+    result_h2o_inter = nmr_h2o_inter.run_analysis()
 
     nmr_peg_inter = NMRD(
         u=u,
         atom_group=H_PEG,
         type_analysis="inter_molecular",
-        number_i=200)
-    nmr_peg_inter.run_analysis()
+        number_i=20)
+    result_peg_inter = nmr_peg_inter.run_analysis()
 
-When ``neighbor_group`` is not specified, ``atom_group`` is used as the
-default neighbour group. Consequently, the intermolecular contribution is
+The intermolecular contribution is
 computed only between molecules belonging to the same chemical species.
 For example, ``nmr_h2o_inter`` includes interactions between different
 water molecules, but not between water and PEG molecules.
 
-Comparing ``nmr_h2o_intra.R1`` and ``nmr_h2o_inter.R1`` reveals that the
+The water-PEG intermolecular contribution can be computed by selecting
+water hydrogen atoms as the reference group (``atom_group``) and PEG
+hydrogen atoms as the interacting partner group (``neighbor_group``):
+
+.. code-block:: python
+
+    nmr_h2o_peg = NMRD(
+        u=u,
+        atom_group=H_H2O,
+        neighbor_group=H_PEG,
+        number_i=20)
+    result_h2o_peg = nmr_h2o_peg.run_analysis()
+
+In this case, the analysis is already restricted to intermolecular
+interactions between two different molecular species. Therefore, it is
+not necessary to explicitly set ``type_analysis="inter_molecular"``.
+
+Comparing the calculated spectra reveals that the
 intramolecular contribution is larger than the intermolecular one for
 this system. More importantly, the two contributions exhibit distinct
 frequency dependences because they originate from different molecular
-motions. Intramolecular relaxation primarily reflects rotational motion
-and internal conformational dynamics, whereas intermolecular relaxation
-is dominated by translational diffusion and collisions between
-molecules.
+motions. Intramolecular relaxation is mainly governed by rotational motion and
+internal molecular flexibility, whereas intermolecular relaxation reflects
+translational diffusion and inter-molecular collisions.
 
 .. image:: isotropic-system/nmr-intra-dm.png
     :class: only-dark

@@ -308,21 +308,38 @@ Consequently, the temporal resolution of the calculated correlation
 functions is determined by the trajectory sampling interval
 (<span class="math notranslate nohighlight">\(2~\mathrm{ps}\)</span>), rather than by the
 <span class="math notranslate nohighlight">\(1~\mathrm{fs}\)</span> integration timestep used during the molecular
-dynamics simulation.</p>
+dynamics simulation. This distinction is important because all correlation
+functions computed later are limited by this sampling interval.</p>
 </section>
 <section id="file-preparation">
 <h2>File preparation<a class="headerlink" href="#file-preparation" title="Link to this heading">¶</a></h2>
-<p>To access the LAMMPS input files and pre-computed trajectory
-data, download the <a href="https://github.com/NMRDfromMD/dataset-peg-water-mixture/archive/refs/tags/v1.0-beta.zip" target="_blank">zip</a> archive, or clone the
-<a href="https://github.com/NMRDfromMD/dataset-peg-water-mixture" target="_blank">peg-water-mixture dataset</a> repository using:</p>
+<p>To access the LAMMPS input files and pre-computed trajectory data, either
+download the <a href="https://github.com/NMRDfromMD/dataset-peg-water-mixture/archive/refs/tags/v1.0-beta.zip" target="_blank">zip</a> archive or clone the
+<a href="https://github.com/NMRDfromMD/dataset-peg-water-mixture" target="_blank">peg-water-mixture dataset</a> repository:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/NMRDfromMD/dataset-peg-water-mixture.git
 </pre></div>
 </div>
-<p>The necessary trajectory files for this tutorial are located in the <code class="docutils literal notranslate"><span class="pre">data/</span></code>
-directory.</p>
+<p>The required trajectory files are located in the <code class="docutils literal notranslate"><span class="pre">data/</span></code> directory.</p>
+<div class="warning admonition">
+<p class="admonition-title">Important</p>
+<p>The trajectory files are stored using Git Large File Storage (Git LFS).
+This means that after cloning the repository, you must download the
+actual trajectory data before using it.</p>
+<p>If Git LFS is not installed, install it first:</p>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>apt<span class="w"> </span>install<span class="w"> </span>git-lfs
+git<span class="w"> </span>lfs<span class="w"> </span>install
+</pre></div>
+</div>
+<p>Then retrieve the trajectory files:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>lfs<span class="w"> </span>pull
+</pre></div>
+</div>
+<p>Alternatively, you can regenerate the trajectory by rerunning the LAMMPS
+simulation scripts provided in the repository.</p>
 </section>
-<section id="load-the-molecular-dynamics-trajectory">
-<h2>Load the molecular dynamics trajectory<a class="headerlink" href="#load-the-molecular-dynamics-trajectory" title="Link to this heading">¶</a></h2>
+<section id="import-the-simulation-data-into-python">
+<h2>Import the simulation data into Python<a class="headerlink" href="#import-the-simulation-data-into-python" title="Link to this heading">¶</a></h2>
 <p>Open a new Python script or Notebook, and define the path to the data files:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">datapath</span> <span class="o">=</span> <span class="s2">&quot;mypath/polymer-in-water/data/&quot;</span>
 </pre></div>
@@ -340,13 +357,13 @@ configuration file and trajectory:</p>
                  <span class="n">datapath</span><span class="o">+</span><span class="s2">&quot;production.xtc&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The Universe is the central object in MDAnalysis. It combines
-the system topology (atom identities, masses, molecule definitions, etc.)
-with the trajectory (atomic coordinates as a function of time). NMRDfromMD
-uses this object to access both the molecular structure and the atomic motions
-required for the relaxation calculation.</p>
-<p>Let us print some basic information from the Universe, such as the number
-of molecules (water and PEG):</p>
+<p>The Universe is the central object in MDAnalysis. It combines the system topology
+(atom identities, masses, molecule definitions, etc.) with the time-dependent
+atomic coordinates. In this tutorial, NMRDfromMD uses the Universe to access both
+the molecular structure and the atomic trajectories required to compute dipolar
+correlation functions and NMR relaxation properties.</p>
+<p>Before starting the analysis, it is useful to verify that the system has been
+correctly loaded and to inspect its basic composition.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">n_TOT</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">atoms</span><span class="o">.</span><span class="n">n_residues</span>
 <span class="n">n_H2O</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">select_atoms</span><span class="p">(</span><span class="s2">&quot;type 6 7&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">n_residues</span>
 <span class="n">n_PEG</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">select_atoms</span><span class="p">(</span><span class="s2">&quot;type 1 2 3 4 5&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">n_residues</span>
@@ -358,6 +375,8 @@ of molecules (water and PEG):</p>
 <div class="highlight-bw notranslate"><div class="highlight"><pre><span></span>The total number of molecules is 450 (420 H2O, 30 PEG)
 </pre></div>
 </div>
+<p>This output confirms that the simulation contains the expected 450 molecules,
+correctly partitioned into 420 water molecules and 30 PEG chains.</p>
 <p>Let us also print information concerning the trajectory,
 namely the timestep, <code class="docutils literal notranslate"><span class="pre">timestep</span></code> and
 the total duration of the simulation, <code class="docutils literal notranslate"><span class="pre">total_time</span></code>:</p>
@@ -373,15 +392,16 @@ the total duration of the simulation, <code class="docutils literal notranslate"
 The total simulation time is 10 ns
 </pre></div>
 </div>
-<div class="non-title-info admonition">
-<p class="admonition-title">Note</p>
-<p>In the context of <code class="docutils literal notranslate"><span class="pre">MDAnalysis</span></code>, the <code class="docutils literal notranslate"><span class="pre">timestep</span></code> refers to the duration between
-two recorded frames, which is different from the actual timestep of
-<span class="math notranslate nohighlight">\(1\,\text{fs}\)</span> used in the LAMMPS molecular dynamics simulation.</p>
-</div>
+<p>In MDAnalysis, the <code class="docutils literal notranslate"><span class="pre">timestep</span></code> refers to the time interval between two
+stored frames in the trajectory file, not the integration timestep used
+in the molecular dynamics simulation. In this tutorial, the trajectory was generated with LAMMPS using a
+1 fs integration timestep, but atomic configurations were written to the
+<code class="docutils literal notranslate"><span class="pre">production.xtc</span></code> file every 2 ps. As a result, the <code class="docutils literal notranslate"><span class="pre">timestep</span></code> reported by
+MDAnalysis corresponds to this 2 ps sampling interval, which determines the
+temporal resolution of all subsequent correlation functions and relaxation calculations.</p>
 </section>
-<section id="launch-the-1-text-h-nmr-analysis">
-<h2>Launch the <span class="math notranslate nohighlight">\(^1\text{H}\)</span>-NMR analysis<a class="headerlink" href="#launch-the-1-text-h-nmr-analysis" title="Link to this heading">¶</a></h2>
+<section id="run-the-1-text-h-nmr-relaxation-analysis">
+<h2>Run the <span class="math notranslate nohighlight">\(^1\text{H}\)</span> NMR relaxation analysis<a class="headerlink" href="#run-the-1-text-h-nmr-relaxation-analysis" title="Link to this heading">¶</a></h2>
 <p>The NMR relaxation calculation is performed on selected nuclei. Here we
 create three atom groups: the hydrogen atoms belonging to PEG, the hydrogen atoms
 belonging to water, and the combined set containing all hydrogen atoms:</p>
@@ -394,32 +414,33 @@ belonging to water, and the combined set containing all hydrogen atoms:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">nmr_all</span> <span class="o">=</span> <span class="n">NMRD</span><span class="p">(</span>
     <span class="n">u</span><span class="o">=</span><span class="n">u</span><span class="p">,</span>
     <span class="n">atom_group</span><span class="o">=</span><span class="n">H_ALL</span><span class="p">,</span>
-    <span class="n">neighbor_group</span> <span class="o">=</span> <span class="n">H_ALL</span><span class="p">,</span>
     <span class="n">number_i</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">nmr_all</span><span class="o">.</span><span class="n">run_analysis</span><span class="p">()</span>
+<span class="n">nmr_results</span> <span class="o">=</span> <span class="n">nmr_all</span><span class="o">.</span><span class="n">run_analysis</span><span class="p">()</span>
 </pre></div>
 </div>
+<p>On a standard laptop (Intel Core i9-12900H processor), this step
+typically takes 1-2 minutes.</p>
+<p>The runtime depends mainly on three factors:
+(i) the number of selected reference atoms (<code class="docutils literal notranslate"><span class="pre">number_i</span></code>),
+(ii) the number of atoms in the system,
+and (iii) the number of saved trajectory frames.</p>
 <p>The parameter <code class="docutils literal notranslate"><span class="pre">number_i</span></code> controls how many reference hydrogen atoms are
 randomly selected for the calculation. Computing the dipolar interaction
 for every hydrogen atom can become computationally expensive in large
 systems. Instead, <code class="docutils literal notranslate"><span class="pre">NMRDfromMD</span></code> samples a subset of reference atoms
-while retaining all neighbouring atoms. This sampling
-reduces the computational cost at the expense of increased statistical
+while retaining all neighbouring atoms.  This strategy provides an unbiased
+estimate of the relaxation rates while reducing computational cost.
+This sampling reduces the computational cost at the expense of increased statistical
 uncertainty.</p>
 <p>Increasing <code class="docutils literal notranslate"><span class="pre">number_i</span></code> improves the statistical precision of the
 calculated relaxation rates, while setting <code class="docutils literal notranslate"><span class="pre">number_i</span> <span class="pre">=</span> <span class="pre">0</span></code> includes all
-eligible atoms in the calculation. Here, <code class="docutils literal notranslate"><span class="pre">H_ALL</span></code> is specified as both
-the <code class="docutils literal notranslate"><span class="pre">atom_group</span></code> and the <code class="docutils literal notranslate"><span class="pre">neighbor_group</span></code>.</p>
-<div class="non-title-info admonition">
-<p class="admonition-title">Note</p>
-<p>In practice, here we don’t have to specify <code class="docutils literal notranslate"><span class="pre">neighbor_group</span></code> because
-when it is not specified, <code class="docutils literal notranslate"><span class="pre">atom_group</span></code> is used instead.</p>
-</div>
-<p>To access the calculated value of the NMR relaxation time <span class="math notranslate nohighlight">\(T_1\)</span> in
+eligible atoms in the calculation.</p>
+<p>All calculated values are stored within the <code class="docutils literal notranslate"><span class="pre">nmr_results</span></code> dictionary.
+Lets first extract the NMR relaxation time <span class="math notranslate nohighlight">\(T_1\)</span> in
 the limit <span class="math notranslate nohighlight">\(f \to 0\)</span>, add the following lines to the Python script:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">T1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">nmr_all</span><span class="o">.</span><span class="n">T1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">T1</span> <span class="o">=</span> <span class="n">nmr_results</span><span class="p">[</span><span class="s2">&quot;T1&quot;</span><span class="p">]</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The NMR relaxation time is T1 = </span><span class="si">{</span><span class="n">T1</span><span class="si">}</span><span class="s2"> s&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The NMR relaxation time is T1 = </span><span class="si">{</span><span class="n">T1</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> s&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The output should be similar to:</p>
@@ -446,9 +467,9 @@ R_2(f)=\frac{1}{T_2(f)},\]</div>
 <p>are available for every frequency <span class="math notranslate nohighlight">\(f\)</span> (in MHz) as <code class="docutils literal notranslate"><span class="pre">nmr_all.R1</span></code>
 and <code class="docutils literal notranslate"><span class="pre">nmr_all.R2</span></code>. The corresponding frequencies are stored in
 <code class="docutils literal notranslate"><span class="pre">nmr_all.f</span></code>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">R1_spectrum</span> <span class="o">=</span> <span class="n">nmr_all</span><span class="o">.</span><span class="n">R1</span>
-<span class="n">R2_spectrum</span> <span class="o">=</span> <span class="n">nmr_all</span><span class="o">.</span><span class="n">R2</span>
-<span class="n">f</span> <span class="o">=</span> <span class="n">nmr_all</span><span class="o">.</span><span class="n">f</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">R1_spectrum</span> <span class="o">=</span> <span class="n">nmr_results</span><span class="p">[</span><span class="s2">&quot;R1&quot;</span><span class="p">]</span>
+<span class="n">R2_spectrum</span> <span class="o">=</span> <span class="n">nmr_results</span><span class="p">[</span><span class="s2">&quot;R2&quot;</span><span class="p">]</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">nmr_results</span><span class="p">[</span><span class="s2">&quot;f&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>The spectra <span class="math notranslate nohighlight">\(R_1 (f)\)</span> and <span class="math notranslate nohighlight">\(R_2 (f)\)</span> can then be plotted as a
@@ -474,9 +495,9 @@ function of <span class="math notranslate nohighlight">\(f\)</span> using <code 
 </div>
 <p>The resulting spectra should resemble the figure below (panel A). For an
 isotropic liquid, <span class="math notranslate nohighlight">\(R_1(f)\)</span> and <span class="math notranslate nohighlight">\(R_2(f)\)</span> are expected to
-approach similar values in the low-frequency limit. In this regime, both
-relaxation rates probe the slowly varying part of the spectral density,
-which is governed primarily by isotropic molecular motion.</p>
+approach similar values in the low-frequency limit. In this regime, both relaxation
+rates probe the low-frequency limit of the spectral density, which is
+dominated by long-time molecular reorientations and translational diffusion.</p>
 <p>Because only <code class="docutils literal notranslate"><span class="pre">number_i</span> <span class="pre">=</span> <span class="pre">20</span></code> reference atoms are sampled here, the
 spectra exhibit noticeable statistical noise. Repeating the calculation
 with a larger value of <code class="docutils literal notranslate"><span class="pre">number_i</span></code> produces much smoother curves, as
@@ -508,45 +529,57 @@ both water and PEG, separately:</p>
     <span class="n">atom_group</span><span class="o">=</span><span class="n">H_H2O</span><span class="p">,</span>
     <span class="n">type_analysis</span><span class="o">=</span><span class="s2">&quot;intra_molecular&quot;</span><span class="p">,</span>
     <span class="n">number_i</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
-<span class="n">nmr_h2o_intra</span><span class="o">.</span><span class="n">run_analysis</span><span class="p">()</span>
+<span class="n">result_h2o_intra</span> <span class="o">=</span> <span class="n">nmr_h2o_intra</span><span class="o">.</span><span class="n">run_analysis</span><span class="p">()</span>
 
 <span class="n">nmr_peg_intra</span> <span class="o">=</span> <span class="n">NMRD</span><span class="p">(</span>
     <span class="n">u</span><span class="o">=</span><span class="n">u</span><span class="p">,</span>
     <span class="n">atom_group</span><span class="o">=</span><span class="n">H_PEG</span><span class="p">,</span>
     <span class="n">type_analysis</span><span class="o">=</span><span class="s2">&quot;intra_molecular&quot;</span><span class="p">,</span>
     <span class="n">number_i</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
-<span class="n">nmr_peg_intra</span><span class="o">.</span><span class="n">run_analysis</span><span class="p">()</span>
+<span class="n">result_peg_intra</span> <span class="o">=</span> <span class="n">nmr_peg_intra</span><span class="o">.</span><span class="n">run_analysis</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>We can also measure the intermolecular contributions:</p>
+<p>Similarly, we can also measure the intermolecular contributions:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">nmr_h2o_inter</span> <span class="o">=</span> <span class="n">NMRD</span><span class="p">(</span>
     <span class="n">u</span><span class="o">=</span><span class="n">u</span><span class="p">,</span>
     <span class="n">atom_group</span><span class="o">=</span><span class="n">H_H2O</span><span class="p">,</span>
     <span class="n">type_analysis</span><span class="o">=</span><span class="s2">&quot;inter_molecular&quot;</span><span class="p">,</span>
-    <span class="n">number_i</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
-<span class="n">nmr_h2o_inter</span><span class="o">.</span><span class="n">run_analysis</span><span class="p">()</span>
+    <span class="n">number_i</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">result_h2o_inter</span> <span class="o">=</span> <span class="n">nmr_h2o_inter</span><span class="o">.</span><span class="n">run_analysis</span><span class="p">()</span>
 
 <span class="n">nmr_peg_inter</span> <span class="o">=</span> <span class="n">NMRD</span><span class="p">(</span>
     <span class="n">u</span><span class="o">=</span><span class="n">u</span><span class="p">,</span>
     <span class="n">atom_group</span><span class="o">=</span><span class="n">H_PEG</span><span class="p">,</span>
     <span class="n">type_analysis</span><span class="o">=</span><span class="s2">&quot;inter_molecular&quot;</span><span class="p">,</span>
-    <span class="n">number_i</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
-<span class="n">nmr_peg_inter</span><span class="o">.</span><span class="n">run_analysis</span><span class="p">()</span>
+    <span class="n">number_i</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">result_peg_inter</span> <span class="o">=</span> <span class="n">nmr_peg_inter</span><span class="o">.</span><span class="n">run_analysis</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>When <code class="docutils literal notranslate"><span class="pre">neighbor_group</span></code> is not specified, <code class="docutils literal notranslate"><span class="pre">atom_group</span></code> is used as the
-default neighbour group. Consequently, the intermolecular contribution is
+<p>The intermolecular contribution is
 computed only between molecules belonging to the same chemical species.
 For example, <code class="docutils literal notranslate"><span class="pre">nmr_h2o_inter</span></code> includes interactions between different
 water molecules, but not between water and PEG molecules.</p>
-<p>Comparing <code class="docutils literal notranslate"><span class="pre">nmr_h2o_intra.R1</span></code> and <code class="docutils literal notranslate"><span class="pre">nmr_h2o_inter.R1</span></code> reveals that the
+<p>The water-PEG intermolecular contribution can be computed by selecting
+water hydrogen atoms as the reference group (<code class="docutils literal notranslate"><span class="pre">atom_group</span></code>) and PEG
+hydrogen atoms as the interacting partner group (<code class="docutils literal notranslate"><span class="pre">neighbor_group</span></code>):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">nmr_h2o_peg</span> <span class="o">=</span> <span class="n">NMRD</span><span class="p">(</span>
+    <span class="n">u</span><span class="o">=</span><span class="n">u</span><span class="p">,</span>
+    <span class="n">atom_group</span><span class="o">=</span><span class="n">H_H2O</span><span class="p">,</span>
+    <span class="n">neighbor_group</span><span class="o">=</span><span class="n">H_PEG</span><span class="p">,</span>
+    <span class="n">number_i</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">result_h2o_peg</span> <span class="o">=</span> <span class="n">nmr_h2o_peg</span><span class="o">.</span><span class="n">run_analysis</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>In this case, the analysis is already restricted to intermolecular
+interactions between two different molecular species. Therefore, it is
+not necessary to explicitly set <code class="docutils literal notranslate"><span class="pre">type_analysis=&quot;inter_molecular&quot;</span></code>.</p>
+<p>Comparing the calculated spectra reveals that the
 intramolecular contribution is larger than the intermolecular one for
 this system. More importantly, the two contributions exhibit distinct
 frequency dependences because they originate from different molecular
-motions. Intramolecular relaxation primarily reflects rotational motion
-and internal conformational dynamics, whereas intermolecular relaxation
-is dominated by translational diffusion and collisions between
-molecules.</p>
+motions. Intramolecular relaxation is mainly governed by rotational motion and
+internal molecular flexibility, whereas intermolecular relaxation reflects
+translational diffusion and inter-molecular collisions.</p>
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-dark" src="../_images/nmr-intra-dm.png" />
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-light" src="../_images/nmr-intra.png" />
 <div class="figurelegend docutils container">
@@ -619,8 +652,8 @@ Results are shown for <span class="math notranslate nohighlight">\(n_i = 1280\)<
 <li><a class="reference internal" href="#">Isotropic system</a><ul>
 <li><a class="reference internal" href="#md-system">MD system</a></li>
 <li><a class="reference internal" href="#file-preparation">File preparation</a></li>
-<li><a class="reference internal" href="#load-the-molecular-dynamics-trajectory">Load the molecular dynamics trajectory</a></li>
-<li><a class="reference internal" href="#launch-the-1-text-h-nmr-analysis">Launch the <span class="math notranslate nohighlight">\(^1\text{H}\)</span>-NMR analysis</a></li>
+<li><a class="reference internal" href="#import-the-simulation-data-into-python">Import the simulation data into Python</a></li>
+<li><a class="reference internal" href="#run-the-1-text-h-nmr-relaxation-analysis">Run the <span class="math notranslate nohighlight">\(^1\text{H}\)</span> NMR relaxation analysis</a></li>
 <li><a class="reference internal" href="#extract-the-1-text-h-nmr-spectra">Extract the <span class="math notranslate nohighlight">\(^1\text{H}\)</span>-NMR spectra</a></li>
 <li><a class="reference internal" href="#separating-intra-and-intermolecular">Separating intra and intermolecular</a></li>
 </ul>
