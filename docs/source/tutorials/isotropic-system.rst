@@ -85,8 +85,8 @@ data, download the |zip-peg-water-mixture| archive, or clone the
 The necessary trajectory files for this tutorial are located in the ``data/``
 directory.
 
-Create a MDAnalysis universe
-----------------------------
+Load the molecular dynamics trajectory
+--------------------------------------
 
 Open a new Python script or Notebook, and define the path to the data files:
 
@@ -111,15 +111,13 @@ configuration file and trajectory:
     u = mda.Universe(datapath+"production.data",
                      datapath+"production.xtc")
 
-.. admonition:: Note
-    :class: non-title-info
-        
-    The MDAnalysis ``universe``, ``u``, contains both the topology
-    (atom types, masses, etc.) and the trajectory (atom positions
-    at each frame). These informations are used by ``NMRDfromMD``
-    for the calculation of :math:`^1\text{H}`-NMR properties.
+The Universe is the central object in MDAnalysis. It combines
+the system topology (atom identities, masses, molecule definitions, etc.)
+with the trajectory (atomic coordinates as a function of time). NMRDfromMD
+uses this object to access both the molecular structure and the atomic motions
+required for the relaxation calculation.
 
-Let us print some basic information from the ``universe``, such as the number
+Let us print some basic information from the Universe, such as the number
 of molecules (water and PEG):
 
 .. code-block:: python
@@ -165,8 +163,9 @@ Executing the script using Python will return:
 Launch the :math:`^1\text{H}`-NMR analysis
 ------------------------------------------
 
-First, we create three atom groups: the hydrogen atoms of the PEG, ``H_PEG``,
-the hydrogen atoms of the water, ``H_H2O`` and all hydrogen atoms, ``H_ALL``:
+The NMR relaxation calculation is performed on selected nuclei. Here we
+create three atom groups: the hydrogen atoms belonging to PEG, the hydrogen atoms
+belonging to water, and the combined set containing all hydrogen atoms:
 
 .. code-block:: python
 
@@ -185,11 +184,18 @@ Next, we run ``NMRDfromMD`` for all hydrogen atoms:
         number_i=20)
     nmr_all.run_analysis()
 
-With ``number_i = 20``, only 20 randomly selected atoms from ``H_ALL`` are
-included in the calculation. Increasing this number improves statistical
-resolution, while setting ``number_i = 0`` includes all atoms in the group.
-Here, ``H_ALL`` is specified as both the ``atom_group`` and the
-``neighbor_group``.
+The parameter ``number_i`` controls how many reference hydrogen atoms are
+randomly selected for the calculation. Computing the dipolar interaction
+for every hydrogen atom can become computationally expensive in large
+systems. Instead, ``NMRDfromMD`` samples a subset of reference atoms
+while retaining all neighbouring atoms. This sampling
+reduces the computational cost at the expense of increased statistical
+uncertainty.
+
+Increasing ``number_i`` improves the statistical precision of the
+calculated relaxation rates, while setting ``number_i = 0`` includes all
+eligible atoms in the calculation. Here, ``H_ALL`` is specified as both
+the ``atom_group`` and the ``neighbor_group``.
 
 .. admonition:: Note
     :class: non-title-info
@@ -212,20 +218,28 @@ The output should be similar to:
 
     The NMR relaxation time is T1 = 1.59 s
 
-The exact value you obtain may differ, as it depends on the specific hydrogen
-atoms that were randomly selected for the calculation. With the relatively
-small value for the number of atom taken into account for the calculation,
-``number_i = 20``, the uncertainty is significant. Increasing
-``number_i`` will yield more precise results but at the cost of increased
-computation time.
+The exact value may vary slightly between runs because the reference
+atoms are selected randomly whenever ``number_i > 0``. Increasing
+``number_i`` reduces this statistical uncertainty, whereas setting
+``number_i = 0`` performs the calculation for every hydrogen atom in the
+selected group.
 
 Extract the :math:`^1\text{H}`-NMR spectra
 ------------------------------------------
 
-The relaxation rates :math:`R_1 (f) = 1/T_1 (f)` (in units of 
-:math:`\text{s}^{-1}`) and :math:`R_2 (f) = 1/T_2 (f)` can be extracted for
-all frequencies :math:`f` (in MHz) as ``nmr_all.R1`` and ``nmr_all.R2``,
-respectively. The corresponding frequencies are stored in ``nmr_all.f``.
+Although the zero-frequency relaxation time is often reported
+experimentally, ``NMRDfromMD`` computes the complete relaxation
+dispersion over a wide frequency range. The longitudinal and transverse
+relaxation rates,
+
+.. math::
+
+   R_1(f)=\frac{1}{T_1(f)}, \qquad
+   R_2(f)=\frac{1}{T_2(f)},
+
+are available for every frequency :math:`f` (in MHz) as ``nmr_all.R1``
+and ``nmr_all.R2``. The corresponding frequencies are stored in
+``nmr_all.f``.
 
 .. code-block:: python
 
@@ -256,11 +270,16 @@ function of :math:`f` using ``pyplot``:
     plt.tight_layout()
     plt.show()
 
-The curves should ressemble the figure below (panel A). For
-such isotropic systems, one expects :math:`R_1 (f)` and :math:`R_2 (f)`
-to have similar values in the limit of low frequency.
-The same calculation with a much larger value for ``number_i`` will lead to
-much smother curves (see panel B).
+The resulting spectra should resemble the figure below (panel A). For an
+isotropic liquid, :math:`R_1(f)` and :math:`R_2(f)` are expected to
+approach similar values in the low-frequency limit. In this regime, both
+relaxation rates probe the slowly varying part of the spectral density,
+which is governed primarily by isotropic molecular motion.
+
+Because only ``number_i = 20`` reference atoms are sampled here, the
+spectra exhibit noticeable statistical noise. Repeating the calculation
+with a larger value of ``number_i`` produces much smoother curves, as
+shown in panel B.
 
 .. image:: isotropic-system/nmr-total-dm.png
     :class: only-dark
@@ -282,10 +301,13 @@ much smother curves (see panel B).
 Separating intra and intermolecular
 -----------------------------------
 
-So far, the calculations were performed for the two molecule types, PEG and 
-:math:`\text{H}_2\text{O}`, without distinguishing between intra and intermolecular 
-contributions. However, this separation is meaningful and allows for 
-identifying the primary contributors to the relaxation process.
+So far, the relaxation rates were calculated without distinguishing
+between intra- and intermolecular interactions. One of the major
+advantages of molecular dynamics simulations is that every dipolar
+interaction can be classified according to whether it originates from two
+nuclei within the same molecule or from two different molecules. This
+separation is generally not accessible from experimental measurements
+alone.
 
 Let us extract the intramolecular contributions to the relaxation for 
 both water and PEG, separately:
@@ -324,17 +346,20 @@ We can also measure the intermolecular contributions:
         number_i=200)
     nmr_peg_inter.run_analysis()
 
-Importantly, when no ``neighbor_group`` is specified, the ``atom_group`` is 
-used as the neighbor group. Thus, in this case, intermolecular 
-contributions are calculated between molecules of the same type only.
+When ``neighbor_group`` is not specified, ``atom_group`` is used as the
+default neighbour group. Consequently, the intermolecular contribution is
+computed only between molecules belonging to the same chemical species.
+For example, ``nmr_h2o_inter`` includes interactions between different
+water molecules, but not between water and PEG molecules.
 
-When comparing the :math:`^1\text{H}`-NMR
-spectra ``nmr_h2o_inter.R1`` and ``nmr_h2o_intra.R1``, 
-you may observe that the intramolecular contributions to :math:`R_1` are 
-larger than the intermolecular contributions. Additionally, the 
-intra- and intermolecular spectra display different scaling with 
-frequency :math:`f`, reflecting distinct motion types contributing to each 
-term.
+Comparing ``nmr_h2o_intra.R1`` and ``nmr_h2o_inter.R1`` reveals that the
+intramolecular contribution is larger than the intermolecular one for
+this system. More importantly, the two contributions exhibit distinct
+frequency dependences because they originate from different molecular
+motions. Intramolecular relaxation primarily reflects rotational motion
+and internal conformational dynamics, whereas intermolecular relaxation
+is dominated by translational diffusion and collisions between
+molecules.
 
 .. image:: isotropic-system/nmr-intra-dm.png
     :class: only-dark
