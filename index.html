@@ -200,17 +200,13 @@
 <li class="toctree-l1"><a class="reference internal" href="theory/context.html">Context</a></li>
 <li class="toctree-l1"><a class="reference internal" href="theory/theory.html">Theory</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<p class="caption" role="heading"><span class="caption-text">Applications</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="tutorials/installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorials/isotropic-system.html">Isotropic system</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorials/anisotropic-system.html">Anisotropic systems</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">Illustrations</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="illustrations/lennard-jones-fluids.html">Simple fluid</a></li>
-<li class="toctree-l1"><a class="reference internal" href="illustrations/bulk-water.html">Molecular system</a></li>
-<li class="toctree-l1"><a class="reference internal" href="illustrations/lysozyme-in-water.html">Lysozyme in water</a></li>
+<li class="toctree-l1"><a class="reference internal" href="applications/tutorial.html">Isotropic system</a></li>
+<li class="toctree-l1"><a class="reference internal" href="applications/lennard-jones-fluids.html">Simple fluid</a></li>
+<li class="toctree-l1"><a class="reference internal" href="applications/bulk-water.html">Molecular system</a></li>
+<li class="toctree-l1"><a class="reference internal" href="applications/lysozyme-in-water.html">Lysozyme in water</a></li>
+<li class="toctree-l1"><a class="reference internal" href="applications/anisotropic-system.html">Anisotropic systems</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Best practices</span></p>
 <ul>
@@ -286,14 +282,38 @@ simple bulk fluids (water, left) to structureless Lennard-Jones models
 surrounded by a hydration shell (right).</p>
 </div>
 </section>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">¶</a></h2>
+<section id="install-the-development-version">
+<h3>Install the development version<a class="headerlink" href="#install-the-development-version" title="Link to this heading">¶</a></h3>
+<p>To install the latest development version of NMRDfromMD, clone the repository,
+<a href="https://github.com/NMRDfromMD/nmrdfrommd" target="_blank">NMRDfromMD</a>, from GitHub, and use <code class="docutils literal notranslate"><span class="pre">pip</span></code> from the main directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/NMRDfromMD/nmrdfrommd.git
+
+<span class="nb">cd</span><span class="w"> </span>nmrdfrommd/
+
+pip<span class="w"> </span>install<span class="w"> </span>.
+</pre></div>
+</div>
+</section>
+<section id="run-the-tests">
+<h3>Run the tests<a class="headerlink" href="#run-the-tests" title="Link to this heading">¶</a></h3>
+<p>To run the test suite, install the testing dependencies:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>pytest<span class="w"> </span>coverage
+</pre></div>
+</div>
+<p>Then run from the tests folder:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest
+</pre></div>
+</div>
+</section>
+</section>
 <section id="datasets">
 <h2>Datasets<a class="headerlink" href="#datasets" title="Link to this heading">¶</a></h2>
 <p>Two molecular dynamics datasets are available on GitHub: a <a href="https://github.com/simongravelle/polymer-in-water.git" target="_blank">polymer in water</a>
 system generated using LAMMPS, and a <a href="https://github.com/simongravelle/water-in-silica.git" target="_blank">water confined in silica</a> system
 generated using GROMACS. These datasets can be downloaded to follow the
 tutorials or simply to test NMRDfromMD.</p>
-<div class="toctree-wrapper compound">
-</div>
 <div class="toctree-wrapper compound">
 </div>
 <div class="toctree-wrapper compound">
@@ -352,6 +372,11 @@ tutorials or simply to test NMRDfromMD.</p>
             <ul>
 <li><a class="reference internal" href="#">NMRDfromMD</a><ul>
 <li><a class="reference internal" href="#compatible-simulation-packages">Compatible Simulation Packages</a></li>
+<li><a class="reference internal" href="#installation">Installation</a><ul>
+<li><a class="reference internal" href="#install-the-development-version">Install the development version</a></li>
+<li><a class="reference internal" href="#run-the-tests">Run the tests</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#datasets">Datasets</a><ul>
 </ul>
 </li>

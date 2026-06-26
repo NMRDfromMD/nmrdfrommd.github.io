@@ -35,13 +35,13 @@ To follow the tutorial, |MDAnalysis|, |NumPy|, and
 MD system
 ---------
 
-.. image:: isotropic-system/snapshot-dark.png
+.. image:: tutorial/snapshot-dark.png
     :class: only-dark
     :alt: PEG-water mixture simulated with LAMMPS - Dipolar NMR relaxation time calculation
     :width: 250
     :align: right
 
-.. image:: isotropic-system/snapshot-light.png
+.. image:: tutorial/snapshot-light.png
     :class: only-light
     :alt: PEG-water mixture simulated with LAMMPS - Dipolar NMR relaxation time calculation
     :width: 250
@@ -310,11 +310,11 @@ spectra exhibit noticeable statistical noise. Repeating the calculation
 with a larger value of ``number_i`` produces much smoother curves, as
 shown in panel B.
 
-.. image:: isotropic-system/nmr-total-dm.png
+.. image:: tutorial/nmr-total-dm.png
     :class: only-dark
     :alt: NMR results obtained from the LAMMPS simulation of water
 
-.. image:: isotropic-system/nmr-total.png
+.. image:: tutorial/nmr-total.png
     :class: only-light
     :alt: NMR results obtained from the LAMMPS simulation of water
 
