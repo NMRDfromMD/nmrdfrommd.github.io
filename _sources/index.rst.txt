@@ -53,8 +53,9 @@ Installation
 
         pip install nmrdfrommd
 
-Install the development version
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+..
+    Install the development version
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To install the latest development version of NMRDfromMD, clone the repository,
 |NMRDfromMD-code|, from GitHub, and use ``pip`` from the main directory:
@@ -67,8 +68,9 @@ To install the latest development version of NMRDfromMD, clone the repository,
 
     pip install .
 
-Run the tests
-~~~~~~~~~~~~~
+..
+    Run the tests
+    ~~~~~~~~~~~~~
 
 To run the test suite, install the testing dependencies:
 

@@ -405,11 +405,11 @@ motions. Intramolecular relaxation is mainly governed by rotational motion and
 internal molecular flexibility, whereas intermolecular relaxation reflects
 translational diffusion and inter-molecular collisions.
 
-.. image:: isotropic-system/nmr-intra-dm.png
+.. image:: tutorial/nmr-intra-dm.png
     :class: only-dark
     :alt: NMR results obtained from the LAMMPS simulation of water
 
-.. image:: isotropic-system/nmr-intra.png
+.. image:: tutorial/nmr-intra.png
     :class: only-light
     :alt: NMR results obtained from the LAMMPS simulation of water
 
