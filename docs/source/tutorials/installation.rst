@@ -3,14 +3,15 @@
 Installation
 ============
 
-Install the latest published version
-------------------------------------
+..
+    Install the latest published version
+    ------------------------------------
 
-To install the latest stable release, run the following command in a terminal:
+    To install the latest stable release, run the following command in a terminal:
 
-.. code-block:: bash
+    .. code-block:: bash
 
-    pip install nmrdfrommd
+        pip install nmrdfrommd
 
 Install the development version
 -------------------------------
@@ -26,9 +27,17 @@ To install the latest development version of NMRDfromMD, clone the repository,
 
     pip install .
 
-You can then run the test suite using ``pytest``:
+Run the tests
+-------------
+
+To run the test suite, install the testing dependencies:
 
 .. code-block:: bash
 
-    cd tests
-    pytest .
+    pip install pytest coverage
+
+Then run from the tests folder:
+
+.. code-block:: bash
+
+    pytest
