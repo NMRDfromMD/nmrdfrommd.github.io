@@ -5,10 +5,13 @@
 [submodule ".submodules/pyplot-perso"]
 	path = .submodules/pyplot-perso
 	url = git@github.com:simongravelle/pyplot-perso.git
-	branch = LAMMPS-livecom
+	branch = develop
 [submodule ".submodules/dataset-peg-water-mixture"]
 	path = .submodules/dataset-peg-water-mixture
 	url = git@github.com:NMRDfromMD/dataset-peg-water-mixture.git
+	branch = main
 [submodule ".submodules/dataset-pure-water"]
 	path = .submodules/dataset-pure-water
 	url = git@github.com:NMRDfromMD/dataset-pure-water.git
+	branch = main
+
