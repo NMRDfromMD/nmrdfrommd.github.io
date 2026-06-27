@@ -318,6 +318,9 @@ temperature. As the temperature decreases, the correlation function decays more
 slowly, indicating that molecular motion becomes less efficient at decorrelating
 the dipolar interactions. Consequently, the characteristic correlation
 time increases and <span class="math notranslate nohighlight">\(G_{ij}^{(0)}(t)\)</span> shifts towards longer times.</p>
+<p>The long-time <span class="math notranslate nohighlight">\(t^{-3/2}\)</span> behaviour is characteristic of
+hydrodynamic long-time tails in simple liquids and reflects the slow
+decay of translational velocity correlations.</p>
 <img alt="Correlation functions of a LJ fluid simulated with LAMMPS" class="only-dark" src="../_images/nmr-correlation-functions-dm.png" />
 <img alt="Correlation functions of a LJ fluid simulated with LAMMPS" class="only-light" src="../_images/nmr-correlation-functions.png" />
 <div class="figurelegend docutils container">
@@ -327,39 +330,38 @@ different temperatures compared with the data from Grivet
 <span id="id6">[<a class="reference internal" href="../additional/bibliography.html#id184" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">6</a>]</span> (gray symbols). The dashed
 line shows <span class="math notranslate nohighlight">\(t^{-3/2}\)</span>.</p>
 </div>
-<p>The NMR relaxation rate spectra <span class="math notranslate nohighlight">\(R_1\)</span> and <span class="math notranslate nohighlight">\(R_2\)</span> were extracted for
-all temperatures using <code class="docutils literal notranslate"><span class="pre">NMRDforMD</span></code>.</p>
-<p>For all temperatures, the NMR relaxation rate spectra decrease with increasing frequency <span class="math notranslate nohighlight">\(f\)</span>. This behavior
+<p>For all temperatures, the NMR relaxation rate spectra  <span class="math notranslate nohighlight">\(R_1(f)\)</span>
+and  <span class="math notranslate nohighlight">\(R_2(f)\)</span> decrease with increasing frequency <span class="math notranslate nohighlight">\(f\)</span>. This behavior
 reflects the frequency dependence of the spectral density function
 <span class="math notranslate nohighlight">\(J(\omega)\)</span>, which quantifies how much power molecular motion
 contributes at a given Larmor frequency <span class="math notranslate nohighlight">\(\omega = 2\pi f\)</span>. At low
 frequencies, relaxation rates probe the long-time diffusive dynamics, where
-<span class="math notranslate nohighlight">\(J(\omega)\)</span> reaches a plateau. As the frequency increases
-beyond <span class="math notranslate nohighlight">\(\omega \sim 1/\tau_c\)</span>, where <span class="math notranslate nohighlight">\(\tau_c\)</span> is the molecular
-correlation time, the spectral density decays as <span class="math notranslate nohighlight">\(\omega^{-2}\)</span>, causing
-both <span class="math notranslate nohighlight">\(R_1\)</span> and <span class="math notranslate nohighlight">\(R_2\)</span> to decrease. This decrease reflects
-the inability of fast molecular fluctuations to efficiently relax nuclear
-spins at high Larmor frequencies.</p>
+<span class="math notranslate nohighlight">\(J(\omega)\)</span> reaches a plateau. At frequencies larger than the inverse molecular correlation time, the
+spectral density decreases because increasingly rapid magnetic-field
+fluctuations become inefficient at driving nuclear-spin relaxation.
+Consequently, both <span class="math notranslate nohighlight">\(R_1\)</span> and <span class="math notranslate nohighlight">\(R_2\)</span> decrease with increasing
+frequency.</p>
 <img alt="NMR relaxation rate of a LJ fluid simulated with LAMMPS" class="only-dark" src="../_images/nmr-relaxation-rates-spectra-dm.png" />
 <img alt="NMR relaxation rate of a LJ fluid simulated with LAMMPS" class="only-light" src="../_images/nmr-relaxation-rates-spectra.png" />
 <div class="figurelegend docutils container">
-<p>Figure: NMR relaxation rates <span class="math notranslate nohighlight">\(R_1\)</span> (A) and <span class="math notranslate nohighlight">\(R_2\)</span> (B)
+<p>Figure: Frequency-dependent NMR relaxation rates <span class="math notranslate nohighlight">\(R_1\)</span> (A) and <span class="math notranslate nohighlight">\(R_2\)</span> (B)
 as a function of the frequency <span class="math notranslate nohighlight">\(f\)</span>.</p>
 </div>
-<p>The NMR relaxation rates <span class="math notranslate nohighlight">\(R_1\)</span> and <span class="math notranslate nohighlight">\(R_2\)</span> were also extracted for
-all temperatures, at a frequency <span class="math notranslate nohighlight">\(f_0 = 150\,\text{GHz}\)</span> (or 0.07 in
-dimensionless units). <span class="math notranslate nohighlight">\(R_1(f_0)\)</span> shows a maximum at intermediate
-temperature and a minimum at the lowest temperature.
-<span class="math notranslate nohighlight">\(R_1(f_0)\)</span> decreases with increasing temperature. Our results show good
-agreement with the data from Grivet <span id="id7">[<a class="reference internal" href="../additional/bibliography.html#id184" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">6</a>]</span>.</p>
+<p>Finally, the relaxation rates were evaluated at a fixed frequency of
+<span class="math notranslate nohighlight">\(f_0 = 150\,\mathrm{GHz}\)</span> (0.07 in reduced units), matching the
+conditions used by Grivet <span id="id7">[<a class="reference internal" href="../additional/bibliography.html#id184" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">6</a>]</span>.
+The agreement between the two data sets confirms that <code class="docutils literal notranslate"><span class="pre">NMRDfromMD</span></code>
+reproduces both the temperature dependence of the correlation functions
+and the resulting relaxation rates over the full range of investigated
+thermodynamic conditions.</p>
 <a class="only-dark reference internal image-reference" href="../_images/nmr-relaxation-rates-at-target-dm.png"><img alt="NMR relaxation rate of a LJ fluid simulated with LAMMPS" class="only-dark" src="../_images/nmr-relaxation-rates-at-target-dm.png" style="width: 50%;" />
 </a>
 <a class="only-light reference internal image-reference" href="../_images/nmr-relaxation-rates-at-target.png"><img alt="NMR relaxation rate of a LJ fluid simulated with LAMMPS" class="only-light" src="../_images/nmr-relaxation-rates-at-target.png" style="width: 50%;" />
 </a>
 <div class="figurelegend docutils container">
-<p>Figure: NMR relaxation rates <span class="math notranslate nohighlight">\(R_1\)</span> (A) and <span class="math notranslate nohighlight">\(R_2\)</span> (B) at
-a frequency 0.07 (dimensionless), or <span class="math notranslate nohighlight">\(f_0 = 150\,\text{GHz}\)</span>.
-The data from Grivet <span id="id8">[<a class="reference internal" href="../additional/bibliography.html#id184" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">6</a>]</span> are shown
+<p>Figure: NMR relaxation rates <span class="math notranslate nohighlight">\(R_1\)</span> (A) and <span class="math notranslate nohighlight">\(R_2\)</span> (B)
+computed from the Lennard–Jones simulations at a frequency 0.07 (dimensionless),
+or <span class="math notranslate nohighlight">\(f_0 = 150\,\text{GHz}\)</span>. The data from Grivet <span id="id8">[<a class="reference internal" href="../additional/bibliography.html#id184" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">6</a>]</span> are shown
 with gray symbols.</p>
 </div>
 </section>

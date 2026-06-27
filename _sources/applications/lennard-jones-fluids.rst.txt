@@ -84,6 +84,10 @@ slowly, indicating that molecular motion becomes less efficient at decorrelating
 the dipolar interactions. Consequently, the characteristic correlation
 time increases and :math:`G_{ij}^{(0)}(t)` shifts towards longer times.
 
+The long-time :math:`t^{-3/2}` behaviour is characteristic of
+hydrodynamic long-time tails in simple liquids and reflects the slow
+decay of translational velocity correlations.
+
 .. image:: lennard-jones-fluids/nmr-correlation-functions-dm.png
     :class: only-dark
     :alt: Correlation functions of a LJ fluid simulated with LAMMPS
@@ -100,20 +104,17 @@ time increases and :math:`G_{ij}^{(0)}(t)` shifts towards longer times.
     :cite:`grivetNMRRelaxationParameters2005` (gray symbols). The dashed
     line shows :math:`t^{-3/2}`.
 
-The NMR relaxation rate spectra :math:`R_1` and :math:`R_2` were extracted for
-all temperatures using ``NMRDforMD``. 
-
-For all temperatures, the NMR relaxation rate spectra decrease with increasing frequency :math:`f`. This behavior
+For all temperatures, the NMR relaxation rate spectra  :math:`R_1(f)`
+and  :math:`R_2(f)` decrease with increasing frequency :math:`f`. This behavior
 reflects the frequency dependence of the spectral density function
 :math:`J(\omega)`, which quantifies how much power molecular motion
 contributes at a given Larmor frequency :math:`\omega = 2\pi f`. At low
 frequencies, relaxation rates probe the long-time diffusive dynamics, where
-:math:`J(\omega)` reaches a plateau. As the frequency increases
-beyond :math:`\omega \sim 1/\tau_c`, where :math:`\tau_c` is the molecular
-correlation time, the spectral density decays as :math:`\omega^{-2}`, causing
-both :math:`R_1` and :math:`R_2` to decrease. This decrease reflects
-the inability of fast molecular fluctuations to efficiently relax nuclear
-spins at high Larmor frequencies.
+:math:`J(\omega)` reaches a plateau. At frequencies larger than the inverse molecular correlation time, the
+spectral density decreases because increasingly rapid magnetic-field
+fluctuations become inefficient at driving nuclear-spin relaxation.
+Consequently, both :math:`R_1` and :math:`R_2` decrease with increasing
+frequency.
 
 .. image:: lennard-jones-fluids/nmr-relaxation-rates-spectra-dm.png
     :class: only-dark
@@ -125,15 +126,16 @@ spins at high Larmor frequencies.
 
 .. container:: figurelegend
 
-    Figure: NMR relaxation rates :math:`R_1` (A) and :math:`R_2` (B)
+    Figure: Frequency-dependent NMR relaxation rates :math:`R_1` (A) and :math:`R_2` (B)
     as a function of the frequency :math:`f`.
 
-The NMR relaxation rates :math:`R_1` and :math:`R_2` were also extracted for
-all temperatures, at a frequency :math:`f_0 = 150\,\text{GHz}` (or 0.07 in
-dimensionless units). :math:`R_1(f_0)` shows a maximum at intermediate
-temperature and a minimum at the lowest temperature.
-:math:`R_1(f_0)` decreases with increasing temperature. Our results show good
-agreement with the data from Grivet :cite:`grivetNMRRelaxationParameters2005`.
+Finally, the relaxation rates were evaluated at a fixed frequency of
+:math:`f_0 = 150\,\mathrm{GHz}` (0.07 in reduced units), matching the
+conditions used by Grivet :cite:`grivetNMRRelaxationParameters2005`.
+The agreement between the two data sets confirms that ``NMRDfromMD``
+reproduces both the temperature dependence of the correlation functions
+and the resulting relaxation rates over the full range of investigated
+thermodynamic conditions.
 
 .. image:: lennard-jones-fluids/nmr-relaxation-rates-at-target-dm.png
     :class: only-dark
@@ -147,7 +149,7 @@ agreement with the data from Grivet :cite:`grivetNMRRelaxationParameters2005`.
 
 .. container:: figurelegend
 
-    Figure: NMR relaxation rates :math:`R_1` (A) and :math:`R_2` (B) at
-    a frequency 0.07 (dimensionless), or :math:`f_0 = 150\,\text{GHz}`.
-    The data from Grivet :cite:`grivetNMRRelaxationParameters2005` are shown
+    Figure: NMR relaxation rates :math:`R_1` (A) and :math:`R_2` (B)
+    computed from the Lennard--Jones simulations at a frequency 0.07 (dimensionless),
+    or :math:`f_0 = 150\,\text{GHz}`. The data from Grivet :cite:`grivetNMRRelaxationParameters2005` are shown
     with gray symbols.
