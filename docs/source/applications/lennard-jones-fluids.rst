@@ -70,14 +70,19 @@ on GitHub; see |dataset-LJ-fluid|.
 Benchmark for a Lennard-Jones fluid
 -----------------------------------
 
-The correlation function :math:`G_{ij}^{(0)}` was first extracted for all
-temperatures. For the two extreme values of :math:`T`, namely
+To validate the implementation, we first compare the dipolar
+autocorrelation function :math:`G_{ij}^{(0)}(t)` with the reference
+results reported by Grivet :cite:`grivetNMRRelaxationParameters2005`.
+
+For the two extreme values of :math:`T`, namely
 :math:`T = 50` and :math:`140\,\text{K}`, the functions
 :math:`G_{ij}^{(0)}` are compared with the correlation functions reported by
 Grivet :cite:`grivetNMRRelaxationParameters2005`. Our results show good
 agreement with those of Grivet, with however some differences observed at the lowest
-temperature. The results show that :math:`G_{ij}^{(0)}` shifts to longer times as the
-temperature decreases, as expected from the slowing down of molecular motion.
+temperature. As the temperature decreases, the correlation function decays more
+slowly, indicating that molecular motion becomes less efficient at decorrelating
+the dipolar interactions. Consequently, the characteristic correlation
+time increases and :math:`G_{ij}^{(0)}(t)` shifts towards longer times.
 
 .. image:: lennard-jones-fluids/nmr-correlation-functions-dm.png
     :class: only-dark
