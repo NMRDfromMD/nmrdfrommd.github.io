@@ -1,5 +1,5 @@
-Theory
-======
+Mathematical framework
+======================
 
 The system of interest here is an ensemble of identical spins characterized
 by a gyromagnetic ratio :math:`\gamma_I` and spin quantum number
@@ -146,23 +146,3 @@ where
 
     F_2^{(0)} [\textbf{r}_{ij} (t)] = \alpha_0 \dfrac{Y_2^{(0)} [\Omega_{ij} (t)]}{r_{ij}^3 (t)}
     = \dfrac{3 \cos^2 \theta_\text{ij} (t) - 1}{r_{ij}^3 (t)}.
-
-Here, we check the validity of the relation
-:math:`G^{(0)} = 6 G^{(1)} = 6 / 4 G^{(2)}` on a simple bulk water system with
-4000 molecules, similar to the approach taken in
-:cite:`becherMolecularDynamicsSimulations2021` with glycerol. The proportionality
-relation is well verified (Figure below).
-
-.. image:: ../figures/illustrations/bulk-water/effect_of_anisotropy-dark.png
-    :class: only-dark
-    :alt: NMR results obtained from the LAMMPS simulation of water
-
-.. image:: ../figures/illustrations/bulk-water/effect_of_anisotropy-light.png
-    :class: only-light
-    :alt: NMR results obtained from the LAMMPS simulation of water
-
-.. container:: figurelegend
-
-    Figure: Test of the validity of the relation
-    :math:`G^{(0)} = 6 G^{(1)} = 6 / 4 G^{(2)}` on a bulk water system; see text
-    for details.
