@@ -91,21 +91,21 @@ pairs :math:`(i,j)`, and the :math:`1/N` factor averages over spin origins
 Intra/inter contributions
 -------------------------
 
-Intra-molecular and inter-molecular contributions to :math:`R_1` and
+Intra-molecular (R) and inter-molecular (T) contributions to :math:`R_1` and
 :math:`R_2` can be extracted separately by splitting the correlation functions
 as:
 
 .. math::
     :label: G_intra
 
-    G^{(m)}_\text{intra} (\tau) = \dfrac{\alpha_m^2}{N}
+    G^{(m)}_\text{R} (\tau) = \dfrac{\alpha_m^2}{N}
     \left< \sum_i \sum_{j \in M_i} \dfrac{Y_2^{(m)} [\Omega_{ij} (0)]}{r_{ij}^3 (0)}
     \dfrac{Y_2^{*(m)} [\Omega_{ij} (\tau)]}{r_{ij}^3 (\tau)} \right>_{\tau},
 
 .. math::
     :label: G_inter
 
-    G^{(m)}_\text{inter} (\tau) = \dfrac{\alpha_m^2}{N}
+    G^{(m)}_\text{T} (\tau) = \dfrac{\alpha_m^2}{N}
     \left< \sum_i \sum_{j \notin M_i} \dfrac{Y_2^{(m)} [\Omega_{ij} (0)]}{r_{ij}^3 (0)}
     \dfrac{Y_2^{*(m)} [\Omega_{ij} (\tau)]}{r_{ij}^3 (\tau)} \right>_{\tau},
 
