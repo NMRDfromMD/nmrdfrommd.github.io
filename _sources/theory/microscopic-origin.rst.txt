@@ -59,19 +59,18 @@ before analysing the relaxation spectra. A similar bencmark was done, for instan
 in Ref. :cite:`becherMolecularDynamicsSimulations2021` with glycerol. Our results
 show that the proportionality relation is well verified (See figure below).
 
-.. image:: ../figures/illustrations/bulk-water/effect_of_anisotropy-dark.png
+.. image:: microscopic-origin/proportionality-G-dm.png
     :class: only-dark
     :alt: NMR results obtained from the LAMMPS simulation of water
 
-.. image:: ../figures/illustrations/bulk-water/effect_of_anisotropy-light.png
+.. image:: microscopic-origin/proportionality-G.png
     :class: only-light
     :alt: NMR results obtained from the LAMMPS simulation of water
 
 .. container:: figurelegend
 
-    Figure: Test of the validity of the relation
-    :math:`G^{(0)} = 6 G^{(1)} = \frac{6}{4} G^{(2)}` on a bulk water system; see text
-    for details.
+    Figure: Test of the validity of the relation :math:`G^{(0)} = 6 G^{(1)} = \frac{6}{4} G^{(2)}`
+    on a bulk water system for intramolecular (A) and intermolecular (B) contribution.
 
 Both intra and inter-molecular correlation functions were extracted, 
 and the respective intra and inter NMR spectra were calculated.
