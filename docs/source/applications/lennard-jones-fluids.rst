@@ -4,12 +4,21 @@
 Lennard-Jones fluid
 ===================
 
-This section presents NMR relaxation rates of a
-Lennard-Jones fluid and benchmarks them against
-the results of Grivet :cite:`grivetNMRRelaxationParameters2005`.
+This example demonstrates how ``NMRDfromMD`` reproduces the
+:math:`^1\mathrm{H}`-NMR relaxation properties of a simple
+Lennard--Jones fluid. Because the system consists of identical spherical
+particles interacting through a single distance-dependent pair
+potential, it provides an ideal benchmark for validating the
+implementation against the reference calculations of Grivet
+:cite:`grivetNMRRelaxationParameters2005`.
 
 System
 ------
+
+The Lennard--Jones (LJ) fluid is one of the simplest models used in
+statistical mechanics. Despite its simple interaction potential, it
+captures many generic properties of dense liquids which makes it a
+standard benchmark in molecular simulations.
 
 .. image:: lennard-jones-fluids/lj-dark.png
     :class: only-dark
@@ -23,17 +32,19 @@ System
     :width: 250
     :align: right
 
-The system consists of 16,000 particles interacting via the classical 
-Lennard-Jones (LJ) 12-6 potential and simulated using
-LAMMPS :cite:`thompsonLAMMPSFlexibleSimulation2022`.
-Each particle has a mass 
-:math:`m = 1\,\text{g/mol}`, and LJ parameters 
-:math:`\sigma = 3\,\text{Å}` and :math:`\epsilon = 0.1\,\text{kcal/mol}`.
-All reduced parameters were taken to match the study by Grivet 
-:cite:`grivetNMRRelaxationParameters2005`. Specifically,
-a cutoff of :math:`4 \sigma` was used for the LJ interactions, the 
-simulation box has a volume of :math:`(26.9~\sigma)^3` to match 
-the reduced density of :math:`\rho^* = 0.84`.
+The simulated system contains 16,000 particles interacting through the
+classical Lennard--Jones (12-6) potential and was simulated using
+LAMMPS :cite:`thompsonLAMMPSFlexibleSimulation2022`. Each particle has a
+mass :math:`m = 1\,\mathrm{g/mol}` together with LJ parameters
+:math:`\sigma = 3\,\text{Å}` and
+:math:`\epsilon = 0.1\,\mathrm{kcal/mol}`.
+
+All reduced simulation parameters were chosen to reproduce the study of
+Grivet :cite:`grivetNMRRelaxationParameters2005`. In particular, the
+interaction cutoff was set to :math:`4 \sigma`, while the cubic
+simulation box had a side length of :math:`26.9 \sigma`, corresponding to
+the reduced density :math:`\rho^*=0.84`.
+
 Production runs were performed in the microcanonical (NVE) ensemble, 
 during which 10,000 timesteps were executed, equivalent to 50 times 
 the reference time :math:`\sqrt{m \sigma^2/\epsilon}`. Configurations 
@@ -42,6 +53,16 @@ were recorded every 10 timesteps. A timestep of
 The imposed temperatures ranged from :math:`T = 30` to 
 :math:`160\,\text{K}`, corresponding to reduced temperatures from 
 :math:`T^* = 0.8` to :math:`3.0`.
+
+.. admonition:: Reduced Lennard--Jones units
+    :class: non-title-info
+
+    Lennard-Jones simulations are commonly expressed in reduced units,
+    where the particle mass :math:`m`, the characteristic length
+    :math:`\sigma`, and the interaction energy :math:`\epsilon` define
+    the natural scales of the system. Using reduced variables allows
+    simulations with different physical parameters to be compared
+    directly.
 
 All LAMMPS input scripts and analysis scripts written in Python are provided
 on GitHub; see |dataset-LJ-fluid|.
