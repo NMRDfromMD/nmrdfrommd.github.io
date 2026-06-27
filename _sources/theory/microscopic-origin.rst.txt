@@ -54,6 +54,17 @@ expected to satisfy :cite:`hubbardTheoryNuclearMagnetic1963`
     
     G^{(0)} = 6 G^{(1)} = \frac{6}{4} G^{(2)}.
 
+For an isotropic bulk liquid, no direction in space is preferred.
+The three correlation functions :math:`G^{(m)}` differ only by their
+spherical harmonic order :math:`m = 0, 1, 2`. Because all orientations
+are equally probable, the orientation average cannot depend on :math:`m`,
+and the functions :math:`G^{(m)}` are therefore proportional to one
+another. The numerical prefactors :math:`1, 6, 6/4` arise solely from
+the explicit forms of the rank-2 spherical harmonics :math:`Y_2^m`,
+whose squared moduli satisfy
+:math:`|Y_2^0|^2 : |Y_2^1|^2 : |Y_2^2|^2 = 1 : 3 : 3`, combined with
+the symmetry factor accounting for :math:`m` > 0 pairs.
+
 Verifying this proportionality provides a simple consistency check
 before analysing the relaxation spectra. A similar bencmark was done, for instance
 in Ref. :cite:`becherMolecularDynamicsSimulations2021` with glycerol. Our results
