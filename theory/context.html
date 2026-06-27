@@ -3,7 +3,7 @@
   <head><meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="../_static/favicon-32x32.png" sizes="32x32" rel="icon" type="image/png"><link rel="index" title="Index" href="../genindex.html"><link rel="search" title="Search" href="../search.html"><link rel="next" title="Theory" href="theory.html"><link rel="prev" title="NMRDfromMD" href="../index.html">
+    <link href="../_static/favicon-32x32.png" sizes="32x32" rel="icon" type="image/png"><link rel="index" title="Index" href="../genindex.html"><link rel="search" title="Search" href="../search.html"><link rel="next" title="Mathematical framework" href="mathematical-framework.html"><link rel="prev" title="NMRDfromMD" href="../index.html">
         <link rel="prefetch" href="../_static/logo-b.png" as="image">
 
     <!-- Generated with Sphinx 7.4.7 and Furo 2025.12.19 -->
@@ -198,13 +198,13 @@
   <p class="caption" role="heading"><span class="caption-text">Theory</span></p>
 <ul class="current">
 <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Context</a></li>
-<li class="toctree-l1"><a class="reference internal" href="theory.html">Theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mathematical-framework.html">Mathematical framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="microscopic-origin.html">Microscopic origin of relaxation</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Applications</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../applications/tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../applications/lennard-jones-fluids.html">Lennard-Jones fluid</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../applications/bulk-water.html">Molecular system</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../applications/lysozyme-in-water.html">Lysozyme in water</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../applications/anisotropic-system.html">Anisotropic systems</a></li>
 </ul>
@@ -285,10 +285,16 @@ when extracting time-dependent correlation functions from non-dynamical
 trajectories <span id="id9">[<a class="reference internal" href="../additional/bibliography.html#id230" title="H. E. A. Huitema and J. P. vanderEerden. Can Monte Carlo simulation describe dynamics? A test on Lennard-Jones systems. The Journal of Chemical Physics, 110(7):3267–3274, February 1999. doi:10.1063/1.478192.">19</a>]</span>. Coarse-grained
 models combined with structural backmapping have been shown to reproduce
 NMR relaxation observables <span id="id10">[<a class="reference internal" href="../additional/bibliography.html#id174" title="Simon Gravelle, David Beyer, Mariano Brito, Alexander Schlaich, and Christian Holm. Assessing the Validity of NMR Relaxation Rates Obtained from Coarse-Grained Simulations of PEG–Water Mixtures. The Journal of Physical Chemistry B, 127(25):5601–5608, June 2023. doi:10.1021/acs.jpcb.3c01646.">20</a>]</span>.</p>
-<p>NMRDfromMD provides an open-source, robust, and general-purpose code for extracting NMR
-relaxation quantities directly from molecular dynamics simulations. It is validated
-through a series of automated tests against reference systems, ensuring numerical
-correctness, stability, and reproducibility across different simulation setups.</p>
+<p>Despite the breadth of existing work, publicly available codes for computing NMR
+relaxation from MD trajectories remain scarce. This limits reproducibility and
+makes it difficult to apply established methods to new systems without significant
+reimplementation effort.</p>
+<p>NMRDfromMD addresses this gap by providing an open-source, general-purpose code
+for extracting NMR relaxation quantities directly from molecular dynamics
+trajectories. It is designed to work with any MD engine capable of producing
+standard trajectory formats, and covers isotropic liquids, polymer solutions,
+and confined fluids. Numerical correctness and reproducibility are ensured
+through a series of automated tests validated against well-established reference systems.</p>
 </section>
 
         </article>
@@ -296,12 +302,12 @@ correctness, stability, and reproducibility across different simulation setups.<
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="theory.html">
+          <a class="next-page" href="mathematical-framework.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Theory</div>
+                <div class="title">Mathematical framework</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>

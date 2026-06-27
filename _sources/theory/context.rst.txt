@@ -37,7 +37,15 @@ trajectories :cite:`huitemaCanMonteCarlo1999`. Coarse-grained
 models combined with structural backmapping have been shown to reproduce
 NMR relaxation observables :cite:`gravelleAssessingValidityNMR2023`.
 
-NMRDfromMD provides an open-source, robust, and general-purpose code for extracting NMR
-relaxation quantities directly from molecular dynamics simulations. It is validated
-through a series of automated tests against reference systems, ensuring numerical
-correctness, stability, and reproducibility across different simulation setups.
+Despite the breadth of existing work, publicly available codes for computing NMR
+relaxation from MD trajectories remain scarce. This limits reproducibility and
+makes it difficult to apply established methods to new systems without significant
+reimplementation effort. 
+
+NMRDfromMD addresses this gap by providing an open-source, general-purpose code
+for extracting NMR relaxation quantities directly from molecular dynamics
+trajectories. It is designed to work with any MD engine capable of producing
+standard trajectory formats, and covers isotropic liquids, polymer solutions,
+and confined fluids. Numerical correctness and reproducibility are ensured
+through a series of automated tests validated against well-established reference systems.
+

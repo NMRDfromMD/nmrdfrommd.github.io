@@ -198,13 +198,13 @@
   <p class="caption" role="heading"><span class="caption-text">Theory</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="context.html">Context</a></li>
-<li class="toctree-l1"><a class="reference internal" href="theory.html">Theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mathematical-framework.html">Mathematical framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="microscopic-origin.html">Microscopic origin of relaxation</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Applications</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../applications/tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../applications/lennard-jones-fluids.html">Lennard-Jones fluid</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../applications/bulk-water.html">Molecular system</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../applications/lysozyme-in-water.html">Lysozyme in water</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../applications/anisotropic-system.html">Anisotropic systems</a></li>
 </ul>
@@ -272,7 +272,7 @@ substantial discrepancies between simulations and experiments may occur with
 inaccurate force fields.</p>
 <p>As an example, the NMR relaxation time <span class="math notranslate nohighlight">\(T_1\)</span> of bulk water was measured
 as a function of temperature for three water models:
-<span class="math notranslate nohighlight">\(\text{TIP4P}-\epsilon\)</span> <span id="id2">[<a class="reference internal" href="../additional/bibliography.html#id150" title="Raúl Fuentes-Azcatl and José Alejandre. Non-Polarizable Force Field of Water Based on the Dielectric Constant: TIP4P/epsilon. The Journal of Physical Chemistry B, 118(5):1263–1272, February 2014. doi:10.1021/jp410865y.">25</a>]</span>,
+<span class="math notranslate nohighlight">\(\text{TIP4P}-\epsilon\)</span> <span id="id2">[<a class="reference internal" href="../additional/bibliography.html#id150" title="Raúl Fuentes-Azcatl and José Alejandre. Non-Polarizable Force Field of Water Based on the Dielectric Constant: TIP4P/epsilon. The Journal of Physical Chemistry B, 118(5):1263–1272, February 2014. doi:10.1021/jp410865y.">28</a>]</span>,
 <span class="math notranslate nohighlight">\(\text{SPC/E}\)</span> <span id="id3">[<a class="reference internal" href="../additional/bibliography.html#id38" title="H. J. C. Berendsen, J. R. Grigera, and T. P. Straatsma. The missing term in effective pair potentials. The Journal of Physical Chemistry, 91(24):6269–6271, November 1987. doi:10.1021/j100308a038.">30</a>]</span>, and
 <span class="math notranslate nohighlight">\(\text{TIP3P}\)</span> <span id="id4">[<a class="reference internal" href="../additional/bibliography.html#id246" title="William L. Jorgensen, Jayaraman Chandrasekhar, Jeffry D. Madura, Roger W. Impey, and Michael L. Klein. Comparison of simple potential functions for simulating liquid water. The Journal of Chemical Physics, 79(2):926–935, July 1983. doi:10.1063/1.445869.">31</a>]</span>.
 Our results show that the <span class="math notranslate nohighlight">\(\text{TIP4P}-\epsilon\)</span> model is in excellent
@@ -284,14 +284,14 @@ agreement with experimental measurements by Krynicki et al.
 <span id="id7">[<a class="reference internal" href="../additional/bibliography.html#id65" title="C. Calero, J. Martí, and E. Guàrdia. 1H Nuclear Spin Relaxation of Liquid Water from Molecular Dynamics Simulations. The Journal of Physical Chemistry B, 119(5):1966–1973, February 2015. doi:10.1021/jp510013q.">8</a>]</span>.</p>
 <p>Note that Calero et al. used the <span class="math notranslate nohighlight">\(\text{TIP4P}-2005\)</span> model rather than
 <span class="math notranslate nohighlight">\(\text{TIP4P}-\epsilon\)</span>, but the two models yield very similar structures
-and viscosities <span id="id8">[<a class="reference internal" href="../additional/bibliography.html#id150" title="Raúl Fuentes-Azcatl and José Alejandre. Non-Polarizable Force Field of Water Based on the Dielectric Constant: TIP4P/epsilon. The Journal of Physical Chemistry B, 118(5):1263–1272, February 2014. doi:10.1021/jp410865y.">25</a>]</span> and are thus
+and viscosities <span id="id8">[<a class="reference internal" href="../additional/bibliography.html#id150" title="Raúl Fuentes-Azcatl and José Alejandre. Non-Polarizable Force Field of Water Based on the Dielectric Constant: TIP4P/epsilon. The Journal of Physical Chemistry B, 118(5):1263–1272, February 2014. doi:10.1021/jp410865y.">28</a>]</span> and are thus
 expected to produce similar relaxation times.</p>
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-dark" src="../_images/experimental_comparison-dark.png" />
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-light" src="../_images/experimental_comparison-light.png" />
 <div class="figurelegend docutils container">
 <p>Figure: NMR relaxation time <span class="math notranslate nohighlight">\(T_1\)</span> from MD simulations of bulk water
 using three water models:
-<span class="math notranslate nohighlight">\(\text{TIP4P}-\epsilon\)</span> <span id="id9">[<a class="reference internal" href="../additional/bibliography.html#id150" title="Raúl Fuentes-Azcatl and José Alejandre. Non-Polarizable Force Field of Water Based on the Dielectric Constant: TIP4P/epsilon. The Journal of Physical Chemistry B, 118(5):1263–1272, February 2014. doi:10.1021/jp410865y.">25</a>]</span>,
+<span class="math notranslate nohighlight">\(\text{TIP4P}-\epsilon\)</span> <span id="id9">[<a class="reference internal" href="../additional/bibliography.html#id150" title="Raúl Fuentes-Azcatl and José Alejandre. Non-Polarizable Force Field of Water Based on the Dielectric Constant: TIP4P/epsilon. The Journal of Physical Chemistry B, 118(5):1263–1272, February 2014. doi:10.1021/jp410865y.">28</a>]</span>,
 <span class="math notranslate nohighlight">\(\text{SPC/E}\)</span> <span id="id10">[<a class="reference internal" href="../additional/bibliography.html#id38" title="H. J. C. Berendsen, J. R. Grigera, and T. P. Straatsma. The missing term in effective pair potentials. The Journal of Physical Chemistry, 91(24):6269–6271, November 1987. doi:10.1021/j100308a038.">30</a>]</span>, and
 <span class="math notranslate nohighlight">\(\text{TIP3P}\)</span> <span id="id11">[<a class="reference internal" href="../additional/bibliography.html#id246" title="William L. Jorgensen, Jayaraman Chandrasekhar, Jeffry D. Madura, Roger W. Impey, and Michael L. Klein. Comparison of simple potential functions for simulating liquid water. The Journal of Chemical Physics, 79(2):926–935, July 1983. doi:10.1063/1.445869.">31</a>]</span>. Results
 are compared with experiments by Krynicki et al.

@@ -3,11 +3,11 @@
   <head><meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="../_static/favicon-32x32.png" sizes="32x32" rel="icon" type="image/png"><link rel="index" title="Index" href="../genindex.html"><link rel="search" title="Search" href="../search.html"><link rel="next" title="Lysozyme in water" href="lysozyme-in-water.html"><link rel="prev" title="Lennard-Jones fluid" href="lennard-jones-fluids.html">
+    <link href="../_static/favicon-32x32.png" sizes="32x32" rel="icon" type="image/png"><link rel="index" title="Index" href="../genindex.html"><link rel="search" title="Search" href="../search.html"><link rel="next" title="Tutorial" href="../applications/tutorial.html"><link rel="prev" title="Mathematical framework" href="mathematical-framework.html">
         <link rel="prefetch" href="../_static/logo-b.png" as="image">
 
     <!-- Generated with Sphinx 7.4.7 and Furo 2025.12.19 -->
-        <title>Molecular system - </title>
+        <title>Microscopic origin of relaxation - </title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=8dab3a3b" />
@@ -196,21 +196,21 @@
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <p class="caption" role="heading"><span class="caption-text">Theory</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../theory/context.html">Context</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../theory/theory.html">Theory</a></li>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="context.html">Context</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mathematical-framework.html">Mathematical framework</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Microscopic origin of relaxation</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Applications</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lennard-jones-fluids.html">Lennard-Jones fluid</a></li>
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Molecular system</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lysozyme-in-water.html">Lysozyme in water</a></li>
-<li class="toctree-l1"><a class="reference internal" href="anisotropic-system.html">Anisotropic systems</a></li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../applications/tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../applications/lennard-jones-fluids.html">Lennard-Jones fluid</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../applications/lysozyme-in-water.html">Lysozyme in water</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../applications/anisotropic-system.html">Anisotropic systems</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Best practices</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../theory/best-practice.html">Best practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="best-practice.html">Best practices</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Additional</span></p>
 <ul>
@@ -236,7 +236,7 @@
         </a>
         <div class="content-icon-container">
           <div class="view-this-page">
-  <a class="muted-link" href="../_sources/applications/bulk-water.rst.txt" title="View this page">
+  <a class="muted-link" href="../_sources/theory/microscopic-origin.rst.txt" title="View this page">
     <svg><use href="#svg-eye"></use></svg>
     <span class="visually-hidden">View this page</span>
   </a>
@@ -254,18 +254,25 @@
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section id="molecular-system">
-<span id="bulk-water-label"></span><h1>Molecular system<a class="headerlink" href="#molecular-system" title="Link to this heading">¶</a></h1>
-<p>H-NMR relaxation rates are measured from a molecular system:
-liquid water. Intramolecular and intermolecular contributions to
-the relaxation rates are discussed separately.</p>
+          <section id="microscopic-origin-of-relaxation">
+<span id="bulk-water-label"></span><h1>Microscopic origin of relaxation<a class="headerlink" href="#microscopic-origin-of-relaxation" title="Link to this heading">¶</a></h1>
+<p>This section illustrates how the microscopic motions observed in a
+molecular dynamics trajectory give rise to the macroscopic
+<span class="math notranslate nohighlight">\(^1\mathrm{H}\)</span>-NMR relaxation rates measured experimentally.
+Using bulk liquid water as a simple example, we follow the complete
+chain of quantities entering the relaxation calculation, from the
+motion of individual pairs of nuclei to the dipolar correlation
+functions and, finally, to the relaxation spectra.</p>
+<p>Throughout this section, intramolecular and intermolecular
+contributions are analysed separately, highlighting how rotational and
+translational molecular motions contribute differently to NMR
+relaxation.</p>
 <section id="md-system">
 <h2>MD system<a class="headerlink" href="#md-system" title="Link to this heading">¶</a></h2>
 <a class="only-dark reference internal image-reference" href="../_images/water-dark-square.png"><img alt="Water molecules simulated with lammps - NMR relaxation time calculation" class="only-dark align-right" src="../_images/water-dark-square.png" style="width: 250px;" />
 </a>
 <a class="only-light reference internal image-reference" href="../_images/water-light-square.png"><img alt="Water molecules simulated with lammps - NMR relaxation time calculation" class="only-light align-right" src="../_images/water-light-square.png" style="width: 250px;" />
 </a>
-<div class="justify docutils container">
 <p>The system is a bulk liquid water with a number <span class="math notranslate nohighlight">\(N\)</span> of water molecules,
 where <span class="math notranslate nohighlight">\(N\)</span> was varied from 25 to 4000. The simulation box was cubic,
 with equilibrium dimensions ranging from <span class="math notranslate nohighlight">\((0.9\,\text{nm})^3\)</span>
@@ -273,18 +280,34 @@ to <span class="math notranslate nohighlight">\((4.9\,\text{nm})^3\)</span>. The
 during a <span class="math notranslate nohighlight">\(8\,\text{ns}\)</span> production run performed with
 the open source codes LAMMPS (for the smallest systems) and GROMACS (for the largest systems).
 Simulations were performed in the NPT ensemble using a timestep of <span class="math notranslate nohighlight">\(2\,\text{fs}\)</span>.
-The imposed was temperature <span class="math notranslate nohighlight">\(T = 300\,^\circ\text{K}\)</span>, and the pressure
+The imposed temperature was <span class="math notranslate nohighlight">\(T = 300 \text{K}\)</span>, and the pressure
 <span class="math notranslate nohighlight">\(p = 1\,\text{atm}\)</span>. The positions of the atoms were recorded in the <em>prod.xtc</em> file
 every <span class="math notranslate nohighlight">\(\Delta t\)</span>, with <span class="math notranslate nohighlight">\(\Delta t\)</span> ranging from <span class="math notranslate nohighlight">\(0.2\,\text{ps}\)</span> to <span class="math notranslate nohighlight">\(32\,\text{ps}\)</span>.</p>
-</div>
 </section>
 <section id="results">
 <h2>Results<a class="headerlink" href="#results" title="Link to this heading">¶</a></h2>
-<div class="justify docutils container">
+<p>Before analysing the molecular dynamics, we first verify one of the
+central assumptions used throughout the package. For isotropic bulk
+liquids, the three second-rank dipolar correlation functions are
+expected to satisfy <span id="id1">[<a class="reference internal" href="../additional/bibliography.html#id227" title="Paul S. Hubbard. Theory of Nuclear Magnetic Relaxation by Spin-Rotational Interactions in Liquids. Physical Review, 131(3):1155–1165, August 1963. doi:10.1103/PhysRev.131.1155.">23</a>]</span></p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[G^{(0)} = 6 G^{(1)} = \frac{6}{4} G^{(2)}.\]</div>
+</div>
+<p>Verifying this proportionality provides a simple consistency check
+before analysing the relaxation spectra. A similar bencmark was done, for instance
+in Ref. <span id="id2">[<a class="reference internal" href="../additional/bibliography.html#id33" title="M. Becher, T. Wohlfromm, E. A. Rössler, and M. Vogel. Molecular dynamics simulations vs field-cycling NMR relaxometry: Structural relaxation mechanisms in the glass-former glycerol revisited. The Journal of Chemical Physics, 154(12):124503, March 2021. doi:10.1063/5.0048131.">15</a>]</span> with glycerol. Our results
+show that the proportionality relation is well verified (See figure below).</p>
+<img alt="NMR results obtained from the LAMMPS simulation of water" class="only-dark" src="../_images/effect_of_anisotropy-dark.png" />
+<img alt="NMR results obtained from the LAMMPS simulation of water" class="only-light" src="../_images/effect_of_anisotropy-light.png" />
+<div class="figurelegend docutils container">
+<p>Figure: Test of the validity of the relation
+<span class="math notranslate nohighlight">\(G^{(0)} = 6 G^{(1)} = \frac{6}{4} G^{(2)}\)</span> on a bulk water system; see text
+for details.</p>
+</div>
 <p>Both intra and inter-molecular correlation functions were extracted,
 and the respective intra and inter NMR spectra were calculated.
 The total NMR spectrum <span class="math notranslate nohighlight">\(R_1\)</span> was also calculated.</p>
-</div>
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-dark" src="../_images/water_spectrum-dark.png" />
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-light" src="../_images/water_spectrum-light.png" />
 <div class="figurelegend docutils container">
@@ -292,36 +315,39 @@ The total NMR spectrum <span class="math notranslate nohighlight">\(R_1\)</span>
 water simulation with <span class="math notranslate nohighlight">\(N = 4000\)</span> and <span class="math notranslate nohighlight">\(N = \Delta t = 1\,\text{ps}\)</span>.
 b) Corresponding NMR spectra <span class="math notranslate nohighlight">\(R_1\)</span>.</p>
 </div>
-<div class="justify docutils container">
-<blockquote>
-<div><p>The inter-molecular correlation function shows the expected power law at longer time,
+<p>The inter-molecular correlation function shows the expected power law at longer time,
 while the intra-molecular correlation decreases faster with time.</p>
-</div></blockquote>
-<div class="justify docutils container">
 <p>Our results also show that the relaxation is dominated by intra-molecular contribution,
-as expected for water under ambient conditions <span id="id1">[<a class="reference internal" href="../additional/bibliography.html#id475" title="Philip M. Singer, Dilip Asthagiri, Walter G. Chapman, and George J. Hirasaki. Molecular dynamics simulations of NMR relaxation and diffusion of bulk hydrocarbons and water. Journal of Magnetic Resonance, 277:15–24, April 2017. doi:10.1016/j.jmr.2017.02.001.">9</a>]</span>.
+as expected for water under ambient conditions <span id="id3">[<a class="reference internal" href="../additional/bibliography.html#id475" title="Philip M. Singer, Dilip Asthagiri, Walter G. Chapman, and George J. Hirasaki. Molecular dynamics simulations of NMR relaxation and diffusion of bulk hydrocarbons and water. Journal of Magnetic Resonance, 277:15–24, April 2017. doi:10.1016/j.jmr.2017.02.001.">9</a>]</span>.
 For the lowest frequency considered here, the spectrum <span class="math notranslate nohighlight">\(R_1\)</span> is almost flat.</p>
-</div>
-</div>
-<div class="justify docutils container">
-<p>Let us first visualize how <span class="math notranslate nohighlight">\(r_{ij}\)</span> and <span class="math notranslate nohighlight">\(\Omega_{ij}\)</span> evolve with time in the case of a
-bulk water simulation at 300 K. For such bulk systems, it is known that the correlations functions
-are proportional to each others <span id="id2">[<a class="reference internal" href="../additional/bibliography.html#id227" title="Paul S. Hubbard. Theory of Nuclear Magnetic Relaxation by Spin-Rotational Interactions in Liquids. Physical Review, 131(3):1155–1165, August 1963. doi:10.1103/PhysRev.131.1155.">23</a>]</span>, so only <span class="math notranslate nohighlight">\(G^{0}\)</span> and
+<p>To understand the origin of these relaxation spectra, it is useful to
+return to the atomic trajectories themselves. The dipolar interaction
+between two nuclear spins depends on both their separation
+<span class="math notranslate nohighlight">\(r_{ij}\)</span> and their relative orientation
+<span class="math notranslate nohighlight">\(\Omega_{ij}\)</span>. Following the evolution of these quantities in
+time therefore provides direct insight into the microscopic origin of
+NMR relaxation. Given that the correlations functions
+are proportional to each others, only <span class="math notranslate nohighlight">\(G^{0}\)</span> and
 <span class="math notranslate nohighlight">\(J^{0}\)</span> will be evaluated, which depends only in the polar angle <span class="math notranslate nohighlight">\(\theta_{ij}\)</span> as
 <span class="math notranslate nohighlight">\(Y^{0}_2\)</span> is independent from the azimuthal angle <span class="math notranslate nohighlight">\(\varphi\)</span>.</p>
-</div>
-<div class="justify docutils container">
-<p>First, let us have a look at the intramolecular motion within a single water molecule. As expected
-for the rigid water model used here (TIP4P/<span class="math notranslate nohighlight">\(\epsilon\)</span>), the
+<p>We first consider two hydrogen atoms belonging to the same water
+molecule. Because the water model is rigid, the internuclear distance
+remains essentially constant and only the molecular orientation
+changes with time.</p>
+<p>As expected for the rigid water model used here (TIP4P/<span class="math notranslate nohighlight">\(\epsilon\)</span>), the
 average distance <span class="math notranslate nohighlight">\(r_{ij}\)</span> between the two hydrogen atoms of the same molecule remains
 constant (within the uncertainty of the shake algorithm used to maintain the water molecule rigid),
 while the polar angle <span class="math notranslate nohighlight">\(\theta_{ij}\)</span> fluctuates with time, following the rotation of the
-water molecule (see the Figure below). The fluctuations of <span class="math notranslate nohighlight">\(\theta_{ij}\)</span> with time lead to fluctuations of the
-function <span class="math notranslate nohighlight">\(F_{0}^{(2)}\)</span> (see Eq. <a class="reference internal" href="../theory/theory.html#equation-f-2-0">(4)</a>) between a higher bound given by
+water molecule (see the Figure below).</p>
+<p>The dipolar interaction entering the relaxation equations is described
+by <span class="math notranslate nohighlight">\(F_2^{(0)}\)</span>, which combines the dependence on internuclear
+distance and orientation. Consequently, even modest rotational motions
+produce significant fluctuations in <span class="math notranslate nohighlight">\(F_2^{(0)}\)</span>.</p>
+<p>The fluctuations of <span class="math notranslate nohighlight">\(\theta_{ij}\)</span> with time lead to fluctuations of the
+function <span class="math notranslate nohighlight">\(F_{0}^{(2)}\)</span> (see Eq. <a class="reference internal" href="mathematical-framework.html#equation-f-2-0">(4)</a>) between a higher bound given by
 <span class="math notranslate nohighlight">\((3 \cos^2 0 - 1 ) / a^3 \approx 0.58\,A^{-3}\)</span>,
 where <span class="math notranslate nohighlight">\(a \approx 1.51\,A\)</span> is the typical distance between the two hydrogen atoms of the water
 molecule, and a lower bound <span class="math notranslate nohighlight">\((3 \cos^2 \pi/2 - 1 ) / a^3 \approx -0.29\,\,A^{-3}\)</span>.</p>
-</div>
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-dark" src="../_images/intramolecular-signal-illustration-dark.png" />
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-light" src="../_images/intramolecular-signal-illustration-light.png" />
 <div class="justify docutils container">
@@ -330,14 +356,14 @@ refer to two hydrogen atoms located within the same water molecule. a) <span cla
 time. c) <span class="math notranslate nohighlight">\(F_{2}^{(0)}\)</span> as a function of time. The temperature is 300 K, and
 the total number of water molecules is 3000.</p>
 </div>
-<div class="justify docutils container">
-<p>Second, let us have a look at the intermolecular motion between two hydrogen atoms from two different
-molecules. In that case, <span class="math notranslate nohighlight">\(r_{ij}\)</span> fluctuates significantly between <span class="math notranslate nohighlight">\(\approx 2.5 A\)</span>,
+<p>We now consider two hydrogen atoms belonging to different water
+molecules. In contrast with the intramolecular case, both the
+internuclear distance and the relative orientation fluctuate because
+of translational diffusion. In that case, <span class="math notranslate nohighlight">\(r_{ij}\)</span> fluctuates significantly between <span class="math notranslate nohighlight">\(\approx 2.5 A\)</span>,
 corresponding to the shortest typical distance between two molecules
 that are next to one another, to larger values (potentially as large as the box permits).
 As can be seen, the function <span class="math notranslate nohighlight">\(F_{0}^{(2)}\)</span> reaches its largest absolute values
 when <span class="math notranslate nohighlight">\(r_{ij}\)</span> is the shorter.</p>
-</div>
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-dark" src="../_images/intermolecular-signal-illustration-dark.png" />
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-light" src="../_images/intermolecular-signal-illustration-light.png" />
 <div class="justify docutils container">
@@ -346,75 +372,69 @@ refer to two hydrogen atoms located within two different water molecules. a) <sp
 time. c) <span class="math notranslate nohighlight">\(F_{2}^{(0)}\)</span> as a function of time. The temperature is 300 K, and
 the total number of water molecules is 3000.</p>
 </div>
-<div class="justify docutils container">
+<p>Although the behaviour of a single pair of nuclei is informative, NMR
+relaxation is a collective property. The relaxation rates are obtained
+by averaging the fluctuations of <span class="math notranslate nohighlight">\(F_2^{(0)}\)</span> over all relevant
+pairs of nuclei and over the complete molecular dynamics trajectory.</p>
 <p>From the fluctuating quantities <span class="math notranslate nohighlight">\(F_{0}^{(2)}\)</span> summed up over all the available pair of
 spins, one can extract the two correlation functions <span class="math notranslate nohighlight">\(G_\textrm{intra}^{(0)}\)</span> and
-<span class="math notranslate nohighlight">\(G_\textrm{inter}^{(0)}\)</span> (see Eqs. <a class="reference internal" href="../theory/theory.html#equation-g-intra">(2)</a> and <a class="reference internal" href="../theory/theory.html#equation-g-inter">(3)</a>). For comparison,
+<span class="math notranslate nohighlight">\(G_\textrm{inter}^{(0)}\)</span> (see Eqs. <a class="reference internal" href="mathematical-framework.html#equation-g-intra">(2)</a> and <a class="reference internal" href="mathematical-framework.html#equation-g-inter">(3)</a>). For comparison,
 the results obtained with two different temperatures 275 and 300 K are reported.</p>
-</div>
-<div class="justify docutils container">
-<p>At short time $t &lt; 40$ ps, the intra-molecular correlation functions follow and
+<p>At short time <span class="math notranslate nohighlight">\(t &lt; 40\)</span> ps, the intra-molecular correlation functions follow and
 a decreasing exponential,</p>
-</div>
 <div class="math-wrapper docutils container" id="equation-eq-exp-g">
 <div class="math notranslate nohighlight" id="equation-eq-exp-g">
 <span class="eqno">(1)<a class="headerlink" href="#equation-eq-exp-g" title="Link to this equation">¶</a></span>\[G_\text{intra} (t) = G_\text{intra} (0)  \exp{(-t / \tau_\text{intra})},\]</div>
 </div>
-<div class="justify docutils container">
 <p>where <span class="math notranslate nohighlight">\(\tau_\text{intra} = 6.3\)</span> ps was used for <span class="math notranslate nohighlight">\(T = 300\)</span> K
 and <span class="math notranslate nohighlight">\(\tau_\text{intra} = 3.2\)</span> ps was used for <span class="math notranslate nohighlight">\(T = 275\)</span> K, see the figure
-below. Exponentially decreasing correlation functions such as Eq. <a class="reference internal" href="#equation-eq-exp-g">(1)</a> are
-commonly used to describe systems for which the rotational diffusion
-is isotropic <span id="id3">[<a class="reference internal" href="../additional/bibliography.html#id304" title="G. Lippens, D. Van Belle, S.J. Wodak, and J. Jeener. T1 relaxation time of water from a molecular dynamics simulation. Molecular Physics, 80(6):1469–1484, December 1993. doi:10.1080/00268979300103151.">7</a>]</span>.</p>
-</div>
-<div class="justify docutils container">
+below. An exponential decay, such as Eq. <a class="reference internal" href="#equation-eq-exp-g">(1)</a>, is common for process governed by a single
+characteristic correlation time. Such behaviour is commonly
+used to describe isotropic rotational diffusion and provides a good
+approximation for the short-time intramolecular dynamics of liquid
+water <span id="id4">[<a class="reference internal" href="../additional/bibliography.html#id304" title="G. Lippens, D. Van Belle, S.J. Wodak, and J. Jeener. T1 relaxation time of water from a molecular dynamics simulation. Molecular Physics, 80(6):1469–1484, December 1993. doi:10.1080/00268979300103151.">7</a>]</span>.</p>
 <p>The inter-molecular correlation functions, however, scale as an
 exponential [i.e. Eq. <a class="reference internal" href="#equation-eq-exp-g">(1)</a>] only for time shorter than a
 few tens of pico-second, and show a clear scaling as <span class="math notranslate nohighlight">\(G_\text{inter} (t) \sim t^{-3/2}\)</span>
 for large time which is a characteristic signature of the diffusion
-process controlling the motion of the molecules. The scaling
-<span class="math notranslate nohighlight">\(G_\text{inter} (t) \sim t^{-3/2}\)</span> has long been predicted, and
-analytical expressions have been proposed by Ayant et al. <span id="id4">[<a class="reference internal" href="../additional/bibliography.html#id22" title="Y. Ayant, E. Belorizky, J. Aluzon, and J. Gallice. Calcul des densités spectrales résultant d'un mouvement aléatoire de translation en relaxation par interaction dipolaire magnétique dans les liquides. Journal de Physique, 36(10):991–1004, October 1975. doi:10.1051/jphys:019750036010099100.">27</a>]</span> and
-Hwang and Freed <span id="id5">[<a class="reference internal" href="../additional/bibliography.html#id234" title="Lian-Pin Hwang and Jack H. Freed. Dynamic effects of pair correlation functions on spin relaxation by translational diffusion in liquids. The Journal of Chemical Physics, 63(9):4017–4025, September 2008. doi:10.1063/1.431841.">28</a>]</span>, in the context of freely diffusing hard spheres.
-Following Ref <span id="id6">[<a class="reference internal" href="../additional/bibliography.html#id184" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">6</a>]</span>, this expression is here referred to
+process controlling the motion of the molecules.</p>
+<p>At longer times, translational diffusion continually brings new
+molecular neighbours into and out of the local environment. This
+diffusive process produces the characteristic long-time
+<span class="math notranslate nohighlight">\(t^{-3/2}\)</span> decay predicted theoretically for freely diffusing
+particles. The scaling <span class="math notranslate nohighlight">\(G_\text{inter} (t) \sim t^{-3/2}\)</span> has long been predicted, and
+analytical expressions have been proposed by Ayant et al. <span id="id5">[<a class="reference internal" href="../additional/bibliography.html#id22" title="Y. Ayant, E. Belorizky, J. Aluzon, and J. Gallice. Calcul des densités spectrales résultant d'un mouvement aléatoire de translation en relaxation par interaction dipolaire magnétique dans les liquides. Journal de Physique, 36(10):991–1004, October 1975. doi:10.1051/jphys:019750036010099100.">24</a>]</span> and
+Hwang and Freed <span id="id6">[<a class="reference internal" href="../additional/bibliography.html#id234" title="Lian-Pin Hwang and Jack H. Freed. Dynamic effects of pair correlation functions on spin relaxation by translational diffusion in liquids. The Journal of Chemical Physics, 63(9):4017–4025, September 2008. doi:10.1063/1.431841.">25</a>]</span>, in the context of freely diffusing hard spheres.
+Following Ref <span id="id7">[<a class="reference internal" href="../additional/bibliography.html#id184" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">6</a>]</span>, this expression is here referred to
 as a ADHF.</p>
-</div>
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-dark" src="../_images/gij-R1-illustration-dark.png" />
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-light" src="../_images/gij-R1-illustration-light.png" />
-<div class="justify docutils container">
 <p>The intra molecular spectrum <span class="math notranslate nohighlight">\(J_\textrm{intra}^{(0)}\)</span> can be reasonably
 well adjusted by a Lorentzian</p>
-</div>
 <div class="math-wrapper docutils container" id="equation-eq-lorenzian-g">
 <div class="math notranslate nohighlight" id="equation-eq-lorenzian-g">
 <span class="eqno">(2)<a class="headerlink" href="#equation-eq-lorenzian-g" title="Link to this equation">¶</a></span>\[J_\text{intra} (f) = G_\text{intra} (0) \dfrac{2 \tau_\text{c}}{1 + 4 \pi^2 f^2 \tau_\text{c}^2}\]</div>
 </div>
-<div class="justify docutils container">
 <p>using <span class="math notranslate nohighlight">\(\tau_\text{c} = 6.3\)</span> ps and <span class="math notranslate nohighlight">\(G(0) = 56300\)</span> A⁻⁶ ps⁻² for <span class="math notranslate nohighlight">\(T = 300\)</span> K
 and <span class="math notranslate nohighlight">\(\tau_\text{c} = 3.2\)</span> ps and <span class="math notranslate nohighlight">\(G(0) = 59500\)</span> A⁻⁶ ps⁻² for <span class="math notranslate nohighlight">\(T = 275\)</span> K.</p>
-</div>
-<div class="justify docutils container">
 <p>The inter molecular spectrum <span class="math notranslate nohighlight">\(J_\textrm{inter}^{(0)}\)</span>, however, does not follow the
 Lorentzian plateau, particularly at the lowest frequencies, which is consistent with
 the correlation function <span class="math notranslate nohighlight">\(G_\textrm{inter}^{(0)}\)</span> decaying with time as a
-power law. In that case, and following closely Ref. <span id="id7">[<a class="reference internal" href="../additional/bibliography.html#id173" title="Simon Gravelle, Roland R. Netz, and Lydéric Bocquet. Adsorption Kinetics in Open Nanopores as a Source of Low-Frequency Noise. Nano Letters, 19(10):7265–7272, October 2019. doi:10.1021/acs.nanolett.9b02858.">29</a>]</span>,
+power law. In that case, and following closely Ref. <span id="id8">[<a class="reference internal" href="../additional/bibliography.html#id173" title="Simon Gravelle, Roland R. Netz, and Lydéric Bocquet. Adsorption Kinetics in Open Nanopores as a Source of Low-Frequency Noise. Nano Letters, 19(10):7265–7272, October 2019. doi:10.1021/acs.nanolett.9b02858.">26</a>]</span>,
 an exact analytical expression for the surface spectrum <span class="math notranslate nohighlight">\(J_\textrm{surf} (f)\)</span> can be
 obtained from the first return passage time of a molecule between successive
 adsorption and desorption at the surface of a sphere, in the limit of a large diffusing
 reservoir:</p>
-</div>
 <div class="math-wrapper docutils container" id="equation-eq-spectrum-sqrt">
 <div class="math notranslate nohighlight" id="equation-eq-spectrum-sqrt">
 <span class="eqno">(3)<a class="headerlink" href="#equation-eq-spectrum-sqrt" title="Link to this equation">¶</a></span>\[J_\text{inter} (f) \sim \left[ 1 + A + B \sqrt{ 2 \pi f} \right]^{-1}.\]</div>
 </div>
-<div class="justify docutils container">
-<p>Still from Ref. <span id="id8">[<a class="reference internal" href="../additional/bibliography.html#id173" title="Simon Gravelle, Roland R. Netz, and Lydéric Bocquet. Adsorption Kinetics in Open Nanopores as a Source of Low-Frequency Noise. Nano Letters, 19(10):7265–7272, October 2019. doi:10.1021/acs.nanolett.9b02858.">29</a>]</span>, one can deduce that
+<p>Still from Ref. <span id="id9">[<a class="reference internal" href="../additional/bibliography.html#id173" title="Simon Gravelle, Roland R. Netz, and Lydéric Bocquet. Adsorption Kinetics in Open Nanopores as a Source of Low-Frequency Noise. Nano Letters, 19(10):7265–7272, October 2019. doi:10.1021/acs.nanolett.9b02858.">26</a>]</span>, one can deduce that
 <span class="math notranslate nohighlight">\(A = k r / D\)</span> and <span class="math notranslate nohighlight">\(B = r / \sqrt{D}\)</span> where <span class="math notranslate nohighlight">\(r\)</span> is here the radius
 of the water molecule, <span class="math notranslate nohighlight">\(D\)</span> the diffusion coefficient, and <span class="math notranslate nohighlight">\(k\)</span> a
 phenomenological rate constant with the units of m/s. The frequency scaling
 as predicted by equation <a class="reference internal" href="#equation-eq-spectrum-sqrt">(3)</a> is in good agreement with molecular
 dynamics results at frequency lower than <span class="math notranslate nohighlight">\(10^4\)</span> MHz.</p>
-</div>
 </section>
 </section>
 
@@ -423,23 +443,23 @@ dynamics results at frequency lower than <span class="math notranslate nohighlig
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="lysozyme-in-water.html">
+          <a class="next-page" href="../applications/tutorial.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Lysozyme in water</div>
+                <div class="title">Tutorial</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="lennard-jones-fluids.html">
+          <a class="prev-page" href="mathematical-framework.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Lennard-Jones fluid</div>
+                <div class="title">Mathematical framework</div>
                 
               </div>
             </a>
@@ -473,7 +493,7 @@ dynamics results at frequency lower than <span class="math notranslate nohighlig
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">Molecular system</a><ul>
+<li><a class="reference internal" href="#">Microscopic origin of relaxation</a><ul>
 <li><a class="reference internal" href="#md-system">MD system</a></li>
 <li><a class="reference internal" href="#results">Results</a></li>
 </ul>

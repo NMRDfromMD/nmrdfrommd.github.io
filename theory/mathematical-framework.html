@@ -3,11 +3,11 @@
   <head><meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="../_static/favicon-32x32.png" sizes="32x32" rel="icon" type="image/png"><link rel="index" title="Index" href="../genindex.html"><link rel="search" title="Search" href="../search.html"><link rel="next" title="Tutorial" href="../applications/tutorial.html"><link rel="prev" title="Context" href="context.html">
+    <link href="../_static/favicon-32x32.png" sizes="32x32" rel="icon" type="image/png"><link rel="index" title="Index" href="../genindex.html"><link rel="search" title="Search" href="../search.html"><link rel="next" title="Microscopic origin of relaxation" href="microscopic-origin.html"><link rel="prev" title="Context" href="context.html">
         <link rel="prefetch" href="../_static/logo-b.png" as="image">
 
     <!-- Generated with Sphinx 7.4.7 and Furo 2025.12.19 -->
-        <title>Theory - </title>
+        <title>Mathematical framework - </title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=8dab3a3b" />
@@ -198,13 +198,13 @@
   <p class="caption" role="heading"><span class="caption-text">Theory</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="context.html">Context</a></li>
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Theory</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Mathematical framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="microscopic-origin.html">Microscopic origin of relaxation</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Applications</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../applications/tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../applications/lennard-jones-fluids.html">Lennard-Jones fluid</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../applications/bulk-water.html">Molecular system</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../applications/lysozyme-in-water.html">Lysozyme in water</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../applications/anisotropic-system.html">Anisotropic systems</a></li>
 </ul>
@@ -236,7 +236,7 @@
         </a>
         <div class="content-icon-container">
           <div class="view-this-page">
-  <a class="muted-link" href="../_sources/theory/theory.rst.txt" title="View this page">
+  <a class="muted-link" href="../_sources/theory/mathematical-framework.rst.txt" title="View this page">
     <svg><use href="#svg-eye"></use></svg>
     <span class="visually-hidden">View this page</span>
   </a>
@@ -254,8 +254,8 @@
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section id="theory">
-<h1>Theory<a class="headerlink" href="#theory" title="Link to this heading">¶</a></h1>
+          <section id="mathematical-framework">
+<h1>Mathematical framework<a class="headerlink" href="#mathematical-framework" title="Link to this heading">¶</a></h1>
 <p>The system of interest here is an ensemble of identical spins characterized
 by a gyromagnetic ratio <span class="math notranslate nohighlight">\(\gamma_I\)</span> and spin quantum number
 <span class="math notranslate nohighlight">\(I\)</span>. For <span class="math notranslate nohighlight">\(^{1} \text{H}\)</span>, the most abundant isotope of hydrogen,
@@ -375,18 +375,6 @@ written as:</p>
 <span class="eqno">(4)<a class="headerlink" href="#equation-f-2-0" title="Link to this equation">¶</a></span>\[F_2^{(0)} [\textbf{r}_{ij} (t)] = \alpha_0 \dfrac{Y_2^{(0)} [\Omega_{ij} (t)]}{r_{ij}^3 (t)}
 = \dfrac{3 \cos^2 \theta_\text{ij} (t) - 1}{r_{ij}^3 (t)}.\]</div>
 </div>
-<p>Here, we check the validity of the relation
-<span class="math notranslate nohighlight">\(G^{(0)} = 6 G^{(1)} = 6 / 4 G^{(2)}\)</span> on a simple bulk water system with
-4000 molecules, similar to the approach taken in
-<span id="id6">[<a class="reference internal" href="../additional/bibliography.html#id33" title="M. Becher, T. Wohlfromm, E. A. Rössler, and M. Vogel. Molecular dynamics simulations vs field-cycling NMR relaxometry: Structural relaxation mechanisms in the glass-former glycerol revisited. The Journal of Chemical Physics, 154(12):124503, March 2021. doi:10.1063/5.0048131.">15</a>]</span> with glycerol. The proportionality
-relation is well verified (Figure below).</p>
-<img alt="NMR results obtained from the LAMMPS simulation of water" class="only-dark" src="../_images/effect_of_anisotropy-dark.png" />
-<img alt="NMR results obtained from the LAMMPS simulation of water" class="only-light" src="../_images/effect_of_anisotropy-light.png" />
-<div class="figurelegend docutils container">
-<p>Figure: Test of the validity of the relation
-<span class="math notranslate nohighlight">\(G^{(0)} = 6 G^{(1)} = 6 / 4 G^{(2)}\)</span> on a bulk water system; see text
-for details.</p>
-</div>
 </section>
 </section>
 
@@ -395,12 +383,12 @@ for details.</p>
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="../applications/tutorial.html">
+          <a class="next-page" href="microscopic-origin.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Tutorial</div>
+                <div class="title">Microscopic origin of relaxation</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
@@ -445,7 +433,7 @@ for details.</p>
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">Theory</a><ul>
+<li><a class="reference internal" href="#">Mathematical framework</a><ul>
 <li><a class="reference internal" href="#intra-inter-contributions">Intra/inter contributions</a></li>
 <li><a class="reference internal" href="#isotropic-system">Isotropic system</a></li>
 </ul>
