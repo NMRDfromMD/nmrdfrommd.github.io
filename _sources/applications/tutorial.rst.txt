@@ -32,8 +32,8 @@ To follow the tutorial, |MDAnalysis|, |NumPy|, and
     If you'd like to learn LAMMPS and generate your own trajectories, beginner
     |lammps-tutorials| are available here :cite:`gravelleSetTutorialsLAMMPS2025`.
 
-MD system
----------
+System
+------
 
 .. image:: tutorial/snapshot-dark.png
     :class: only-dark
