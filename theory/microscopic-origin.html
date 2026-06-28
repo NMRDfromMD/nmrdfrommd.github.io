@@ -275,7 +275,7 @@ relaxation.</p>
 </a>
 <p>The system consists of a bulk liquid containing <span class="math notranslate nohighlight">\(N = 2000\)</span> water
 molecules. The simulation box was cubic, with equilibrium dimensions of
-<span class="math notranslate nohighlight">\((X\,\text{nm})^3\)</span>. Simulations were performed using the open-source
+<span class="math notranslate nohighlight">\((4\,\text{nm})^3\)</span>. Simulations were performed using the open-source
 code LAMMPS. The system was first equilibrated in the NPT ensemble at a
 temperature of <span class="math notranslate nohighlight">\(T = 300\,\text{K}\)</span> and a pressure of
 <span class="math notranslate nohighlight">\(p = 1\,\text{atm}\)</span>. The trajectory was then recorded during a
@@ -308,7 +308,7 @@ whose squared moduli satisfy
 <span class="math notranslate nohighlight">\(|Y_2^0|^2 : |Y_2^1|^2 : |Y_2^2|^2 = 1 : 3 : 3\)</span>, combined with
 the symmetry factor accounting for <span class="math notranslate nohighlight">\(m\)</span> &gt; 0 pairs.</p>
 <p>Verifying this proportionality provides a simple consistency check
-before analysing the relaxation spectra. A similar bencmark was done, for instance
+before analysing the relaxation spectra. A similar benchmark was done, for instance
 in Ref. <span id="id2">[<a class="reference internal" href="../additional/bibliography.html#id33" title="M. Becher, T. Wohlfromm, E. A. Rössler, and M. Vogel. Molecular dynamics simulations vs field-cycling NMR relaxometry: Structural relaxation mechanisms in the glass-former glycerol revisited. The Journal of Chemical Physics, 154(12):124503, March 2021. doi:10.1063/5.0048131.">15</a>]</span> with glycerol. Our results
 show that the proportionality relation is well verified (See figure below).</p>
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-dark" src="../_images/proportionality-G-dm.png" />
@@ -318,7 +318,7 @@ show that the proportionality relation is well verified (See figure below).</p>
 obtained from a bulk water molecular dynamics. B) Relaxation rate, <span class="math notranslate nohighlight">\(R_1\)</span>,
 inter-molecular relaxation rate, <span class="math notranslate nohighlight">\(R_\text{1 T}\)</span>, and intra-molecular relaxation rate, <span class="math notranslate nohighlight">\(R_\text{1 R}\)</span>,
 as a function of the frequency <span class="math notranslate nohighlight">\(f\)</span>. The temperature is 300 K, and
-the total number of water molecules is 3000.</p>
+the total number of water molecules is 2000.</p>
 </div>
 <p>Our results also show that the total relaxation is dominated by intra-molecular contribution,
 as expected for water under ambient conditions <span id="id3">[<a class="reference internal" href="../additional/bibliography.html#id475" title="Philip M. Singer, Dilip Asthagiri, Walter G. Chapman, and George J. Hirasaki. Molecular dynamics simulations of NMR relaxation and diffusion of bulk hydrocarbons and water. Journal of Magnetic Resonance, 277:15–24, April 2017. doi:10.1016/j.jmr.2017.02.001.">9</a>]</span>.</p>
@@ -374,7 +374,7 @@ the dipolar interaction.</p>
 <p>Figure: A) <span class="math notranslate nohighlight">\(\theta_{ij}\)</span> as a function of the time <span class="math notranslate nohighlight">\(t\)</span>, where <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>
 refer to two hydrogen atoms located within the same water molecule. B) <span class="math notranslate nohighlight">\(r_{ij}\)</span> as a function of
 time. C) <span class="math notranslate nohighlight">\(F_{2}^{(0)}\)</span> as a function of time. The temperature is 300 K, and
-the total number of water molecules is 4000.</p>
+the total number of water molecules is 2000.</p>
 </div>
 </section>
 <section id="inter-molecular-contribution">
@@ -392,8 +392,8 @@ when <span class="math notranslate nohighlight">\(r_{ij}\)</span> is the shorter
 <div class="figurelegend docutils container">
 <p>Figure: A) <span class="math notranslate nohighlight">\(\theta_{ij}\)</span> as a function of the time <span class="math notranslate nohighlight">\(t\)</span>, where <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>
 refer to two hydrogen atoms located within two different water molecules. B) <span class="math notranslate nohighlight">\(r_{ij}\)</span> as a function of
-time. C) <span class="math notranslate nohighlight">\(F_{2}^{(0)}\)</span> as a function of time. The temperature is 300 K, and
-the total number of water molecules is 4000.</p>
+time. C) <span class="math notranslate nohighlight">\(F_2^{(0)}\)</span> as a function of time. The temperature is 300 K, and
+the total number of water molecules is 2000.</p>
 </div>
 </section>
 <section id="from-pair-dynamics-to-collective-relaxation">
@@ -402,7 +402,7 @@ the total number of water molecules is 4000.</p>
 relaxation is a collective property. The relaxation rates are obtained
 by averaging the fluctuations of <span class="math notranslate nohighlight">\(F_2^{(0)}\)</span> over all relevant
 pairs of nuclei and over the complete molecular dynamics trajectory.</p>
-<p>From the fluctuating quantities <span class="math notranslate nohighlight">\(F_{0}^{(2)}\)</span> summed up over all the available pair of
+<p>From the fluctuating quantities <span class="math notranslate nohighlight">\(F_2^{(0)}\)</span> summed up over all the available pair of
 spins, one can extract the two correlation functions <span class="math notranslate nohighlight">\(G_\textrm{intra}^{(0)}\)</span> and
 <span class="math notranslate nohighlight">\(G_\textrm{inter}^{(0)}\)</span> (see Eqs. <a class="reference internal" href="mathematical-framework.html#equation-g-intra">(2)</a> and <a class="reference internal" href="mathematical-framework.html#equation-g-inter">(3)</a>). For comparison,
 the results obtained with two different temperatures 275 and 300 K are reported.</p>
@@ -449,8 +449,7 @@ shown on a log-log scale. The dashed line indicates the long-time scaling
 The solid line corresponds to a Lorentzian fit based on a single correlation time
 approximation.
 (D) Intermolecular spectral density <span class="math notranslate nohighlight">\(J^{(0)}_\mathrm{inter}(f)\)</span>.
-The solid line shows the analytical ADHF prediction capturing diffusion-driven
-deviations from Lorentzian behavior at low frequencies.</p>
+The solid line shows the analytical prediction capturing adsorption-diffusion.</p>
 </div>
 <p>The intra molecular spectrum <span class="math notranslate nohighlight">\(J_\textrm{intra}^{(0)}\)</span> can be reasonably
 well adjusted by a Lorentzian</p>
@@ -468,11 +467,11 @@ power-law decay observed in the corresponding correlation function
 translational diffusion and indicates that the relaxation dynamics is not governed
 by a single characteristic correlation time. In this regime, and following closely
 Ref. <span id="id8">[<a class="reference internal" href="../additional/bibliography.html#id173" title="Simon Gravelle, Roland R. Netz, and Lydéric Bocquet. Adsorption Kinetics in Open Nanopores as a Source of Low-Frequency Noise. Nano Letters, 19(10):7265–7272, October 2019. doi:10.1021/acs.nanolett.9b02858.">26</a>]</span>, the spectral density can be
-described by the adsorption-diffusion hard-sphere (ADHF) model, which yields an
+described by adsorption-diffusion, which yields an
 analytical expression based on first-passage statistics in a diffusive reservoir:</p>
 <div class="math-wrapper docutils container" id="equation-eq-spectrum-sqrt">
 <div class="math notranslate nohighlight" id="equation-eq-spectrum-sqrt">
-<span class="eqno">(3)<a class="headerlink" href="#equation-eq-spectrum-sqrt" title="Link to this equation">¶</a></span>\[J_\mathrm{ADHF}(f) = \left[ 1 + A + B \sqrt{2 \pi f} \right]^{-1}.\]</div>
+<span class="eqno">(3)<a class="headerlink" href="#equation-eq-spectrum-sqrt" title="Link to this equation">¶</a></span>\[J_\mathrm{inter}(f) = \left[ 1 + A + B \sqrt{2 \pi f} \right]^{-1}.\]</div>
 </div>
 <p>Within this framework, the parameters have a direct physical interpretation:
 <span class="math notranslate nohighlight">\(A = k r / D\)</span> and <span class="math notranslate nohighlight">\(B = r / \sqrt{D}\)</span>, where <span class="math notranslate nohighlight">\(r\)</span> is the molecular
