@@ -7,7 +7,7 @@
         <link rel="prefetch" href="../_static/logo-b.png" as="image">
 
     <!-- Generated with Sphinx 7.4.7 and Furo 2025.12.19 -->
-        <title>Microscopic origin of relaxation - </title>
+        <title>Microscopic mechanisms of relaxation - </title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=8dab3a3b" />
@@ -199,7 +199,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="context.html">Context</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mathematical-framework.html">Mathematical framework</a></li>
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Microscopic origin of relaxation</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Microscopic mechanisms of relaxation</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Applications</span></p>
 <ul>
@@ -254,8 +254,8 @@
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section id="microscopic-origin-of-relaxation">
-<span id="bulk-water-label"></span><h1>Microscopic origin of relaxation<a class="headerlink" href="#microscopic-origin-of-relaxation" title="Link to this heading">¶</a></h1>
+          <section id="microscopic-mechanisms-of-relaxation">
+<span id="bulk-water-label"></span><h1>Microscopic mechanisms of relaxation<a class="headerlink" href="#microscopic-mechanisms-of-relaxation" title="Link to this heading">¶</a></h1>
 <p>This section illustrates how the microscopic motions observed in a
 molecular dynamics trajectory give rise to the macroscopic
 <span class="math notranslate nohighlight">\(^1\mathrm{H}\)</span>-NMR relaxation rates measured experimentally.
@@ -282,9 +282,13 @@ temperature of <span class="math notranslate nohighlight">\(T = 300\,\text{K}\)<
 <span class="math notranslate nohighlight">\(10\,\text{ns}\)</span> production run performed in the NVT ensemble using a
 timestep of <span class="math notranslate nohighlight">\(2\,\text{fs}\)</span>. The atomic positions were written to the
 <code class="file docutils literal notranslate"><span class="pre">prod.xtc</span></code> trajectory file every <span class="math notranslate nohighlight">\(\Delta t = 2\,\text{ps}\)</span>.</p>
+<p>In the following, we progressively connect molecular motion in the
+trajectory to correlation functions and spectral densities, in order
+to identify the distinct microscopic mechanisms contributing to
+NMR relaxation.</p>
 </section>
-<section id="results">
-<h2>Results<a class="headerlink" href="#results" title="Link to this heading">¶</a></h2>
+<section id="isotropic-consistency-of-g-m-functions">
+<h2>Isotropic consistency of <span class="math notranslate nohighlight">\(G^{(m)}\)</span> functions<a class="headerlink" href="#isotropic-consistency-of-g-m-functions" title="Link to this heading">¶</a></h2>
 <p>Before analysing the molecular dynamics, we first verify one of the
 central assumptions used throughout the package. For isotropic bulk
 liquids, the three second-rank dipolar correlation functions are
@@ -510,9 +514,9 @@ dynamics results at frequency lower than <span class="math notranslate nohighlig
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">Microscopic origin of relaxation</a><ul>
+<li><a class="reference internal" href="#">Microscopic mechanisms of relaxation</a><ul>
 <li><a class="reference internal" href="#md-system">MD system</a></li>
-<li><a class="reference internal" href="#results">Results</a><ul>
+<li><a class="reference internal" href="#isotropic-consistency-of-g-m-functions">Isotropic consistency of <span class="math notranslate nohighlight">\(G^{(m)}\)</span> functions</a><ul>
 <li><a class="reference internal" href="#intra-molecular-contribution">Intra-molecular contribution</a></li>
 <li><a class="reference internal" href="#inter-molecular-contribution">Inter-molecular contribution</a></li>
 </ul>

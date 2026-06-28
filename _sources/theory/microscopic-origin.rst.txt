@@ -1,7 +1,7 @@
 .. _bulk-water-label:
 
-Microscopic origin of relaxation
-================================
+Microscopic mechanisms of relaxation
+====================================
 
 This section illustrates how the microscopic motions observed in a
 molecular dynamics trajectory give rise to the macroscopic
@@ -41,8 +41,13 @@ temperature of :math:`T = 300\,\text{K}` and a pressure of
 timestep of :math:`2\,\text{fs}`. The atomic positions were written to the
 :file:`prod.xtc` trajectory file every :math:`\Delta t = 2\,\text{ps}`.
 
-Results
--------
+In the following, we progressively connect molecular motion in the
+trajectory to correlation functions and spectral densities, in order
+to identify the distinct microscopic mechanisms contributing to
+NMR relaxation.
+
+Isotropic consistency of :math:`G^{(m)}` functions
+--------------------------------------------------
 
 Before analysing the molecular dynamics, we first verify one of the
 central assumptions used throughout the package. For isotropic bulk
