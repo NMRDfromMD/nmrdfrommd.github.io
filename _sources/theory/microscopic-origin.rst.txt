@@ -240,13 +240,25 @@ density. This motivates the use of alternative theoretical
 descriptions for the low-frequency behaviour of
 :math:`J_\text{inter}(f)`
 
-.. image:: ../figures/best-practices/gij-R1-illustration-dark.png
+.. image:: microscopic-origin/spectra-dm.png
     :class: only-dark
     :alt: NMR results obtained from the LAMMPS simulation of water
 
-.. image:: ../figures/best-practices/gij-R1-illustration-light.png
-    :class: only-light
+.. image:: microscopic-origin/spectra.png
     :alt: NMR results obtained from the LAMMPS simulation of water
+
+.. container:: figurelegend
+
+    Figure: (A) Intramolecular dipolar correlation function :math:`G^{(0)}_\mathrm{intra}(t)`.
+    (B) Intermolecular dipolar correlation function :math:`G^{(0)}_\mathrm{inter}(t)`,
+    shown on a log-log scale. The dashed line indicates the long-time scaling
+    :math:`G(t) \propto t^{-3/2}`, characteristic of translational diffusion.
+    (C) Intramolecular spectral density :math:`J^{(0)}_\mathrm{intra}(f)`.
+    The solid line corresponds to a Lorentzian fit based on a single correlation time
+    approximation.
+    (D) Intermolecular spectral density :math:`J^{(0)}_\mathrm{inter}(f)`.
+    The solid line shows the analytical ADHF prediction capturing diffusion-driven
+    deviations from Lorentzian behavior at low frequencies.
 
 The intra molecular spectrum :math:`J_\textrm{intra}^{(0)}` can be reasonably
 well adjusted by a Lorentzian
@@ -259,23 +271,29 @@ well adjusted by a Lorentzian
 using :math:`\tau_\text{c} = 6.3` ps and :math:`G(0) = 56300` A⁻⁶ ps⁻² for :math:`T = 300` K
 and :math:`\tau_\text{c} = 3.2` ps and :math:`G(0) = 59500` A⁻⁶ ps⁻² for :math:`T = 275` K. 
 
-The inter molecular spectrum :math:`J_\textrm{inter}^{(0)}`, however, does not follow the 
-Lorentzian plateau, particularly at the lowest frequencies, which is consistent with 
-the correlation function :math:`G_\textrm{inter}^{(0)}` decaying with time as a
-power law. In that case, and following closely Ref. :cite:`gravelleAdsorptionKineticsOpen2019`,
-an exact analytical expression for the surface spectrum :math:`J_\textrm{surf} (f)` can be
-obtained from the first return passage time of a molecule between successive
-adsorption and desorption at the surface of a sphere, in the limit of a large diffusing 
-reservoir:
+The intermolecular spectral density :math:`J_\mathrm{inter}^{(0)}`, however, does not follow a Lorentzian
+plateau at low frequencies. This deviation is directly related to the long-time
+power-law decay observed in the corresponding correlation function
+:math:`G_\mathrm{inter}^{(0)}(t)`.
+
+In particular, the algebraic decay :math:`G(t) \sim t^{-3/2}` is caracteristic of
+translational diffusion and indicates that the relaxation dynamics is not governed
+by a single characteristic correlation time. In this regime, and following closely
+Ref. :cite:`gravelleAdsorptionKineticsOpen2019`, the spectral density can be
+described by the adsorption-diffusion hard-sphere (ADHF) model, which yields an
+analytical expression based on first-passage statistics in a diffusive reservoir:
 
 .. math::
     :label: eq_spectrum_sqrt
 
-    J_\text{inter} (f) \sim \left[ 1 + A + B \sqrt{ 2 \pi f} \right]^{-1}.
+    J_\mathrm{ADHF}(f) = \left[ 1 + A + B \sqrt{2 \pi f} \right]^{-1}.
 
-Still from Ref. :cite:`gravelleAdsorptionKineticsOpen2019`, one can deduce that
-:math:`A = k r / D` and :math:`B = r / \sqrt{D}` where :math:`r` is here the radius
-of the water molecule, :math:`D` the diffusion coefficient, and :math:`k` a
-phenomenological rate constant with the units of m/s. The frequency scaling
-as predicted by equation :eq:`eq_spectrum_sqrt` is in good agreement with molecular 
-dynamics results at frequency lower than :math:`10^4` MHz.
+Within this framework, the parameters have a direct physical interpretation:
+:math:`A = k r / D` and :math:`B = r / \sqrt{D}`, where :math:`r` is the molecular
+radius, :math:`D` the self-diffusion coefficient, and :math:`k` a phenomenological
+exchange rate (m·s⁻¹) describing effective adsorption-desorption kinetics.
+
+The resulting frequency dependence captures the crossover from a quasi-plateau at
+low frequency to a diffusion-dominated decay at higher frequencies. As shown in
+panel (D), the ADHF model provides a good description of the molecular dynamics
+results up to approximately :math:`10^4\,\mathrm{MHz}`.

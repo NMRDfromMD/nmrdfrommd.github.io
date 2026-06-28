@@ -438,8 +438,20 @@ correlation function, it does not lead to a Lorentzian spectral
 density. This motivates the use of alternative theoretical
 descriptions for the low-frequency behaviour of
 <span class="math notranslate nohighlight">\(J_\text{inter}(f)\)</span></p>
-<img alt="NMR results obtained from the LAMMPS simulation of water" class="only-dark" src="../_images/gij-R1-illustration-dark.png" />
-<img alt="NMR results obtained from the LAMMPS simulation of water" class="only-light" src="../_images/gij-R1-illustration-light.png" />
+<img alt="NMR results obtained from the LAMMPS simulation of water" class="only-dark" src="../_images/spectra-dm.png" />
+<img alt="NMR results obtained from the LAMMPS simulation of water" src="../_images/spectra.png" />
+<div class="figurelegend docutils container">
+<p>Figure: (A) Intramolecular dipolar correlation function <span class="math notranslate nohighlight">\(G^{(0)}_\mathrm{intra}(t)\)</span>.
+(B) Intermolecular dipolar correlation function <span class="math notranslate nohighlight">\(G^{(0)}_\mathrm{inter}(t)\)</span>,
+shown on a log-log scale. The dashed line indicates the long-time scaling
+<span class="math notranslate nohighlight">\(G(t) \propto t^{-3/2}\)</span>, characteristic of translational diffusion.
+(C) Intramolecular spectral density <span class="math notranslate nohighlight">\(J^{(0)}_\mathrm{intra}(f)\)</span>.
+The solid line corresponds to a Lorentzian fit based on a single correlation time
+approximation.
+(D) Intermolecular spectral density <span class="math notranslate nohighlight">\(J^{(0)}_\mathrm{inter}(f)\)</span>.
+The solid line shows the analytical ADHF prediction capturing diffusion-driven
+deviations from Lorentzian behavior at low frequencies.</p>
+</div>
 <p>The intra molecular spectrum <span class="math notranslate nohighlight">\(J_\textrm{intra}^{(0)}\)</span> can be reasonably
 well adjusted by a Lorentzian</p>
 <div class="math-wrapper docutils container" id="equation-eq-lorenzian-g">
@@ -448,24 +460,28 @@ well adjusted by a Lorentzian</p>
 </div>
 <p>using <span class="math notranslate nohighlight">\(\tau_\text{c} = 6.3\)</span> ps and <span class="math notranslate nohighlight">\(G(0) = 56300\)</span> A⁻⁶ ps⁻² for <span class="math notranslate nohighlight">\(T = 300\)</span> K
 and <span class="math notranslate nohighlight">\(\tau_\text{c} = 3.2\)</span> ps and <span class="math notranslate nohighlight">\(G(0) = 59500\)</span> A⁻⁶ ps⁻² for <span class="math notranslate nohighlight">\(T = 275\)</span> K.</p>
-<p>The inter molecular spectrum <span class="math notranslate nohighlight">\(J_\textrm{inter}^{(0)}\)</span>, however, does not follow the
-Lorentzian plateau, particularly at the lowest frequencies, which is consistent with
-the correlation function <span class="math notranslate nohighlight">\(G_\textrm{inter}^{(0)}\)</span> decaying with time as a
-power law. In that case, and following closely Ref. <span id="id8">[<a class="reference internal" href="../additional/bibliography.html#id173" title="Simon Gravelle, Roland R. Netz, and Lydéric Bocquet. Adsorption Kinetics in Open Nanopores as a Source of Low-Frequency Noise. Nano Letters, 19(10):7265–7272, October 2019. doi:10.1021/acs.nanolett.9b02858.">26</a>]</span>,
-an exact analytical expression for the surface spectrum <span class="math notranslate nohighlight">\(J_\textrm{surf} (f)\)</span> can be
-obtained from the first return passage time of a molecule between successive
-adsorption and desorption at the surface of a sphere, in the limit of a large diffusing
-reservoir:</p>
+<p>The intermolecular spectral density <span class="math notranslate nohighlight">\(J_\mathrm{inter}^{(0)}\)</span>, however, does not follow a Lorentzian
+plateau at low frequencies. This deviation is directly related to the long-time
+power-law decay observed in the corresponding correlation function
+<span class="math notranslate nohighlight">\(G_\mathrm{inter}^{(0)}(t)\)</span>.</p>
+<p>In particular, the algebraic decay <span class="math notranslate nohighlight">\(G(t) \sim t^{-3/2}\)</span> is caracteristic of
+translational diffusion and indicates that the relaxation dynamics is not governed
+by a single characteristic correlation time. In this regime, and following closely
+Ref. <span id="id8">[<a class="reference internal" href="../additional/bibliography.html#id173" title="Simon Gravelle, Roland R. Netz, and Lydéric Bocquet. Adsorption Kinetics in Open Nanopores as a Source of Low-Frequency Noise. Nano Letters, 19(10):7265–7272, October 2019. doi:10.1021/acs.nanolett.9b02858.">26</a>]</span>, the spectral density can be
+described by the adsorption-diffusion hard-sphere (ADHF) model, which yields an
+analytical expression based on first-passage statistics in a diffusive reservoir:</p>
 <div class="math-wrapper docutils container" id="equation-eq-spectrum-sqrt">
 <div class="math notranslate nohighlight" id="equation-eq-spectrum-sqrt">
-<span class="eqno">(3)<a class="headerlink" href="#equation-eq-spectrum-sqrt" title="Link to this equation">¶</a></span>\[J_\text{inter} (f) \sim \left[ 1 + A + B \sqrt{ 2 \pi f} \right]^{-1}.\]</div>
+<span class="eqno">(3)<a class="headerlink" href="#equation-eq-spectrum-sqrt" title="Link to this equation">¶</a></span>\[J_\mathrm{ADHF}(f) = \left[ 1 + A + B \sqrt{2 \pi f} \right]^{-1}.\]</div>
 </div>
-<p>Still from Ref. <span id="id9">[<a class="reference internal" href="../additional/bibliography.html#id173" title="Simon Gravelle, Roland R. Netz, and Lydéric Bocquet. Adsorption Kinetics in Open Nanopores as a Source of Low-Frequency Noise. Nano Letters, 19(10):7265–7272, October 2019. doi:10.1021/acs.nanolett.9b02858.">26</a>]</span>, one can deduce that
-<span class="math notranslate nohighlight">\(A = k r / D\)</span> and <span class="math notranslate nohighlight">\(B = r / \sqrt{D}\)</span> where <span class="math notranslate nohighlight">\(r\)</span> is here the radius
-of the water molecule, <span class="math notranslate nohighlight">\(D\)</span> the diffusion coefficient, and <span class="math notranslate nohighlight">\(k\)</span> a
-phenomenological rate constant with the units of m/s. The frequency scaling
-as predicted by equation <a class="reference internal" href="#equation-eq-spectrum-sqrt">(3)</a> is in good agreement with molecular
-dynamics results at frequency lower than <span class="math notranslate nohighlight">\(10^4\)</span> MHz.</p>
+<p>Within this framework, the parameters have a direct physical interpretation:
+<span class="math notranslate nohighlight">\(A = k r / D\)</span> and <span class="math notranslate nohighlight">\(B = r / \sqrt{D}\)</span>, where <span class="math notranslate nohighlight">\(r\)</span> is the molecular
+radius, <span class="math notranslate nohighlight">\(D\)</span> the self-diffusion coefficient, and <span class="math notranslate nohighlight">\(k\)</span> a phenomenological
+exchange rate (m·s⁻¹) describing effective adsorption-desorption kinetics.</p>
+<p>The resulting frequency dependence captures the crossover from a quasi-plateau at
+low frequency to a diffusion-dominated decay at higher frequencies. As shown in
+panel (D), the ADHF model provides a good description of the molecular dynamics
+results up to approximately <span class="math notranslate nohighlight">\(10^4\,\mathrm{MHz}\)</span>.</p>
 </section>
 </section>
 </section>
