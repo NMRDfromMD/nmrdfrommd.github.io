@@ -101,10 +101,13 @@ between two nuclear spins depends on both their separation
 time therefore provides direct insight into the microscopic origin of
 NMR relaxation.
 
-Given that, for the bulk water system under consideration, the correlations functions 
-are proportional to each others, only :math:`G^{0}` and 
-:math:`J^{0}` will be evaluated, which depends only in the polar angle :math:`\theta_{ij}` as 
-:math:`Y^{0}_2` is independent from the azimuthal angle :math:`\varphi`.
+Given that the system is isotropic, the correlation functions
+satisfy :math:`G^{(0)} = 6 G^{(1)} = 6/4 G^{(2)}`. It is therefore
+sufficient to compute only :math:`G^{(0)}` and the corresponding
+spectral density :math:`J^{(0)}`. In this case, the angular dependence
+reduces to the polar angle :math:`\theta_{ij}`, since
+:math:`Y_2^{(0)}` is independent of the azimuthal angle
+:math:`\varphi`.
 
 Intra-molecular contribution
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -144,20 +147,20 @@ magnetic field, respectively. Thus, although the internuclear distance is
 essentially fixed, molecular rotation produces substantial fluctuations of
 the dipolar interaction.
 
-.. image:: ../figures/best-practices/intramolecular-signal-illustration-dark.png
+.. image:: microscopic-origin/intra-molecular-dm.png
     :class: only-dark
     :alt: NMR results obtained from the LAMMPS simulation of water
 
-.. image:: ../figures/best-practices/intramolecular-signal-illustration-light.png
+.. image:: microscopic-origin/intra-molecular.png
     :class: only-light
     :alt: NMR results obtained from the LAMMPS simulation of water
 
-.. container:: justify
+.. container:: figurelegend
 
-    **Figure:** a) :math:`\theta_{ij}` as a function of the time :math:`t`, where :math:`i` and :math:`j`
-    refer to two hydrogen atoms located within the same water molecule. a) :math:`r_{ij}` as a function of 
-    time. c) :math:`F_{2}^{(0)}` as a function of time. The temperature is 300 K, and 
-    the total number of water molecules is 3000.
+    Figure: A) :math:`\theta_{ij}` as a function of the time :math:`t`, where :math:`i` and :math:`j`
+    refer to two hydrogen atoms located within the same water molecule. B) :math:`r_{ij}` as a function of 
+    time. C) :math:`F_{2}^{(0)}` as a function of time. The temperature is 300 K, and 
+    the total number of water molecules is 4000.
 
 Inter-molecular contribution
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -166,25 +169,28 @@ We now consider two hydrogen atoms belonging to different water
 molecules. In contrast with the intramolecular case, both the
 internuclear distance and the relative orientation fluctuate because
 of translational diffusion. In that case, :math:`r_{ij}` fluctuates significantly between :math:`\approx 2.5 A`,
-corresponding to the shortest typical distance between two molecules
-that are next to one another, to larger values (potentially as large as the box permits). 
-As can be seen, the function :math:`F_{0}^{(2)}` reaches its largest absolute values
+corresponding to molecules occupying their respective hydration shell, to larger values
+(potentially as large as the box permits). As can be seen, the function :math:`F_{0}^{(2)}`
+reaches its largest absolute values, here about :math:`0.02 \mathrm{Å}^{-3}`,
 when :math:`r_{ij}` is the shorter.
 
-.. image:: ../figures/best-practices/intermolecular-signal-illustration-dark.png
+.. image:: microscopic-origin/inter-molecular-dm.png
     :class: only-dark
     :alt: NMR results obtained from the LAMMPS simulation of water
 
-.. image:: ../figures/best-practices/intermolecular-signal-illustration-light.png
+.. image:: microscopic-origin/inter-molecular.png
     :class: only-light
     :alt: NMR results obtained from the LAMMPS simulation of water
 
-.. container:: justify
+.. container:: figurelegend
 
-    **Figure:** a) :math:`\theta_{ij}` as a function of the time :math:`t`, where :math:`i` and :math:`j`
-    refer to two hydrogen atoms located within two different water molecules. a) :math:`r_{ij}` as a function of 
-    time. c) :math:`F_{2}^{(0)}` as a function of time. The temperature is 300 K, and 
-    the total number of water molecules is 3000.
+    Figure: A) :math:`\theta_{ij}` as a function of the time :math:`t`, where :math:`i` and :math:`j`
+    refer to two hydrogen atoms located within two different water molecules. B) :math:`r_{ij}` as a function of 
+    time. C) :math:`F_{2}^{(0)}` as a function of time. The temperature is 300 K, and 
+    the total number of water molecules is 4000.
+
+From pair dynamics to collective relaxation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Although the behaviour of a single pair of nuclei is informative, NMR
 relaxation is a collective property. The relaxation rates are obtained
@@ -218,15 +224,21 @@ few tens of pico-second, and show a clear scaling as :math:`G_\text{inter} (t) \
 for large time which is a characteristic signature of the diffusion
 process controlling the motion of the molecules. 
 
-At longer times, translational diffusion continually brings new
+At long times, translational diffusion continually brings new
 molecular neighbours into and out of the local environment. This
-diffusive process produces the characteristic long-time
-:math:`t^{-3/2}` decay predicted theoretically for freely diffusing
-particles. The scaling :math:`G_\text{inter} (t) \sim t^{-3/2}` has long been predicted, and 
-analytical expressions have been proposed by Ayant et al. :cite:`ayantCalculDensitesSpectrales1975` and
-Hwang and Freed :cite:`hwangDynamicEffectsPair2008`, in the context of freely diffusing hard spheres.
-Following Ref :cite:`grivetNMRRelaxationParameters2005`, this expression is here referred to 
-as a ADHF.
+leads to a characteristic long-time decay
+:math:`G_\text{inter}(t) \sim t^{-3/2}`, which is a hallmark of
+diffusive dynamics. This scaling has been predicted theoretically for freely diffusing
+particles, and analytical expressions were derived by Ayant et al. :cite:`ayantCalculDensitesSpectrales1975`
+and Hwang and Freed :cite:`hwangDynamicEffectsPair2008` in the context of hard-sphere diffusion.
+Following Ref. :cite:`grivetNMRRelaxationParameters2005`, we refer
+to this description as ADHF.
+
+While the ADHF description captures the long-time decay of the
+correlation function, it does not lead to a Lorentzian spectral
+density. This motivates the use of alternative theoretical
+descriptions for the low-frequency behaviour of
+:math:`J_\text{inter}(f)`
 
 .. image:: ../figures/best-practices/gij-R1-illustration-dark.png
     :class: only-dark

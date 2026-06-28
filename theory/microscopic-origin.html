@@ -329,10 +329,13 @@ between two nuclear spins depends on both their separation
 <span class="math notranslate nohighlight">\(\Omega_{ij}\)</span>. Following the evolution of these quantities in
 time therefore provides direct insight into the microscopic origin of
 NMR relaxation.</p>
-<p>Given that, for the bulk water system under consideration, the correlations functions
-are proportional to each others, only <span class="math notranslate nohighlight">\(G^{0}\)</span> and
-<span class="math notranslate nohighlight">\(J^{0}\)</span> will be evaluated, which depends only in the polar angle <span class="math notranslate nohighlight">\(\theta_{ij}\)</span> as
-<span class="math notranslate nohighlight">\(Y^{0}_2\)</span> is independent from the azimuthal angle <span class="math notranslate nohighlight">\(\varphi\)</span>.</p>
+<p>Given that the system is isotropic, the correlation functions
+satisfy <span class="math notranslate nohighlight">\(G^{(0)} = 6 G^{(1)} = 6/4 G^{(2)}\)</span>. It is therefore
+sufficient to compute only <span class="math notranslate nohighlight">\(G^{(0)}\)</span> and the corresponding
+spectral density <span class="math notranslate nohighlight">\(J^{(0)}\)</span>. In this case, the angular dependence
+reduces to the polar angle <span class="math notranslate nohighlight">\(\theta_{ij}\)</span>, since
+<span class="math notranslate nohighlight">\(Y_2^{(0)}\)</span> is independent of the azimuthal angle
+<span class="math notranslate nohighlight">\(\varphi\)</span>.</p>
 <section id="intra-molecular-contribution">
 <h3>Intra-molecular contribution<a class="headerlink" href="#intra-molecular-contribution" title="Link to this heading">¶</a></h3>
 <p>We first consider the two hydrogen atoms belonging to the same water
@@ -365,13 +368,13 @@ entirely from the rotational motion of the molecule through changes in
 magnetic field, respectively. Thus, although the internuclear distance is
 essentially fixed, molecular rotation produces substantial fluctuations of
 the dipolar interaction.</p>
-<img alt="NMR results obtained from the LAMMPS simulation of water" class="only-dark" src="../_images/intramolecular-signal-illustration-dark.png" />
-<img alt="NMR results obtained from the LAMMPS simulation of water" class="only-light" src="../_images/intramolecular-signal-illustration-light.png" />
-<div class="justify docutils container">
-<p><strong>Figure:</strong> a) <span class="math notranslate nohighlight">\(\theta_{ij}\)</span> as a function of the time <span class="math notranslate nohighlight">\(t\)</span>, where <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>
-refer to two hydrogen atoms located within the same water molecule. a) <span class="math notranslate nohighlight">\(r_{ij}\)</span> as a function of
-time. c) <span class="math notranslate nohighlight">\(F_{2}^{(0)}\)</span> as a function of time. The temperature is 300 K, and
-the total number of water molecules is 3000.</p>
+<img alt="NMR results obtained from the LAMMPS simulation of water" class="only-dark" src="../_images/intra-molecular-dm.png" />
+<img alt="NMR results obtained from the LAMMPS simulation of water" class="only-light" src="../_images/intra-molecular.png" />
+<div class="figurelegend docutils container">
+<p>Figure: A) <span class="math notranslate nohighlight">\(\theta_{ij}\)</span> as a function of the time <span class="math notranslate nohighlight">\(t\)</span>, where <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>
+refer to two hydrogen atoms located within the same water molecule. B) <span class="math notranslate nohighlight">\(r_{ij}\)</span> as a function of
+time. C) <span class="math notranslate nohighlight">\(F_{2}^{(0)}\)</span> as a function of time. The temperature is 300 K, and
+the total number of water molecules is 4000.</p>
 </div>
 </section>
 <section id="inter-molecular-contribution">
@@ -380,18 +383,21 @@ the total number of water molecules is 3000.</p>
 molecules. In contrast with the intramolecular case, both the
 internuclear distance and the relative orientation fluctuate because
 of translational diffusion. In that case, <span class="math notranslate nohighlight">\(r_{ij}\)</span> fluctuates significantly between <span class="math notranslate nohighlight">\(\approx 2.5 A\)</span>,
-corresponding to the shortest typical distance between two molecules
-that are next to one another, to larger values (potentially as large as the box permits).
-As can be seen, the function <span class="math notranslate nohighlight">\(F_{0}^{(2)}\)</span> reaches its largest absolute values
+corresponding to molecules occupying their respective hydration shell, to larger values
+(potentially as large as the box permits). As can be seen, the function <span class="math notranslate nohighlight">\(F_{0}^{(2)}\)</span>
+reaches its largest absolute values, here about <span class="math notranslate nohighlight">\(0.02 \mathrm{Å}^{-3}\)</span>,
 when <span class="math notranslate nohighlight">\(r_{ij}\)</span> is the shorter.</p>
-<img alt="NMR results obtained from the LAMMPS simulation of water" class="only-dark" src="../_images/intermolecular-signal-illustration-dark.png" />
-<img alt="NMR results obtained from the LAMMPS simulation of water" class="only-light" src="../_images/intermolecular-signal-illustration-light.png" />
-<div class="justify docutils container">
-<p><strong>Figure:</strong> a) <span class="math notranslate nohighlight">\(\theta_{ij}\)</span> as a function of the time <span class="math notranslate nohighlight">\(t\)</span>, where <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>
-refer to two hydrogen atoms located within two different water molecules. a) <span class="math notranslate nohighlight">\(r_{ij}\)</span> as a function of
-time. c) <span class="math notranslate nohighlight">\(F_{2}^{(0)}\)</span> as a function of time. The temperature is 300 K, and
-the total number of water molecules is 3000.</p>
+<img alt="NMR results obtained from the LAMMPS simulation of water" class="only-dark" src="../_images/inter-molecular-dm.png" />
+<img alt="NMR results obtained from the LAMMPS simulation of water" class="only-light" src="../_images/inter-molecular.png" />
+<div class="figurelegend docutils container">
+<p>Figure: A) <span class="math notranslate nohighlight">\(\theta_{ij}\)</span> as a function of the time <span class="math notranslate nohighlight">\(t\)</span>, where <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>
+refer to two hydrogen atoms located within two different water molecules. B) <span class="math notranslate nohighlight">\(r_{ij}\)</span> as a function of
+time. C) <span class="math notranslate nohighlight">\(F_{2}^{(0)}\)</span> as a function of time. The temperature is 300 K, and
+the total number of water molecules is 4000.</p>
 </div>
+</section>
+<section id="from-pair-dynamics-to-collective-relaxation">
+<h3>From pair dynamics to collective relaxation<a class="headerlink" href="#from-pair-dynamics-to-collective-relaxation" title="Link to this heading">¶</a></h3>
 <p>Although the behaviour of a single pair of nuclei is informative, NMR
 relaxation is a collective property. The relaxation rates are obtained
 by averaging the fluctuations of <span class="math notranslate nohighlight">\(F_2^{(0)}\)</span> over all relevant
@@ -418,15 +424,20 @@ exponential [i.e. Eq. <a class="reference internal" href="#equation-eq-exp-g">(1
 few tens of pico-second, and show a clear scaling as <span class="math notranslate nohighlight">\(G_\text{inter} (t) \sim t^{-3/2}\)</span>
 for large time which is a characteristic signature of the diffusion
 process controlling the motion of the molecules.</p>
-<p>At longer times, translational diffusion continually brings new
+<p>At long times, translational diffusion continually brings new
 molecular neighbours into and out of the local environment. This
-diffusive process produces the characteristic long-time
-<span class="math notranslate nohighlight">\(t^{-3/2}\)</span> decay predicted theoretically for freely diffusing
-particles. The scaling <span class="math notranslate nohighlight">\(G_\text{inter} (t) \sim t^{-3/2}\)</span> has long been predicted, and
-analytical expressions have been proposed by Ayant et al. <span id="id5">[<a class="reference internal" href="../additional/bibliography.html#id22" title="Y. Ayant, E. Belorizky, J. Aluzon, and J. Gallice. Calcul des densités spectrales résultant d'un mouvement aléatoire de translation en relaxation par interaction dipolaire magnétique dans les liquides. Journal de Physique, 36(10):991–1004, October 1975. doi:10.1051/jphys:019750036010099100.">24</a>]</span> and
-Hwang and Freed <span id="id6">[<a class="reference internal" href="../additional/bibliography.html#id234" title="Lian-Pin Hwang and Jack H. Freed. Dynamic effects of pair correlation functions on spin relaxation by translational diffusion in liquids. The Journal of Chemical Physics, 63(9):4017–4025, September 2008. doi:10.1063/1.431841.">25</a>]</span>, in the context of freely diffusing hard spheres.
-Following Ref <span id="id7">[<a class="reference internal" href="../additional/bibliography.html#id184" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">6</a>]</span>, this expression is here referred to
-as a ADHF.</p>
+leads to a characteristic long-time decay
+<span class="math notranslate nohighlight">\(G_\text{inter}(t) \sim t^{-3/2}\)</span>, which is a hallmark of
+diffusive dynamics. This scaling has been predicted theoretically for freely diffusing
+particles, and analytical expressions were derived by Ayant et al. <span id="id5">[<a class="reference internal" href="../additional/bibliography.html#id22" title="Y. Ayant, E. Belorizky, J. Aluzon, and J. Gallice. Calcul des densités spectrales résultant d'un mouvement aléatoire de translation en relaxation par interaction dipolaire magnétique dans les liquides. Journal de Physique, 36(10):991–1004, October 1975. doi:10.1051/jphys:019750036010099100.">24</a>]</span>
+and Hwang and Freed <span id="id6">[<a class="reference internal" href="../additional/bibliography.html#id234" title="Lian-Pin Hwang and Jack H. Freed. Dynamic effects of pair correlation functions on spin relaxation by translational diffusion in liquids. The Journal of Chemical Physics, 63(9):4017–4025, September 2008. doi:10.1063/1.431841.">25</a>]</span> in the context of hard-sphere diffusion.
+Following Ref. <span id="id7">[<a class="reference internal" href="../additional/bibliography.html#id184" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">6</a>]</span>, we refer
+to this description as ADHF.</p>
+<p>While the ADHF description captures the long-time decay of the
+correlation function, it does not lead to a Lorentzian spectral
+density. This motivates the use of alternative theoretical
+descriptions for the low-frequency behaviour of
+<span class="math notranslate nohighlight">\(J_\text{inter}(f)\)</span></p>
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-dark" src="../_images/gij-R1-illustration-dark.png" />
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-light" src="../_images/gij-R1-illustration-light.png" />
 <p>The intra molecular spectrum <span class="math notranslate nohighlight">\(J_\textrm{intra}^{(0)}\)</span> can be reasonably
@@ -519,6 +530,7 @@ dynamics results at frequency lower than <span class="math notranslate nohighlig
 <li><a class="reference internal" href="#isotropic-consistency-of-g-m-functions">Isotropic consistency of <span class="math notranslate nohighlight">\(G^{(m)}\)</span> functions</a><ul>
 <li><a class="reference internal" href="#intra-molecular-contribution">Intra-molecular contribution</a></li>
 <li><a class="reference internal" href="#inter-molecular-contribution">Inter-molecular contribution</a></li>
+<li><a class="reference internal" href="#from-pair-dynamics-to-collective-relaxation">From pair dynamics to collective relaxation</a></li>
 </ul>
 </li>
 </ul>
