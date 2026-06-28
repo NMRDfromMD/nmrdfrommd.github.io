@@ -245,6 +245,7 @@ descriptions for the low-frequency behaviour of
     :alt: NMR results obtained from the LAMMPS simulation of water
 
 .. image:: microscopic-origin/spectra.png
+    :class: only-light
     :alt: NMR results obtained from the LAMMPS simulation of water
 
 .. container:: figurelegend
