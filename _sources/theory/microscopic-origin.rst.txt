@@ -31,16 +31,15 @@ MD system
     :width: 250
     :align: right
 
-The system is a bulk liquid water with a number :math:`N` of water molecules,
-where :math:`N` was varied from 25 to 4000. The simulation box was cubic, 
-with equilibrium dimensions ranging from :math:`(0.9\,\text{nm})^3`
-to :math:`(4.9\,\text{nm})^3`. The trajectory was recorded
-during a :math:`8\,\text{ns}` production run performed with
-the open source codes LAMMPS (for the smallest systems) and GROMACS (for the largest systems).
-Simulations were performed in the NPT ensemble using a timestep of :math:`2\,\text{fs}`.
-The imposed temperature was :math:`T = 300 \text{K}`, and the pressure
-:math:`p = 1\,\text{atm}`. The positions of the atoms were recorded in the *prod.xtc* file
-every :math:`\Delta t`, with :math:`\Delta t` ranging from :math:`0.2\,\text{ps}` to :math:`32\,\text{ps}`.
+The system consists of a bulk liquid containing :math:`N = 2000` water
+molecules. The simulation box was cubic, with equilibrium dimensions of
+:math:`(X\,\text{nm})^3`. Simulations were performed using the open-source
+code LAMMPS. The system was first equilibrated in the NPT ensemble at a
+temperature of :math:`T = 300\,\text{K}` and a pressure of
+:math:`p = 1\,\text{atm}`. The trajectory was then recorded during a
+:math:`10\,\text{ns}` production run performed in the NVT ensemble using a
+timestep of :math:`2\,\text{fs}`. The atomic positions were written to the
+:file:`prod.xtc` trajectory file every :math:`\Delta t = 2\,\text{ps}`.
 
 Results
 -------
@@ -81,15 +80,13 @@ show that the proportionality relation is well verified (See figure below).
 .. container:: figurelegend
 
     Figure: A) Comparison between :math:`G^{(0)}`, :math:`6 G^{(1)}` and :math:`\frac{6}{4} G^{(2)}`
-    obtained from a bulk water molecular dynamics. B) Relaxation rate, :math:`R_1`, 
-    as a function of the frequency :math:`f`.
+    obtained from a bulk water molecular dynamics. B) Relaxation rate, :math:`R_1`,
+    inter-molecular relaxation rate, :math:`R_\text{1 T}`, and intra-molecular relaxation rate, :math:`R_\text{1 R}`, 
+    as a function of the frequency :math:`f`. The temperature is 300 K, and 
+    the total number of water molecules is 3000.
 
-The inter-molecular correlation function shows the expected power law at longer time,
-while the intra-molecular correlation decreases faster with time.
-
-Our results also show that the relaxation is dominated by intra-molecular contribution,
+Our results also show that the total relaxation is dominated by intra-molecular contribution,
 as expected for water under ambient conditions :cite:`singerMolecularDynamicsSimulations2017`.
-For the lowest frequency considered here, the spectrum :math:`R_1` is almost flat.
 
 To understand the origin of these relaxation spectra, it is useful to
 return to the atomic trajectories themselves. The dipolar interaction
@@ -97,32 +94,50 @@ between two nuclear spins depends on both their separation
 :math:`r_{ij}` and their relative orientation
 :math:`\Omega_{ij}`. Following the evolution of these quantities in
 time therefore provides direct insight into the microscopic origin of
-NMR relaxation. Given that the correlations functions 
+NMR relaxation.
+
+Given that, for the bulk water system under consideration, the correlations functions 
 are proportional to each others, only :math:`G^{0}` and 
 :math:`J^{0}` will be evaluated, which depends only in the polar angle :math:`\theta_{ij}` as 
 :math:`Y^{0}_2` is independent from the azimuthal angle :math:`\varphi`.
 
-We first consider two hydrogen atoms belonging to the same water
-molecule. Because the water model is rigid, the internuclear distance
-remains essentially constant and only the molecular orientation
-changes with time.
+Intra-molecular contribution
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-As expected for the rigid water model used here (TIP4P/:math:`\epsilon`), the 
-average distance :math:`r_{ij}` between the two hydrogen atoms of the same molecule remains
-constant (within the uncertainty of the shake algorithm used to maintain the water molecule rigid),
-while the polar angle :math:`\theta_{ij}` fluctuates with time, following the rotation of the
-water molecule (see the Figure below). 
+We first consider the two hydrogen atoms belonging to the same water
+molecule. Because the present water model (TIP4P/:math:`\epsilon`) is rigid,
+the internuclear distance :math:`r_{ij}` remains essentially constant
+(within the tolerance of the SHAKE algorithm used to enforce molecular
+rigidity). The only quantity that changes with time is therefore the
+orientation of the H-H vector with respect to the external magnetic field,
+described by the polar angle :math:`\theta_{ij}` (see the figure below).
 
-The dipolar interaction entering the relaxation equations is described
-by :math:`F_2^{(0)}`, which combines the dependence on internuclear
-distance and orientation. Consequently, even modest rotational motions
-produce significant fluctuations in :math:`F_2^{(0)}`.
+The dipolar interaction entering the relaxation equations is described by
+:math:`F_2^{(0)}` (Eq. :eq:`F_2_0`), which depends on both the internuclear
+distance and its orientation. Since :math:`r_{ij}` is nearly constant for a
+rigid water molecule, the fluctuations of :math:`F_2^{(0)}` arise almost
+entirely from the rotational motion of the molecule through changes in
+:math:`\theta_{ij}`.
 
-The fluctuations of :math:`\theta_{ij}` with time lead to fluctuations of the
-function :math:`F_{0}^{(2)}` (see Eq. :eq:`F_2_0`) between a higher bound given by
-:math:`(3 \cos^2 0 - 1 ) / a^3 \approx 0.58\,A^{-3}`,
-where :math:`a \approx 1.51\,A` is the typical distance between the two hydrogen atoms of the water
-molecule, and a lower bound :math:`(3 \cos^2 \pi/2 - 1 ) / a^3 \approx -0.29\,\,A^{-3}`.
+For a typical H-H distance :math:`a \approx 1.51\,\mathrm{Å}`,
+:math:`F_2^{(0)}` varies between
+
+.. math::
+
+    \frac{3\cos^2 0 - 1}{a^3}
+    \approx 0.58~\mathrm{Å}^{-3}
+
+and
+
+.. math::
+
+    \frac{3\cos^2 (\pi/2) - 1}{a^3}
+    \approx -0.29~\mathrm{Å}^{-3},
+
+corresponding to the H--H vector being parallel and perpendicular to the
+magnetic field, respectively. Thus, although the internuclear distance is
+essentially fixed, molecular rotation produces substantial fluctuations of
+the dipolar interaction.
 
 .. image:: ../figures/best-practices/intramolecular-signal-illustration-dark.png
     :class: only-dark
@@ -138,6 +153,9 @@ molecule, and a lower bound :math:`(3 \cos^2 \pi/2 - 1 ) / a^3 \approx -0.29\,\,
     refer to two hydrogen atoms located within the same water molecule. a) :math:`r_{ij}` as a function of 
     time. c) :math:`F_{2}^{(0)}` as a function of time. The temperature is 300 K, and 
     the total number of water molecules is 3000.
+
+Inter-molecular contribution
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 We now consider two hydrogen atoms belonging to different water
 molecules. In contrast with the intramolecular case, both the

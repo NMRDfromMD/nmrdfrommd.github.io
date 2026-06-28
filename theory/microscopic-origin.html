@@ -273,16 +273,15 @@ relaxation.</p>
 </a>
 <a class="only-light reference internal image-reference" href="../_images/water-light-square.png"><img alt="Water molecules simulated with lammps - NMR relaxation time calculation" class="only-light align-right" src="../_images/water-light-square.png" style="width: 250px;" />
 </a>
-<p>The system is a bulk liquid water with a number <span class="math notranslate nohighlight">\(N\)</span> of water molecules,
-where <span class="math notranslate nohighlight">\(N\)</span> was varied from 25 to 4000. The simulation box was cubic,
-with equilibrium dimensions ranging from <span class="math notranslate nohighlight">\((0.9\,\text{nm})^3\)</span>
-to <span class="math notranslate nohighlight">\((4.9\,\text{nm})^3\)</span>. The trajectory was recorded
-during a <span class="math notranslate nohighlight">\(8\,\text{ns}\)</span> production run performed with
-the open source codes LAMMPS (for the smallest systems) and GROMACS (for the largest systems).
-Simulations were performed in the NPT ensemble using a timestep of <span class="math notranslate nohighlight">\(2\,\text{fs}\)</span>.
-The imposed temperature was <span class="math notranslate nohighlight">\(T = 300 \text{K}\)</span>, and the pressure
-<span class="math notranslate nohighlight">\(p = 1\,\text{atm}\)</span>. The positions of the atoms were recorded in the <em>prod.xtc</em> file
-every <span class="math notranslate nohighlight">\(\Delta t\)</span>, with <span class="math notranslate nohighlight">\(\Delta t\)</span> ranging from <span class="math notranslate nohighlight">\(0.2\,\text{ps}\)</span> to <span class="math notranslate nohighlight">\(32\,\text{ps}\)</span>.</p>
+<p>The system consists of a bulk liquid containing <span class="math notranslate nohighlight">\(N = 2000\)</span> water
+molecules. The simulation box was cubic, with equilibrium dimensions of
+<span class="math notranslate nohighlight">\((X\,\text{nm})^3\)</span>. Simulations were performed using the open-source
+code LAMMPS. The system was first equilibrated in the NPT ensemble at a
+temperature of <span class="math notranslate nohighlight">\(T = 300\,\text{K}\)</span> and a pressure of
+<span class="math notranslate nohighlight">\(p = 1\,\text{atm}\)</span>. The trajectory was then recorded during a
+<span class="math notranslate nohighlight">\(10\,\text{ns}\)</span> production run performed in the NVT ensemble using a
+timestep of <span class="math notranslate nohighlight">\(2\,\text{fs}\)</span>. The atomic positions were written to the
+<code class="file docutils literal notranslate"><span class="pre">prod.xtc</span></code> trajectory file every <span class="math notranslate nohighlight">\(\Delta t = 2\,\text{ps}\)</span>.</p>
 </section>
 <section id="results">
 <h2>Results<a class="headerlink" href="#results" title="Link to this heading">¶</a></h2>
@@ -313,41 +312,55 @@ show that the proportionality relation is well verified (See figure below).</p>
 <div class="figurelegend docutils container">
 <p>Figure: A) Comparison between <span class="math notranslate nohighlight">\(G^{(0)}\)</span>, <span class="math notranslate nohighlight">\(6 G^{(1)}\)</span> and <span class="math notranslate nohighlight">\(\frac{6}{4} G^{(2)}\)</span>
 obtained from a bulk water molecular dynamics. B) Relaxation rate, <span class="math notranslate nohighlight">\(R_1\)</span>,
-as a function of the frequency <span class="math notranslate nohighlight">\(f\)</span>.</p>
+inter-molecular relaxation rate, <span class="math notranslate nohighlight">\(R_\text{1 T}\)</span>, and intra-molecular relaxation rate, <span class="math notranslate nohighlight">\(R_\text{1 R}\)</span>,
+as a function of the frequency <span class="math notranslate nohighlight">\(f\)</span>. The temperature is 300 K, and
+the total number of water molecules is 3000.</p>
 </div>
-<p>The inter-molecular correlation function shows the expected power law at longer time,
-while the intra-molecular correlation decreases faster with time.</p>
-<p>Our results also show that the relaxation is dominated by intra-molecular contribution,
-as expected for water under ambient conditions <span id="id3">[<a class="reference internal" href="../additional/bibliography.html#id475" title="Philip M. Singer, Dilip Asthagiri, Walter G. Chapman, and George J. Hirasaki. Molecular dynamics simulations of NMR relaxation and diffusion of bulk hydrocarbons and water. Journal of Magnetic Resonance, 277:15–24, April 2017. doi:10.1016/j.jmr.2017.02.001.">9</a>]</span>.
-For the lowest frequency considered here, the spectrum <span class="math notranslate nohighlight">\(R_1\)</span> is almost flat.</p>
+<p>Our results also show that the total relaxation is dominated by intra-molecular contribution,
+as expected for water under ambient conditions <span id="id3">[<a class="reference internal" href="../additional/bibliography.html#id475" title="Philip M. Singer, Dilip Asthagiri, Walter G. Chapman, and George J. Hirasaki. Molecular dynamics simulations of NMR relaxation and diffusion of bulk hydrocarbons and water. Journal of Magnetic Resonance, 277:15–24, April 2017. doi:10.1016/j.jmr.2017.02.001.">9</a>]</span>.</p>
 <p>To understand the origin of these relaxation spectra, it is useful to
 return to the atomic trajectories themselves. The dipolar interaction
 between two nuclear spins depends on both their separation
 <span class="math notranslate nohighlight">\(r_{ij}\)</span> and their relative orientation
 <span class="math notranslate nohighlight">\(\Omega_{ij}\)</span>. Following the evolution of these quantities in
 time therefore provides direct insight into the microscopic origin of
-NMR relaxation. Given that the correlations functions
+NMR relaxation.</p>
+<p>Given that, for the bulk water system under consideration, the correlations functions
 are proportional to each others, only <span class="math notranslate nohighlight">\(G^{0}\)</span> and
 <span class="math notranslate nohighlight">\(J^{0}\)</span> will be evaluated, which depends only in the polar angle <span class="math notranslate nohighlight">\(\theta_{ij}\)</span> as
 <span class="math notranslate nohighlight">\(Y^{0}_2\)</span> is independent from the azimuthal angle <span class="math notranslate nohighlight">\(\varphi\)</span>.</p>
-<p>We first consider two hydrogen atoms belonging to the same water
-molecule. Because the water model is rigid, the internuclear distance
-remains essentially constant and only the molecular orientation
-changes with time.</p>
-<p>As expected for the rigid water model used here (TIP4P/<span class="math notranslate nohighlight">\(\epsilon\)</span>), the
-average distance <span class="math notranslate nohighlight">\(r_{ij}\)</span> between the two hydrogen atoms of the same molecule remains
-constant (within the uncertainty of the shake algorithm used to maintain the water molecule rigid),
-while the polar angle <span class="math notranslate nohighlight">\(\theta_{ij}\)</span> fluctuates with time, following the rotation of the
-water molecule (see the Figure below).</p>
-<p>The dipolar interaction entering the relaxation equations is described
-by <span class="math notranslate nohighlight">\(F_2^{(0)}\)</span>, which combines the dependence on internuclear
-distance and orientation. Consequently, even modest rotational motions
-produce significant fluctuations in <span class="math notranslate nohighlight">\(F_2^{(0)}\)</span>.</p>
-<p>The fluctuations of <span class="math notranslate nohighlight">\(\theta_{ij}\)</span> with time lead to fluctuations of the
-function <span class="math notranslate nohighlight">\(F_{0}^{(2)}\)</span> (see Eq. <a class="reference internal" href="mathematical-framework.html#equation-f-2-0">(4)</a>) between a higher bound given by
-<span class="math notranslate nohighlight">\((3 \cos^2 0 - 1 ) / a^3 \approx 0.58\,A^{-3}\)</span>,
-where <span class="math notranslate nohighlight">\(a \approx 1.51\,A\)</span> is the typical distance between the two hydrogen atoms of the water
-molecule, and a lower bound <span class="math notranslate nohighlight">\((3 \cos^2 \pi/2 - 1 ) / a^3 \approx -0.29\,\,A^{-3}\)</span>.</p>
+<section id="intra-molecular-contribution">
+<h3>Intra-molecular contribution<a class="headerlink" href="#intra-molecular-contribution" title="Link to this heading">¶</a></h3>
+<p>We first consider the two hydrogen atoms belonging to the same water
+molecule. Because the present water model (TIP4P/<span class="math notranslate nohighlight">\(\epsilon\)</span>) is rigid,
+the internuclear distance <span class="math notranslate nohighlight">\(r_{ij}\)</span> remains essentially constant
+(within the tolerance of the SHAKE algorithm used to enforce molecular
+rigidity). The only quantity that changes with time is therefore the
+orientation of the H-H vector with respect to the external magnetic field,
+described by the polar angle <span class="math notranslate nohighlight">\(\theta_{ij}\)</span> (see the figure below).</p>
+<p>The dipolar interaction entering the relaxation equations is described by
+<span class="math notranslate nohighlight">\(F_2^{(0)}\)</span> (Eq. <a class="reference internal" href="mathematical-framework.html#equation-f-2-0">(4)</a>), which depends on both the internuclear
+distance and its orientation. Since <span class="math notranslate nohighlight">\(r_{ij}\)</span> is nearly constant for a
+rigid water molecule, the fluctuations of <span class="math notranslate nohighlight">\(F_2^{(0)}\)</span> arise almost
+entirely from the rotational motion of the molecule through changes in
+<span class="math notranslate nohighlight">\(\theta_{ij}\)</span>.</p>
+<p>For a typical H-H distance <span class="math notranslate nohighlight">\(a \approx 1.51\,\mathrm{Å}\)</span>,
+<span class="math notranslate nohighlight">\(F_2^{(0)}\)</span> varies between</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[\frac{3\cos^2 0 - 1}{a^3}
+\approx 0.58~\mathrm{Å}^{-3}\]</div>
+</div>
+<p>and</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[\frac{3\cos^2 (\pi/2) - 1}{a^3}
+\approx -0.29~\mathrm{Å}^{-3},\]</div>
+</div>
+<p>corresponding to the H–H vector being parallel and perpendicular to the
+magnetic field, respectively. Thus, although the internuclear distance is
+essentially fixed, molecular rotation produces substantial fluctuations of
+the dipolar interaction.</p>
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-dark" src="../_images/intramolecular-signal-illustration-dark.png" />
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-light" src="../_images/intramolecular-signal-illustration-light.png" />
 <div class="justify docutils container">
@@ -356,6 +369,9 @@ refer to two hydrogen atoms located within the same water molecule. a) <span cla
 time. c) <span class="math notranslate nohighlight">\(F_{2}^{(0)}\)</span> as a function of time. The temperature is 300 K, and
 the total number of water molecules is 3000.</p>
 </div>
+</section>
+<section id="inter-molecular-contribution">
+<h3>Inter-molecular contribution<a class="headerlink" href="#inter-molecular-contribution" title="Link to this heading">¶</a></h3>
 <p>We now consider two hydrogen atoms belonging to different water
 molecules. In contrast with the intramolecular case, both the
 internuclear distance and the relative orientation fluctuate because
@@ -437,6 +453,7 @@ as predicted by equation <a class="reference internal" href="#equation-eq-spectr
 dynamics results at frequency lower than <span class="math notranslate nohighlight">\(10^4\)</span> MHz.</p>
 </section>
 </section>
+</section>
 
         </article>
       </div>
@@ -495,7 +512,11 @@ dynamics results at frequency lower than <span class="math notranslate nohighlig
             <ul>
 <li><a class="reference internal" href="#">Microscopic origin of relaxation</a><ul>
 <li><a class="reference internal" href="#md-system">MD system</a></li>
-<li><a class="reference internal" href="#results">Results</a></li>
+<li><a class="reference internal" href="#results">Results</a><ul>
+<li><a class="reference internal" href="#intra-molecular-contribution">Intra-molecular contribution</a></li>
+<li><a class="reference internal" href="#inter-molecular-contribution">Inter-molecular contribution</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
