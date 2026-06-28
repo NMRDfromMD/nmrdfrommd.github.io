@@ -33,7 +33,7 @@ MD system
 
 The system consists of a bulk liquid containing :math:`N = 2000` water
 molecules. The simulation box was cubic, with equilibrium dimensions of
-:math:`(X\,\text{nm})^3`. Simulations were performed using the open-source
+:math:`(4\,\text{nm})^3`. Simulations were performed using the open-source
 code LAMMPS. The system was first equilibrated in the NPT ensemble at a
 temperature of :math:`T = 300\,\text{K}` and a pressure of
 :math:`p = 1\,\text{atm}`. The trajectory was then recorded during a
@@ -70,7 +70,7 @@ whose squared moduli satisfy
 the symmetry factor accounting for :math:`m` > 0 pairs.
 
 Verifying this proportionality provides a simple consistency check
-before analysing the relaxation spectra. A similar bencmark was done, for instance
+before analysing the relaxation spectra. A similar benchmark was done, for instance
 in Ref. :cite:`becherMolecularDynamicsSimulations2021` with glycerol. Our results
 show that the proportionality relation is well verified (See figure below).
 
@@ -88,7 +88,7 @@ show that the proportionality relation is well verified (See figure below).
     obtained from a bulk water molecular dynamics. B) Relaxation rate, :math:`R_1`,
     inter-molecular relaxation rate, :math:`R_\text{1 T}`, and intra-molecular relaxation rate, :math:`R_\text{1 R}`, 
     as a function of the frequency :math:`f`. The temperature is 300 K, and 
-    the total number of water molecules is 3000.
+    the total number of water molecules is 2000.
 
 Our results also show that the total relaxation is dominated by intra-molecular contribution,
 as expected for water under ambient conditions :cite:`singerMolecularDynamicsSimulations2017`.
@@ -160,7 +160,7 @@ the dipolar interaction.
     Figure: A) :math:`\theta_{ij}` as a function of the time :math:`t`, where :math:`i` and :math:`j`
     refer to two hydrogen atoms located within the same water molecule. B) :math:`r_{ij}` as a function of 
     time. C) :math:`F_{2}^{(0)}` as a function of time. The temperature is 300 K, and 
-    the total number of water molecules is 4000.
+    the total number of water molecules is 2000.
 
 Inter-molecular contribution
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -186,8 +186,8 @@ when :math:`r_{ij}` is the shorter.
 
     Figure: A) :math:`\theta_{ij}` as a function of the time :math:`t`, where :math:`i` and :math:`j`
     refer to two hydrogen atoms located within two different water molecules. B) :math:`r_{ij}` as a function of 
-    time. C) :math:`F_{2}^{(0)}` as a function of time. The temperature is 300 K, and 
-    the total number of water molecules is 4000.
+    time. C) :math:`F_2^{(0)}` as a function of time. The temperature is 300 K, and 
+    the total number of water molecules is 2000.
 
 From pair dynamics to collective relaxation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -197,7 +197,7 @@ relaxation is a collective property. The relaxation rates are obtained
 by averaging the fluctuations of :math:`F_2^{(0)}` over all relevant
 pairs of nuclei and over the complete molecular dynamics trajectory.
 
-From the fluctuating quantities :math:`F_{0}^{(2)}` summed up over all the available pair of 
+From the fluctuating quantities :math:`F_2^{(0)}` summed up over all the available pair of 
 spins, one can extract the two correlation functions :math:`G_\textrm{intra}^{(0)}` and
 :math:`G_\textrm{inter}^{(0)}` (see Eqs. :eq:`G_intra` and :eq:`G_inter`). For comparison,
 the results obtained with two different temperatures 275 and 300 K are reported.
@@ -258,8 +258,7 @@ descriptions for the low-frequency behaviour of
     The solid line corresponds to a Lorentzian fit based on a single correlation time
     approximation.
     (D) Intermolecular spectral density :math:`J^{(0)}_\mathrm{inter}(f)`.
-    The solid line shows the analytical ADHF prediction capturing diffusion-driven
-    deviations from Lorentzian behavior at low frequencies.
+    The solid line shows the analytical prediction capturing adsorption-diffusion.
 
 The intra molecular spectrum :math:`J_\textrm{intra}^{(0)}` can be reasonably
 well adjusted by a Lorentzian
@@ -281,13 +280,13 @@ In particular, the algebraic decay :math:`G(t) \sim t^{-3/2}` is caracteristic o
 translational diffusion and indicates that the relaxation dynamics is not governed
 by a single characteristic correlation time. In this regime, and following closely
 Ref. :cite:`gravelleAdsorptionKineticsOpen2019`, the spectral density can be
-described by the adsorption-diffusion hard-sphere (ADHF) model, which yields an
+described by adsorption-diffusion, which yields an
 analytical expression based on first-passage statistics in a diffusive reservoir:
 
 .. math::
     :label: eq_spectrum_sqrt
 
-    J_\mathrm{ADHF}(f) = \left[ 1 + A + B \sqrt{2 \pi f} \right]^{-1}.
+    J_\mathrm{inter}(f) = \left[ 1 + A + B \sqrt{2 \pi f} \right]^{-1}.
 
 Within this framework, the parameters have a direct physical interpretation:
 :math:`A = k r / D` and :math:`B = r / \sqrt{D}`, where :math:`r` is the molecular
