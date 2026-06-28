@@ -80,26 +80,9 @@ show that the proportionality relation is well verified (See figure below).
 
 .. container:: figurelegend
 
-    Figure: Test of the validity of the relation :math:`G^{(0)} = 6 G^{(1)} = \frac{6}{4} G^{(2)}`
-    on a bulk water system for intramolecular (A) and intermolecular (B) contribution.
-
-Both intra and inter-molecular correlation functions were extracted, 
-and the respective intra and inter NMR spectra were calculated.
-The total NMR spectrum :math:`R_1` was also calculated.
-
-.. image:: ../figures/illustrations/bulk-water/water_spectrum-dark.png
-    :class: only-dark
-    :alt: NMR results obtained from the LAMMPS simulation of water
-
-.. image:: ../figures/illustrations/bulk-water/water_spectrum-light.png
-    :class: only-light
-    :alt: NMR results obtained from the LAMMPS simulation of water
-
-.. container:: figurelegend
-
-    Figure: a) Correlation function :math:`G^{(0)}` as extracted from the bulk
-    water simulation with :math:`N = 4000` and :math:`N = \Delta t = 1\,\text{ps}`.
-    b) Corresponding NMR spectra :math:`R_1`.
+    Figure: A) Comparison between :math:`G^{(0)}`, :math:`6 G^{(1)}` and :math:`\frac{6}{4} G^{(2)}`
+    obtained from a bulk water molecular dynamics. B) Relaxation rate, :math:`R_1`, 
+    as a function of the frequency :math:`f`.
 
 The inter-molecular correlation function shows the expected power law at longer time,
 while the intra-molecular correlation decreases faster with time.
