@@ -1,10 +1,26 @@
 Best practices
 ==============
 
-Here, a set of best practive for performing accurate dipolar NMR
-calculations from NMR is provided.
+Here, a set of best practices for performing accurate dipolar NMR
+calculations from MD is provided.
 
-Choosing the Force Field
+Simulation length
+-----------------
+
+The required simulation duration depends on the quantity of interest.
+To obtain a converged value of :math:`R_1` in the zero-frequency limit,
+the trajectory must be long enough for the correlation function
+:math:`G(t)` to fully decay to zero, meaning the simulation duration
+must significantly exceed the longest correlation time :math:`\tau_c`
+of the system. For frequency-dependent quantities :math:`R_1(f)`, the
+lowest accessible frequency is bounded by :math:`f_\text{min} \sim
+1/T_\text{sim}`, where :math:`T_\text{sim}` is the total simulation
+duration. Frequencies below :math:`f_\text{min}` cannot be probed
+regardless of the trajectory sampling interval. In practice, convergence
+should be verified by comparing results obtained from simulations of
+increasing duration.
+
+Choosing the force field
 ------------------------
 
 The agreement between experiments and simulations can only be as accurate as
@@ -59,23 +75,26 @@ Simulation accuracy
 -------------------
 
 NMR relaxation measurements are sensitive to both thermodynamic and dynamic
-properties. To ensure accurate simulations, key parameters must be carefully
-chosen - including the force field (as discussed above), the integration time
-step, cutoff distances, and the simulation length
-:cite:`frenkelUnderstandingMolecularSimulation2002, allenComputerSimulationLiquids2017`.
+properties. To ensure accurate simulations, several parameters must be
+carefully chosen, including the force field (as discussed above), the
+integration timestep, the cutoff distances, the choice of thermostat and
+barostat, and the equilibration procedure
+:cite:`frenkelUnderstandingMolecularSimulation2002,allenComputerSimulationLiquids2017`.
+Too large an integration timestep introduces errors in the equations of
+motion, insufficient cutoff distances truncate relevant pair correlations,
+and an inappropriate thermostat coupling constant can artificially affect
+dynamical properties at short times.
 
-As an illustration, the NMR relaxation time :math:`T_1`
-of bulk water was measured as a function of the LJ cut-off.
-Our results show that, for the smallest cut-off,
-the inter-molecular :math:`T_1^\text{inter}` is slightly
-under-estimated, which is mainly due to an over-estimation
-of the inter-molecular characteristic time :math:`\tau_\text{inter}`.
-Our results also indicate that for a cut-off of 1\,nm,
-which is commonly used value, a small error of 
-about 1\,\% is induced. These observations are consistent
-with previous measurements :cite:`gravelleNMRInvestigationWater2023`,
-and confirm that care must be taken if one attempt in reproducing
-accurately NMR quantities.
+As an illustration of the effect of cutoff distance, the NMR relaxation
+time :math:`T_1` of bulk water was measured as a function of the LJ
+cutoff. For the smallest cutoff, the inter-molecular contribution
+:math:`T_1^\text{inter}` is slightly underestimated, primarily due to
+an overestimation of the inter-molecular characteristic time
+:math:`\tau_\text{inter}`. For a cutoff of :math:`1\,\text{nm}`, which
+is a commonly used value, a small error of approximately :math:`1\,\%`
+is induced. These observations are consistent with previous measurements
+:cite:`gravelleNMRInvestigationWater2023`, and confirm that care must
+be taken when attempting to accurately reproduce NMR relaxation quantities.
 
 .. image:: ../figures/illustrations/bulk-water/effect_cutoff-dark.png
     :class: only-dark
@@ -129,27 +148,31 @@ total relaxation rate :math:`R_1` remains small for :math:`N > 1000`.
     the standard deviation. b) Inter-molecular correlation function :math:`G_\text{inter}`
     for two different numbers of molecules.
 
-Dumping frequency
------------------
+Output frequency
+----------------
 
-The dumping frequency sets the temporal resolution of the analysis.
-The maximum dumping period that can be used is system-dependent
-and must typically be much smaller than the correlation times.
-If the typical correlation times in the system is not known,
-the appropriate dumping frequency :math:`\Delta t` can
-be identified from convergence testing.
-Note however than using a high dumping frequency
-increases the size of the trajectory files, which in turn
-can make the computation of NMR relaxation rates
-computationally expensive.
+The trajectory output frequency sets the temporal resolution of the
+analysis and determines the shortest correlation times that can be
+resolved. The sampling interval :math:`\Delta t` must be significantly
+smaller than the shortest relevant correlation time in the system,
+otherwise fast molecular motions are not captured and the correlation
+function :math:`G(t)` is undersampled. This leads to an overestimation
+of the characteristic times :math:`\tau`, and consequently to errors
+in the computed relaxation rates. If the characteristic correlation
+times of the system are not known a priori, the appropriate
+:math:`\Delta t` should be identified from convergence testing.
+Note that a small sampling interval increases the size of the
+trajectory files and the computational cost of the analysis.
 
-As an illustration, the NMR relaxation time :math:`T_1` was measured
-for an increasing dumping period from :math:`\Delta t = 0.02\,\text{ps}`
-to :math:`5\,\text{ps}`. Our results show that using a dumping period
-larger than about :math:`\Delta t = 0.5\,\text{ps}` leads to a significant decrease
-of the measured relaxation time :math:`T_1`. The decrease in :math:`T_1`
-is accompanied by an increase of the measured inter-molecular
-relaxation times :math:`\tau_\text{inter}`. 
+As an illustration, the NMR relaxation time :math:`T_1` of bulk water
+was measured for sampling intervals ranging from
+:math:`\Delta t = 0.02\,\text{ps}` to :math:`5\,\text{ps}`. Using a
+sampling interval larger than approximately :math:`\Delta t =
+0.5\,\text{ps}` leads to a significant underestimation of :math:`T_1`,
+accompanied by an overestimation of the inter-molecular characteristic
+time :math:`\tau_\text{inter}`. Both effects are consistent with
+insufficient sampling of fast rotational and translational motions of
+the water molecules.
 
 .. image:: ../figures/illustrations/bulk-water/effect_dumping_frequency-dark.png
     :class: only-dark
@@ -168,3 +191,27 @@ relaxation times :math:`\tau_\text{inter}`.
     for :math:`\Delta t \to 0`.
     b) Inter-molecular relaxation times :math:`\tau_\text{inter}` as 
     a function of :math:`\Delta t`.
+
+Number of reference atoms
+-------------------------
+
+The parameter ``number_i`` controls how many reference atoms are randomly
+sampled during the calculation. Because the selection is stochastic,
+results will vary slightly between runs when ``number_i > 0``. The
+statistical uncertainty decreases as ``number_i`` increases, and
+setting ``number_i = 0`` includes all eligible atoms, providing the
+most accurate result at the highest computational cost. In practice,
+convergence should be verified by repeating the calculation with
+increasing values of ``number_i`` until the relaxation rates stabilize.
+
+Cross-species interactions
+--------------------------
+
+When ``neighbor_group`` is not specified, intermolecular contributions
+are computed only between atoms belonging to the same chemical species.
+In a mixture such as polymer--water, this means that water--polymer
+cross-interactions are excluded from the relaxation calculation. If
+cross-species contributions are expected to be significant, the
+appropriate ``neighbor_group`` must be set explicitly. Neglecting
+these contributions may lead to an underestimation of the total
+intermolecular relaxation rate.

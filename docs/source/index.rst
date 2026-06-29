@@ -99,29 +99,29 @@ tutorials or simply to test NMRDfromMD.
 
    theory/context
    theory/mathematical-framework
-   theory/microscopic-origin
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Getting started
+   :hidden:
+
+   applications/tutorial
+   theory/best-practice
 
 .. toctree::
    :maxdepth: 2
    :caption: Applications
    :hidden:
 
-   applications/tutorial
    applications/lennard-jones-fluids
    applications/lysozyme-in-water
    applications/anisotropic-system
 
 .. toctree::
    :maxdepth: 2
-   :caption: Best practices
-   :hidden:
-
-   theory/best-practice
-
-.. toctree::
-   :maxdepth: 2
    :caption: Additional
    :hidden:
 
+   theory/microscopic-origin
    additional/bibliography
    additional/acknowledgments
