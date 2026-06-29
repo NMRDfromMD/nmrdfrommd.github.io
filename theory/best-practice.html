@@ -3,7 +3,7 @@
   <head><meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="../_static/favicon-32x32.png" sizes="32x32" rel="icon" type="image/png"><link rel="index" title="Index" href="../genindex.html"><link rel="search" title="Search" href="../search.html"><link rel="next" title="Bibliography" href="../additional/bibliography.html"><link rel="prev" title="Anisotropic systems" href="../applications/anisotropic-system.html">
+    <link href="../_static/favicon-32x32.png" sizes="32x32" rel="icon" type="image/png"><link rel="index" title="Index" href="../genindex.html"><link rel="search" title="Search" href="../search.html"><link rel="next" title="Lennard-Jones fluid" href="../applications/lennard-jones-fluids.html"><link rel="prev" title="Tutorial" href="../applications/tutorial.html">
         <link rel="prefetch" href="../_static/logo-b.png" as="image">
 
     <!-- Generated with Sphinx 7.4.7 and Furo 2025.12.19 -->
@@ -199,21 +199,21 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="context.html">Context</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mathematical-framework.html">Mathematical framework</a></li>
-<li class="toctree-l1"><a class="reference internal" href="microscopic-origin.html">Microscopic mechanisms of relaxation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../applications/tutorial.html">Tutorial</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Best practices</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Applications</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../applications/tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../applications/lennard-jones-fluids.html">Lennard-Jones fluid</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../applications/lysozyme-in-water.html">Lysozyme in water</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../applications/anisotropic-system.html">Anisotropic systems</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Best practices</span></p>
-<ul class="current">
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Best practices</a></li>
-</ul>
 <p class="caption" role="heading"><span class="caption-text">Additional</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="microscopic-origin.html">Microscopic mechanisms of relaxation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../additional/bibliography.html">Bibliography</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../additional/acknowledgments.html">Acknowledgments</a></li>
 </ul>
@@ -256,10 +256,25 @@
         <article role="main" id="furo-main-content">
           <section id="best-practices">
 <h1>Best practices<a class="headerlink" href="#best-practices" title="Link to this heading">¶</a></h1>
-<p>Here, a set of best practive for performing accurate dipolar NMR
-calculations from NMR is provided.</p>
+<p>Here, a set of best practices for performing accurate dipolar NMR
+calculations from MD is provided.</p>
+<section id="simulation-length">
+<h2>Simulation length<a class="headerlink" href="#simulation-length" title="Link to this heading">¶</a></h2>
+<p>The required simulation duration depends on the quantity of interest.
+To obtain a converged value of <span class="math notranslate nohighlight">\(R_1\)</span> in the zero-frequency limit,
+the trajectory must be long enough for the correlation function
+<span class="math notranslate nohighlight">\(G(t)\)</span> to fully decay to zero, meaning the simulation duration
+must significantly exceed the longest correlation time <span class="math notranslate nohighlight">\(\tau_c\)</span>
+of the system. For frequency-dependent quantities <span class="math notranslate nohighlight">\(R_1(f)\)</span>, the
+lowest accessible frequency is bounded by <span class="math notranslate nohighlight">\(f_\text{min} \sim
+1/T_\text{sim}\)</span>, where <span class="math notranslate nohighlight">\(T_\text{sim}\)</span> is the total simulation
+duration. Frequencies below <span class="math notranslate nohighlight">\(f_\text{min}\)</span> cannot be probed
+regardless of the trajectory sampling interval. In practice, convergence
+should be verified by comparing results obtained from simulations of
+increasing duration.</p>
+</section>
 <section id="choosing-the-force-field">
-<h2>Choosing the Force Field<a class="headerlink" href="#choosing-the-force-field" title="Link to this heading">¶</a></h2>
+<h2>Choosing the force field<a class="headerlink" href="#choosing-the-force-field" title="Link to this heading">¶</a></h2>
 <p>The agreement between experiments and simulations can only be as accurate as
 the force field used. While some force fields show excellent agreement with
 experimental data – for instance, in simulations of water, hydrocarbons, or
@@ -272,52 +287,55 @@ substantial discrepancies between simulations and experiments may occur with
 inaccurate force fields.</p>
 <p>As an example, the NMR relaxation time <span class="math notranslate nohighlight">\(T_1\)</span> of bulk water was measured
 as a function of temperature for three water models:
-<span class="math notranslate nohighlight">\(\text{TIP4P}-\epsilon\)</span> <span id="id2">[<a class="reference internal" href="../additional/bibliography.html#id150" title="Raúl Fuentes-Azcatl and José Alejandre. Non-Polarizable Force Field of Water Based on the Dielectric Constant: TIP4P/epsilon. The Journal of Physical Chemistry B, 118(5):1263–1272, February 2014. doi:10.1021/jp410865y.">28</a>]</span>,
-<span class="math notranslate nohighlight">\(\text{SPC/E}\)</span> <span id="id3">[<a class="reference internal" href="../additional/bibliography.html#id38" title="H. J. C. Berendsen, J. R. Grigera, and T. P. Straatsma. The missing term in effective pair potentials. The Journal of Physical Chemistry, 91(24):6269–6271, November 1987. doi:10.1021/j100308a038.">30</a>]</span>, and
-<span class="math notranslate nohighlight">\(\text{TIP3P}\)</span> <span id="id4">[<a class="reference internal" href="../additional/bibliography.html#id246" title="William L. Jorgensen, Jayaraman Chandrasekhar, Jeffry D. Madura, Roger W. Impey, and Michael L. Klein. Comparison of simple potential functions for simulating liquid water. The Journal of Chemical Physics, 79(2):926–935, July 1983. doi:10.1063/1.445869.">31</a>]</span>.
+<span class="math notranslate nohighlight">\(\text{TIP4P}-\epsilon\)</span> <span id="id2">[<a class="reference internal" href="../additional/bibliography.html#id150" title="Raúl Fuentes-Azcatl and José Alejandre. Non-Polarizable Force Field of Water Based on the Dielectric Constant: TIP4P/epsilon. The Journal of Physical Chemistry B, 118(5):1263–1272, February 2014. doi:10.1021/jp410865y.">25</a>]</span>,
+<span class="math notranslate nohighlight">\(\text{SPC/E}\)</span> <span id="id3">[<a class="reference internal" href="../additional/bibliography.html#id38" title="H. J. C. Berendsen, J. R. Grigera, and T. P. Straatsma. The missing term in effective pair potentials. The Journal of Physical Chemistry, 91(24):6269–6271, November 1987. doi:10.1021/j100308a038.">26</a>]</span>, and
+<span class="math notranslate nohighlight">\(\text{TIP3P}\)</span> <span id="id4">[<a class="reference internal" href="../additional/bibliography.html#id246" title="William L. Jorgensen, Jayaraman Chandrasekhar, Jeffry D. Madura, Roger W. Impey, and Michael L. Klein. Comparison of simple potential functions for simulating liquid water. The Journal of Chemical Physics, 79(2):926–935, July 1983. doi:10.1063/1.445869.">27</a>]</span>.
 Our results show that the <span class="math notranslate nohighlight">\(\text{TIP4P}-\epsilon\)</span> model is in excellent
 agreement with experimental measurements by Krynicki et al.
-<span id="id5">[<a class="reference internal" href="../additional/bibliography.html#id278" title="K. Krynicki. Proton spin-lattice relaxation in pure water between 0°C and 100°C. Physica, 32(1):167–178, January 1966. doi:10.1016/0031-8914(66)90113-3.">32</a>]</span> and Hindman et al.
-<span id="id6">[<a class="reference internal" href="../additional/bibliography.html#id216" title="J. C. Hindman, A. Svirmickas, and M. Wood. Relaxation processes in water. A study of the proton spin-lattice relaxation time. The Journal of Chemical Physics, 59(3):1517–1522, September 2003. doi:10.1063/1.1680209.">33</a>]</span>. By contrast, both
+<span id="id5">[<a class="reference internal" href="../additional/bibliography.html#id278" title="K. Krynicki. Proton spin-lattice relaxation in pure water between 0°C and 100°C. Physica, 32(1):167–178, January 1966. doi:10.1016/0031-8914(66)90113-3.">28</a>]</span> and Hindman et al.
+<span id="id6">[<a class="reference internal" href="../additional/bibliography.html#id216" title="J. C. Hindman, A. Svirmickas, and M. Wood. Relaxation processes in water. A study of the proton spin-lattice relaxation time. The Journal of Chemical Physics, 59(3):1517–1522, September 2003. doi:10.1063/1.1680209.">29</a>]</span>. By contrast, both
 <span class="math notranslate nohighlight">\(\text{SPC/E}\)</span> and <span class="math notranslate nohighlight">\(\text{TIP3P}\)</span> overestimate the relaxation time
 <span class="math notranslate nohighlight">\(T_1\)</span>, consistent with earlier results by Calero et al.
 <span id="id7">[<a class="reference internal" href="../additional/bibliography.html#id65" title="C. Calero, J. Martí, and E. Guàrdia. 1H Nuclear Spin Relaxation of Liquid Water from Molecular Dynamics Simulations. The Journal of Physical Chemistry B, 119(5):1966–1973, February 2015. doi:10.1021/jp510013q.">8</a>]</span>.</p>
 <p>Note that Calero et al. used the <span class="math notranslate nohighlight">\(\text{TIP4P}-2005\)</span> model rather than
 <span class="math notranslate nohighlight">\(\text{TIP4P}-\epsilon\)</span>, but the two models yield very similar structures
-and viscosities <span id="id8">[<a class="reference internal" href="../additional/bibliography.html#id150" title="Raúl Fuentes-Azcatl and José Alejandre. Non-Polarizable Force Field of Water Based on the Dielectric Constant: TIP4P/epsilon. The Journal of Physical Chemistry B, 118(5):1263–1272, February 2014. doi:10.1021/jp410865y.">28</a>]</span> and are thus
+and viscosities <span id="id8">[<a class="reference internal" href="../additional/bibliography.html#id150" title="Raúl Fuentes-Azcatl and José Alejandre. Non-Polarizable Force Field of Water Based on the Dielectric Constant: TIP4P/epsilon. The Journal of Physical Chemistry B, 118(5):1263–1272, February 2014. doi:10.1021/jp410865y.">25</a>]</span> and are thus
 expected to produce similar relaxation times.</p>
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-dark" src="../_images/experimental_comparison-dark.png" />
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-light" src="../_images/experimental_comparison-light.png" />
 <div class="figurelegend docutils container">
 <p>Figure: NMR relaxation time <span class="math notranslate nohighlight">\(T_1\)</span> from MD simulations of bulk water
 using three water models:
-<span class="math notranslate nohighlight">\(\text{TIP4P}-\epsilon\)</span> <span id="id9">[<a class="reference internal" href="../additional/bibliography.html#id150" title="Raúl Fuentes-Azcatl and José Alejandre. Non-Polarizable Force Field of Water Based on the Dielectric Constant: TIP4P/epsilon. The Journal of Physical Chemistry B, 118(5):1263–1272, February 2014. doi:10.1021/jp410865y.">28</a>]</span>,
-<span class="math notranslate nohighlight">\(\text{SPC/E}\)</span> <span id="id10">[<a class="reference internal" href="../additional/bibliography.html#id38" title="H. J. C. Berendsen, J. R. Grigera, and T. P. Straatsma. The missing term in effective pair potentials. The Journal of Physical Chemistry, 91(24):6269–6271, November 1987. doi:10.1021/j100308a038.">30</a>]</span>, and
-<span class="math notranslate nohighlight">\(\text{TIP3P}\)</span> <span id="id11">[<a class="reference internal" href="../additional/bibliography.html#id246" title="William L. Jorgensen, Jayaraman Chandrasekhar, Jeffry D. Madura, Roger W. Impey, and Michael L. Klein. Comparison of simple potential functions for simulating liquid water. The Journal of Chemical Physics, 79(2):926–935, July 1983. doi:10.1063/1.445869.">31</a>]</span>. Results
+<span class="math notranslate nohighlight">\(\text{TIP4P}-\epsilon\)</span> <span id="id9">[<a class="reference internal" href="../additional/bibliography.html#id150" title="Raúl Fuentes-Azcatl and José Alejandre. Non-Polarizable Force Field of Water Based on the Dielectric Constant: TIP4P/epsilon. The Journal of Physical Chemistry B, 118(5):1263–1272, February 2014. doi:10.1021/jp410865y.">25</a>]</span>,
+<span class="math notranslate nohighlight">\(\text{SPC/E}\)</span> <span id="id10">[<a class="reference internal" href="../additional/bibliography.html#id38" title="H. J. C. Berendsen, J. R. Grigera, and T. P. Straatsma. The missing term in effective pair potentials. The Journal of Physical Chemistry, 91(24):6269–6271, November 1987. doi:10.1021/j100308a038.">26</a>]</span>, and
+<span class="math notranslate nohighlight">\(\text{TIP3P}\)</span> <span id="id11">[<a class="reference internal" href="../additional/bibliography.html#id246" title="William L. Jorgensen, Jayaraman Chandrasekhar, Jeffry D. Madura, Roger W. Impey, and Michael L. Klein. Comparison of simple potential functions for simulating liquid water. The Journal of Chemical Physics, 79(2):926–935, July 1983. doi:10.1063/1.445869.">27</a>]</span>. Results
 are compared with experiments by Krynicki et al.
-<span id="id12">[<a class="reference internal" href="../additional/bibliography.html#id278" title="K. Krynicki. Proton spin-lattice relaxation in pure water between 0°C and 100°C. Physica, 32(1):167–178, January 1966. doi:10.1016/0031-8914(66)90113-3.">32</a>]</span> and Hindman et al.
-<span id="id13">[<a class="reference internal" href="../additional/bibliography.html#id216" title="J. C. Hindman, A. Svirmickas, and M. Wood. Relaxation processes in water. A study of the proton spin-lattice relaxation time. The Journal of Chemical Physics, 59(3):1517–1522, September 2003. doi:10.1063/1.1680209.">33</a>]</span>.</p>
+<span id="id12">[<a class="reference internal" href="../additional/bibliography.html#id278" title="K. Krynicki. Proton spin-lattice relaxation in pure water between 0°C and 100°C. Physica, 32(1):167–178, January 1966. doi:10.1016/0031-8914(66)90113-3.">28</a>]</span> and Hindman et al.
+<span id="id13">[<a class="reference internal" href="../additional/bibliography.html#id216" title="J. C. Hindman, A. Svirmickas, and M. Wood. Relaxation processes in water. A study of the proton spin-lattice relaxation time. The Journal of Chemical Physics, 59(3):1517–1522, September 2003. doi:10.1063/1.1680209.">29</a>]</span>.</p>
 </div>
 </section>
 <section id="simulation-accuracy">
 <h2>Simulation accuracy<a class="headerlink" href="#simulation-accuracy" title="Link to this heading">¶</a></h2>
 <p>NMR relaxation measurements are sensitive to both thermodynamic and dynamic
-properties. To ensure accurate simulations, key parameters must be carefully
-chosen - including the force field (as discussed above), the integration time
-step, cutoff distances, and the simulation length
-<span id="id14">[<a class="reference internal" href="../additional/bibliography.html#id147" title="Daan Frenkel and Berend Smit. Understanding Molecular Simulation: From Algorithms to Applications. Number Volume 1 in Computational Science Series. Academic press, San Diego, 2nd ed edition, 2002. ISBN 978-0-12-267351-1.">34</a>, <a class="reference internal" href="../additional/bibliography.html#id10" title="M. P. Allen and D. J. Tildesley. Computer Simulation of Liquids. Oxford University Press, Oxford, United Kingdom, second edition edition, 2017. ISBN 978-0-19-880319-5 978-0-19-880320-1.">35</a>]</span>.</p>
-<p>As an illustration, the NMR relaxation time <span class="math notranslate nohighlight">\(T_1\)</span>
-of bulk water was measured as a function of the LJ cut-off.
-Our results show that, for the smallest cut-off,
-the inter-molecular <span class="math notranslate nohighlight">\(T_1^\text{inter}\)</span> is slightly
-under-estimated, which is mainly due to an over-estimation
-of the inter-molecular characteristic time <span class="math notranslate nohighlight">\(\tau_\text{inter}\)</span>.
-Our results also indicate that for a cut-off of 1,nm,
-which is commonly used value, a small error of
-about 1,% is induced. These observations are consistent
-with previous measurements <span id="id15">[<a class="reference internal" href="../additional/bibliography.html#id177" title="Simon Gravelle, Sabina Haber-Pohlmeier, Carlos Mattea, Siegfried Stapf, Christian Holm, and Alexander Schlaich. NMR Investigation of Water in Salt Crusts: Insights from Experiments and Molecular Simulations. Langmuir, 39(22):7548–7556, June 2023. doi:10.1021/acs.langmuir.3c00036.">14</a>]</span>,
-and confirm that care must be taken if one attempt in reproducing
-accurately NMR quantities.</p>
+properties. To ensure accurate simulations, several parameters must be
+carefully chosen, including the force field (as discussed above), the
+integration timestep, the cutoff distances, the choice of thermostat and
+barostat, and the equilibration procedure
+<span id="id14">[<a class="reference internal" href="../additional/bibliography.html#id147" title="Daan Frenkel and Berend Smit. Understanding Molecular Simulation: From Algorithms to Applications. Number Volume 1 in Computational Science Series. Academic press, San Diego, 2nd ed edition, 2002. ISBN 978-0-12-267351-1.">30</a>, <a class="reference internal" href="../additional/bibliography.html#id10" title="M. P. Allen and D. J. Tildesley. Computer Simulation of Liquids. Oxford University Press, Oxford, United Kingdom, second edition edition, 2017. ISBN 978-0-19-880319-5 978-0-19-880320-1.">31</a>]</span>.
+Too large an integration timestep introduces errors in the equations of
+motion, insufficient cutoff distances truncate relevant pair correlations,
+and an inappropriate thermostat coupling constant can artificially affect
+dynamical properties at short times.</p>
+<p>As an illustration of the effect of cutoff distance, the NMR relaxation
+time <span class="math notranslate nohighlight">\(T_1\)</span> of bulk water was measured as a function of the LJ
+cutoff. For the smallest cutoff, the inter-molecular contribution
+<span class="math notranslate nohighlight">\(T_1^\text{inter}\)</span> is slightly underestimated, primarily due to
+an overestimation of the inter-molecular characteristic time
+<span class="math notranslate nohighlight">\(\tau_\text{inter}\)</span>. For a cutoff of <span class="math notranslate nohighlight">\(1\,\text{nm}\)</span>, which
+is a commonly used value, a small error of approximately <span class="math notranslate nohighlight">\(1\,\%\)</span>
+is induced. These observations are consistent with previous measurements
+<span id="id15">[<a class="reference internal" href="../additional/bibliography.html#id177" title="Simon Gravelle, Sabina Haber-Pohlmeier, Carlos Mattea, Siegfried Stapf, Christian Holm, and Alexander Schlaich. NMR Investigation of Water in Salt Crusts: Insights from Experiments and Molecular Simulations. Langmuir, 39(22):7548–7556, June 2023. doi:10.1021/acs.langmuir.3c00036.">14</a>]</span>, and confirm that care must
+be taken when attempting to accurately reproduce NMR relaxation quantities.</p>
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-dark" src="../_images/effect_cutoff-dark.png" />
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-light" src="../_images/effect_cutoff-light.png" />
 <div class="figurelegend docutils container">
@@ -355,25 +373,29 @@ the standard deviation. b) Inter-molecular correlation function <span class="mat
 for two different numbers of molecules.</p>
 </div>
 </section>
-<section id="dumping-frequency">
-<h2>Dumping frequency<a class="headerlink" href="#dumping-frequency" title="Link to this heading">¶</a></h2>
-<p>The dumping frequency sets the temporal resolution of the analysis.
-The maximum dumping period that can be used is system-dependent
-and must typically be much smaller than the correlation times.
-If the typical correlation times in the system is not known,
-the appropriate dumping frequency <span class="math notranslate nohighlight">\(\Delta t\)</span> can
-be identified from convergence testing.
-Note however than using a high dumping frequency
-increases the size of the trajectory files, which in turn
-can make the computation of NMR relaxation rates
-computationally expensive.</p>
-<p>As an illustration, the NMR relaxation time <span class="math notranslate nohighlight">\(T_1\)</span> was measured
-for an increasing dumping period from <span class="math notranslate nohighlight">\(\Delta t = 0.02\,\text{ps}\)</span>
-to <span class="math notranslate nohighlight">\(5\,\text{ps}\)</span>. Our results show that using a dumping period
-larger than about <span class="math notranslate nohighlight">\(\Delta t = 0.5\,\text{ps}\)</span> leads to a significant decrease
-of the measured relaxation time <span class="math notranslate nohighlight">\(T_1\)</span>. The decrease in <span class="math notranslate nohighlight">\(T_1\)</span>
-is accompanied by an increase of the measured inter-molecular
-relaxation times <span class="math notranslate nohighlight">\(\tau_\text{inter}\)</span>.</p>
+<section id="output-frequency">
+<h2>Output frequency<a class="headerlink" href="#output-frequency" title="Link to this heading">¶</a></h2>
+<p>The trajectory output frequency sets the temporal resolution of the
+analysis and determines the shortest correlation times that can be
+resolved. The sampling interval <span class="math notranslate nohighlight">\(\Delta t\)</span> must be significantly
+smaller than the shortest relevant correlation time in the system,
+otherwise fast molecular motions are not captured and the correlation
+function <span class="math notranslate nohighlight">\(G(t)\)</span> is undersampled. This leads to an overestimation
+of the characteristic times <span class="math notranslate nohighlight">\(\tau\)</span>, and consequently to errors
+in the computed relaxation rates. If the characteristic correlation
+times of the system are not known a priori, the appropriate
+<span class="math notranslate nohighlight">\(\Delta t\)</span> should be identified from convergence testing.
+Note that a small sampling interval increases the size of the
+trajectory files and the computational cost of the analysis.</p>
+<p>As an illustration, the NMR relaxation time <span class="math notranslate nohighlight">\(T_1\)</span> of bulk water
+was measured for sampling intervals ranging from
+<span class="math notranslate nohighlight">\(\Delta t = 0.02\,\text{ps}\)</span> to <span class="math notranslate nohighlight">\(5\,\text{ps}\)</span>. Using a
+sampling interval larger than approximately <span class="math notranslate nohighlight">\(\Delta t =
+0.5\,\text{ps}\)</span> leads to a significant underestimation of <span class="math notranslate nohighlight">\(T_1\)</span>,
+accompanied by an overestimation of the inter-molecular characteristic
+time <span class="math notranslate nohighlight">\(\tau_\text{inter}\)</span>. Both effects are consistent with
+insufficient sampling of fast rotational and translational motions of
+the water molecules.</p>
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-dark" src="../_images/effect_dumping_frequency-dark.png" />
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-light" src="../_images/effect_dumping_frequency-light.png" />
 <div class="figurelegend docutils container">
@@ -386,6 +408,28 @@ b) Inter-molecular relaxation times <span class="math notranslate nohighlight">\
 a function of <span class="math notranslate nohighlight">\(\Delta t\)</span>.</p>
 </div>
 </section>
+<section id="number-of-reference-atoms">
+<h2>Number of reference atoms<a class="headerlink" href="#number-of-reference-atoms" title="Link to this heading">¶</a></h2>
+<p>The parameter <code class="docutils literal notranslate"><span class="pre">number_i</span></code> controls how many reference atoms are randomly
+sampled during the calculation. Because the selection is stochastic,
+results will vary slightly between runs when <code class="docutils literal notranslate"><span class="pre">number_i</span> <span class="pre">&gt;</span> <span class="pre">0</span></code>. The
+statistical uncertainty decreases as <code class="docutils literal notranslate"><span class="pre">number_i</span></code> increases, and
+setting <code class="docutils literal notranslate"><span class="pre">number_i</span> <span class="pre">=</span> <span class="pre">0</span></code> includes all eligible atoms, providing the
+most accurate result at the highest computational cost. In practice,
+convergence should be verified by repeating the calculation with
+increasing values of <code class="docutils literal notranslate"><span class="pre">number_i</span></code> until the relaxation rates stabilize.</p>
+</section>
+<section id="cross-species-interactions">
+<h2>Cross-species interactions<a class="headerlink" href="#cross-species-interactions" title="Link to this heading">¶</a></h2>
+<p>When <code class="docutils literal notranslate"><span class="pre">neighbor_group</span></code> is not specified, intermolecular contributions
+are computed only between atoms belonging to the same chemical species.
+In a mixture such as polymer–water, this means that water–polymer
+cross-interactions are excluded from the relaxation calculation. If
+cross-species contributions are expected to be significant, the
+appropriate <code class="docutils literal notranslate"><span class="pre">neighbor_group</span></code> must be set explicitly. Neglecting
+these contributions may lead to an underestimation of the total
+intermolecular relaxation rate.</p>
+</section>
 </section>
 
         </article>
@@ -393,23 +437,23 @@ a function of <span class="math notranslate nohighlight">\(\Delta t\)</span>.</p
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="../additional/bibliography.html">
+          <a class="next-page" href="../applications/lennard-jones-fluids.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Bibliography</div>
+                <div class="title">Lennard-Jones fluid</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="../applications/anisotropic-system.html">
+          <a class="prev-page" href="../applications/tutorial.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Anisotropic systems</div>
+                <div class="title">Tutorial</div>
                 
               </div>
             </a>
@@ -444,10 +488,13 @@ a function of <span class="math notranslate nohighlight">\(\Delta t\)</span>.</p
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">Best practices</a><ul>
-<li><a class="reference internal" href="#choosing-the-force-field">Choosing the Force Field</a></li>
+<li><a class="reference internal" href="#simulation-length">Simulation length</a></li>
+<li><a class="reference internal" href="#choosing-the-force-field">Choosing the force field</a></li>
 <li><a class="reference internal" href="#simulation-accuracy">Simulation accuracy</a></li>
 <li><a class="reference internal" href="#box-size">Box size</a></li>
-<li><a class="reference internal" href="#dumping-frequency">Dumping frequency</a></li>
+<li><a class="reference internal" href="#output-frequency">Output frequency</a></li>
+<li><a class="reference internal" href="#number-of-reference-atoms">Number of reference atoms</a></li>
+<li><a class="reference internal" href="#cross-species-interactions">Cross-species interactions</a></li>
 </ul>
 </li>
 </ul>

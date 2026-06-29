@@ -3,7 +3,7 @@
   <head><meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="../_static/favicon-32x32.png" sizes="32x32" rel="icon" type="image/png"><link rel="index" title="Index" href="../genindex.html"><link rel="search" title="Search" href="../search.html"><link rel="next" title="Tutorial" href="../applications/tutorial.html"><link rel="prev" title="Mathematical framework" href="mathematical-framework.html">
+    <link href="../_static/favicon-32x32.png" sizes="32x32" rel="icon" type="image/png"><link rel="index" title="Index" href="../genindex.html"><link rel="search" title="Search" href="../search.html"><link rel="next" title="Bibliography" href="../additional/bibliography.html"><link rel="prev" title="Anisotropic systems" href="../applications/anisotropic-system.html">
         <link rel="prefetch" href="../_static/logo-b.png" as="image">
 
     <!-- Generated with Sphinx 7.4.7 and Furo 2025.12.19 -->
@@ -196,24 +196,24 @@
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <p class="caption" role="heading"><span class="caption-text">Theory</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="context.html">Context</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mathematical-framework.html">Mathematical framework</a></li>
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Microscopic mechanisms of relaxation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../applications/tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="best-practice.html">Best practices</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Applications</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../applications/tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../applications/lennard-jones-fluids.html">Lennard-Jones fluid</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../applications/lysozyme-in-water.html">Lysozyme in water</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../applications/anisotropic-system.html">Anisotropic systems</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Best practices</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="best-practice.html">Best practices</a></li>
-</ul>
 <p class="caption" role="heading"><span class="caption-text">Additional</span></p>
-<ul>
+<ul class="current">
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Microscopic mechanisms of relaxation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../additional/bibliography.html">Bibliography</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../additional/acknowledgments.html">Acknowledgments</a></li>
 </ul>
@@ -429,8 +429,8 @@ molecular neighbours into and out of the local environment. This
 leads to a characteristic long-time decay
 <span class="math notranslate nohighlight">\(G_\text{inter}(t) \sim t^{-3/2}\)</span>, which is a hallmark of
 diffusive dynamics. This scaling has been predicted theoretically for freely diffusing
-particles, and analytical expressions were derived by Ayant et al. <span id="id5">[<a class="reference internal" href="../additional/bibliography.html#id22" title="Y. Ayant, E. Belorizky, J. Aluzon, and J. Gallice. Calcul des densités spectrales résultant d'un mouvement aléatoire de translation en relaxation par interaction dipolaire magnétique dans les liquides. Journal de Physique, 36(10):991–1004, October 1975. doi:10.1051/jphys:019750036010099100.">24</a>]</span>
-and Hwang and Freed <span id="id6">[<a class="reference internal" href="../additional/bibliography.html#id234" title="Lian-Pin Hwang and Jack H. Freed. Dynamic effects of pair correlation functions on spin relaxation by translational diffusion in liquids. The Journal of Chemical Physics, 63(9):4017–4025, September 2008. doi:10.1063/1.431841.">25</a>]</span> in the context of hard-sphere diffusion.
+particles, and analytical expressions were derived by Ayant et al. <span id="id5">[<a class="reference internal" href="../additional/bibliography.html#id22" title="Y. Ayant, E. Belorizky, J. Aluzon, and J. Gallice. Calcul des densités spectrales résultant d'un mouvement aléatoire de translation en relaxation par interaction dipolaire magnétique dans les liquides. Journal de Physique, 36(10):991–1004, October 1975. doi:10.1051/jphys:019750036010099100.">33</a>]</span>
+and Hwang and Freed <span id="id6">[<a class="reference internal" href="../additional/bibliography.html#id234" title="Lian-Pin Hwang and Jack H. Freed. Dynamic effects of pair correlation functions on spin relaxation by translational diffusion in liquids. The Journal of Chemical Physics, 63(9):4017–4025, September 2008. doi:10.1063/1.431841.">34</a>]</span> in the context of hard-sphere diffusion.
 Following Ref. <span id="id7">[<a class="reference internal" href="../additional/bibliography.html#id184" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">6</a>]</span>, we refer
 to this description as ADHF.</p>
 <p>While the ADHF description captures the long-time decay of the
@@ -466,7 +466,7 @@ power-law decay observed in the corresponding correlation function
 <p>In particular, the algebraic decay <span class="math notranslate nohighlight">\(G(t) \sim t^{-3/2}\)</span> is caracteristic of
 translational diffusion and indicates that the relaxation dynamics is not governed
 by a single characteristic correlation time. In this regime, and following closely
-Ref. <span id="id8">[<a class="reference internal" href="../additional/bibliography.html#id173" title="Simon Gravelle, Roland R. Netz, and Lydéric Bocquet. Adsorption Kinetics in Open Nanopores as a Source of Low-Frequency Noise. Nano Letters, 19(10):7265–7272, October 2019. doi:10.1021/acs.nanolett.9b02858.">26</a>]</span>, the spectral density can be
+Ref. <span id="id8">[<a class="reference internal" href="../additional/bibliography.html#id173" title="Simon Gravelle, Roland R. Netz, and Lydéric Bocquet. Adsorption Kinetics in Open Nanopores as a Source of Low-Frequency Noise. Nano Letters, 19(10):7265–7272, October 2019. doi:10.1021/acs.nanolett.9b02858.">35</a>]</span>, the spectral density can be
 described by adsorption-diffusion, which yields an
 analytical expression based on first-passage statistics in a diffusive reservoir:</p>
 <div class="math-wrapper docutils container" id="equation-eq-spectrum-sqrt">
@@ -490,23 +490,23 @@ results up to approximately <span class="math notranslate nohighlight">\(10^4\,\
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="../applications/tutorial.html">
+          <a class="next-page" href="../additional/bibliography.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Tutorial</div>
+                <div class="title">Bibliography</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="mathematical-framework.html">
+          <a class="prev-page" href="../applications/anisotropic-system.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Mathematical framework</div>
+                <div class="title">Anisotropic systems</div>
                 
               </div>
             </a>
