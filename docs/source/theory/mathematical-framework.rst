@@ -140,10 +140,12 @@ In that case, the rates :math:`R_1 (\omega_0)` and :math:`R_2 (\omega_0)` can be
 written as:
 
 .. math::
+    :label: eq_BPP_R1_iso
 
     R_1 (\omega_0) =  K \left[ J^{(0)} (\omega_0) + 4 J^{(0)} (2 \omega_0) \right] / 6,
 
 .. math::
+    :label: eq_BPP_R2_iso
 
     R_2 (\omega_0) = K \left[ \frac{3}{2} J^{(0)} (0) + \frac{5}{2} J^{(0)} (\omega_0) + J^{(0)} (2 \omega_0) \right] / 6,
 
