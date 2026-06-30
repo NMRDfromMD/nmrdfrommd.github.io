@@ -266,6 +266,25 @@ a natural and stable isotope of carbon, <span class="math notranslate nohighligh
 can be neglected, i.e. that correlated fluctuations of the dipolar interactions
 do not contribute significantly to the relaxation. This approximation is
 discussed in Ref. <span id="id2">[<a class="reference internal" href="../additional/bibliography.html#id304" title="G. Lippens, D. Van Belle, S.J. Wodak, and J. Jeener. T1 relaxation time of water from a molecular dynamics simulation. Molecular Physics, 80(6):1469–1484, December 1993. doi:10.1080/00268979300103151.">6</a>]</span>.</p>
+<p>When spin-lattice relaxation is dominated by fluctuations of the magnetic dipole-dipole
+interaction, which is often the dominant mechanism for protons in molecular systems,
+the relaxation rates <span class="math notranslate nohighlight">\(R_1(\omega_0)\)</span> and <span class="math notranslate nohighlight">\(R_2(\omega_0)\)</span> can be expressed
+in terms of the spectral densities <span class="math notranslate nohighlight">\(J^{(m)}(\omega)\)</span> through the Bloembergen-Purcell-Pound (BPP)
+formalism <span id="id3">[<a class="reference internal" href="../additional/bibliography.html#id47" title="N. Bloembergen, E. M. Purcell, and R. V. Pound. Relaxation Effects in Nuclear Magnetic Resonance Absorption. Physical Review, 73(7):679–712, April 1948. doi:10.1103/PhysRev.73.679.">20</a>]</span>. Here, <span class="math notranslate nohighlight">\(\omega_0 = \gamma_I B_0\)</span>
+denotes the Larmor angular frequency in the static magnetic field <span class="math notranslate nohighlight">\(B_0\)</span>.
+Within this formalism, the longitudinal relaxation rate is given by</p>
+<div class="math-wrapper docutils container" id="equation-eq-bpp-r1">
+<div class="math notranslate nohighlight" id="equation-eq-bpp-r1">
+<span class="eqno">(1)<a class="headerlink" href="#equation-eq-bpp-r1" title="Link to this equation">¶</a></span>\[R_1(\omega_0) = K \left[ J^{(1)}(\omega_0) + J^{(2)}(2\omega_0) \right]\]</div>
+</div>
+<p>while the transverse relaxation rate is given by</p>
+<div class="math-wrapper docutils container" id="equation-eq-bpp-r2">
+<div class="math notranslate nohighlight" id="equation-eq-bpp-r2">
+<span class="eqno">(2)<a class="headerlink" href="#equation-eq-bpp-r2" title="Link to this equation">¶</a></span>\[R_2(\omega_0) = K \left[ J^{(0)}(0) + 10 J^{(1)}(\omega_0) + J^{(2)}(2\omega_0) \right] / 4\]</div>
+</div>
+<p><span class="math notranslate nohighlight">\(R_1\)</span> describes longitudinal (spin-lattice) relaxation, governing recovery
+of the magnetization along the static field, whereas <span class="math notranslate nohighlight">\(R_2\)</span> describes transverse
+(spin-spin) relaxation, governing the decay of phase coherence in the plane perpendicular to the field.</p>
 <p>When spin-lattice relaxation is dominated by fluctuations of the magnetic
 dipole-dipole interaction, which is often the dominant mechanism for protons in molecular systems,
 the rates <span class="math notranslate nohighlight">\(R_1 (\omega_0)\)</span> and <span class="math notranslate nohighlight">\(R_2 (\omega_0)\)</span>,
@@ -273,10 +292,10 @@ where <span class="math notranslate nohighlight">\(\omega_0 = \gamma_I B_0\)</sp
 static magnetic field <span class="math notranslate nohighlight">\(B_0\)</span>, are related to the
 spectral densities <span class="math notranslate nohighlight">\(J^{(m)}(\omega)\)</span> of these fluctuations via the
 Bloembergen-Purcell-Pound (BPP) equations
-<span id="id3">[<a class="reference internal" href="../additional/bibliography.html#id47" title="N. Bloembergen, E. M. Purcell, and R. V. Pound. Relaxation Effects in Nuclear Magnetic Resonance Absorption. Physical Review, 73(7):679–712, April 1948. doi:10.1103/PhysRev.73.679.">20</a>]</span>:</p>
+<span id="id4">[<a class="reference internal" href="../additional/bibliography.html#id47" title="N. Bloembergen, E. M. Purcell, and R. V. Pound. Relaxation Effects in Nuclear Magnetic Resonance Absorption. Physical Review, 73(7):679–712, April 1948. doi:10.1103/PhysRev.73.679.">20</a>]</span>:</p>
 <div class="math-wrapper docutils container" id="equation-eq-bpp">
 <div class="math notranslate nohighlight" id="equation-eq-bpp">
-<span class="eqno">(1)<a class="headerlink" href="#equation-eq-bpp" title="Link to this equation">¶</a></span>\[ \begin{align}\begin{aligned}R_1 (\omega_0) = K \left[ J^{(1)} (\omega_0) + J^{(2)} (2 \omega_0) \right],\\R_2 (\omega_0) = K \left[ J^{(0)} (0) + 10 J^{(1)} (\omega_0)
+<span class="eqno">(3)<a class="headerlink" href="#equation-eq-bpp" title="Link to this equation">¶</a></span>\[ \begin{align}\begin{aligned}R_1 (\omega_0) = K \left[ J^{(1)} (\omega_0) + J^{(2)} (2 \omega_0) \right],\\R_2 (\omega_0) = K \left[ J^{(0)} (0) + 10 J^{(1)} (\omega_0)
 + J^{(2)} (2 \omega_0) \right] / 4,\end{aligned}\end{align} \]</div>
 </div>
 <p>where</p>
@@ -287,7 +306,7 @@ Bloembergen-Purcell-Pound (BPP) equations
 <p>where <span class="math notranslate nohighlight">\(\mu_0\)</span> is the vacuum permeability, and <span class="math notranslate nohighlight">\(\hbar\)</span> the Planck
 constant (divided by <span class="math notranslate nohighlight">\(2 \pi\)</span>). The constant <span class="math notranslate nohighlight">\(K\)</span> has units of
 <span class="math notranslate nohighlight">\(\text{m}^6/\text{s}^2\)</span>. The spectral densities <span class="math notranslate nohighlight">\(J^{(m)} (\omega)\)</span> in
-Eq. <a class="reference internal" href="#equation-eq-bpp">(1)</a> can be obtained as the Fourier transform of the
+Eq. <a class="reference internal" href="#equation-eq-bpp">(3)</a> can be obtained as the Fourier transform of the
 autocorrelation functions <span class="math notranslate nohighlight">\(G^{(m)}(\tau)\)</span>:</p>
 <div class="math-wrapper docutils container">
 <div class="math notranslate nohighlight">
@@ -310,7 +329,7 @@ field, assumed to be in the <span class="math notranslate nohighlight">\(\textbf
 <span class="math notranslate nohighlight">\(\left&lt; \cdot \right&gt;_{ij, \tau}\)</span> denotes an average over all spin
 pairs and over time origins <span class="math notranslate nohighlight">\(\tau\)</span>.</p>
 <p>Note, some textbooks absorb numerical factors into <span class="math notranslate nohighlight">\(J (m)\)</span>, leading to
-different-looking BPP formulas [Eq. <a class="reference internal" href="#equation-eq-bpp">(1)</a>].</p>
+different-looking BPP formulas [Eq. <a class="reference internal" href="#equation-eq-bpp">(3)</a>].</p>
 <p>The functions <span class="math notranslate nohighlight">\(F_2^{(m)}\)</span> are defined as</p>
 <div class="math-wrapper docutils container">
 <div class="math notranslate nohighlight">
@@ -336,13 +355,13 @@ pairs <span class="math notranslate nohighlight">\((i,j)\)</span>, and the <span
 as:</p>
 <div class="math-wrapper docutils container" id="equation-g-intra">
 <div class="math notranslate nohighlight" id="equation-g-intra">
-<span class="eqno">(2)<a class="headerlink" href="#equation-g-intra" title="Link to this equation">¶</a></span>\[G^{(m)}_\text{R} (\tau) = \dfrac{\alpha_m^2}{N}
+<span class="eqno">(4)<a class="headerlink" href="#equation-g-intra" title="Link to this equation">¶</a></span>\[G^{(m)}_\text{R} (\tau) = \dfrac{\alpha_m^2}{N}
 \left&lt; \sum_i \sum_{j \in M_i} \dfrac{Y_2^{(m)} [\Omega_{ij} (0)]}{r_{ij}^3 (0)}
 \dfrac{Y_2^{*(m)} [\Omega_{ij} (\tau)]}{r_{ij}^3 (\tau)} \right&gt;_{\tau},\]</div>
 </div>
 <div class="math-wrapper docutils container" id="equation-g-inter">
 <div class="math notranslate nohighlight" id="equation-g-inter">
-<span class="eqno">(3)<a class="headerlink" href="#equation-g-inter" title="Link to this equation">¶</a></span>\[G^{(m)}_\text{T} (\tau) = \dfrac{\alpha_m^2}{N}
+<span class="eqno">(5)<a class="headerlink" href="#equation-g-inter" title="Link to this equation">¶</a></span>\[G^{(m)}_\text{T} (\tau) = \dfrac{\alpha_m^2}{N}
 \left&lt; \sum_i \sum_{j \notin M_i} \dfrac{Y_2^{(m)} [\Omega_{ij} (0)]}{r_{ij}^3 (0)}
 \dfrac{Y_2^{*(m)} [\Omega_{ij} (\tau)]}{r_{ij}^3 (\tau)} \right&gt;_{\tau},\]</div>
 </div>
@@ -354,13 +373,13 @@ rotational motion, whereas the inter-molecular contribution is often dominated
 by translational motion. This interpretation is approximate, however, as both
 rotational and translational dynamics contribute to the time dependence of the
 dipolar interaction, and the two cannot be fully decoupled
-<span id="id4">[<a class="reference internal" href="../additional/bibliography.html#id227" title="Paul S. Hubbard. Theory of Nuclear Magnetic Relaxation by Spin-Rotational Interactions in Liquids. Physical Review, 131(3):1155–1165, August 1963. doi:10.1103/PhysRev.131.1155.">21</a>]</span>.</p>
+<span id="id5">[<a class="reference internal" href="../additional/bibliography.html#id227" title="Paul S. Hubbard. Theory of Nuclear Magnetic Relaxation by Spin-Rotational Interactions in Liquids. Physical Review, 131(3):1155–1165, August 1963. doi:10.1103/PhysRev.131.1155.">21</a>]</span>.</p>
 </section>
 <section id="isotropic-system">
 <h2>Isotropic system<a class="headerlink" href="#isotropic-system" title="Link to this heading">¶</a></h2>
 <p>For isotropic systems, the correlation functions are proportional to each
 other: <span class="math notranslate nohighlight">\(G^{(0)} = 6 G^{(1)}\)</span>, and <span class="math notranslate nohighlight">\(G^{(0)} = 6 / 4 G^{(2)}\)</span>
-<span id="id5">[<a class="reference internal" href="../additional/bibliography.html#id33" title="M. Becher, T. Wohlfromm, E. A. Rössler, and M. Vogel. Molecular dynamics simulations vs field-cycling NMR relaxometry: Structural relaxation mechanisms in the glass-former glycerol revisited. The Journal of Chemical Physics, 154(12):124503, March 2021. doi:10.1063/5.0048131.">13</a>]</span>. Therefore, there is no need to
+<span id="id6">[<a class="reference internal" href="../additional/bibliography.html#id33" title="M. Becher, T. Wohlfromm, E. A. Rössler, and M. Vogel. Molecular dynamics simulations vs field-cycling NMR relaxometry: Structural relaxation mechanisms in the glass-former glycerol revisited. The Journal of Chemical Physics, 154(12):124503, March 2021. doi:10.1063/5.0048131.">13</a>]</span>. Therefore, there is no need to
 calculate all three correlation functions, and <span class="math notranslate nohighlight">\(G^{(0)} (\tau)\)</span> is usually
 the only one computed, which considerably reduces the computational effort.</p>
 <p>In that case, the rates <span class="math notranslate nohighlight">\(R_1 (\omega_0)\)</span> and <span class="math notranslate nohighlight">\(R_2 (\omega_0)\)</span> can be
@@ -372,7 +391,7 @@ written as:</p>
 <p>where</p>
 <div class="math-wrapper docutils container" id="equation-f-2-0">
 <div class="math notranslate nohighlight" id="equation-f-2-0">
-<span class="eqno">(4)<a class="headerlink" href="#equation-f-2-0" title="Link to this equation">¶</a></span>\[F_2^{(0)} [\textbf{r}_{ij} (t)] = \alpha_0 \dfrac{Y_2^{(0)} [\Omega_{ij} (t)]}{r_{ij}^3 (t)}
+<span class="eqno">(6)<a class="headerlink" href="#equation-f-2-0" title="Link to this equation">¶</a></span>\[F_2^{(0)} [\textbf{r}_{ij} (t)] = \alpha_0 \dfrac{Y_2^{(0)} [\Omega_{ij} (t)]}{r_{ij}^3 (t)}
 = \dfrac{3 \cos^2 \theta_\text{ij} (t) - 1}{r_{ij}^3 (t)}.\]</div>
 </div>
 </section>
