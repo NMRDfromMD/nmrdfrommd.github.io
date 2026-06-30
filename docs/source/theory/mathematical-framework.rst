@@ -19,7 +19,10 @@ the relaxation rates :math:`R_1(\omega_0)` and :math:`R_2(\omega_0)` can be expr
 in terms of the spectral densities :math:`J^{(m)}(\omega)` through the Bloembergen-Purcell-Pound (BPP)
 formalism :cite:`bloembergenRelaxationEffectsNuclear1948`. Here, :math:`\omega_0 = \gamma_I B_0`
 denotes the Larmor angular frequency in the static magnetic field :math:`B_0`.
-Within this formalism, the longitudinal relaxation rate is given by
+:math:`R_1` describes longitudinal (spin-lattice) relaxation, governing recovery
+of the magnetization along the static field, whereas :math:`R_2` describes transverse
+(spin-spin) relaxation, governing the decay of phase coherence in the plane perpendicular to the field.
+Within the BPP formalism, the longitudinal relaxation rate is given by
 
 .. math::
     :label: eq_BPP_R1
@@ -32,27 +35,6 @@ while the transverse relaxation rate is given by
     :label: eq_BPP_R2
 
     R_2(\omega_0) = K \left[ J^{(0)}(0) + 10 J^{(1)}(\omega_0) + J^{(2)}(2\omega_0) \right] / 4
-
-:math:`R_1` describes longitudinal (spin-lattice) relaxation, governing recovery
-of the magnetization along the static field, whereas :math:`R_2` describes transverse
-(spin-spin) relaxation, governing the decay of phase coherence in the plane perpendicular to the field.
-
-When spin-lattice relaxation is dominated by fluctuations of the magnetic
-dipole-dipole interaction, which is often the dominant mechanism for protons in molecular systems,
-the rates :math:`R_1 (\omega_0)` and :math:`R_2 (\omega_0)`,
-where :math:`\omega_0 = \gamma_I B_0` is the Larmor angular frequency in the
-static magnetic field :math:`B_0`, are related to the
-spectral densities :math:`J^{(m)}(\omega)` of these fluctuations via the
-Bloembergen-Purcell-Pound (BPP) equations
-:cite:`bloembergenRelaxationEffectsNuclear1948`:
-
-.. math::
-    :label: eq_BPP
-
-    R_1 (\omega_0) = K \left[ J^{(1)} (\omega_0) + J^{(2)} (2 \omega_0) \right],
-
-    R_2 (\omega_0) = K \left[ J^{(0)} (0) + 10 J^{(1)} (\omega_0)
-    + J^{(2)} (2 \omega_0) \right] / 4,
 
 where
 
