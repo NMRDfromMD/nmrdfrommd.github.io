@@ -4,7 +4,7 @@ Context
 The measurement of NMR relaxation quantities allow for detailed studies of molecular motions
 on time scales ranging from microseconds to minutes in systems as diverse as gases,
 liquids, gels, polymers, adsorbed liquids, or solids
-:cite:`goreNMRRelaxationWater1989, greiner-schmidSelfDiffusionCompressed1991`,
+:cite:`goreNMRRelaxationWater1989, greiner-schmidSelfdiffusionCompressedFluid1991`,
 as well as proteins and other biological systems
 :cite:`jacobsonProtonMagneticResonance1954, rorschachProteinDynamicsNMR1986`.
 
@@ -18,7 +18,7 @@ For simple fluids such as Lennard-Jones systems, MD has been used to
 characterize dipolar relaxation mechanisms
 :cite:`odeliusIntermolecularDipoleDipoleRelaxation1993, grivetNMRRelaxationParameters2005`. For more realistic molecular systems,
 MD has been applied to water and small molecules
-:cite:`lippensT1RelaxationTime1993, calero1HNuclearSpin2015, singerMolecularDynamicsSimulations2017, singerNMRSpinrotationRelaxation2018, philipsProtonNMRRelaxation2019, singerElucidatingNMRRelaxation2020`,
+:cite:`lippensT1RelaxationTime1993, calero1HNuclearSpin2015, singerMolecularDynamicsSimulations2017, singerNMRSpinrotationRelaxation2018, philipsProtonNMRRelaxation2019, singerElucidating1NMR2020`,
 as well as to confined fluids in nanoporous materials
 :cite:`khudozhitkovDynamicsPropenePropane2020, gravelleNMRInvestigationWater2023`. It has also been used for polymers,
 lipid membranes, proteins, and glass-forming liquids such as glycerol
