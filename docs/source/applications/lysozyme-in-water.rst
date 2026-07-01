@@ -3,10 +3,6 @@
 Lysozyme in water
 =================
 
-.. container:: hatnote
-
-   Measuring the NMR relaxation time from a hydrated lysozyme
-
 MD system
 ---------
 
@@ -22,28 +18,37 @@ MD system
     :width: 250
     :align: right
 
-.. container:: justify
+The system is made of a lysozyme (HEWL) with 594 water molecules, which
+corresponds to water-to-protein mass ratio of :math:`73\,\%`.
+The simulation was made using GROMACS using a timestep of :math:`2\,\text{fs}`.
+The simulation was performed using GROMACS with a :math:`2\,\text{fs}`. timestep,
+a :math:`100\,\text{ns}`, and trajectories recorded every 1 ps at 300 K.
 
-    The system is made of a lysozyme (HEWL) with 594 water molecules, which
-    corresponds to water-to-protein mass ratio of :math:`73\,\%`.
-    The simulation was made using GROMACS using a timestep of :math:`2\,\text{fs}`.
-    The production run was performed for 100 ns, and the trajectory
-    was recorded with a period :math:`\Delta t = 1 \,\text{ps}`.
-    The temperature was imposed to be 300 K.
+.. admonition:: Note
+    :class: non-title-info
+
+    If you are new to NMRDfromMD, it is recommended to begin with the :ref:`isotropic-label`.
 
 Results
 -------
 
-.. container:: justify
+The total NMR relaxation rate :math:`R_1` exhibits a strong frequency dependence
+across the entire accessible frequency range, in contrast to simple bulk liquids
+where :math:`R_1` reaches a low-frequency plateau. Decomposing the signal into
+water and lysozyme contributions reveals that the low-frequency dispersion is
+dominated by the protein. This reflects the slow rotational tumbling of the
+lysozyme molecule, which has a much longer correlation time than small solvent
+molecules.
 
-    NMR relaxation rate :math:`R_1` was measured. The spectra show variations
-    with the frequency :math:`f` down to the lower frequency accessible.
-    When splitting the signal into the water and the lysozyme contribution, it
-    appears that the variation of :math:`R_1` at low frequency is primarily
-    due to the lysozyme. The spectrum for water alone shows
-    a slight variation with frequency even at the lowest frequency, which is 
-    likely induced by the interaction with the protein: the adsorbed water molecules
-    are expected to move more slowly as free water.
+The water contribution alone also shows a residual frequency dependence at low
+frequencies, which is absent in pure bulk water. In bulk water, :math:`R_1`
+reaches a plateau below approximately :math:`2 \cdot 10^3\,\text{MHz}`,
+indicating that molecular motion is fast relative to the NMR timescale. In
+contrast, water molecules in contact with the lysozyme surface show dispersion
+extending down to approximately :math:`10\,\text{MHz}`. This is consistent with
+the expected slowdown of translational and rotational dynamics of adsorbed water
+molecules, whose motion is partially constrained by interactions with the protein
+surface.
 
 .. image:: ../figures/illustrations/lysozyme-in-water/R1_spectra-dark.png
     :class: only-dark
@@ -53,18 +58,15 @@ Results
     :class: only-light
     :alt: NMR results obtained from the LAMMPS simulation of water and lysozyme
 
-.. container:: justify
+.. container:: figurelegend
 
-    **Figure:** NMR relaxation rate :math:`R_1` for the lysozyme-water system.
+    Figure: NMR relaxation rate :math:`R_1` for the lysozyme-water system.
     The spectra for water alone and lysozyme alone are also given.
 
-.. container:: justify
-
-    The effect of the interaction with the lysozyme on the NMR relaxation properties of
-    the water is made apparent when compared to pure bulk water. The spectrum from
-    bulk water shows a plateau for frequency lower than :math:`\approx 2 \cdot 10^3` MHz,
-    while the spectrum from the water in contact with the lysozyme varies for frequencies 
-    down to :math:`\approx 10` MHz, highlighting slower characteristic motion of the molecules.
+This comparison illustrates a key advantage of MD-based NMR relaxation
+calculations: the ability to decompose the total signal into contributions from
+distinct molecular species, providing physical insight that is inaccessible from
+experiment alone.
 
 .. image:: ../figures/illustrations/lysozyme-in-water/R1_spectra_water-dark.png
     :class: only-dark
@@ -74,7 +76,7 @@ Results
     :class: only-light
     :alt: NMR results obtained from the LAMMPS simulation of water and lysozyme
 
-.. container:: justify
+.. container:: figurelegend
 
-    **Figure:** Contribution to the NMR relaxation rate :math:`R_1` from the water only,
+    Figure: Contribution to the NMR relaxation rate :math:`R_1` from the water only,
     comparing the residual water in contact with the lysozyme, and pure bulk water.

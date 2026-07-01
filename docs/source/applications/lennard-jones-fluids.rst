@@ -12,6 +12,11 @@ potential, it provides an ideal benchmark for validating the
 implementation against the reference calculations of Grivet
 :cite:`grivetNMRRelaxationParameters2005`.
 
+.. admonition:: Note
+    :class: non-title-info
+
+    If you are new to NMRDfromMD, it is recommended to begin with the :ref:`isotropic-label`.
+
 System
 ------
 
