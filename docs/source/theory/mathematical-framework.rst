@@ -71,7 +71,7 @@ field, assumed to be in the :math:`\textbf{e}_z` direction. Here,
 pairs and over time origins :math:`\tau`.
 
 Note, some textbooks absorb numerical factors into :math:`J (m)`, leading to
-different-looking BPP formulas [Eq. :eq:`eq_BPP`].
+different-looking BPP formulas.
 
 The functions :math:`F_2^{(m)}` are defined as
 
