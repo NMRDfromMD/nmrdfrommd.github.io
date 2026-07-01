@@ -17,8 +17,7 @@ water-hydroxyl interactions -- are computed separately.
 .. admonition:: Note
     :class: non-title-info
 
-    If you are new to NMRDfromMD, it is recommended to begin with the simpler
-    tutorial on :ref:`isotropic-label`.
+    If you are new to NMRDfromMD, it is recommended to begin with the :ref:`isotropic-label`.
 
 MD system
 ---------

@@ -86,8 +86,8 @@ written as:
 
 .. math::
 
-    G^{(m)} (\tau) = \dfrac{\alpha_m^2}{N} \sum_i \sum_{j \ne i}
-    \left< \dfrac{Y_2^{(m)} [\Omega_{ij} (0)]}{r_{ij}^3 (0)} 
+    G^{(m)} (\tau) = \dfrac{\alpha_m^2}{N} 
+    \left< \sum_i \sum_{j \ne i} \dfrac{Y_2^{(m)} [\Omega_{ij} (0)]}{r_{ij}^3 (0)} 
     \dfrac{Y_2^{*(m)} [\Omega_{ij} (\tau)]}{r_{ij}^3 (\tau)} \right>_{\tau},
 
 where :math:`N` is the number of spins, the double sum runs over all ordered
