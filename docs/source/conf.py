@@ -9,7 +9,7 @@ sys.path.insert(0, os.path.abspath('../../'))
 
 # -- Project information -----------------------------------------------------
 
-project = 'NMRforMD'
+project = 'NMRDfromMD'
 copyright = 'All source code is available under the GNU General Public License v3.0'
 author = 'Simon Gravelle'
 

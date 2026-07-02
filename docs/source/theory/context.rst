@@ -1,7 +1,7 @@
 Context
 =======
 
-The measurement of NMR relaxation quantities allow for detailed studies of molecular motions
+The measurement of NMR relaxation quantities allows for detailed studies of molecular motions
 on time scales ranging from microseconds to minutes in systems as diverse as gases,
 liquids, gels, polymers, adsorbed liquids, or solids
 :cite:`goreNMRRelaxationWater1989, greiner-schmidSelfdiffusionCompressedFluid1991`,
@@ -27,10 +27,8 @@ lipid membranes, proteins, and glass-forming liquids such as glycerol
 Beyond classical MD, ab initio molecular dynamics has been employed to
 compute NMR relaxation properties, particularly in cases where electronic
 structure effects are important, such as quadrupolar relaxation
-mechanisms :cite:`calero1HNuclearSpin2015,
-philipsQuadrupolarNMRRelaxation2020,
-chubakNMRRelaxationRates2021`. Monte Carlo simulations have also been
-used :cite:`friesMonteCarloCalculation1983`, although care must be taken
+mechanisms :cite:`calero1HNuclearSpin2015, philipsQuadrupolarNMRRelaxation2020, chubakNMRRelaxationRates2021`.
+Monte Carlo simulations have also been used :cite:`friesMonteCarloCalculation1983`, although care must be taken
 when extracting time-dependent correlation functions from non-dynamical
 trajectories :cite:`huitemaCanMonteCarlo1999`. Coarse-grained
 models combined with structural backmapping have been shown to reproduce
