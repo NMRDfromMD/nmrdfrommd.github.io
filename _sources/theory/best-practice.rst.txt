@@ -7,7 +7,7 @@ calculations from MD is provided.
 Simulation length
 -----------------
 
-The minimum simulation duration required to accurately calculate NMR relaxation rate (e.g., :math:`R_1`)
+The minimum simulation duration required to accurately calculate the NMR relaxation rate (e.g., :math:`R_1`)
 depends on the quantity of interest. To obtain a converged value of :math:`R_1` in the zero-frequency limit,
 the trajectory must be long enough for the correlation function
 :math:`G(t)` to fully decay to zero, meaning the simulation duration
