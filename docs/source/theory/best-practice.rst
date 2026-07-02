@@ -25,10 +25,10 @@ Choosing the force field
 
 The agreement between experiments and simulations can only be as accurate as
 the force field used. While some force fields show excellent agreement with
-experimental data -- for instance, in simulations of water, hydrocarbons, or
+experimental data, for instance, in simulations of water, hydrocarbons, or
 polymer melts
-:cite:`singerMolecularDynamicsSimulations2017,gravelleNMRInvestigationWater2023,gravelleAssessingValidityNMR2023`
--- it is important to remember that force fields are often parametrized to
+:cite:`singerMolecularDynamicsSimulations2017,gravelleNMRInvestigationWater2023,gravelleAssessingValidityNMR2023`,
+it is important to remember that force fields are often parametrized to
 reproduce thermodynamic properties, such as solvation energy. However, NMR
 relaxation times depend on both structural and dynamical quantities. Thus,
 substantial discrepancies between simulations and experiments may occur with
@@ -62,14 +62,20 @@ expected to produce similar relaxation times.
 
 .. container:: figurelegend
 
-    Figure: NMR relaxation time :math:`T_1` from MD simulations of bulk water
-    using three water models:
-    :math:`\text{TIP4P}-\epsilon` :cite:`fuentes-azcatlNonPolarizableForceField2014`,
-    :math:`\text{SPC/E}` :cite:`berendsenMissingTermEffective1987`, and
-    :math:`\text{TIP3P}` :cite:`jorgensenComparisonSimplePotential1983`. Results
-    are compared with experiments by Krynicki et al.
-    :cite:`krynickiProtonSpinlatticeRelaxation1966` and Hindman et al.
-    :cite:`hindmanRelaxationProcessesWater2003`.
+    Figure: Temperature dependence of the NMR relaxation time :math:`T_1` for
+    bulk water obtained from molecular dynamics simulations using the
+    :math:`\text{TIP4P}-\epsilon`, :math:`\text{SPC/E}`, and
+    :math:`\text{TIP3P}` water models. Simulation results are compared with
+    experimental measurements, highlighting the excellent agreement of the
+    :math:`\text{TIP4P}-\epsilon` model over the investigated temperature range.
+
+The water example illustrates a more general principle: NMR relaxation
+provides a demanding test of molecular dynamics force fields because it is
+sensitive to both equilibrium structure and molecular dynamics over a wide
+range of timescales. Agreement with thermodynamic or structural properties
+alone does not guarantee accurate relaxation times. Consequently,
+NMRDfromMD can be used not only to interpret experimental measurements, but
+also to assess and compare force fields based on their ability to reproduce observables.
 
 Simulation accuracy
 -------------------
