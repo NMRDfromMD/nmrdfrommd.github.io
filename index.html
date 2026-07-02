@@ -256,16 +256,18 @@
         <article role="main" id="furo-main-content">
           <section id="nmrdfrommd">
 <h1>NMRDfromMD<a class="headerlink" href="#nmrdfrommd" title="Link to this heading">¶</a></h1>
-<p>NMRDfromMD is a Python toolkit that computes the longitudinal (<span class="math notranslate nohighlight">\(T_1\)</span>)
-and transverse (<span class="math notranslate nohighlight">\(T_2\)</span>) NMR relaxation times from the dipolar interaction
-between nuclear spins. These quantities are sensitive to molecular dynamics across a broad range of
-timescales, making them a powerful probe of translational and rotational motion
-in liquids, confined fluids, polymers, and biological systems. Used in combination
-with experiments, NMRDfromMD enables the validation of
-numerical models and helps identify the molecular mechanisms underlying
-relaxation. In the absence of experimental data, it can be used to
-interpret and predict NMR relaxation behavior from molecular dynamics
-simulations alone.</p>
+<p>NMRDfromMD is a Python toolkit for computing nuclear magnetic resonance (NMR)
+relaxation properties directly from molecular dynamics (MD) trajectories.
+From atomistic simulations, it evaluates the dipolar interactions between
+nuclear spins to calculate the longitudinal (<span class="math notranslate nohighlight">\(T_1\)</span>) and transverse
+(<span class="math notranslate nohighlight">\(T_2\)</span>) relaxation times. NMR relaxation is sensitive to molecular
+motion over a broad range of timescales, making it a powerful probe of
+translational and rotational dynamics in liquids, confined fluids, polymers,
+and biological systems. By extracting relaxation times from MD simulations,
+NMRDfromMD enables direct comparison with experimental NMR measurements,
+allowing users to validate simulation models and identify the molecular
+mechanisms underlying relaxation. It can also be used to predict
+and interpret NMR relaxation behavior when experimental data are unavailable.</p>
 <section id="compatible-simulation-packages">
 <h2>Compatible Simulation Packages<a class="headerlink" href="#compatible-simulation-packages" title="Link to this heading">¶</a></h2>
 <p>NMRDfromMD accepts any trajectory format supported by MDAnalysis,
@@ -276,10 +278,10 @@ For a full list of supported formats, see the <a href="https://www.mdanalysis.or
 <img alt="molecular dynamics systems used in these examples" class="only-dark" src="_images/avatars.png" />
 <img alt="molecular dynamics systems used in these examples" class="only-light" src="_images/avatars.png" />
 <div class="figurelegend docutils container">
-<p>Figure: NMRDfromMD can be applied to a wide range of systems, from
-simple bulk fluids (water, left) to structureless Lennard-Jones models
-(center) and complex biomolecular environments such as a lysozyme protein
-surrounded by a hydration shell (right).</p>
+<p>Figure: Examples of systems that can be analyzed with NMRDfromMD, spanning
+simple bulk liquids (water, left), idealized Lennard-Jones fluids (center),
+and biologically relevant systems such as a lysozyme protein and its
+hydration shell (right).</p>
 </div>
 </section>
 <section id="installation">
@@ -304,7 +306,7 @@ pip<span class="w"> </span>install<span class="w"> </span>.
 </section>
 <section id="datasets">
 <h2>Datasets<a class="headerlink" href="#datasets" title="Link to this heading">¶</a></h2>
-<p>Two molecular dynamics datasets are available on GitHub: a <a href="https://github.com/simongravelle/polymer-in-water.git" target="_blank">polymer in water</a>
+<p>Molecular dynamics datasets are available on GitHub: a <a href="https://github.com/simongravelle/polymer-in-water.git" target="_blank">polymer in water</a>
 system generated using LAMMPS, and a <a href="https://github.com/simongravelle/water-in-silica.git" target="_blank">water confined in silica</a> system
 generated using GROMACS. These datasets can be downloaded to follow the
 tutorials or simply to test NMRDfromMD.</p>

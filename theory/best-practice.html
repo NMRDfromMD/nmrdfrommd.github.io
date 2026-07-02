@@ -260,17 +260,17 @@
 calculations from MD is provided.</p>
 <section id="simulation-length">
 <h2>Simulation length<a class="headerlink" href="#simulation-length" title="Link to this heading">¶</a></h2>
-<p>The required simulation duration depends on the quantity of interest.
-To obtain a converged value of <span class="math notranslate nohighlight">\(R_1\)</span> in the zero-frequency limit,
+<p>The minimum simulation duration required to accurately calculate NMR relaxation rate (e.g., <span class="math notranslate nohighlight">\(R_1\)</span>)
+depends on the quantity of interest. To obtain a converged value of <span class="math notranslate nohighlight">\(R_1\)</span> in the zero-frequency limit,
 the trajectory must be long enough for the correlation function
 <span class="math notranslate nohighlight">\(G(t)\)</span> to fully decay to zero, meaning the simulation duration
 must significantly exceed the longest correlation time <span class="math notranslate nohighlight">\(\tau_c\)</span>
 of the system. For frequency-dependent quantities <span class="math notranslate nohighlight">\(R_1(f)\)</span>, the
-lowest accessible frequency is bounded by <span class="math notranslate nohighlight">\(f_\text{min} \sim
-1/T_\text{sim}\)</span>, where <span class="math notranslate nohighlight">\(T_\text{sim}\)</span> is the total simulation
+lowest accessible frequency is bounded by <span class="math notranslate nohighlight">\(f_\text{min} \sim 1/T_\text{sim}\)</span>,
+where <span class="math notranslate nohighlight">\(T_\text{sim}\)</span> is the total simulation
 duration. Frequencies below <span class="math notranslate nohighlight">\(f_\text{min}\)</span> cannot be probed
 regardless of the trajectory sampling interval. In practice, convergence
-should be verified by comparing results obtained from simulations of
+can be verified by comparing results obtained from simulations of
 increasing duration.</p>
 </section>
 <section id="choosing-the-force-field">

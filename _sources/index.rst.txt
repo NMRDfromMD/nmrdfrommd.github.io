@@ -3,16 +3,18 @@
 NMRDfromMD
 ==========
 
-NMRDfromMD is a Python toolkit that computes the longitudinal (:math:`T_1`)
-and transverse (:math:`T_2`) NMR relaxation times from the dipolar interaction
-between nuclear spins. These quantities are sensitive to molecular dynamics across a broad range of
-timescales, making them a powerful probe of translational and rotational motion
-in liquids, confined fluids, polymers, and biological systems. Used in combination
-with experiments, NMRDfromMD enables the validation of
-numerical models and helps identify the molecular mechanisms underlying
-relaxation. In the absence of experimental data, it can be used to
-interpret and predict NMR relaxation behavior from molecular dynamics
-simulations alone.
+NMRDfromMD is a Python toolkit for computing nuclear magnetic resonance (NMR)
+relaxation properties directly from molecular dynamics (MD) trajectories.
+From atomistic simulations, it evaluates the dipolar interactions between
+nuclear spins to calculate the longitudinal (:math:`T_1`) and transverse
+(:math:`T_2`) relaxation times. NMR relaxation is sensitive to molecular
+motion over a broad range of timescales, making it a powerful probe of
+translational and rotational dynamics in liquids, confined fluids, polymers,
+and biological systems. By extracting relaxation times from MD simulations,
+NMRDfromMD enables direct comparison with experimental NMR measurements,
+allowing users to validate simulation models and identify the molecular
+mechanisms underlying relaxation. It can also be used to predict
+and interpret NMR relaxation behavior when experimental data are unavailable.
 
 Compatible Simulation Packages
 -------------------------------
@@ -34,10 +36,10 @@ This package builds on the now discontinued |NMRforMD|.
 
 .. container:: figurelegend
 
-   Figure: NMRDfromMD can be applied to a wide range of systems, from
-   simple bulk fluids (water, left) to structureless Lennard-Jones models
-   (center) and complex biomolecular environments such as a lysozyme protein
-   surrounded by a hydration shell (right).
+    Figure: Examples of systems that can be analyzed with NMRDfromMD, spanning
+    simple bulk liquids (water, left), idealized Lennard-Jones fluids (center),
+    and biologically relevant systems such as a lysozyme protein and its
+    hydration shell (right).
 
 Installation
 ------------
@@ -69,7 +71,7 @@ Then run from the tests folder:
 Datasets
 --------
 
-Two molecular dynamics datasets are available on GitHub: a |polymer in water|
+Molecular dynamics datasets are available on GitHub: a |polymer in water|
 system generated using LAMMPS, and a |water confined in silica| system
 generated using GROMACS. These datasets can be downloaded to follow the
 tutorials or simply to test NMRDfromMD.
