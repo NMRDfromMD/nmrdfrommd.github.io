@@ -24,11 +24,6 @@ The simulation was made using GROMACS using a timestep of :math:`2\,\text{fs}`.
 The simulation was performed using GROMACS with a :math:`2\,\text{fs}`. timestep,
 a :math:`100\,\text{ns}`, and trajectories recorded every 1 ps at 300 K.
 
-.. admonition:: Note
-    :class: non-title-info
-
-    If you are new to NMRDfromMD, it is recommended to begin with the :ref:`isotropic-label`.
-
 Results
 -------
 

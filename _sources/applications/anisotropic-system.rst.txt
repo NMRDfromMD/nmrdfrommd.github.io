@@ -14,11 +14,6 @@ hydroxyl (-OH) groups of the silica. The individual contributions to
 :math:`R_1` and :math:`R_2` -- namely, intra-molecular, inter-molecular, and
 water-hydroxyl interactions -- are computed separately.
 
-.. admonition:: Note
-    :class: non-title-info
-
-    If you are new to NMRDfromMD, it is recommended to begin with the :ref:`isotropic-label`.
-
 MD system
 ---------
 
