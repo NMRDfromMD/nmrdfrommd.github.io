@@ -48,17 +48,18 @@ Note that Calero et al. used the :math:`\text{TIP4P}-2005` model rather than
 and transport properties :cite:`fuentes-azcatlNonPolarizableForceField2014` and are therefore expected
 to produce similar relaxation times.
 
-.. image:: ../figures/illustrations/bulk-water/experimental_comparison-dark.png
+.. image:: best-practice/water-ff-dm.png
     :class: only-dark
     :alt: NMR results obtained from the LAMMPS simulation of water
 
-.. image:: ../figures/illustrations/bulk-water/experimental_comparison-light.png
+.. image:: best-practice/water-ff.png
     :class: only-light
     :alt: NMR results obtained from the LAMMPS simulation of water
 
 .. container:: figurelegend
 
-    Figure: Temperature dependence of the NMR relaxation time :math:`T_1` for
+    Figure: A)
+    B) Temperature dependence of the NMR relaxation time :math:`T_1` for
     bulk water obtained from molecular dynamics simulations using the
     :math:`\text{TIP4P}-\epsilon`, :math:`\text{SPC/E}`, and
     :math:`\text{TIP3P}` models. Simulation results are compared with
