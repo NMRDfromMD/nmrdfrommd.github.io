@@ -455,14 +455,21 @@ Note that <span class="math notranslate nohighlight">\(R_1^\text{intra}\)</span>
 <span class="math notranslate nohighlight">\(R_1\)</span> for water at ambient temperature, is barely affected
 by the box size and therefore the resulting error induced on the
 total relaxation rate <span class="math notranslate nohighlight">\(R_1\)</span> remains small for <span class="math notranslate nohighlight">\(N &gt; 1000\)</span>.</p>
-<img alt="NMR results obtained from the LAMMPS simulation of water" class="only-dark" src="../_images/effect_L_on_R1-dark.png" />
-<img alt="NMR results obtained from the LAMMPS simulation of water" class="only-light" src="../_images/effect_L_on_R1-light.png" />
+<img alt="NMR results obtained from the LAMMPS simulation of water" class="only-dark" src="../_images/water-N-dm.png" />
+<img alt="NMR results obtained from the LAMMPS simulation of water" class="only-light" src="../_images/water-N.png" />
 <div class="figurelegend docutils container">
-<p>Figure: a) Inter-molecular NMR relaxation rate <span class="math notranslate nohighlight">\(R_1^\text{inter}\)</span> as a function of the number of molecules <span class="math notranslate nohighlight">\(N\)</span>
+<p>Figure: A) Inter-molecular NMR relaxation rate <span class="math notranslate nohighlight">\(R_\text{1, T}\)</span> as a function of the number of molecules <span class="math notranslate nohighlight">\(N\)</span>
 for a bulk water system. For the smallest systems, results were averaged
 from up to 10 independent simulations and the error bar is calculated from
-the standard deviation. b) Inter-molecular correlation function <span class="math notranslate nohighlight">\(G_\text{inter}\)</span>
-for two different numbers of molecules.</p>
+the standard deviation.
+The dashed line is a guide to the eye, indicating the value obtained
+for the largest value of <span class="math notranslate nohighlight">\(N\)</span>.</p>
+<blockquote>
+<div><ol class="loweralpha simple" start="2">
+<li><p>Inter-molecular correlation function <span class="math notranslate nohighlight">\(G_{ij, \text{T}}\)</span></p></li>
+</ol>
+</div></blockquote>
+<p>for two different numbers of molecules, <span class="math notranslate nohighlight">\(N = 158\)</span> (cyan squares) and <span class="math notranslate nohighlight">\(N = 10000\)</span> (green disks).</p>
 </div>
 </section>
 <section id="trajectory-output-frequency">
@@ -488,16 +495,16 @@ accompanied by an overestimation of the inter-molecular characteristic
 time <span class="math notranslate nohighlight">\(\tau_\text{inter}\)</span>. Both effects are consistent with
 insufficient sampling of fast rotational and translational motions of
 the water molecules.</p>
-<img alt="NMR results obtained from the LAMMPS simulation of water" class="only-dark" src="../_images/effect_dumping_frequency-dark.png" />
-<img alt="NMR results obtained from the LAMMPS simulation of water" class="only-light" src="../_images/effect_dumping_frequency-light.png" />
+<img alt="NMR results obtained from the LAMMPS simulation of water" class="only-dark" src="../_images/water-dump-dm.png" />
+<img alt="NMR results obtained from the LAMMPS simulation of water" class="only-light" src="../_images/water-dump.png" />
 <div class="figurelegend docutils container">
-<p>Figure: a) Convergence testing showing the NMR relaxation time <span class="math notranslate nohighlight">\(T_1\)</span>
+<p>Figure: A) Intermolecular NMR relaxation time <span class="math notranslate nohighlight">\(T_\text{1, T}\)</span>
 as a function of the trajectory dumping frequency <span class="math notranslate nohighlight">\(\Delta t\)</span>
 for a bulk water system at <span class="math notranslate nohighlight">\(T = 300 \text{K}\)</span>.
 The dashed line show the value for <span class="math notranslate nohighlight">\(T_1\)</span>
 for <span class="math notranslate nohighlight">\(\Delta t \to 0\)</span>.
-b) Inter-molecular relaxation times <span class="math notranslate nohighlight">\(\tau_\text{inter}\)</span> as
-a function of <span class="math notranslate nohighlight">\(\Delta t\)</span>.</p>
+B) Intramolecular NMR relaxation time <span class="math notranslate nohighlight">\(T_\text{1, R}\)</span>
+as a function of <span class="math notranslate nohighlight">\(\Delta t\)</span>.</p>
 </div>
 </section>
 <section id="analysis-parameters">
