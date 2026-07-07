@@ -172,7 +172,9 @@ Integration timestep
 The integration timestep determines the numerical accuracy of the molecular
 dynamics trajectory. If the timestep is too large, the equations of motion are
 not accurately integrated, resulting in systematic errors in both structural
-and dynamical properties. Since NMR relaxation rates are directly related to
+and dynamical properties
+:cite:`izaguirreLongerTimeSteps1999`.
+Since NMR relaxation rates are directly related to
 molecular motions, these integration errors can propagate into the calculated
 correlation functions and relaxation rates. The timestep should therefore be
 chosen according to established best practices for the selected force field and
