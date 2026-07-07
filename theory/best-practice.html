@@ -282,39 +282,41 @@ correlation functions that depend on both the equilibrium structure and
 molecular dynamics. Consequently, force fields that accurately reproduce
 thermodynamic or structural properties may still yield inaccurate relaxation
 rates if they do not correctly describe the relevant molecular motions.</p>
-<p>As an example, the NMR relaxation time <span class="math notranslate nohighlight">\(T_1\)</span> of bulk water was measured
-as a function of temperature for three water models:
+<p>As an example, the NMR relaxation time <span class="math notranslate nohighlight">\(T_1\)</span> of bulk water was calculated
+from molecular dynamics simulations as a function of temperature for three water models:
 <span class="math notranslate nohighlight">\(\text{TIP4P}-\epsilon\)</span> <span id="id3">[<a class="reference internal" href="../additional/bibliography.html#id192" title="Raúl Fuentes-Azcatl and José Alejandre. Non-Polarizable Force Field of Water Based on the Dielectric Constant: TIP4P/epsilon. The Journal of Physical Chemistry B, 118(5):1263–1272, February 2014. doi:10.1021/jp410865y.">25</a>]</span>,
 <span class="math notranslate nohighlight">\(\text{SPC/E}\)</span> <span id="id4">[<a class="reference internal" href="../additional/bibliography.html#id46" title="H. J. C. Berendsen, J. R. Grigera, and T. P. Straatsma. The missing term in effective pair potentials. The Journal of Physical Chemistry, 91(24):6269–6271, November 1987. doi:10.1021/j100308a038.">28</a>]</span>, and
 <span class="math notranslate nohighlight">\(\text{TIP3P}\)</span> <span id="id5">[<a class="reference internal" href="../additional/bibliography.html#id318" title="William L. Jorgensen, Jayaraman Chandrasekhar, Jeffry D. Madura, Roger W. Impey, and Michael L. Klein. Comparison of simple potential functions for simulating liquid water. The Journal of Chemical Physics, 79(2):926–935, July 1983. doi:10.1063/1.445869.">29</a>]</span>.
-Our results show that the <span class="math notranslate nohighlight">\(\text{TIP4P}-\epsilon\)</span> model is in excellent
+The <span class="math notranslate nohighlight">\(\text{TIP4P}-\epsilon\)</span> model shows excellent
 agreement with experimental measurements by Krynicki et al.
 <span id="id6">[<a class="reference internal" href="../additional/bibliography.html#id359" title="K. Krynicki. Proton spin-lattice relaxation in pure water between 0°C and 100°C. Physica, 32(1):167–178, January 1966. doi:10.1016/0031-8914(66)90113-3.">30</a>]</span> and Hindman et al.
 <span id="id7">[<a class="reference internal" href="../additional/bibliography.html#id282" title="J. C. Hindman, A. Svirmickas, and M. Wood. Relaxation processes in water. A study of the proton spin-lattice relaxation time. The Journal of Chemical Physics, 59(3):1517–1522, September 2003. doi:10.1063/1.1680209.">31</a>]</span>. By contrast, both
 <span class="math notranslate nohighlight">\(\text{SPC/E}\)</span> and <span class="math notranslate nohighlight">\(\text{TIP3P}\)</span> overestimate the relaxation time
-<span class="math notranslate nohighlight">\(T_1\)</span>, consistent with earlier results by Calero et al.
+<span class="math notranslate nohighlight">\(T_1\)</span>, consistent with previous observations by Calero et al.
 <span id="id8">[<a class="reference internal" href="../additional/bibliography.html#id82" title="C. Calero, J. Martí, and E. Guàrdia. 1H Nuclear Spin Relaxation of Liquid Water from Molecular Dynamics Simulations. The Journal of Physical Chemistry B, 119(5):1966–1973, February 2015. doi:10.1021/jp510013q.">8</a>]</span>.</p>
 <p>Note that Calero et al. used the <span class="math notranslate nohighlight">\(\text{TIP4P}-2005\)</span> model rather than
-<span class="math notranslate nohighlight">\(\text{TIP4P}-\epsilon\)</span>, but the two models yield very similar structures
-and viscosities <span id="id9">[<a class="reference internal" href="../additional/bibliography.html#id192" title="Raúl Fuentes-Azcatl and José Alejandre. Non-Polarizable Force Field of Water Based on the Dielectric Constant: TIP4P/epsilon. The Journal of Physical Chemistry B, 118(5):1263–1272, February 2014. doi:10.1021/jp410865y.">25</a>]</span> and are thus
-expected to produce similar relaxation times.</p>
+<span class="math notranslate nohighlight">\(\text{TIP4P}-\epsilon\)</span>. However, the two models exhibit similar structural
+and transport properties <span id="id9">[<a class="reference internal" href="../additional/bibliography.html#id192" title="Raúl Fuentes-Azcatl and José Alejandre. Non-Polarizable Force Field of Water Based on the Dielectric Constant: TIP4P/epsilon. The Journal of Physical Chemistry B, 118(5):1263–1272, February 2014. doi:10.1021/jp410865y.">25</a>]</span> and are therefore expected
+to produce similar relaxation times.</p>
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-dark" src="../_images/experimental_comparison-dark.png" />
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-light" src="../_images/experimental_comparison-light.png" />
 <div class="figurelegend docutils container">
 <p>Figure: Temperature dependence of the NMR relaxation time <span class="math notranslate nohighlight">\(T_1\)</span> for
 bulk water obtained from molecular dynamics simulations using the
 <span class="math notranslate nohighlight">\(\text{TIP4P}-\epsilon\)</span>, <span class="math notranslate nohighlight">\(\text{SPC/E}\)</span>, and
-<span class="math notranslate nohighlight">\(\text{TIP3P}\)</span> water models. Simulation results are compared with
-experimental measurements, highlighting the excellent agreement of the
-<span class="math notranslate nohighlight">\(\text{TIP4P}-\epsilon\)</span> model over the investigated temperature range.</p>
+<span class="math notranslate nohighlight">\(\text{TIP3P}\)</span> models. Simulation results are compared with
+experimental measurements, showing the excellent agreement between the
+<span class="math notranslate nohighlight">\(\text{TIP4P}-\epsilon\)</span> model and experimental data over the
+investigated temperature range.</p>
 </div>
 <p>The water example illustrates a more general principle: NMR relaxation
 provides a demanding test of molecular dynamics force fields because it is
-sensitive to both equilibrium structure and molecular dynamics over a wide
+sensitive to both equilibrium structure and molecular motions over a wide
 range of timescales. Agreement with thermodynamic or structural properties
 alone does not guarantee accurate relaxation times. Consequently,
-NMRDfromMD can be used not only to interpret experimental measurements, but
-also to assess and compare force fields based on their ability to reproduce observables.</p>
+NMR relaxation calculations from MD simulations can be used not only to interpret
+experimental measurements, but also to assess and compare force fields based on
+their ability to reproduce dynamical observables.</p>
 </section>
 <section id="simulation-protocol">
 <h2>Simulation protocol<a class="headerlink" href="#simulation-protocol" title="Link to this heading">¶</a></h2>

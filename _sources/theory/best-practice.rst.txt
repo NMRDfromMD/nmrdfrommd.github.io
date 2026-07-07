@@ -30,23 +30,23 @@ molecular dynamics. Consequently, force fields that accurately reproduce
 thermodynamic or structural properties may still yield inaccurate relaxation
 rates if they do not correctly describe the relevant molecular motions.
 
-As an example, the NMR relaxation time :math:`T_1` of bulk water was measured
-as a function of temperature for three water models:
+As an example, the NMR relaxation time :math:`T_1` of bulk water was calculated
+from molecular dynamics simulations as a function of temperature for three water models:
 :math:`\text{TIP4P}-\epsilon` :cite:`fuentes-azcatlNonPolarizableForceField2014`,
 :math:`\text{SPC/E}` :cite:`berendsenMissingTermEffective1987`, and
 :math:`\text{TIP3P}` :cite:`jorgensenComparisonSimplePotential1983`.
-Our results show that the :math:`\text{TIP4P}-\epsilon` model is in excellent
+The :math:`\text{TIP4P}-\epsilon` model shows excellent
 agreement with experimental measurements by Krynicki et al.
 :cite:`krynickiProtonSpinlatticeRelaxation1966` and Hindman et al.
 :cite:`hindmanRelaxationProcessesWater2003`. By contrast, both
 :math:`\text{SPC/E}` and :math:`\text{TIP3P}` overestimate the relaxation time
-:math:`T_1`, consistent with earlier results by Calero et al.
+:math:`T_1`, consistent with previous observations by Calero et al.
 :cite:`calero1HNuclearSpin2015`.
 
 Note that Calero et al. used the :math:`\text{TIP4P}-2005` model rather than
-:math:`\text{TIP4P}-\epsilon`, but the two models yield very similar structures
-and viscosities :cite:`fuentes-azcatlNonPolarizableForceField2014` and are thus
-expected to produce similar relaxation times.
+:math:`\text{TIP4P}-\epsilon`. However, the two models exhibit similar structural
+and transport properties :cite:`fuentes-azcatlNonPolarizableForceField2014` and are therefore expected
+to produce similar relaxation times.
 
 .. image:: ../figures/illustrations/bulk-water/experimental_comparison-dark.png
     :class: only-dark
@@ -61,17 +61,19 @@ expected to produce similar relaxation times.
     Figure: Temperature dependence of the NMR relaxation time :math:`T_1` for
     bulk water obtained from molecular dynamics simulations using the
     :math:`\text{TIP4P}-\epsilon`, :math:`\text{SPC/E}`, and
-    :math:`\text{TIP3P}` water models. Simulation results are compared with
-    experimental measurements, highlighting the excellent agreement of the
-    :math:`\text{TIP4P}-\epsilon` model over the investigated temperature range.
+    :math:`\text{TIP3P}` models. Simulation results are compared with
+    experimental measurements, showing the excellent agreement between the
+    :math:`\text{TIP4P}-\epsilon` model and experimental data over the
+    investigated temperature range.
 
 The water example illustrates a more general principle: NMR relaxation
 provides a demanding test of molecular dynamics force fields because it is
-sensitive to both equilibrium structure and molecular dynamics over a wide
+sensitive to both equilibrium structure and molecular motions over a wide
 range of timescales. Agreement with thermodynamic or structural properties
 alone does not guarantee accurate relaxation times. Consequently,
-NMRDfromMD can be used not only to interpret experimental measurements, but
-also to assess and compare force fields based on their ability to reproduce observables.
+NMR relaxation calculations from MD simulations can be used not only to interpret
+experimental measurements, but also to assess and compare force fields based on
+their ability to reproduce dynamical observables.
 
 Simulation protocol
 -------------------
