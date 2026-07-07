@@ -270,11 +270,11 @@ recommendations for obtaining reliable and reproducible results.</p>
 the chosen force field. While some force fields show excellent agreement with
 experimental data, for instance, in simulations of water, hydrocarbons, or
 polymer melts
-<span id="id1">[<a class="reference internal" href="../additional/bibliography.html#id605" title="Philip M. Singer, Dilip Asthagiri, Walter G. Chapman, and George J. Hirasaki. Molecular dynamics simulations of NMR relaxation and diffusion of bulk hydrocarbons and water. Journal of Magnetic Resonance, 277:15–24, April 2017. doi:10.1016/j.jmr.2017.02.001.">9</a>, <a class="reference internal" href="../additional/bibliography.html#id231" title="Simon Gravelle, Sabina Haber-Pohlmeier, Carlos Mattea, Siegfried Stapf, Christian Holm, and Alexander Schlaich. NMR Investigation of Water in Salt Crusts: Insights from Experiments and Molecular Simulations. Langmuir, 39(22):7548–7556, June 2023. doi:10.1021/acs.langmuir.3c00036.">14</a>, <a class="reference internal" href="../additional/bibliography.html#id227" title="Simon Gravelle, David Beyer, Mariano Brito, Alexander Schlaich, and Christian Holm. Assessing the Validity of NMR Relaxation Rates Obtained from Coarse-Grained Simulations of PEG–Water Mixtures. The Journal of Physical Chemistry B, 127(25):5601–5608, June 2023. doi:10.1021/acs.jpcb.3c01646.">20</a>]</span>,
+<span id="id1">[<a class="reference internal" href="../additional/bibliography.html#id607" title="Philip M. Singer, Dilip Asthagiri, Walter G. Chapman, and George J. Hirasaki. Molecular dynamics simulations of NMR relaxation and diffusion of bulk hydrocarbons and water. Journal of Magnetic Resonance, 277:15–24, April 2017. doi:10.1016/j.jmr.2017.02.001.">9</a>, <a class="reference internal" href="../additional/bibliography.html#id232" title="Simon Gravelle, Sabina Haber-Pohlmeier, Carlos Mattea, Siegfried Stapf, Christian Holm, and Alexander Schlaich. NMR Investigation of Water in Salt Crusts: Insights from Experiments and Molecular Simulations. Langmuir, 39(22):7548–7556, June 2023. doi:10.1021/acs.langmuir.3c00036.">14</a>, <a class="reference internal" href="../additional/bibliography.html#id228" title="Simon Gravelle, David Beyer, Mariano Brito, Alexander Schlaich, and Christian Holm. Assessing the Validity of NMR Relaxation Rates Obtained from Coarse-Grained Simulations of PEG–Water Mixtures. The Journal of Physical Chemistry B, 127(25):5601–5608, June 2023. doi:10.1021/acs.jpcb.3c01646.">20</a>]</span>,
 it is important to remember that force fields are generally parametrized to
 reproduce selected thermodynamic, structural, and, in some cases, dynamical
 properties, but usually not NMR relaxation observables
-<span id="id2">[<a class="reference internal" href="../additional/bibliography.html#id411" title="Alexander D. Mackerell. Empirical force fields for biological macromolecules: Overview and issues. Journal of Computational Chemistry, 25(13):1584–1604, October 2004. doi:10.1002/jcc.20082.">26</a>, <a class="reference internal" href="../additional/bibliography.html#id370" title="Andrew R. Leach. Molecular Modelling: Principles and Applications. Prentice Hall, Harlow, England ; New York, 2nd ed edition, 2001. ISBN 978-0-582-38210-7.">27</a>]</span>.
+<span id="id2">[<a class="reference internal" href="../additional/bibliography.html#id413" title="Alexander D. Mackerell. Empirical force fields for biological macromolecules: Overview and issues. Journal of Computational Chemistry, 25(13):1584–1604, October 2004. doi:10.1002/jcc.20082.">26</a>, <a class="reference internal" href="../additional/bibliography.html#id372" title="Andrew R. Leach. Molecular Modelling: Principles and Applications. Prentice Hall, Harlow, England ; New York, 2nd ed edition, 2001. ISBN 978-0-582-38210-7.">27</a>]</span>.
 These target properties may include densities, heats of vaporization, phase
 equilibria, solvation energies, radial distribution functions, or selected
 dynamical observables. However, NMR relaxation rates are determined by time
@@ -282,33 +282,57 @@ correlation functions that depend on both the equilibrium structure and
 molecular dynamics. Consequently, force fields that accurately reproduce
 thermodynamic or structural properties may still yield inaccurate relaxation
 rates if they do not correctly describe the relevant molecular motions.</p>
-<p>As an example, the NMR relaxation time <span class="math notranslate nohighlight">\(T_1\)</span> of bulk water was calculated
-from molecular dynamics simulations as a function of temperature for three water models:
+<section id="impact-of-the-water-model">
+<h3>Impact of the water model<a class="headerlink" href="#impact-of-the-water-model" title="Link to this heading">¶</a></h3>
+<p>As an example, the NMR relaxation properties of bulk water were calculated
+from molecular dynamics simulations for three water models:
 <span class="math notranslate nohighlight">\(\text{TIP4P}-\epsilon\)</span> <span id="id3">[<a class="reference internal" href="../additional/bibliography.html#id192" title="Raúl Fuentes-Azcatl and José Alejandre. Non-Polarizable Force Field of Water Based on the Dielectric Constant: TIP4P/epsilon. The Journal of Physical Chemistry B, 118(5):1263–1272, February 2014. doi:10.1021/jp410865y.">25</a>]</span>,
 <span class="math notranslate nohighlight">\(\text{SPC/E}\)</span> <span id="id4">[<a class="reference internal" href="../additional/bibliography.html#id46" title="H. J. C. Berendsen, J. R. Grigera, and T. P. Straatsma. The missing term in effective pair potentials. The Journal of Physical Chemistry, 91(24):6269–6271, November 1987. doi:10.1021/j100308a038.">28</a>]</span>, and
-<span class="math notranslate nohighlight">\(\text{TIP3P}\)</span> <span id="id5">[<a class="reference internal" href="../additional/bibliography.html#id318" title="William L. Jorgensen, Jayaraman Chandrasekhar, Jeffry D. Madura, Roger W. Impey, and Michael L. Klein. Comparison of simple potential functions for simulating liquid water. The Journal of Chemical Physics, 79(2):926–935, July 1983. doi:10.1063/1.445869.">29</a>]</span>.
-The <span class="math notranslate nohighlight">\(\text{TIP4P}-\epsilon\)</span> model shows excellent
-agreement with experimental measurements by Krynicki et al.
-<span id="id6">[<a class="reference internal" href="../additional/bibliography.html#id359" title="K. Krynicki. Proton spin-lattice relaxation in pure water between 0°C and 100°C. Physica, 32(1):167–178, January 1966. doi:10.1016/0031-8914(66)90113-3.">30</a>]</span> and Hindman et al.
-<span id="id7">[<a class="reference internal" href="../additional/bibliography.html#id282" title="J. C. Hindman, A. Svirmickas, and M. Wood. Relaxation processes in water. A study of the proton spin-lattice relaxation time. The Journal of Chemical Physics, 59(3):1517–1522, September 2003. doi:10.1063/1.1680209.">31</a>]</span>. By contrast, both
+<span class="math notranslate nohighlight">\(\text{TIP3P}\)</span> <span id="id5">[<a class="reference internal" href="../additional/bibliography.html#id320" title="William L. Jorgensen, Jayaraman Chandrasekhar, Jeffry D. Madura, Roger W. Impey, and Michael L. Klein. Comparison of simple potential functions for simulating liquid water. The Journal of Chemical Physics, 79(2):926–935, July 1983. doi:10.1063/1.445869.">29</a>]</span>.</p>
+<p>Correlation functions extracted for the three models at
+<span class="math notranslate nohighlight">\(T = 300\,\text{K}\)</span> highlight the differences between them, with
+<span class="math notranslate nohighlight">\(\text{TIP3P}\)</span> showing much faster decorrelation compared to
+<span class="math notranslate nohighlight">\(\text{SPC/E}\)</span>, which itself decorrelates slightly faster than
+<span class="math notranslate nohighlight">\(\text{TIP4P}\)</span>. This ordering of the molecular dynamics timescales
+is consistent with the known viscosities
+of these models <span id="id6">[<a class="reference internal" href="../additional/bibliography.html#id221" title="Miguel Angel González and José L. F. Abascal. The shear viscosity of rigid water models. The Journal of Chemical Physics, 132(9):096101, March 2010. doi:10.1063/1.3330544.">30</a>]</span> at <span class="math notranslate nohighlight">\(T = 298\,\text{K}\)</span>:
+<span class="math notranslate nohighlight">\(0.321 \, \text{mPa s}\)</span> for <span class="math notranslate nohighlight">\(\text{TIP3P}\)</span>,
+<span class="math notranslate nohighlight">\(0.729 \, \text{mPa s}\)</span> for <span class="math notranslate nohighlight">\(\text{SPC/E}\)</span>, and
+<span class="math notranslate nohighlight">\(0.855 \, \text{mPa s}\)</span> for <span class="math notranslate nohighlight">\(\text{TIP4P/2005}\)</span>.
+A similar value is expected for the <span class="math notranslate nohighlight">\(\text{TIP4P}-\epsilon\)</span> model
+<span id="id7">[<a class="reference internal" href="../additional/bibliography.html#id192" title="Raúl Fuentes-Azcatl and José Alejandre. Non-Polarizable Force Field of Water Based on the Dielectric Constant: TIP4P/epsilon. The Journal of Physical Chemistry B, 118(5):1263–1272, February 2014. doi:10.1021/jp410865y.">25</a>]</span>.
+Among the models considered, the TIP4P models have viscosities closest to
+the experimental value of <span class="math notranslate nohighlight">\(0.896 \, \text{mPa s}\)</span>
+<span id="id8">[<a class="reference internal" href="../additional/bibliography.html#id262" title="Kenneth R. Harris and Lawrence A. Woolf. Temperature and Volume Dependence of the Viscosity of Water and Heavy Water at Low Temperatures. Journal of Chemical &amp; Engineering Data, 49(4):1064–1069, July 2004. doi:10.1021/je049918m.">31</a>]</span>.</p>
+<p>The NMR relaxation time <span class="math notranslate nohighlight">\(T_1\)</span> was extracted as a function of
+temperature. The <span class="math notranslate nohighlight">\(\text{TIP4P}-\epsilon\)</span> model shows excellent
+agreement with experimental measurements by Krynicki
+<span id="id9">[<a class="reference internal" href="../additional/bibliography.html#id361" title="K. Krynicki. Proton spin-lattice relaxation in pure water between 0°C and 100°C. Physica, 32(1):167–178, January 1966. doi:10.1016/0031-8914(66)90113-3.">32</a>]</span> and Hindman et al.
+<span id="id10">[<a class="reference internal" href="../additional/bibliography.html#id284" title="J. C. Hindman, A. Svirmickas, and M. Wood. Relaxation processes in water. A study of the proton spin-lattice relaxation time. The Journal of Chemical Physics, 59(3):1517–1522, September 2003. doi:10.1063/1.1680209.">33</a>]</span>. By contrast, both
 <span class="math notranslate nohighlight">\(\text{SPC/E}\)</span> and <span class="math notranslate nohighlight">\(\text{TIP3P}\)</span> overestimate the relaxation time
-<span class="math notranslate nohighlight">\(T_1\)</span>, consistent with previous observations by Calero et al.
-<span id="id8">[<a class="reference internal" href="../additional/bibliography.html#id82" title="C. Calero, J. Martí, and E. Guàrdia. 1H Nuclear Spin Relaxation of Liquid Water from Molecular Dynamics Simulations. The Journal of Physical Chemistry B, 119(5):1966–1973, February 2015. doi:10.1021/jp510013q.">8</a>]</span>.</p>
+<span class="math notranslate nohighlight">\(T_1\)</span>, consistent with their higher deviations in viscosity and with
+previous observations by Calero et al.
+<span id="id11">[<a class="reference internal" href="../additional/bibliography.html#id82" title="C. Calero, J. Martí, and E. Guàrdia. 1H Nuclear Spin Relaxation of Liquid Water from Molecular Dynamics Simulations. The Journal of Physical Chemistry B, 119(5):1966–1973, February 2015. doi:10.1021/jp510013q.">8</a>]</span>.</p>
 <p>Note that Calero et al. used the <span class="math notranslate nohighlight">\(\text{TIP4P}-2005\)</span> model rather than
-<span class="math notranslate nohighlight">\(\text{TIP4P}-\epsilon\)</span>. However, the two models exhibit similar structural
-and transport properties <span id="id9">[<a class="reference internal" href="../additional/bibliography.html#id192" title="Raúl Fuentes-Azcatl and José Alejandre. Non-Polarizable Force Field of Water Based on the Dielectric Constant: TIP4P/epsilon. The Journal of Physical Chemistry B, 118(5):1263–1272, February 2014. doi:10.1021/jp410865y.">25</a>]</span> and are therefore expected
+<span class="math notranslate nohighlight">\(\text{TIP4P}-\epsilon\)</span>. However, the two models exhibit similar
+structural and transport properties
+<span id="id12">[<a class="reference internal" href="../additional/bibliography.html#id192" title="Raúl Fuentes-Azcatl and José Alejandre. Non-Polarizable Force Field of Water Based on the Dielectric Constant: TIP4P/epsilon. The Journal of Physical Chemistry B, 118(5):1263–1272, February 2014. doi:10.1021/jp410865y.">25</a>]</span> and are therefore expected
 to produce similar relaxation times.</p>
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-dark" src="../_images/water-ff-dm.png" />
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-light" src="../_images/water-ff.png" />
 <div class="figurelegend docutils container">
-<p>Figure: A)
+<p>Figure: A) Correlation functions extracted from molecular dynamics
+simulations for three water models:
+<span class="math notranslate nohighlight">\(\text{TIP4P}\)</span> (blue disks), <span class="math notranslate nohighlight">\(\text{SPC/E}\)</span> (cyan squares),
+and <span class="math notranslate nohighlight">\(\text{TIP3P}\)</span> (green pentagons) at
+<span class="math notranslate nohighlight">\(T = 300\,\text{K}\)</span>.
 B) Temperature dependence of the NMR relaxation time <span class="math notranslate nohighlight">\(T_1\)</span> for
 bulk water obtained from molecular dynamics simulations using the
-<span class="math notranslate nohighlight">\(\text{TIP4P}-\epsilon\)</span>, <span class="math notranslate nohighlight">\(\text{SPC/E}\)</span>, and
+<span class="math notranslate nohighlight">\(\text{TIP4P}\)</span>, <span class="math notranslate nohighlight">\(\text{SPC/E}\)</span>, and
 <span class="math notranslate nohighlight">\(\text{TIP3P}\)</span> models. Simulation results are compared with
-experimental measurements, showing the excellent agreement between the
-<span class="math notranslate nohighlight">\(\text{TIP4P}-\epsilon\)</span> model and experimental data over the
-investigated temperature range.</p>
+experimental measurements reported by Krynicki
+<span id="id13">[<a class="reference internal" href="../additional/bibliography.html#id361" title="K. Krynicki. Proton spin-lattice relaxation in pure water between 0°C and 100°C. Physica, 32(1):167–178, January 1966. doi:10.1016/0031-8914(66)90113-3.">32</a>]</span> and Hindman et al.
+<span id="id14">[<a class="reference internal" href="../additional/bibliography.html#id284" title="J. C. Hindman, A. Svirmickas, and M. Wood. Relaxation processes in water. A study of the proton spin-lattice relaxation time. The Journal of Chemical Physics, 59(3):1517–1522, September 2003. doi:10.1063/1.1680209.">33</a>]</span>.</p>
 </div>
 <p>The water example illustrates a more general principle: NMR relaxation
 provides a demanding test of molecular dynamics force fields because it is
@@ -319,6 +343,7 @@ NMR relaxation calculations from MD simulations can be used not only to interpre
 experimental measurements, but also to assess and compare force fields based on
 their ability to reproduce dynamical observables.</p>
 </section>
+</section>
 <section id="simulation-protocol">
 <h2>Simulation protocol<a class="headerlink" href="#simulation-protocol" title="Link to this heading">¶</a></h2>
 <p>NMR relaxation measurements are sensitive to both thermodynamic and dynamic
@@ -326,7 +351,7 @@ properties. To ensure accurate simulations, several parameters must be
 carefully chosen, including the force field (as discussed above), the
 integration timestep, the cutoff distances, the choice of thermostat and
 barostat, and the equilibration procedure
-<span id="id10">[<a class="reference internal" href="../additional/bibliography.html#id189" title="Daan Frenkel and Berend Smit. Understanding Molecular Simulation: From Algorithms to Applications. Number Volume 1 in Computational Science Series. Academic press, San Diego, 2nd ed edition, 2002. ISBN 978-0-12-267351-1.">32</a>, <a class="reference internal" href="../additional/bibliography.html#id12" title="M. P. Allen and D. J. Tildesley. Computer Simulation of Liquids. Oxford University Press, Oxford, United Kingdom, second edition edition, 2017. ISBN 978-0-19-880319-5 978-0-19-880320-1.">33</a>]</span>.
+<span id="id15">[<a class="reference internal" href="../additional/bibliography.html#id189" title="Daan Frenkel and Berend Smit. Understanding Molecular Simulation: From Algorithms to Applications. Number Volume 1 in Computational Science Series. Academic press, San Diego, 2nd ed edition, 2002. ISBN 978-0-12-267351-1.">34</a>, <a class="reference internal" href="../additional/bibliography.html#id12" title="M. P. Allen and D. J. Tildesley. Computer Simulation of Liquids. Oxford University Press, Oxford, United Kingdom, second edition edition, 2017. ISBN 978-0-19-880319-5 978-0-19-880320-1.">35</a>]</span>.
 Too large an integration timestep introduces errors in the equations of
 motion, insufficient cutoff distances truncate relevant pair correlations,
 and an inappropriate thermostat coupling constant can artificially affect
@@ -341,7 +366,7 @@ an overestimation of the inter-molecular characteristic time
 <span class="math notranslate nohighlight">\(\tau_\text{inter}\)</span>. For a cutoff of <span class="math notranslate nohighlight">\(1\,\text{nm}\)</span>, which
 is a commonly used value, a small error of approximately <span class="math notranslate nohighlight">\(1\,\%\)</span>
 is induced. These observations are consistent with previous measurements
-<span id="id11">[<a class="reference internal" href="../additional/bibliography.html#id231" title="Simon Gravelle, Sabina Haber-Pohlmeier, Carlos Mattea, Siegfried Stapf, Christian Holm, and Alexander Schlaich. NMR Investigation of Water in Salt Crusts: Insights from Experiments and Molecular Simulations. Langmuir, 39(22):7548–7556, June 2023. doi:10.1021/acs.langmuir.3c00036.">14</a>]</span>, and confirm that care must
+<span id="id16">[<a class="reference internal" href="../additional/bibliography.html#id232" title="Simon Gravelle, Sabina Haber-Pohlmeier, Carlos Mattea, Siegfried Stapf, Christian Holm, and Alexander Schlaich. NMR Investigation of Water in Salt Crusts: Insights from Experiments and Molecular Simulations. Langmuir, 39(22):7548–7556, June 2023. doi:10.1021/acs.langmuir.3c00036.">14</a>]</span>, and confirm that care must
 be taken when attempting to accurately reproduce NMR relaxation quantities.</p>
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-dark" src="../_images/effect_cutoff-dark.png" />
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-light" src="../_images/effect_cutoff-light.png" />
@@ -394,7 +419,7 @@ increasing duration.</p>
 <section id="box-size">
 <h2>Box size<a class="headerlink" href="#box-size" title="Link to this heading">¶</a></h2>
 <p>NMR relaxation measurements are sensitive to the
-finite-size effects that can occur with small simulation boxes <span id="id12">[<a class="reference internal" href="../additional/bibliography.html#id240" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">6</a>]</span>.</p>
+finite-size effects that can occur with small simulation boxes <span id="id17">[<a class="reference internal" href="../additional/bibliography.html#id241" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">6</a>]</span>.</p>
 <p>As an illustration, the NMR relaxation rate <span class="math notranslate nohighlight">\(R_1\)</span>
 was measured for water with different number of molecules
 <span class="math notranslate nohighlight">\(N \in [100,\,10000]\)</span>, which correspond to equilibrium
@@ -483,9 +508,9 @@ cross-species contributions are expected to be significant, the
 appropriate <code class="docutils literal notranslate"><span class="pre">neighbor_group</span></code> must be set explicitly. Neglecting
 these contributions may lead to an underestimation of the total
 intermolecular relaxation rate.</p>
-<div class="table-wrapper colwidths-given docutils container" id="id13">
-<table class="docutils align-default" id="id13">
-<caption><span class="caption-text">Summary of the main factors affecting the accuracy of NMR relaxation calculations from molecular dynamics.</span><a class="headerlink" href="#id13" title="Link to this table">¶</a></caption>
+<div class="table-wrapper colwidths-given docutils container" id="id18">
+<table class="docutils align-default" id="id18">
+<caption><span class="caption-text">Summary of the main factors affecting the accuracy of NMR relaxation calculations from molecular dynamics.</span><a class="headerlink" href="#id18" title="Link to this table">¶</a></caption>
 <colgroup>
 <col style="width: 25.0%" />
 <col style="width: 35.0%" />
@@ -589,7 +614,10 @@ intermolecular relaxation rate.</p>
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">Best practices</a><ul>
-<li><a class="reference internal" href="#choosing-the-force-field">Choosing the force field</a></li>
+<li><a class="reference internal" href="#choosing-the-force-field">Choosing the force field</a><ul>
+<li><a class="reference internal" href="#impact-of-the-water-model">Impact of the water model</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#simulation-protocol">Simulation protocol</a><ul>
 <li><a class="reference internal" href="#cut-off">Cut-off</a></li>
 <li><a class="reference internal" href="#integration-timestep">Integration timestep</a></li>
