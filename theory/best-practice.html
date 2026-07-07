@@ -346,35 +346,53 @@ their ability to reproduce dynamical observables.</p>
 </section>
 <section id="simulation-protocol">
 <h2>Simulation protocol<a class="headerlink" href="#simulation-protocol" title="Link to this heading">¶</a></h2>
-<p>NMR relaxation measurements are sensitive to both thermodynamic and dynamic
-properties. To ensure accurate simulations, several parameters must be
-carefully chosen, including the force field (as discussed above), the
-integration timestep, the cutoff distances, the choice of thermostat and
-barostat, and the equilibration procedure
+<p>NMR relaxation calculations are sensitive to both thermodynamic and dynamical
+properties. To ensure accurate simulations, the simulation protocol must be
+carefully chosen alongside the force field discussed above. Important aspects
+of the simulation protocol include the integration timestep, cutoff distances,
+thermostat and barostat settings, and the equilibration procedure
 <span id="id15">[<a class="reference internal" href="../additional/bibliography.html#id189" title="Daan Frenkel and Berend Smit. Understanding Molecular Simulation: From Algorithms to Applications. Number Volume 1 in Computational Science Series. Academic press, San Diego, 2nd ed edition, 2002. ISBN 978-0-12-267351-1.">34</a>, <a class="reference internal" href="../additional/bibliography.html#id12" title="M. P. Allen and D. J. Tildesley. Computer Simulation of Liquids. Oxford University Press, Oxford, United Kingdom, second edition edition, 2017. ISBN 978-0-19-880319-5 978-0-19-880320-1.">35</a>]</span>.
-Too large an integration timestep introduces errors in the equations of
-motion, insufficient cutoff distances truncate relevant pair correlations,
-and an inappropriate thermostat coupling constant can artificially affect
-dynamical properties at short times.</p>
-<section id="cut-off">
-<h3>Cut-off<a class="headerlink" href="#cut-off" title="Link to this heading">¶</a></h3>
-<p>As an illustration of the effect of cutoff distance, the NMR relaxation
-time <span class="math notranslate nohighlight">\(T_1\)</span> of bulk water was measured as a function of the LJ
-cutoff. For the smallest cutoff, the inter-molecular contribution
-<span class="math notranslate nohighlight">\(T_1^\text{inter}\)</span> is slightly underestimated, primarily due to
-an overestimation of the inter-molecular characteristic time
-<span class="math notranslate nohighlight">\(\tau_\text{inter}\)</span>. For a cutoff of <span class="math notranslate nohighlight">\(1\,\text{nm}\)</span>, which
-is a commonly used value, a small error of approximately <span class="math notranslate nohighlight">\(1\,\%\)</span>
-is induced. These observations are consistent with previous measurements
-<span id="id16">[<a class="reference internal" href="../additional/bibliography.html#id232" title="Simon Gravelle, Sabina Haber-Pohlmeier, Carlos Mattea, Siegfried Stapf, Christian Holm, and Alexander Schlaich. NMR Investigation of Water in Salt Crusts: Insights from Experiments and Molecular Simulations. Langmuir, 39(22):7548–7556, June 2023. doi:10.1021/acs.langmuir.3c00036.">14</a>]</span>, and confirm that care must
-be taken when attempting to accurately reproduce NMR relaxation quantities.</p>
-<img alt="NMR results obtained from the LAMMPS simulation of water" class="only-dark" src="../_images/effect_cutoff-dark.png" />
-<img alt="NMR results obtained from the LAMMPS simulation of water" class="only-light" src="../_images/effect_cutoff-light.png" />
+An excessively large integration timestep introduces errors in the equations
+of motion, insufficient cutoff distances truncate relevant pair correlations,
+and inappropriate thermostat coupling parameters can artificially affect
+dynamical properties. These effects can alter the structural
+and dynamical properties of the system, which are directly reflected in the
+time correlation functions used to calculate NMR relaxation rates and can
+therefore lead to inaccurate relaxation predictions.</p>
+<section id="cutoff">
+<h3>Cutoff<a class="headerlink" href="#cutoff" title="Link to this heading">¶</a></h3>
+<p>The cutoff distance used for non-bonded interactions can affect the accuracy of
+NMR relaxation calculations by modifying the intermolecular structure and
+dynamics of the simulated system. In particular, an insufficient cutoff may
+truncate long-range pair correlations, which can alter the intermolecular time
+correlation functions used to calculate relaxation rates.</p>
+<p>As an illustration, the NMR relaxation time <span class="math notranslate nohighlight">\(T_1\)</span> of bulk water was
+calculated for different Lennard-Jones cutoff distances
+<span class="math notranslate nohighlight">\(r_\text{LJ}\)</span> using the <span class="math notranslate nohighlight">\(\text{TIP4P}\)</span> model. The intermolecular characteristic time
+<span class="math notranslate nohighlight">\(\tau_\text{inter}\)</span> shows a clear dependence on the cutoff distance,
+increasing by up to <span class="math notranslate nohighlight">\(5\,\%\)</span> for the smallest cutoff considered
+(<span class="math notranslate nohighlight">\(r_\text{LJ} = 0.7\,\text{nm}\)</span>). This reflects the weakening of
+intermolecular interactions caused by the truncation of the Lennard-Jones
+potential, which modifies the liquid structure and the molecular motions contributing
+to the intermolecular correlation functions. For a cutoff of
+<span class="math notranslate nohighlight">\(1\,\text{nm}\)</span>, which is a commonly used value in molecular dynamics
+simulations, the deviation is reduced to approximately <span class="math notranslate nohighlight">\(1\,\%\)</span>.</p>
+<p>The variation of <span class="math notranslate nohighlight">\(\tau_\text{inter}\)</span> affects the calculated
+intermolecular contribution to the relaxation time
+<span class="math notranslate nohighlight">\(T_1^\text{inter}\)</span>, which is slightly underestimated for the smallest
+cutoff. These observations are consistent with previous measurements
+<span id="id16">[<a class="reference internal" href="../additional/bibliography.html#id232" title="Simon Gravelle, Sabina Haber-Pohlmeier, Carlos Mattea, Siegfried Stapf, Christian Holm, and Alexander Schlaich. NMR Investigation of Water in Salt Crusts: Insights from Experiments and Molecular Simulations. Langmuir, 39(22):7548–7556, June 2023. doi:10.1021/acs.langmuir.3c00036.">14</a>]</span> and highlight the importance of
+carefully selecting the cutoff distance when aiming to accurately reproduce
+NMR relaxation quantities.</p>
+<img alt="NMR results obtained from the LAMMPS simulation of water" class="only-dark" src="../_images/water-co-dm.png" />
+<img alt="NMR results obtained from the LAMMPS simulation of water" class="only-light" src="theory/best-practice/water-do.png" />
 <div class="figurelegend docutils container">
-<p>Figure: a) Inter-molecular NMR relaxation time <span class="math notranslate nohighlight">\(T_1^\text{inter}\)</span>
-as a function of the LJ cut-off for a bulk water system.
-b) Inter-molecular characteristic time <span class="math notranslate nohighlight">\(\tau_\text{inter}\)</span>
-as a function of LJ cut-off.</p>
+<p>Figure: a) Inter-molecular characteristic time <span class="math notranslate nohighlight">\(\tau_\text{inter}\)</span>
+as a function of the LJ cutoff.
+The dashed line is a guide to the eye, indicating the value obtained
+for the largest cutoff.
+b) Inter-molecular NMR relaxation time <span class="math notranslate nohighlight">\(T_1^\text{inter}\)</span>
+as a function of the LJ cutoff for a bulk water system.</p>
 </div>
 </section>
 <section id="integration-timestep">
@@ -619,7 +637,7 @@ intermolecular relaxation rate.</p>
 </ul>
 </li>
 <li><a class="reference internal" href="#simulation-protocol">Simulation protocol</a><ul>
-<li><a class="reference internal" href="#cut-off">Cut-off</a></li>
+<li><a class="reference internal" href="#cutoff">Cutoff</a></li>
 <li><a class="reference internal" href="#integration-timestep">Integration timestep</a></li>
 <li><a class="reference internal" href="#thermostat">Thermostat</a></li>
 </ul>
