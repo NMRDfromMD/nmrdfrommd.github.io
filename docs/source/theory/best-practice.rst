@@ -185,8 +185,9 @@ Thermostat
 ~~~~~~~~~~
 
 The thermostat controls the temperature of the simulated system, but it can
-also influence molecular dynamics if applied too aggressively. Strong coupling
-or inappropriate thermostat parameters may artificially damp or modify
+also influence molecular dynamics if applied too aggressively
+:cite:`noseMolecularDynamicsMethod1984, berendsenMolecularDynamicsCoupling1984, hooverCanonicalDynamicsEquilibrium1985, tuckermanLiouvilleoperatorDerivedMeasurepreserving2006`.
+Strong coupling or inappropriate thermostat parameters may artificially damp or modify
 translational and rotational motions, leading to biased time-correlation
 functions and relaxation rates. For NMR relaxation calculations, it is
 therefore important to employ a thermostat that preserves realistic dynamics
