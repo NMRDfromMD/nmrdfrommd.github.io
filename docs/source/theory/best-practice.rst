@@ -30,22 +30,45 @@ molecular dynamics. Consequently, force fields that accurately reproduce
 thermodynamic or structural properties may still yield inaccurate relaxation
 rates if they do not correctly describe the relevant molecular motions.
 
-As an example, the NMR relaxation time :math:`T_1` of bulk water was calculated
-from molecular dynamics simulations as a function of temperature for three water models:
+Impact of the water model
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+As an example, the NMR relaxation properties of bulk water were calculated
+from molecular dynamics simulations for three water models:
 :math:`\text{TIP4P}-\epsilon` :cite:`fuentes-azcatlNonPolarizableForceField2014`,
 :math:`\text{SPC/E}` :cite:`berendsenMissingTermEffective1987`, and
 :math:`\text{TIP3P}` :cite:`jorgensenComparisonSimplePotential1983`.
-The :math:`\text{TIP4P}-\epsilon` model shows excellent
-agreement with experimental measurements by Krynicki et al.
+
+Correlation functions extracted for the three models at
+:math:`T = 300\,\text{K}` highlight the differences between them, with
+:math:`\text{TIP3P}` showing much faster decorrelation compared to
+:math:`\text{SPC/E}`, which itself decorrelates slightly faster than
+:math:`\text{TIP4P}`. This ordering of the molecular dynamics timescales
+is consistent with the known viscosities
+of these models :cite:`gonzalezShearViscosityRigid2010` at :math:`T = 298\,\text{K}`:
+:math:`0.321 \, \text{mPa s}` for :math:`\text{TIP3P}`,
+:math:`0.729 \, \text{mPa s}` for :math:`\text{SPC/E}`, and
+:math:`0.855 \, \text{mPa s}` for :math:`\text{TIP4P/2005}`.
+A similar value is expected for the :math:`\text{TIP4P}-\epsilon` model
+:cite:`fuentes-azcatlNonPolarizableForceField2014`.
+Among the models considered, the TIP4P models have viscosities closest to
+the experimental value of :math:`0.896 \, \text{mPa s}`
+:cite:`harrisTemperatureVolumeDependence2004`.
+
+The NMR relaxation time :math:`T_1` was extracted as a function of
+temperature. The :math:`\text{TIP4P}-\epsilon` model shows excellent
+agreement with experimental measurements by Krynicki
 :cite:`krynickiProtonSpinlatticeRelaxation1966` and Hindman et al.
 :cite:`hindmanRelaxationProcessesWater2003`. By contrast, both
 :math:`\text{SPC/E}` and :math:`\text{TIP3P}` overestimate the relaxation time
-:math:`T_1`, consistent with previous observations by Calero et al.
+:math:`T_1`, consistent with their higher deviations in viscosity and with
+previous observations by Calero et al.
 :cite:`calero1HNuclearSpin2015`.
 
 Note that Calero et al. used the :math:`\text{TIP4P}-2005` model rather than
-:math:`\text{TIP4P}-\epsilon`. However, the two models exhibit similar structural
-and transport properties :cite:`fuentes-azcatlNonPolarizableForceField2014` and are therefore expected
+:math:`\text{TIP4P}-\epsilon`. However, the two models exhibit similar
+structural and transport properties
+:cite:`fuentes-azcatlNonPolarizableForceField2014` and are therefore expected
 to produce similar relaxation times.
 
 .. image:: best-practice/water-ff-dm.png
@@ -58,14 +81,18 @@ to produce similar relaxation times.
 
 .. container:: figurelegend
 
-    Figure: A)
+    Figure: A) Correlation functions extracted from molecular dynamics
+    simulations for three water models:
+    :math:`\text{TIP4P}` (blue disks), :math:`\text{SPC/E}` (cyan squares),
+    and :math:`\text{TIP3P}` (green pentagons) at
+    :math:`T = 300\,\text{K}`.
     B) Temperature dependence of the NMR relaxation time :math:`T_1` for
     bulk water obtained from molecular dynamics simulations using the
-    :math:`\text{TIP4P}-\epsilon`, :math:`\text{SPC/E}`, and
+    :math:`\text{TIP4P}`, :math:`\text{SPC/E}`, and
     :math:`\text{TIP3P}` models. Simulation results are compared with
-    experimental measurements, showing the excellent agreement between the
-    :math:`\text{TIP4P}-\epsilon` model and experimental data over the
-    investigated temperature range.
+    experimental measurements reported by Krynicki
+    :cite:`krynickiProtonSpinlatticeRelaxation1966` and Hindman et al.
+    :cite:`hindmanRelaxationProcessesWater2003`.
 
 The water example illustrates a more general principle: NMR relaxation
 provides a demanding test of molecular dynamics force fields because it is
