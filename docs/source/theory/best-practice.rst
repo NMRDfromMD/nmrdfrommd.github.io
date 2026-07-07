@@ -231,21 +231,24 @@ Note that :math:`R_1^\text{intra}`, which is the dominant contribution to
 by the box size and therefore the resulting error induced on the 
 total relaxation rate :math:`R_1` remains small for :math:`N > 1000`.
 
-.. image:: ../figures/illustrations/bulk-water/effect_L_on_R1-dark.png
+.. image:: best-practice/water-N-dm.png
     :class: only-dark
     :alt: NMR results obtained from the LAMMPS simulation of water
 
-.. image:: ../figures/illustrations/bulk-water/effect_L_on_R1-light.png
+.. image:: best-practice/water-N.png
     :class: only-light
     :alt: NMR results obtained from the LAMMPS simulation of water
 
 .. container:: figurelegend
 
-    Figure: a) Inter-molecular NMR relaxation rate :math:`R_1^\text{inter}` as a function of the number of molecules :math:`N`
+    Figure: A) Inter-molecular NMR relaxation rate :math:`R_\text{1, T}` as a function of the number of molecules :math:`N`
     for a bulk water system. For the smallest systems, results were averaged
     from up to 10 independent simulations and the error bar is calculated from
-    the standard deviation. b) Inter-molecular correlation function :math:`G_\text{inter}`
-    for two different numbers of molecules.
+    the standard deviation.
+    The dashed line is a guide to the eye, indicating the value obtained
+    for the largest value of :math:`N`.
+     b) Inter-molecular correlation function :math:`G_{ij, \text{T}}`
+    for two different numbers of molecules, :math:`N = 158` (cyan squares) and :math:`N = 10000` (green disks).
 
 Trajectory output frequency
 ---------------------------
@@ -273,23 +276,23 @@ time :math:`\tau_\text{inter}`. Both effects are consistent with
 insufficient sampling of fast rotational and translational motions of
 the water molecules.
 
-.. image:: ../figures/illustrations/bulk-water/effect_dumping_frequency-dark.png
+.. image:: best-practice/water-dump-dm.png
     :class: only-dark
     :alt: NMR results obtained from the LAMMPS simulation of water
 
-.. image:: ../figures/illustrations/bulk-water/effect_dumping_frequency-light.png
+.. image:: best-practice/water-dump.png
     :class: only-light
     :alt: NMR results obtained from the LAMMPS simulation of water
 
 .. container:: figurelegend
 
-    Figure: a) Convergence testing showing the NMR relaxation time :math:`T_1`
+    Figure: A) Intermolecular NMR relaxation time :math:`T_\text{1, T}`
     as a function of the trajectory dumping frequency :math:`\Delta t`
     for a bulk water system at :math:`T = 300 \text{K}`.
     The dashed line show the value for :math:`T_1`
     for :math:`\Delta t \to 0`.
-    b) Inter-molecular relaxation times :math:`\tau_\text{inter}` as 
-    a function of :math:`\Delta t`.
+    B) Intramolecular NMR relaxation time :math:`T_\text{1, R}`
+    as a function of :math:`\Delta t`.
 
 Analysis parameters
 -------------------
