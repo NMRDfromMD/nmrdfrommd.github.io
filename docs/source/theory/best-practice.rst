@@ -6,23 +6,29 @@ careful attention to both the simulation protocol and the subsequent analysis.
 Because relaxation rates depend on molecular structure and dynamics over a broad
 range of timescales, they are sensitive to simulation parameters such as the force
 field, trajectory length, sampling frequency, simulation box size, and analysis
-settings. This page summarizes the main factors that influence the accuracy of
+settings. This page explores some of the main factors that influence the accuracy of
 NMR relaxation calculations from molecular dynamics and provides practical
 recommendations for obtaining reliable and reproducible results.
 
 Choosing the force field
 ------------------------
 
-The agreement between experiments and simulations can only be as accurate as
-the force field used. While some force fields show excellent agreement with
+The agreement between experiments and simulations is limited by the quality of
+the chosen force field. While some force fields show excellent agreement with
 experimental data, for instance, in simulations of water, hydrocarbons, or
 polymer melts
 :cite:`singerMolecularDynamicsSimulations2017,gravelleNMRInvestigationWater2023,gravelleAssessingValidityNMR2023`,
-it is important to remember that force fields are often parametrized to
-reproduce thermodynamic properties, such as solvation energy. However, NMR
-relaxation times depend on both structural and dynamical quantities. Thus,
-substantial discrepancies between simulations and experiments may occur with
-inaccurate force fields.
+it is important to remember that force fields are generally parametrized to
+reproduce selected thermodynamic, structural, and, in some cases, dynamical
+properties, but usually not NMR relaxation observables
+:cite:`mackerellEmpiricalForceFields2004,leachMolecularModellingPrinciples2001a`.
+These target properties may include densities, heats of vaporization, phase
+equilibria, solvation energies, radial distribution functions, or selected
+dynamical observables. However, NMR relaxation rates are determined by time
+correlation functions that depend on both the equilibrium structure and
+molecular dynamics. Consequently, force fields that accurately reproduce
+thermodynamic or structural properties may still yield inaccurate relaxation
+rates if they do not correctly describe the relevant molecular motions.
 
 As an example, the NMR relaxation time :math:`T_1` of bulk water was measured
 as a function of temperature for three water models:
