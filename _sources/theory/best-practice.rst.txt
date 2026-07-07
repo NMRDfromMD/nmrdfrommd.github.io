@@ -1,24 +1,14 @@
 Best practices
 ==============
 
-Here, a set of best practices for performing accurate dipolar NMR
-calculations from MD is provided.
-
-Simulation length
------------------
-
-The minimum simulation duration required to accurately calculate the NMR relaxation rate (e.g., :math:`R_1`)
-depends on the quantity of interest. To obtain a converged value of :math:`R_1` in the zero-frequency limit,
-the trajectory must be long enough for the correlation function
-:math:`G(t)` to fully decay to zero, meaning the simulation duration
-must significantly exceed the longest correlation time :math:`\tau_c`
-of the system. For frequency-dependent quantities :math:`R_1(f)`, the
-lowest accessible frequency is bounded by :math:`f_\text{min} \sim 1/T_\text{sim}`,
-where :math:`T_\text{sim}` is the total simulation
-duration. Frequencies below :math:`f_\text{min}` cannot be probed
-regardless of the trajectory sampling interval. In practice, convergence
-can be verified by comparing results obtained from simulations of
-increasing duration.
+Accurate NMR relaxation calculations from molecular dynamics simulations require
+careful attention to both the simulation protocol and the subsequent analysis.
+Because relaxation rates depend on molecular structure and dynamics over a broad
+range of timescales, they are sensitive to simulation parameters such as the force
+field, trajectory length, sampling frequency, simulation box size, and analysis
+settings. This page summarizes the main factors that influence the accuracy of
+NMR relaxation calculations from molecular dynamics and provides practical
+recommendations for obtaining reliable and reproducible results.
 
 Choosing the force field
 ------------------------
@@ -77,7 +67,7 @@ alone does not guarantee accurate relaxation times. Consequently,
 NMRDfromMD can be used not only to interpret experimental measurements, but
 also to assess and compare force fields based on their ability to reproduce observables.
 
-Simulation accuracy
+Simulation protocol
 -------------------
 
 NMR relaxation measurements are sensitive to both thermodynamic and dynamic
@@ -90,6 +80,9 @@ Too large an integration timestep introduces errors in the equations of
 motion, insufficient cutoff distances truncate relevant pair correlations,
 and an inappropriate thermostat coupling constant can artificially affect
 dynamical properties at short times.
+
+Cut-off
+~~~~~~~
 
 As an illustration of the effect of cutoff distance, the NMR relaxation
 time :math:`T_1` of bulk water was measured as a function of the LJ
@@ -116,6 +109,47 @@ be taken when attempting to accurately reproduce NMR relaxation quantities.
     as a function of the LJ cut-off for a bulk water system.
     b) Inter-molecular characteristic time :math:`\tau_\text{inter}`
     as a function of LJ cut-off.
+
+Integration timestep
+~~~~~~~~~~~~~~~~~~~~
+
+The integration timestep determines the numerical accuracy of the molecular
+dynamics trajectory. If the timestep is too large, the equations of motion are
+not accurately integrated, resulting in systematic errors in both structural
+and dynamical properties. Since NMR relaxation rates are directly related to
+molecular motions, these integration errors can propagate into the calculated
+correlation functions and relaxation rates. The timestep should therefore be
+chosen according to established best practices for the selected force field and
+simulation conditions, and its adequacy should be verified through convergence
+testing when high accuracy is required.
+
+Thermostat
+~~~~~~~~~~
+
+The thermostat controls the temperature of the simulated system, but it can
+also influence molecular dynamics if applied too aggressively. Strong coupling
+or inappropriate thermostat parameters may artificially damp or modify
+translational and rotational motions, leading to biased time-correlation
+functions and relaxation rates. For NMR relaxation calculations, it is
+therefore important to employ a thermostat that preserves realistic dynamics
+and to use coupling parameters that minimally perturb the natural motion of
+the system.
+
+Simulation length
+-----------------
+
+The minimum simulation duration required to accurately calculate the NMR relaxation rate (e.g., :math:`R_1`)
+depends on the quantity of interest. To obtain a converged value of :math:`R_1` in the zero-frequency limit,
+the trajectory must be long enough for the correlation function
+:math:`G(t)` to fully decay to zero, meaning the simulation duration
+must significantly exceed the longest correlation time :math:`\tau_c`
+of the system. For frequency-dependent quantities :math:`R_1(f)`, the
+lowest accessible frequency is bounded by :math:`f_\text{min} \sim 1/T_\text{sim}`,
+where :math:`T_\text{sim}` is the total simulation
+duration. Frequencies below :math:`f_\text{min}` cannot be probed
+regardless of the trajectory sampling interval. In practice, convergence
+can be verified by comparing results obtained from simulations of
+increasing duration.
 
 Box size
 --------
@@ -154,8 +188,8 @@ total relaxation rate :math:`R_1` remains small for :math:`N > 1000`.
     the standard deviation. b) Inter-molecular correlation function :math:`G_\text{inter}`
     for two different numbers of molecules.
 
-Output frequency
-----------------
+Trajectory output frequency
+---------------------------
 
 The trajectory output frequency sets the temporal resolution of the
 analysis and determines the shortest correlation times that can be
@@ -198,8 +232,18 @@ the water molecules.
     b) Inter-molecular relaxation times :math:`\tau_\text{inter}` as 
     a function of :math:`\Delta t`.
 
+Analysis parameters
+-------------------
+
+The accuracy of NMR relaxation calculations depends not only on the quality
+of the molecular dynamics simulation, but also on the parameters used during
+the analysis. While these parameters do not alter the underlying trajectory,
+they can affect the statistical uncertainty of the results or determine which
+physical contributions are included in the calculation. Their influence should
+therefore be assessed through appropriate convergence tests.
+
 Number of reference atoms
--------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The parameter ``number_i`` controls how many reference atoms are randomly
 sampled during the calculation. Because the selection is stochastic,
@@ -211,7 +255,7 @@ convergence should be verified by repeating the calculation with
 increasing values of ``number_i`` until the relaxation rates stabilize.
 
 Cross-species interactions
---------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 When ``neighbor_group`` is not specified, intermolecular contributions
 are computed only between atoms belonging to the same chemical species.
@@ -221,3 +265,41 @@ cross-species contributions are expected to be significant, the
 appropriate ``neighbor_group`` must be set explicitly. Neglecting
 these contributions may lead to an underestimation of the total
 intermolecular relaxation rate.
+
+
+.. list-table:: Summary of the main factors affecting the accuracy of NMR relaxation calculations from molecular dynamics.
+   :header-rows: 1
+   :widths: 25 35 40
+
+   * - Parameter
+     - If not properly chosen
+     - Consequence
+
+   * - Force field
+     - Incorrect description of molecular structure or dynamics
+     - Systematic deviations in relaxation rates due to inaccurate structural properties, molecular motions, or correlation times.
+
+   * - Simulation protocol
+     - Inappropriate timestep, cutoff distances, thermostat/barostat settings, or equilibration procedure
+     - Errors in structural and dynamical properties, leading to inaccurate correlation functions and relaxation rates.
+
+   * - Simulation length
+     - Trajectory duration insufficient for correlation functions to fully decay
+     - Incomplete convergence of relaxation rates, especially in the low-frequency limit.
+
+   * - Box size
+     - Simulation box too small, causing finite-size effects
+     - Truncation of long-time intermolecular correlations and underestimation of intermolecular relaxation contributions.
+
+   * - Trajectory output frequency
+     - Sampling interval too large compared with relevant correlation times
+     - Fast molecular motions are undersampled, causing errors in correlation functions and relaxation rates.
+
+   * - Number of reference atoms
+     - Too few atoms sampled during the calculation
+     - Increased statistical uncertainty and reduced precision of the calculated relaxation rates.
+
+   * - Cross-species interactions
+     - Interactions between different chemical species are not included
+     - Underestimation of intermolecular relaxation contributions in mixtures.
+    

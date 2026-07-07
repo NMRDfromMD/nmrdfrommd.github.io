@@ -256,23 +256,14 @@
         <article role="main" id="furo-main-content">
           <section id="best-practices">
 <h1>Best practices<a class="headerlink" href="#best-practices" title="Link to this heading">¶</a></h1>
-<p>Here, a set of best practices for performing accurate dipolar NMR
-calculations from MD is provided.</p>
-<section id="simulation-length">
-<h2>Simulation length<a class="headerlink" href="#simulation-length" title="Link to this heading">¶</a></h2>
-<p>The minimum simulation duration required to accurately calculate the NMR relaxation rate (e.g., <span class="math notranslate nohighlight">\(R_1\)</span>)
-depends on the quantity of interest. To obtain a converged value of <span class="math notranslate nohighlight">\(R_1\)</span> in the zero-frequency limit,
-the trajectory must be long enough for the correlation function
-<span class="math notranslate nohighlight">\(G(t)\)</span> to fully decay to zero, meaning the simulation duration
-must significantly exceed the longest correlation time <span class="math notranslate nohighlight">\(\tau_c\)</span>
-of the system. For frequency-dependent quantities <span class="math notranslate nohighlight">\(R_1(f)\)</span>, the
-lowest accessible frequency is bounded by <span class="math notranslate nohighlight">\(f_\text{min} \sim 1/T_\text{sim}\)</span>,
-where <span class="math notranslate nohighlight">\(T_\text{sim}\)</span> is the total simulation
-duration. Frequencies below <span class="math notranslate nohighlight">\(f_\text{min}\)</span> cannot be probed
-regardless of the trajectory sampling interval. In practice, convergence
-can be verified by comparing results obtained from simulations of
-increasing duration.</p>
-</section>
+<p>Accurate NMR relaxation calculations from molecular dynamics simulations require
+careful attention to both the simulation protocol and the subsequent analysis.
+Because relaxation rates depend on molecular structure and dynamics over a broad
+range of timescales, they are sensitive to simulation parameters such as the force
+field, trajectory length, sampling frequency, simulation box size, and analysis
+settings. This page summarizes the main factors that influence the accuracy of
+NMR relaxation calculations from molecular dynamics and provides practical
+recommendations for obtaining reliable and reproducible results.</p>
 <section id="choosing-the-force-field">
 <h2>Choosing the force field<a class="headerlink" href="#choosing-the-force-field" title="Link to this heading">¶</a></h2>
 <p>The agreement between experiments and simulations can only be as accurate as
@@ -319,8 +310,8 @@ alone does not guarantee accurate relaxation times. Consequently,
 NMRDfromMD can be used not only to interpret experimental measurements, but
 also to assess and compare force fields based on their ability to reproduce observables.</p>
 </section>
-<section id="simulation-accuracy">
-<h2>Simulation accuracy<a class="headerlink" href="#simulation-accuracy" title="Link to this heading">¶</a></h2>
+<section id="simulation-protocol">
+<h2>Simulation protocol<a class="headerlink" href="#simulation-protocol" title="Link to this heading">¶</a></h2>
 <p>NMR relaxation measurements are sensitive to both thermodynamic and dynamic
 properties. To ensure accurate simulations, several parameters must be
 carefully chosen, including the force field (as discussed above), the
@@ -331,6 +322,8 @@ Too large an integration timestep introduces errors in the equations of
 motion, insufficient cutoff distances truncate relevant pair correlations,
 and an inappropriate thermostat coupling constant can artificially affect
 dynamical properties at short times.</p>
+<section id="cut-off">
+<h3>Cut-off<a class="headerlink" href="#cut-off" title="Link to this heading">¶</a></h3>
 <p>As an illustration of the effect of cutoff distance, the NMR relaxation
 time <span class="math notranslate nohighlight">\(T_1\)</span> of bulk water was measured as a function of the LJ
 cutoff. For the smallest cutoff, the inter-molecular contribution
@@ -349,6 +342,45 @@ as a function of the LJ cut-off for a bulk water system.
 b) Inter-molecular characteristic time <span class="math notranslate nohighlight">\(\tau_\text{inter}\)</span>
 as a function of LJ cut-off.</p>
 </div>
+</section>
+<section id="integration-timestep">
+<h3>Integration timestep<a class="headerlink" href="#integration-timestep" title="Link to this heading">¶</a></h3>
+<p>The integration timestep determines the numerical accuracy of the molecular
+dynamics trajectory. If the timestep is too large, the equations of motion are
+not accurately integrated, resulting in systematic errors in both structural
+and dynamical properties. Since NMR relaxation rates are directly related to
+molecular motions, these integration errors can propagate into the calculated
+correlation functions and relaxation rates. The timestep should therefore be
+chosen according to established best practices for the selected force field and
+simulation conditions, and its adequacy should be verified through convergence
+testing when high accuracy is required.</p>
+</section>
+<section id="thermostat">
+<h3>Thermostat<a class="headerlink" href="#thermostat" title="Link to this heading">¶</a></h3>
+<p>The thermostat controls the temperature of the simulated system, but it can
+also influence molecular dynamics if applied too aggressively. Strong coupling
+or inappropriate thermostat parameters may artificially damp or modify
+translational and rotational motions, leading to biased time-correlation
+functions and relaxation rates. For NMR relaxation calculations, it is
+therefore important to employ a thermostat that preserves realistic dynamics
+and to use coupling parameters that minimally perturb the natural motion of
+the system.</p>
+</section>
+</section>
+<section id="simulation-length">
+<h2>Simulation length<a class="headerlink" href="#simulation-length" title="Link to this heading">¶</a></h2>
+<p>The minimum simulation duration required to accurately calculate the NMR relaxation rate (e.g., <span class="math notranslate nohighlight">\(R_1\)</span>)
+depends on the quantity of interest. To obtain a converged value of <span class="math notranslate nohighlight">\(R_1\)</span> in the zero-frequency limit,
+the trajectory must be long enough for the correlation function
+<span class="math notranslate nohighlight">\(G(t)\)</span> to fully decay to zero, meaning the simulation duration
+must significantly exceed the longest correlation time <span class="math notranslate nohighlight">\(\tau_c\)</span>
+of the system. For frequency-dependent quantities <span class="math notranslate nohighlight">\(R_1(f)\)</span>, the
+lowest accessible frequency is bounded by <span class="math notranslate nohighlight">\(f_\text{min} \sim 1/T_\text{sim}\)</span>,
+where <span class="math notranslate nohighlight">\(T_\text{sim}\)</span> is the total simulation
+duration. Frequencies below <span class="math notranslate nohighlight">\(f_\text{min}\)</span> cannot be probed
+regardless of the trajectory sampling interval. In practice, convergence
+can be verified by comparing results obtained from simulations of
+increasing duration.</p>
 </section>
 <section id="box-size">
 <h2>Box size<a class="headerlink" href="#box-size" title="Link to this heading">¶</a></h2>
@@ -378,8 +410,8 @@ the standard deviation. b) Inter-molecular correlation function <span class="mat
 for two different numbers of molecules.</p>
 </div>
 </section>
-<section id="output-frequency">
-<h2>Output frequency<a class="headerlink" href="#output-frequency" title="Link to this heading">¶</a></h2>
+<section id="trajectory-output-frequency">
+<h2>Trajectory output frequency<a class="headerlink" href="#trajectory-output-frequency" title="Link to this heading">¶</a></h2>
 <p>The trajectory output frequency sets the temporal resolution of the
 analysis and determines the shortest correlation times that can be
 resolved. The sampling interval <span class="math notranslate nohighlight">\(\Delta t\)</span> must be significantly
@@ -413,8 +445,16 @@ b) Inter-molecular relaxation times <span class="math notranslate nohighlight">\
 a function of <span class="math notranslate nohighlight">\(\Delta t\)</span>.</p>
 </div>
 </section>
+<section id="analysis-parameters">
+<h2>Analysis parameters<a class="headerlink" href="#analysis-parameters" title="Link to this heading">¶</a></h2>
+<p>The accuracy of NMR relaxation calculations depends not only on the quality
+of the molecular dynamics simulation, but also on the parameters used during
+the analysis. While these parameters do not alter the underlying trajectory,
+they can affect the statistical uncertainty of the results or determine which
+physical contributions are included in the calculation. Their influence should
+therefore be assessed through appropriate convergence tests.</p>
 <section id="number-of-reference-atoms">
-<h2>Number of reference atoms<a class="headerlink" href="#number-of-reference-atoms" title="Link to this heading">¶</a></h2>
+<h3>Number of reference atoms<a class="headerlink" href="#number-of-reference-atoms" title="Link to this heading">¶</a></h3>
 <p>The parameter <code class="docutils literal notranslate"><span class="pre">number_i</span></code> controls how many reference atoms are randomly
 sampled during the calculation. Because the selection is stochastic,
 results will vary slightly between runs when <code class="docutils literal notranslate"><span class="pre">number_i</span> <span class="pre">&gt;</span> <span class="pre">0</span></code>. The
@@ -425,7 +465,7 @@ convergence should be verified by repeating the calculation with
 increasing values of <code class="docutils literal notranslate"><span class="pre">number_i</span></code> until the relaxation rates stabilize.</p>
 </section>
 <section id="cross-species-interactions">
-<h2>Cross-species interactions<a class="headerlink" href="#cross-species-interactions" title="Link to this heading">¶</a></h2>
+<h3>Cross-species interactions<a class="headerlink" href="#cross-species-interactions" title="Link to this heading">¶</a></h3>
 <p>When <code class="docutils literal notranslate"><span class="pre">neighbor_group</span></code> is not specified, intermolecular contributions
 are computed only between atoms belonging to the same chemical species.
 In a mixture such as polymer–water, this means that water–polymer
@@ -434,6 +474,53 @@ cross-species contributions are expected to be significant, the
 appropriate <code class="docutils literal notranslate"><span class="pre">neighbor_group</span></code> must be set explicitly. Neglecting
 these contributions may lead to an underestimation of the total
 intermolecular relaxation rate.</p>
+<div class="table-wrapper colwidths-given docutils container" id="id12">
+<table class="docutils align-default" id="id12">
+<caption><span class="caption-text">Summary of the main factors affecting the accuracy of NMR relaxation calculations from molecular dynamics.</span><a class="headerlink" href="#id12" title="Link to this table">¶</a></caption>
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 35.0%" />
+<col style="width: 40.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>If not properly chosen</p></th>
+<th class="head"><p>Consequence</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Force field</p></td>
+<td><p>Incorrect description of molecular structure or dynamics</p></td>
+<td><p>Systematic deviations in relaxation rates due to inaccurate structural properties, molecular motions, or correlation times.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Simulation protocol</p></td>
+<td><p>Inappropriate timestep, cutoff distances, thermostat/barostat settings, or equilibration procedure</p></td>
+<td><p>Errors in structural and dynamical properties, leading to inaccurate correlation functions and relaxation rates.</p></td>
+</tr>
+<tr class="row-even"><td><p>Simulation length</p></td>
+<td><p>Trajectory duration insufficient for correlation functions to fully decay</p></td>
+<td><p>Incomplete convergence of relaxation rates, especially in the low-frequency limit.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Box size</p></td>
+<td><p>Simulation box too small, causing finite-size effects</p></td>
+<td><p>Truncation of long-time intermolecular correlations and underestimation of intermolecular relaxation contributions.</p></td>
+</tr>
+<tr class="row-even"><td><p>Trajectory output frequency</p></td>
+<td><p>Sampling interval too large compared with relevant correlation times</p></td>
+<td><p>Fast molecular motions are undersampled, causing errors in correlation functions and relaxation rates.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Number of reference atoms</p></td>
+<td><p>Too few atoms sampled during the calculation</p></td>
+<td><p>Increased statistical uncertainty and reduced precision of the calculated relaxation rates.</p></td>
+</tr>
+<tr class="row-even"><td><p>Cross-species interactions</p></td>
+<td><p>Interactions between different chemical species are not included</p></td>
+<td><p>Underestimation of intermolecular relaxation contributions in mixtures.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
 </section>
 </section>
 
@@ -493,13 +580,21 @@ intermolecular relaxation rate.</p>
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">Best practices</a><ul>
-<li><a class="reference internal" href="#simulation-length">Simulation length</a></li>
 <li><a class="reference internal" href="#choosing-the-force-field">Choosing the force field</a></li>
-<li><a class="reference internal" href="#simulation-accuracy">Simulation accuracy</a></li>
+<li><a class="reference internal" href="#simulation-protocol">Simulation protocol</a><ul>
+<li><a class="reference internal" href="#cut-off">Cut-off</a></li>
+<li><a class="reference internal" href="#integration-timestep">Integration timestep</a></li>
+<li><a class="reference internal" href="#thermostat">Thermostat</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#simulation-length">Simulation length</a></li>
 <li><a class="reference internal" href="#box-size">Box size</a></li>
-<li><a class="reference internal" href="#output-frequency">Output frequency</a></li>
+<li><a class="reference internal" href="#trajectory-output-frequency">Trajectory output frequency</a></li>
+<li><a class="reference internal" href="#analysis-parameters">Analysis parameters</a><ul>
 <li><a class="reference internal" href="#number-of-reference-atoms">Number of reference atoms</a></li>
 <li><a class="reference internal" href="#cross-species-interactions">Cross-species interactions</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
