@@ -1,5 +1,32 @@
-Future development
-==================
+Scope
+=====
+
+Current capabilities
+--------------------
+
+NMRDfromMD is currently designed for the prediction and analysis of
+:math:`^{1} \text{H}` nuclear magnetic relaxation dispersion (NMRD) profiles
+from molecular dynamics trajectories. The current implementation focuses on
+relaxation mechanisms dominated by magnetic dipole-dipole interactions, which
+can be directly described through the time-dependent fluctuations of
+internuclear vectors. In particular, :math:`^{1} \text{H}` relaxation can be
+calculated from the rotational autocorrelation functions of relevant
+interatomic vectors extracted from MD trajectories, followed by the
+calculation of the corresponding spectral densities.
+
+The current framework is applicable to both isotropic and anisotropic
+molecular systems. For isotropic systems, such as bulk liquids or freely
+tumbling molecules, the relaxation analysis relies on the assumption of
+isotropic rotational diffusion. For anisotropic systems, such as confined
+liquids or molecules interacting with surfaces, the full
+orientation-dependent dynamics of internuclear vectors are retained, allowing
+the effect of restricted or heterogeneous molecular motions on the relaxation
+dispersion profile to be investigated. This enables the study of systems where
+deviations from simple isotropic rotational diffusion play a key role in
+determining the observed NMR relaxation behaviour.
+
+Future extensions
+-----------------
 
 Currently, NMRDfromMD is primarily focused on the prediction and analysis
 of :math:`^{1} \text{H}` nuclear magnetic relaxation dispersion (NMRD).
@@ -23,8 +50,21 @@ their time-dependent fluctuations from MD trajectories. Although not currently
 implemented, expanding NMRDfromMD toward multi-nuclear relaxation analysis
 represents a natural future direction for the package.
 
-Scope limitations
------------------
+Out-of-scope relaxation mechanisms
+----------------------------------
+
+While NMRDfromMD is designed to describe relaxation processes that can be
+directly related to molecular motions extracted from classical MD trajectories,
+some relaxation mechanisms require additional physical information beyond the
+current framework. These mechanisms involve interactions that are not fully
+captured by standard nuclear dipole-dipole relaxation models, such as
+fluctuations of electric field gradients or electron spin dynamics. The
+following sections describe relaxation processes that are currently outside the
+scope of NMRDfromMD and would require significant theoretical and
+methodological extensions.
+
+Quadrupolar relaxation
+~~~~~~~~~~~~~~~~~~~~~~
 
 NMRDfromMD is currently not intended for systems where quadrupolar
 interactions represent the dominant relaxation mechanism. Quadrupolar nuclei,
@@ -39,3 +79,22 @@ descriptions or from quantum-mechanical calculations, followed by the
 evaluation of the corresponding spectral densities. These developments involve
 additional methodological and computational challenges and are therefore
 outside the current scope of NMRDfromMD.
+
+Paramagnetic relaxation
+~~~~~~~~~~~~~~~~~~~~~~~
+
+NMRDfromMD is also currently not designed for systems where paramagnetic
+centers provide a significant contribution to nuclear relaxation. In the
+presence of unpaired electron spins, such as in systems containing
+transition-metal ions or other paramagnetic species, relaxation can be
+dominated by electron-nuclear dipolar interactions and contact interactions.
+These mechanisms depend on the dynamics of the electron spin, the
+electron-nuclear distance distribution, and the electron spin relaxation
+properties, which are not directly accessible from standard classical
+molecular dynamics trajectories. A quantitative description of paramagnetic
+relaxation would therefore require additional information, such as electron
+spin relaxation times, hyperfine coupling parameters, or magnetic
+susceptibility tensors, often obtained from quantum-mechanical calculations
+or specialized spin dynamics approaches. Such extensions represent a major
+increase in theoretical complexity and are therefore outside the current
+scope of NMRDfromMD.
