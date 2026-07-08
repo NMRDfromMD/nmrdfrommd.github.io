@@ -316,11 +316,11 @@ Grivet <span id="id5">[<a class="reference internal" href="../additional/bibliog
 agreement with those of Grivet, with however some differences observed at the lowest
 temperature. As the temperature decreases, the correlation function decays more
 slowly, indicating that molecular motion becomes less efficient at decorrelating
-the dipolar interactions. Consequently, the characteristic correlation
-time increases and <span class="math notranslate nohighlight">\(G_{ij}^{(0)}(t)\)</span> shifts towards longer times.</p>
-<p>The long-time <span class="math notranslate nohighlight">\(t^{-3/2}\)</span> behaviour is characteristic of
-hydrodynamic long-time tails in simple liquids and reflects the slow
-decay of translational velocity correlations.</p>
+the dipolar interactions. Consequently, the characteristic correlation time increases and the
+decay of <span class="math notranslate nohighlight">\(G_{ij}^{(0)}(t)\)</span> extends to longer times.</p>
+<p>The long-time <span class="math notranslate nohighlight">\(t^{-3/2}\)</span> behaviour is characteristic of the
+hydrodynamic long-time tails arising from translational diffusion in
+simple liquids.</p>
 <img alt="Correlation functions of a LJ fluid simulated with LAMMPS" class="only-dark" src="../_images/nmr-correlation-functions-dm.png" />
 <img alt="Correlation functions of a LJ fluid simulated with LAMMPS" class="only-light" src="../_images/nmr-correlation-functions.png" />
 <div class="figurelegend docutils container">
@@ -330,13 +330,15 @@ different temperatures compared with the data from Grivet
 <span id="id6">[<a class="reference internal" href="../additional/bibliography.html#id241" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">6</a>]</span> (gray symbols). The dashed
 line shows <span class="math notranslate nohighlight">\(t^{-3/2}\)</span>.</p>
 </div>
-<p>For all temperatures, the NMR relaxation rate spectra  <span class="math notranslate nohighlight">\(R_1(f)\)</span>
-and  <span class="math notranslate nohighlight">\(R_2(f)\)</span> decrease with increasing frequency <span class="math notranslate nohighlight">\(f\)</span>. This behavior
+<p>For all temperatures, the frequency-dependent relaxation rates
+<span class="math notranslate nohighlight">\(R_1(f)\)</span> and <span class="math notranslate nohighlight">\(R_2(f)\)</span> decrease with increasing frequency
+<span class="math notranslate nohighlight">\(f\)</span>. This behavior
 reflects the frequency dependence of the spectral density function
 <span class="math notranslate nohighlight">\(J(\omega)\)</span>, which quantifies how much power molecular motion
 contributes at a given Larmor frequency <span class="math notranslate nohighlight">\(\omega = 2\pi f\)</span>. At low
 frequencies, relaxation rates probe the long-time diffusive dynamics, where
-<span class="math notranslate nohighlight">\(J(\omega)\)</span> reaches a plateau. At frequencies larger than the inverse molecular correlation time, the
+<span class="math notranslate nohighlight">\(J(\omega)\)</span> reaches a plateau.
+At frequencies exceeding the inverse correlation time, the
 spectral density decreases because increasingly rapid magnetic-field
 fluctuations become inefficient at driving nuclear-spin relaxation.
 Consequently, both <span class="math notranslate nohighlight">\(R_1\)</span> and <span class="math notranslate nohighlight">\(R_2\)</span> decrease with increasing
@@ -368,8 +370,8 @@ with gray symbols.</p>
 with the progressive shortening of the molecular correlation time,
 <span class="math notranslate nohighlight">\(\tau_c\)</span>, as the Lennard–Jones liquid becomes more mobile. At low
 temperature, <span class="math notranslate nohighlight">\(\tau_c\)</span> is large, leading to a strong zero-frequency
-spectral density, <span class="math notranslate nohighlight">\(J(0)\)</span>, which contributes only to <span class="math notranslate nohighlight">\(R_2\)</span>. As a
-result, <span class="math notranslate nohighlight">\(R_2 \gg R_1\)</span>. With increasing temperature, <span class="math notranslate nohighlight">\(\tau_c\)</span>
+spectral density, <span class="math notranslate nohighlight">\(J(0)\)</span>,  which contributes to <span class="math notranslate nohighlight">\(R_2\)</span> but not to <span class="math notranslate nohighlight">\(R_1\)</span>.
+As a result, <span class="math notranslate nohighlight">\(R_2 \gg R_1\)</span>. With increasing temperature, <span class="math notranslate nohighlight">\(\tau_c\)</span>
 decreases, reducing <span class="math notranslate nohighlight">\(J(0)\)</span> and therefore <span class="math notranslate nohighlight">\(R_2\)</span>, while the
 finite-frequency spectral density at the Larmor frequency initially
 increases, causing <span class="math notranslate nohighlight">\(R_1\)</span> to rise. Consequently, <span class="math notranslate nohighlight">\(R_1\)</span> and
