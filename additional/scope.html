@@ -259,46 +259,49 @@
 <h1>Scope<a class="headerlink" href="#scope" title="Link to this heading">¶</a></h1>
 <section id="current-capabilities">
 <h2>Current capabilities<a class="headerlink" href="#current-capabilities" title="Link to this heading">¶</a></h2>
-<p>NMRDfromMD is currently designed for the prediction and analysis of 1H nuclear
-magnetic relaxation dispersion (NMRD) profiles from molecular dynamics
-trajectories. The current implementation focuses on relaxation mechanisms
-dominated by magnetic dipole-dipole interactions, which can be directly
-described through the time-dependent fluctuations of internuclear vectors. In
-particular, 1H relaxation can be calculated from the rotational autocorrelation
-functions of relevant interatomic vectors extracted from MD trajectories,
-followed by the calculation of the corresponding spectral densities.</p>
-<p>The current framework is applicable to both isotropic and anisotropic molecular
-systems. For isotropic systems, such as bulk liquids or freely tumbling
-molecules, the relaxation analysis relies on the assumption of isotropic
-rotational diffusion. For anisotropic systems, such as confined liquids or
-molecules interacting with surfaces, the full orientation-dependent dynamics of
-internuclear vectors are retained, allowing the effect of restricted or
-heterogeneous molecular motions on the relaxation dispersion profile to be
-investigated. This enables the study of systems where deviations from simple
-isotropic rotational diffusion play a key role in determining the observed NMR
-relaxation behaviour.</p>
+<p>NMRDfromMD is currently designed for the prediction and analysis of
+<span class="math notranslate nohighlight">\(^{1} \text{H}\)</span> nuclear magnetic relaxation dispersion (NMRD) profiles
+from molecular dynamics trajectories. The current implementation focuses on
+relaxation mechanisms dominated by magnetic dipole-dipole interactions, which
+can be directly described through the time-dependent fluctuations of
+internuclear vectors. In particular, <span class="math notranslate nohighlight">\(^{1} \text{H}\)</span> relaxation can be
+calculated from the rotational autocorrelation functions of relevant
+interatomic vectors extracted from MD trajectories, followed by the
+calculation of the corresponding spectral densities.</p>
+<p>The current framework is applicable to both isotropic and anisotropic
+molecular systems. For isotropic systems, such as bulk liquids or freely
+tumbling molecules, the relaxation analysis relies on the assumption of
+isotropic rotational diffusion. For anisotropic systems, such as confined
+liquids or molecules interacting with surfaces, the full
+orientation-dependent dynamics of internuclear vectors are retained, allowing
+the effect of restricted or heterogeneous molecular motions on the relaxation
+dispersion profile to be investigated. This enables the study of systems where
+deviations from simple isotropic rotational diffusion play a key role in
+determining the observed NMR relaxation behaviour.</p>
 </section>
 <section id="future-extensions">
 <h2>Future extensions<a class="headerlink" href="#future-extensions" title="Link to this heading">¶</a></h2>
-<p>Currently, NMRDfromMD is primarily focused on the prediction and analysis of 1H
-nuclear magnetic relaxation dispersion (NMRD). This focus is motivated by the
-relatively simple and well-established relationship between proton relaxation
-rates and molecular motion, which is often dominated by dipole-dipole
-interactions that can be directly described through the autocorrelation
-functions of internuclear vectors extracted from molecular dynamics
-trajectories. Extending the framework to other nuclei, such as 13C, 15N, and
-19F, is considerably more challenging because different relaxation mechanisms
-can become dominant depending on the chemical environment. For example, 13C
-relaxation may be governed by heteronuclear (13C-1H) dipolar interactions for
-protonated carbons, whereas carbonyl or quaternary carbons require the treatment
-of additional contributions such as chemical shift anisotropy (CSA) and
-tensorial fluctuations. Similarly, relaxation analysis for nuclei such as 15N
-often requires the combined description of dipolar and CSA mechanisms. These
-extensions therefore require additional theoretical developments, including the
-calculation of anisotropic interaction tensors and their time-dependent
-fluctuations from MD trajectories. Although not currently implemented, expanding
-NMRDfromMD toward multi-nuclear relaxation analysis represents a natural future
-direction for the package.</p>
+<p>Currently, NMRDfromMD is primarily focused on the prediction and analysis
+of <span class="math notranslate nohighlight">\(^{1} \text{H}\)</span> nuclear magnetic relaxation dispersion (NMRD).
+This focus is motivated by the relatively simple and well-established
+relationship between proton relaxation rates and molecular motion, which is
+often dominated by dipole-dipole interactions that can be directly described
+through the autocorrelation functions of internuclear vectors extracted from
+molecular dynamics trajectories. Extending the framework to other nuclei, such
+as <span class="math notranslate nohighlight">\(^{13} \text{C}\)</span>, <span class="math notranslate nohighlight">\(^{15} \text{N}\)</span>, and <span class="math notranslate nohighlight">\(^{19} \text{F}\)</span>,
+is considerably more challenging because different relaxation mechanisms can
+become dominant depending on the chemical environment. For example,
+<span class="math notranslate nohighlight">\(^{13} \text{C}\)</span> relaxation may be governed by heteronuclear
+(<span class="math notranslate nohighlight">\(^{13} \text{C}\)</span>-<span class="math notranslate nohighlight">\(^{1} \text{H}\)</span>) dipolar interactions for
+protonated carbons, whereas carbonyl or quaternary carbons require the
+treatment of additional contributions such as chemical shift anisotropy (CSA)
+and tensorial fluctuations. Similarly, relaxation analysis for nuclei such as
+<span class="math notranslate nohighlight">\(^{15} \text{N}\)</span> often requires the combined description of dipolar and
+CSA mechanisms. These extensions therefore require additional theoretical
+developments, including the calculation of anisotropic interaction tensors and
+their time-dependent fluctuations from MD trajectories. Although not currently
+implemented, expanding NMRDfromMD toward multi-nuclear relaxation analysis
+represents a natural future direction for the package.</p>
 </section>
 <section id="out-of-scope-relaxation-mechanisms">
 <h2>Out-of-scope relaxation mechanisms<a class="headerlink" href="#out-of-scope-relaxation-mechanisms" title="Link to this heading">¶</a></h2>
@@ -309,38 +312,40 @@ current framework. These mechanisms involve interactions that are not fully
 captured by standard nuclear dipole-dipole relaxation models, such as
 fluctuations of electric field gradients or electron spin dynamics. The
 following sections describe relaxation processes that are currently outside the
-scope of NMRDfromMD and would require significant theoretical and methodological
-extensions.</p>
+scope of NMRDfromMD and would require significant theoretical and
+methodological extensions.</p>
 <section id="quadrupolar-relaxation">
 <h3>Quadrupolar relaxation<a class="headerlink" href="#quadrupolar-relaxation" title="Link to this heading">¶</a></h3>
-<p>NMRDfromMD is currently not intended for systems where quadrupolar interactions
-represent the dominant relaxation mechanism. Quadrupolar nuclei, such as 2H,
-14N, or other nuclei with spin quantum numbers greater than 1/2, require a
-different theoretical treatment because relaxation arises from fluctuations of
-the electric field gradient (EFG) tensor rather than only from magnetic dipole-
-dipole interactions or chemical shift anisotropy. Predicting quadrupolar
-relaxation from MD trajectories would therefore require the calculation of the
+<p>NMRDfromMD is currently not intended for systems where quadrupolar
+interactions represent the dominant relaxation mechanism. Quadrupolar nuclei,
+such as <span class="math notranslate nohighlight">\(^{2} \text{H}\)</span>, <span class="math notranslate nohighlight">\(^{14} \text{N}\)</span>, or other nuclei with
+spin quantum numbers greater than <span class="math notranslate nohighlight">\(1/2\)</span>, require a different theoretical
+treatment because relaxation arises from fluctuations of the electric field
+gradient (EFG) tensor rather than only from magnetic dipole-dipole
+interactions or chemical shift anisotropy. Predicting quadrupolar relaxation
+from MD trajectories would therefore require the calculation of the
 time-dependent EFG tensor at the nucleus, either from suitable force-field
-descriptions or from quantum-mechanical calculations, followed by the evaluation
-of the corresponding spectral densities. These developments involve additional
-methodological and computational challenges and are therefore outside the
-current scope of NMRDfromMD.</p>
+descriptions or from quantum-mechanical calculations, followed by the
+evaluation of the corresponding spectral densities. These developments involve
+additional methodological and computational challenges and are therefore
+outside the current scope of NMRDfromMD.</p>
 </section>
 <section id="paramagnetic-relaxation">
 <h3>Paramagnetic relaxation<a class="headerlink" href="#paramagnetic-relaxation" title="Link to this heading">¶</a></h3>
-<p>NMRDfromMD is also currently not designed for systems where paramagnetic centers
-provide a significant contribution to nuclear relaxation. In the presence of
-unpaired electron spins, such as in systems containing transition-metal ions or
-other paramagnetic species, relaxation can be dominated by electron-nuclear
-dipolar interactions and contact interactions. These mechanisms depend on the
-dynamics of the electron spin, the electron-nuclear distance distribution, and
-the electron spin relaxation properties, which are not directly accessible from
-standard classical molecular dynamics trajectories. A quantitative description
-of paramagnetic relaxation would therefore require additional information, such
-as electron spin relaxation times, hyperfine coupling parameters, or magnetic
-susceptibility tensors, often obtained from quantum-mechanical calculations or
-specialized spin dynamics approaches. Such extensions represent a major increase
-in theoretical complexity and are therefore outside the current scope of
+<p>NMRDfromMD is also currently not designed for systems where paramagnetic
+centers provide a significant contribution to nuclear relaxation. In the
+presence of unpaired electron spins, such as in systems containing
+transition-metal ions or other paramagnetic species, relaxation can be
+dominated by electron-nuclear dipolar interactions and contact interactions.
+These mechanisms depend on the dynamics of the electron spin, the
+electron-nuclear distance distribution, and the electron spin relaxation
+properties, which are not directly accessible from standard classical molecular
+dynamics trajectories. A quantitative description of paramagnetic relaxation
+would therefore require additional information, such as electron spin
+relaxation times, hyperfine coupling parameters, or magnetic susceptibility
+tensors, often obtained from quantum-mechanical calculations or specialized
+spin dynamics approaches. Such extensions represent a major increase in
+theoretical complexity and are therefore outside the current scope of
 NMRDfromMD.</p>
 </section>
 </section>
@@ -424,5 +429,6 @@ NMRDfromMD.</p>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/furo.js?v=46bd48cc"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     </body>
 </html>
