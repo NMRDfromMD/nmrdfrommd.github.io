@@ -107,5 +107,6 @@ tutorials or simply to test NMRDfromMD.
    :hidden:
 
    theory/microscopic-origin
+   additional/scope
    additional/bibliography
    additional/acknowledgments

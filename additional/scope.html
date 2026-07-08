@@ -3,11 +3,11 @@
   <head><meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="../_static/favicon-32x32.png" sizes="32x32" rel="icon" type="image/png"><link rel="index" title="Index" href="../genindex.html"><link rel="search" title="Search" href="../search.html"><link rel="prev" title="Bibliography" href="bibliography.html">
+    <link href="../_static/favicon-32x32.png" sizes="32x32" rel="icon" type="image/png"><link rel="index" title="Index" href="../genindex.html"><link rel="search" title="Search" href="../search.html"><link rel="next" title="Bibliography" href="bibliography.html"><link rel="prev" title="Microscopic mechanisms of relaxation" href="../theory/microscopic-origin.html">
         <link rel="prefetch" href="../_static/logo-b.png" as="image">
 
     <!-- Generated with Sphinx 7.4.7 and Furo 2025.12.19 -->
-        <title>Acknowledgments - </title>
+        <title>Future development - </title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=8dab3a3b" />
@@ -174,7 +174,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
         <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
       </label>
     </div>
@@ -214,9 +214,9 @@
 <p class="caption" role="heading"><span class="caption-text">Additional</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../theory/microscopic-origin.html">Microscopic mechanisms of relaxation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="scope.html">Future development</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Future development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Acknowledgments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acknowledgments.html">Acknowledgments</a></li>
 </ul>
 
 </div>
@@ -237,7 +237,7 @@
         </a>
         <div class="content-icon-container">
           <div class="view-this-page">
-  <a class="muted-link" href="../_sources/additional/acknowledgments.rst.txt" title="View this page">
+  <a class="muted-link" href="../_sources/additional/scope.rst.txt" title="View this page">
     <svg><use href="#svg-eye"></use></svg>
     <span class="visually-hidden">View this page</span>
   </a>
@@ -250,17 +250,50 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
             <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section id="acknowledgments">
-<h1>Acknowledgments<a class="headerlink" href="#acknowledgments" title="Link to this heading">¶</a></h1>
-<p>This project has received funding from the European Union’s Horizon 2020
-research and innovation programme under the Marie Skłodowska-Curie Grant
-Agreement No. 101065060, and from the French National Research Agency
-(ANR) through the MicroSep project (ANR-24-CE06-5671).</p>
+          <section id="future-development">
+<h1>Future development<a class="headerlink" href="#future-development" title="Link to this heading">¶</a></h1>
+<p>Currently, NMRDfromMD is primarily focused on the prediction and analysis
+of <span class="math notranslate nohighlight">\(^{1} \text{H}\)</span> nuclear magnetic relaxation dispersion (NMRD).
+This focus is motivated by the relatively simple and well-established
+relationship between proton relaxation rates and molecular motion, which is
+often dominated by dipole-dipole interactions that can be directly described
+through the autocorrelation functions of internuclear vectors extracted from
+molecular dynamics trajectories. Extending the framework to other nuclei, such
+as <span class="math notranslate nohighlight">\(^{13} \text{C}\)</span>, <span class="math notranslate nohighlight">\(^{15} \text{N}\)</span>, and <span class="math notranslate nohighlight">\(^{19} \text{F}\)</span>,
+is considerably more challenging because different relaxation mechanisms can
+become dominant depending on the chemical environment. For example,
+<span class="math notranslate nohighlight">\(^{13} \text{C}\)</span> relaxation may be governed by heteronuclear
+(<span class="math notranslate nohighlight">\(^{13} \text{C}\)</span>-<span class="math notranslate nohighlight">\(^{1} \text{H}\)</span>) dipolar interactions for
+protonated carbons, whereas carbonyl or quaternary carbons require the
+treatment of additional contributions such as chemical shift anisotropy (CSA)
+and tensorial fluctuations. Similarly, relaxation analysis for nuclei such as
+<span class="math notranslate nohighlight">\(^{15} \text{N}\)</span> often requires the combined description of dipolar and
+CSA mechanisms. These extensions therefore require additional theoretical
+developments, including the calculation of anisotropic interaction tensors and
+their time-dependent fluctuations from MD trajectories. Although not currently
+implemented, expanding NMRDfromMD toward multi-nuclear relaxation analysis
+represents a natural future direction for the package.</p>
+<section id="scope-limitations">
+<h2>Scope limitations<a class="headerlink" href="#scope-limitations" title="Link to this heading">¶</a></h2>
+<p>NMRDfromMD is currently not intended for systems where quadrupolar
+interactions represent the dominant relaxation mechanism. Quadrupolar nuclei,
+such as <span class="math notranslate nohighlight">\(^{2} \text{H}\)</span>, <span class="math notranslate nohighlight">\(^{14} \text{N}\)</span>, or other nuclei with
+spin quantum numbers greater than <span class="math notranslate nohighlight">\(1/2\)</span>, require a different theoretical
+treatment because relaxation arises from fluctuations of the electric field
+gradient (EFG) tensor rather than only from magnetic dipole-dipole
+interactions or chemical shift anisotropy. Predicting quadrupolar relaxation
+from MD trajectories would therefore require the calculation of the
+time-dependent EFG tensor at the nucleus, either from suitable force-field
+descriptions or from quantum-mechanical calculations, followed by the
+evaluation of the corresponding spectral densities. These developments involve
+additional methodological and computational challenges and are therefore
+outside the current scope of NMRDfromMD.</p>
+</section>
 </section>
 
         </article>
@@ -268,15 +301,23 @@ Agreement No. 101065060, and from the French National Research Agency
       <footer>
         
         <div class="related-pages">
-          
-          <a class="prev-page" href="bibliography.html">
+          <a class="next-page" href="bibliography.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Bibliography</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="../theory/microscopic-origin.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Bibliography</div>
+                <div class="title">Microscopic mechanisms of relaxation</div>
                 
               </div>
             </a>
@@ -298,8 +339,27 @@ Agreement No. 101065060, and from the French National Research Agency
         
       </footer>
     </div>
-    <aside class="toc-drawer no-toc">
+    <aside class="toc-drawer">
       
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Future development</a><ul>
+<li><a class="reference internal" href="#scope-limitations">Scope limitations</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
       
       
     </aside>
@@ -308,5 +368,6 @@ Agreement No. 101065060, and from the French National Research Agency
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/furo.js?v=46bd48cc"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     </body>
 </html>
