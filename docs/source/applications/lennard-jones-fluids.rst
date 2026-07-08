@@ -153,3 +153,15 @@ thermodynamic conditions.
     computed from the Lennard--Jones simulations at a frequency 0.07 (dimensionless),
     or :math:`f_0 = 150\,\text{GHz}`. The data from Grivet :cite:`grivetNMRRelaxationParameters2005` are shown
     with gray symbols.
+
+The observed temperature dependence of the relaxation rates is consistent
+with the progressive shortening of the molecular correlation time,
+:math:`\tau_c`, as the Lennard--Jones liquid becomes more mobile. At low
+temperature, :math:`\tau_c` is large, leading to a strong zero-frequency
+spectral density, :math:`J(0)`, which contributes only to :math:`R_2`. As a
+result, :math:`R_2 \gg R_1`. With increasing temperature, :math:`\tau_c`
+decreases, reducing :math:`J(0)` and therefore :math:`R_2`, while the
+finite-frequency spectral density at the Larmor frequency initially
+increases, causing :math:`R_1` to rise. Consequently, :math:`R_1` and
+:math:`R_2` become progressively closer as the system approaches the
+fast-motion regime.
