@@ -6,7 +6,7 @@ careful attention to both the simulation protocol and the subsequent analysis.
 Because relaxation rates depend on molecular structure and dynamics over a broad
 range of timescales, they are sensitive to simulation parameters such as the force
 field, trajectory length, sampling frequency, simulation box size, and analysis
-settings. This page explores some of the main factors that influence the accuracy of
+settings. This section explores some of the main factors that influence the accuracy of
 NMR relaxation calculations from molecular dynamics and provides practical
 recommendations for obtaining reliable and reproducible results.
 
@@ -34,12 +34,13 @@ Impact of the water model
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 As an example, the NMR relaxation properties of bulk water were calculated
-from molecular dynamics simulations for three water models:
-:math:`\text{TIP4P}-\epsilon` :cite:`fuentes-azcatlNonPolarizableForceField2014`,
+from molecular dynamics simulations for three rigid water models,
+:math:`\text{TIP4P}-2005` :cite:`abascalGeneralPurposeModel2005`,
 :math:`\text{SPC/E}` :cite:`berendsenMissingTermEffective1987`, and
-:math:`\text{TIP3P}` :cite:`jorgensenComparisonSimplePotential1983`.
+:math:`\text{TIP3P}` :cite:`jorgensenComparisonSimplePotential1983`,
+and a flexible water model, :math:`\text{TIP4P}--\epsilon \text{Flex}` :cite:`fuentes-azcatlFlexibleModelWater2021`.
 
-Correlation functions extracted for the three models at
+Correlation functions extracted for all four models at
 :math:`T = 300\,\text{K}` highlight the differences between them, with
 :math:`\text{TIP3P}` showing much faster decorrelation compared to
 :math:`\text{SPC/E}`, which itself decorrelates slightly faster than
@@ -48,15 +49,14 @@ is consistent with the known viscosities
 of these models :cite:`gonzalezShearViscosityRigid2010` at :math:`T = 298\,\text{K}`:
 :math:`0.321 \, \text{mPa s}` for :math:`\text{TIP3P}`,
 :math:`0.729 \, \text{mPa s}` for :math:`\text{SPC/E}`, and
-:math:`0.855 \, \text{mPa s}` for :math:`\text{TIP4P/2005}`.
-A similar value is expected for the :math:`\text{TIP4P}-\epsilon` model
-:cite:`fuentes-azcatlNonPolarizableForceField2014`.
-Among the models considered, the TIP4P models have viscosities closest to
+:math:`0.855 \, \text{mPa s}` for :math:`\text{TIP4P/2005}`,
+and :math:`0.958 \, \text{mPa s}` for :math:`\text{TIP4P}--\epsilon \text{Flex}` model
+Among the models considered, the :math:`\text{TIP4P/2005}` modes has a viscosity closest to
 the experimental value of :math:`0.896 \, \text{mPa s}`
 :cite:`harrisTemperatureVolumeDependence2004`.
 
 The NMR relaxation time :math:`T_1` was extracted as a function of
-temperature. The :math:`\text{TIP4P}-\epsilon` model shows excellent
+temperature. The :math:`\text{TIP4P}-2005` model shows excellent
 agreement with experimental measurements by Krynicki
 :cite:`krynickiProtonSpinlatticeRelaxation1966` and Hindman et al.
 :cite:`hindmanRelaxationProcessesWater2003`. By contrast, both
@@ -64,12 +64,6 @@ agreement with experimental measurements by Krynicki
 :math:`T_1`, consistent with their higher deviations in viscosity and with
 previous observations by Calero et al.
 :cite:`calero1HNuclearSpin2015`.
-
-Note that Calero et al. used the :math:`\text{TIP4P}-2005` model rather than
-:math:`\text{TIP4P}-\epsilon`. However, the two models exhibit similar
-structural and transport properties
-:cite:`fuentes-azcatlNonPolarizableForceField2014` and are therefore expected
-to produce similar relaxation times.
 
 .. image:: best-practice/water-ff-dm.png
     :class: only-dark
@@ -153,7 +147,7 @@ NMR relaxation quantities.
     :class: only-dark
     :alt: NMR results obtained from the LAMMPS simulation of water
 
-.. image:: best-practice/water-do.png
+.. image:: best-practice/water-co.png
     :class: only-light
     :alt: NMR results obtained from the LAMMPS simulation of water
 
@@ -247,7 +241,7 @@ total relaxation rate :math:`R_1` remains small for :math:`N > 1000`.
     the standard deviation.
     The dashed line is a guide to the eye, indicating the value obtained
     for the largest value of :math:`N`.
-     b) Inter-molecular correlation function :math:`G_{ij, \text{T}}`
+    b) Inter-molecular correlation function :math:`G_{ij, \text{T}}`
     for two different numbers of molecules, :math:`N = 158` (cyan squares) and :math:`N = 10000` (green disks).
 
 Trajectory output frequency
