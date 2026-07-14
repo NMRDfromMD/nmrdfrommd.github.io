@@ -29,10 +29,9 @@ Benchmark results
 We evaluate the NMR relaxation rates :math:`R_1` and :math:`R_2` at a fixed
 frequency of :math:`f_0 = 150\,\mathrm{GHz}` (0.07 in reduced units) across
 the full temperature range, and compare them with the reference data of
-Grivet :cite:`grivetNMRRelaxationParameters2005`. Results show good agreement
-between the two data sets across the full range of
-thermodynamic conditions.
- 
+Grivet :cite:`grivetNMRRelaxationParameters2005`. Results show relatively good agreement
+between the two data sets, with typical differences of about :math:`5-7\,\%`,
+
 .. image:: lennard-jones-fluids/nmr-relaxation-rates-at-target-dm.png
     :class: only-dark
     :alt: NMR relaxation rate of a LJ fluid simulated with LAMMPS
@@ -43,14 +42,13 @@ thermodynamic conditions.
  
 .. container:: figurelegend
 
-    Figure: A) NMR relaxation rates :math:`R_1` and :math:`R_2` computed from
+    Figure: A) NMR relaxation rates :math:`R_1` (disks) and :math:`R_2` (squares) computed from
     the Lennard--Jones simulations at a frequency of 0.07 (dimensionless), or
     :math:`f_0 = 150\,\text{GHz}`, compared with the reference data from
     Grivet :cite:`grivetNMRRelaxationParameters2005` (gray symbols). B)
     Product :math:`\omega_0 \tau` as a function of temperature. The dashed
     line marks :math:`\omega_0 \tau = 0.62`, the value expected at the BPP
     relaxation maximum.
-
 
 The relaxation rates exhibit the temperature dependence expected from the
 shortening of the molecular correlation time, :math:`\tau`, as the fluid
