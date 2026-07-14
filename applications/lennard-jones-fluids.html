@@ -3,11 +3,11 @@
   <head><meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="../_static/favicon-32x32.png" sizes="32x32" rel="icon" type="image/png"><link rel="index" title="Index" href="../genindex.html"><link rel="search" title="Search" href="../search.html"><link rel="next" title="Lysozyme in water" href="lysozyme-in-water.html"><link rel="prev" title="Best practices" href="../theory/best-practice.html">
+    <link href="../_static/favicon-32x32.png" sizes="32x32" rel="icon" type="image/png"><link rel="index" title="Index" href="../genindex.html"><link rel="search" title="Search" href="../search.html"><link rel="next" title="Tutorial" href="tutorial.html"><link rel="prev" title="Mathematical framework" href="../theory/mathematical-framework.html">
         <link rel="prefetch" href="../_static/logo-b.png" as="image">
 
     <!-- Generated with Sphinx 7.4.7 and Furo 2025.12.19 -->
-        <title>Lennard-Jones fluid - </title>
+        <title>Code validation on a simple fluid - </title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=8dab3a3b" />
@@ -196,9 +196,10 @@
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <p class="caption" role="heading"><span class="caption-text">Theory</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../theory/context.html">Context</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../theory/mathematical-framework.html">Mathematical framework</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Code validation on a simple fluid</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
 <ul>
@@ -206,8 +207,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../theory/best-practice.html">Best practices</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Applications</span></p>
-<ul class="current">
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Lennard-Jones fluid</a></li>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="lysozyme-in-water.html">Lysozyme in water</a></li>
 <li class="toctree-l1"><a class="reference internal" href="anisotropic-system.html">Anisotropic systems</a></li>
 </ul>
@@ -215,6 +215,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../theory/microscopic-origin.html">Microscopic mechanisms of relaxation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../additional/scope.html">Scope</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../additional/simulation-methods.html">Simulation methods</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../additional/bibliography.html">Bibliography</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../additional/acknowledgments.html">Acknowledgments</a></li>
 </ul>
@@ -255,129 +256,67 @@
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section id="lennard-jones-fluid">
-<span id="lennard-jones-label"></span><h1>Lennard-Jones fluid<a class="headerlink" href="#lennard-jones-fluid" title="Link to this heading">¶</a></h1>
-<p>This example demonstrates how <code class="docutils literal notranslate"><span class="pre">NMRDfromMD</span></code> reproduces the
-<span class="math notranslate nohighlight">\(^1\mathrm{H}\)</span>-NMR relaxation properties of a simple
-Lennard–Jones fluid. Because the system consists of identical spherical
-particles interacting through a single distance-dependent pair
-potential, it provides an ideal benchmark for validating the
-implementation against the reference calculations of Grivet
-<span id="id1">[<a class="reference internal" href="../additional/bibliography.html#id241" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">6</a>]</span>.</p>
+          <section id="code-validation-on-a-simple-fluid">
+<span id="lennard-jones-label"></span><h1>Code validation on a simple fluid<a class="headerlink" href="#code-validation-on-a-simple-fluid" title="Link to this heading">¶</a></h1>
+<p>This example validates NMRDfromMD by reproducing the <span class="math notranslate nohighlight">\(^1\mathrm{H}\)</span>-NMR
+relaxation properties of a Lennard–Jones (LJ) fluid, using the reference
+calculations of Grivet <span id="id1">[<a class="reference internal" href="../additional/bibliography.html#id241" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">6</a>]</span> as ground
+truth. Because the system consists of identical spherical particles
+interacting through a single distance-dependent pair potential, it provides a
+clean, well-characterized benchmark, free of the ambiguities of molecular
+geometry or intra-molecular contributions.</p>
 <section id="system">
 <h2>System<a class="headerlink" href="#system" title="Link to this heading">¶</a></h2>
-<p>The Lennard–Jones (LJ) fluid is one of the simplest models used in
-statistical mechanics. Despite its simple interaction potential, it
-captures many generic properties of dense liquids which makes it a
-standard benchmark in molecular simulations.</p>
-<a class="only-dark reference internal image-reference" href="../_images/lj-dark.png"><img alt="LJ fluid simulated with LAMMPS - Dipolar NMR relaxation time calculation" class="only-dark align-right" src="../_images/lj-dark.png" style="width: 250px;" />
-</a>
-<a class="only-light reference internal image-reference" href="../_images/lj-light.png"><img alt="LJ fluid simulated with LAMMPS - Dipolar NMR relaxation time calculation" class="only-light align-right" src="../_images/lj-light.png" style="width: 250px;" />
-</a>
-<p>The simulated system contains 16,000 particles interacting through the
-classical Lennard–Jones (12-6) potential and was simulated using
-LAMMPS <span id="id2">[<a class="reference internal" href="../additional/bibliography.html#id645" title="Aidan P. Thompson, H. Metin Aktulga, Richard Berger, Dan S. Bolintineanu, W. Michael Brown, Paul S. Crozier, Pieter J. In 'T Veld, Axel Kohlmeyer, Stan G. Moore, Trung Dac Nguyen, Ray Shan, Mark J. Stevens, Julien Tranchida, Christian Trott, and Steven J. Plimpton. LAMMPS - a flexible simulation tool for particle-based materials modeling at the atomic, meso, and continuum scales. Computer Physics Communications, 271:108171, February 2022. doi:10.1016/j.cpc.2021.108171.">42</a>]</span>. Each particle has a
-mass <span class="math notranslate nohighlight">\(m = 1\,\mathrm{g/mol}\)</span> together with LJ parameters
-<span class="math notranslate nohighlight">\(\sigma = 3\,\text{Å}\)</span> and
-<span class="math notranslate nohighlight">\(\epsilon = 0.1\,\mathrm{kcal/mol}\)</span>.</p>
-<p>All reduced simulation parameters were chosen to reproduce the study of
-Grivet <span id="id3">[<a class="reference internal" href="../additional/bibliography.html#id241" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">6</a>]</span>. In particular, the
-interaction cutoff was set to <span class="math notranslate nohighlight">\(4 \sigma\)</span>, while the cubic
-simulation box had a side length of <span class="math notranslate nohighlight">\(26.9 \sigma\)</span>, corresponding to
-the reduced density <span class="math notranslate nohighlight">\(\rho^*=0.84\)</span>.</p>
-<p>Production runs were performed in the microcanonical (NVE) ensemble,
-during which 10,000 timesteps were executed, equivalent to 50 times
-the reference time <span class="math notranslate nohighlight">\(\sqrt{m \sigma^2/\epsilon}\)</span>. Configurations
-were recorded every 10 timesteps. A timestep of
-<span class="math notranslate nohighlight">\(0.005\,\sqrt{m \sigma^2/\epsilon}\)</span> was used.
-The imposed temperatures ranged from <span class="math notranslate nohighlight">\(T = 30\)</span> to
-<span class="math notranslate nohighlight">\(160\,\text{K}\)</span>, corresponding to reduced temperatures from
-<span class="math notranslate nohighlight">\(T^* = 0.8\)</span> to <span class="math notranslate nohighlight">\(3.0\)</span>.</p>
-<div class="non-title-info admonition">
-<p class="admonition-title">Reduced Lennard–Jones units</p>
-<p>Lennard-Jones simulations are commonly expressed in reduced units,
-where the particle mass <span class="math notranslate nohighlight">\(m\)</span>, the characteristic length
-<span class="math notranslate nohighlight">\(\sigma\)</span>, and the interaction energy <span class="math notranslate nohighlight">\(\epsilon\)</span> define
-the natural scales of the system. Using reduced variables allows
-simulations with different physical parameters to be compared
-directly.</p>
-</div>
-<p>All LAMMPS input scripts and analysis scripts written in Python are provided
-on GitHub; see <a href="https://github.com/NMRDfromMD/dataset-LJ-fluid" target="_blank">dataset-LJ-fluid</a>.</p>
+<p>The system consists of 16,000 particles interacting through the classical
+Lennard–Jones (12-6) potential, at a reduced density <span class="math notranslate nohighlight">\(\rho^* = 0.84\)</span>
+and reduced temperatures <span class="math notranslate nohighlight">\(T^* = 0.8\)</span>-<span class="math notranslate nohighlight">\(3.0\)</span>
+(<span class="math notranslate nohighlight">\(T = 30\)</span>-<span class="math notranslate nohighlight">\(160\,\text{K}\)</span>), matching the conditions of Grivet
+<span id="id2">[<a class="reference internal" href="../additional/bibliography.html#id241" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">6</a>]</span>. Full simulation details are given
+in <a class="reference internal" href="../additional/simulation-methods.html#simulation-methods"><span class="std std-ref">Simulation methods</span></a>; input and analysis scripts are available on
+GitHub, see <a href="https://github.com/NMRDfromMD/dataset-LJ-fluid" target="_blank">dataset-LJ-fluid</a>.</p>
 </section>
-<section id="benchmark-for-a-lennard-jones-fluid">
-<h2>Benchmark for a Lennard-Jones fluid<a class="headerlink" href="#benchmark-for-a-lennard-jones-fluid" title="Link to this heading">¶</a></h2>
-<p>To validate the implementation, we first compare the dipolar
-autocorrelation function <span class="math notranslate nohighlight">\(G_{ij}^{(0)}(t)\)</span> with the reference
-results reported by Grivet <span id="id4">[<a class="reference internal" href="../additional/bibliography.html#id241" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">6</a>]</span>.</p>
-<p>For the two extreme values of <span class="math notranslate nohighlight">\(T\)</span>, namely
-<span class="math notranslate nohighlight">\(T = 50\)</span> and <span class="math notranslate nohighlight">\(140\,\text{K}\)</span>, the functions
-<span class="math notranslate nohighlight">\(G_{ij}^{(0)}\)</span> are compared with the correlation functions reported by
-Grivet <span id="id5">[<a class="reference internal" href="../additional/bibliography.html#id241" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">6</a>]</span>. Our results show good
-agreement with those of Grivet, with however some differences observed at the lowest
-temperature. As the temperature decreases, the correlation function decays more
-slowly, indicating that molecular motion becomes less efficient at decorrelating
-the dipolar interactions. Consequently, the characteristic correlation time increases and the
-decay of <span class="math notranslate nohighlight">\(G_{ij}^{(0)}(t)\)</span> extends to longer times.</p>
-<p>The long-time <span class="math notranslate nohighlight">\(t^{-3/2}\)</span> behaviour is characteristic of the
-hydrodynamic long-time tails arising from translational diffusion in
-simple liquids.</p>
-<img alt="Correlation functions of a LJ fluid simulated with LAMMPS" class="only-dark" src="../_images/nmr-correlation-functions-dm.png" />
-<img alt="Correlation functions of a LJ fluid simulated with LAMMPS" class="only-light" src="../_images/nmr-correlation-functions.png" />
-<div class="figurelegend docutils container">
-<p>Figure: A) Correlation function <span class="math notranslate nohighlight">\(G_{ij}^{(0)}\)</span> as extracted from the LJ
-fluid simulation for all temperatures. B) <span class="math notranslate nohighlight">\(G_{ij}^{(0)}\)</span> for two
-different temperatures compared with the data from Grivet
-<span id="id6">[<a class="reference internal" href="../additional/bibliography.html#id241" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">6</a>]</span> (gray symbols). The dashed
-line shows <span class="math notranslate nohighlight">\(t^{-3/2}\)</span>.</p>
-</div>
-<p>For all temperatures, the frequency-dependent relaxation rates
-<span class="math notranslate nohighlight">\(R_1(f)\)</span> and <span class="math notranslate nohighlight">\(R_2(f)\)</span> decrease with increasing frequency
-<span class="math notranslate nohighlight">\(f\)</span>. This behavior
-reflects the frequency dependence of the spectral density function
-<span class="math notranslate nohighlight">\(J(\omega)\)</span>, which quantifies how much power molecular motion
-contributes at a given Larmor frequency <span class="math notranslate nohighlight">\(\omega = 2\pi f\)</span>. At low
-frequencies, relaxation rates probe the long-time diffusive dynamics, where
-<span class="math notranslate nohighlight">\(J(\omega)\)</span> reaches a plateau.
-At frequencies exceeding the inverse correlation time, the
-spectral density decreases because increasingly rapid magnetic-field
-fluctuations become inefficient at driving nuclear-spin relaxation.
-Consequently, both <span class="math notranslate nohighlight">\(R_1\)</span> and <span class="math notranslate nohighlight">\(R_2\)</span> decrease with increasing
-frequency.</p>
-<img alt="NMR relaxation rate of a LJ fluid simulated with LAMMPS" class="only-dark" src="../_images/nmr-relaxation-rates-spectra-dm.png" />
-<img alt="NMR relaxation rate of a LJ fluid simulated with LAMMPS" class="only-light" src="../_images/nmr-relaxation-rates-spectra.png" />
-<div class="figurelegend docutils container">
-<p>Figure: Frequency-dependent NMR relaxation rates <span class="math notranslate nohighlight">\(R_1\)</span> (A) and <span class="math notranslate nohighlight">\(R_2\)</span> (B)
-as a function of the frequency <span class="math notranslate nohighlight">\(f\)</span>.</p>
-</div>
-<p>Finally, the relaxation rates were evaluated at a fixed frequency of
-<span class="math notranslate nohighlight">\(f_0 = 150\,\mathrm{GHz}\)</span> (0.07 in reduced units), matching the
-conditions used by Grivet <span id="id7">[<a class="reference internal" href="../additional/bibliography.html#id241" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">6</a>]</span>.
-The agreement between the two data sets confirms that <code class="docutils literal notranslate"><span class="pre">NMRDfromMD</span></code>
-reproduces both the temperature dependence of the correlation functions
-and the resulting relaxation rates over the full range of investigated
+<section id="benchmark-results">
+<h2>Benchmark results<a class="headerlink" href="#benchmark-results" title="Link to this heading">¶</a></h2>
+<p>We evaluate the NMR relaxation rates <span class="math notranslate nohighlight">\(R_1\)</span> and <span class="math notranslate nohighlight">\(R_2\)</span> at a fixed
+frequency of <span class="math notranslate nohighlight">\(f_0 = 150\,\mathrm{GHz}\)</span> (0.07 in reduced units) across
+the full temperature range, and compare them with the reference data of
+Grivet <span id="id3">[<a class="reference internal" href="../additional/bibliography.html#id241" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">6</a>]</span>. Results show good agreement
+between the two data sets across the full range of
 thermodynamic conditions.</p>
-<a class="only-dark reference internal image-reference" href="../_images/nmr-relaxation-rates-at-target-dm.png"><img alt="NMR relaxation rate of a LJ fluid simulated with LAMMPS" class="only-dark" src="../_images/nmr-relaxation-rates-at-target-dm.png" style="width: 50%;" />
-</a>
-<a class="only-light reference internal image-reference" href="../_images/nmr-relaxation-rates-at-target.png"><img alt="NMR relaxation rate of a LJ fluid simulated with LAMMPS" class="only-light" src="../_images/nmr-relaxation-rates-at-target.png" style="width: 50%;" />
-</a>
+<img alt="NMR relaxation rate of a LJ fluid simulated with LAMMPS" class="only-dark" src="../_images/nmr-relaxation-rates-at-target-dm.png" />
+<img alt="NMR relaxation rate of a LJ fluid simulated with LAMMPS" class="only-light" src="../_images/nmr-relaxation-rates-at-target.png" />
 <div class="figurelegend docutils container">
-<p>Figure: NMR relaxation rates <span class="math notranslate nohighlight">\(R_1\)</span> (A) and <span class="math notranslate nohighlight">\(R_2\)</span> (B)
-computed from the Lennard–Jones simulations at a frequency 0.07 (dimensionless),
-or <span class="math notranslate nohighlight">\(f_0 = 150\,\text{GHz}\)</span>. The data from Grivet <span id="id8">[<a class="reference internal" href="../additional/bibliography.html#id241" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">6</a>]</span> are shown
-with gray symbols.</p>
+<p>Figure: A) NMR relaxation rates <span class="math notranslate nohighlight">\(R_1\)</span> and <span class="math notranslate nohighlight">\(R_2\)</span> computed from
+the Lennard–Jones simulations at a frequency of 0.07 (dimensionless), or
+<span class="math notranslate nohighlight">\(f_0 = 150\,\text{GHz}\)</span>, compared with the reference data from
+Grivet <span id="id4">[<a class="reference internal" href="../additional/bibliography.html#id241" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">6</a>]</span> (gray symbols). B)
+Product <span class="math notranslate nohighlight">\(\omega_0 \tau\)</span> as a function of temperature. The dashed
+line marks <span class="math notranslate nohighlight">\(\omega_0 \tau = 0.62\)</span>, the value expected at the BPP
+relaxation maximum.</p>
 </div>
-<p>The observed temperature dependence of the relaxation rates is consistent
-with the progressive shortening of the molecular correlation time,
-<span class="math notranslate nohighlight">\(\tau_c\)</span>, as the Lennard–Jones liquid becomes more mobile. At low
-temperature, <span class="math notranslate nohighlight">\(\tau_c\)</span> is large, leading to a strong zero-frequency
-spectral density, <span class="math notranslate nohighlight">\(J(0)\)</span>,  which contributes to <span class="math notranslate nohighlight">\(R_2\)</span> but not to <span class="math notranslate nohighlight">\(R_1\)</span>.
-As a result, <span class="math notranslate nohighlight">\(R_2 \gg R_1\)</span>. With increasing temperature, <span class="math notranslate nohighlight">\(\tau_c\)</span>
-decreases, reducing <span class="math notranslate nohighlight">\(J(0)\)</span> and therefore <span class="math notranslate nohighlight">\(R_2\)</span>, while the
-finite-frequency spectral density at the Larmor frequency initially
-increases, causing <span class="math notranslate nohighlight">\(R_1\)</span> to rise. Consequently, <span class="math notranslate nohighlight">\(R_1\)</span> and
-<span class="math notranslate nohighlight">\(R_2\)</span> become progressively closer as the system approaches the
-fast-motion regime.</p>
+<p>The relaxation rates exhibit the temperature dependence expected from the
+shortening of the molecular correlation time, <span class="math notranslate nohighlight">\(\tau\)</span>, as the fluid
+becomes more mobile. <span class="math notranslate nohighlight">\(R_2\)</span> decreases monotonically from
+<span class="math notranslate nohighlight">\(5.6\,\mathrm{ms}^{-1}\)</span> at <span class="math notranslate nohighlight">\(T = 30\,\text{K}\)</span> to
+<span class="math notranslate nohighlight">\(2.3\,\mathrm{ms}^{-1}\)</span> at <span class="math notranslate nohighlight">\(T = 160\,\text{K}\)</span>, reflecting the reduction of
+the zero-frequency spectral density <span class="math notranslate nohighlight">\(J(0)\)</span>, which dominates <span class="math notranslate nohighlight">\(R_2\)</span>
+but does not contribute to <span class="math notranslate nohighlight">\(R_1\)</span>. <span class="math notranslate nohighlight">\(R_1\)</span> instead passes through a
+maximum: it rises from <span class="math notranslate nohighlight">\(1.6\,\mathrm{ms}^{-1}\)</span> at <span class="math notranslate nohighlight">\(T = 30\,\text{K}\)</span> to a
+peak of <span class="math notranslate nohighlight">\(1.9\,\mathrm{ms}^{-1}\)</span> around <span class="math notranslate nohighlight">\(T = 80\,\text{K}\)</span>, then decreases
+to <span class="math notranslate nohighlight">\(1.7\,\mathrm{ms}^{-1}\)</span> at <span class="math notranslate nohighlight">\(T = 160\,\text{K}\)</span>. This non-monotonic
+behaviour is the signature of the BPP relaxation maximum, expected when the
+correlation time satisfies <span class="math notranslate nohighlight">\(\omega_0 \tau \approx 0.62\)</span>. Computing
+<span class="math notranslate nohighlight">\(\tau\)</span> directly from the simulations confirms this: <span class="math notranslate nohighlight">\(\omega_0 \tau\)</span>
+decreases from <span class="math notranslate nohighlight">\(1.74\)</span> at <span class="math notranslate nohighlight">\(T = 30\,\text{K}\)</span> to <span class="math notranslate nohighlight">\(0.37\)</span> at
+<span class="math notranslate nohighlight">\(T = 160\,\text{K}\)</span>, crossing <span class="math notranslate nohighlight">\(0.62\)</span> near
+<span class="math notranslate nohighlight">\(T = 80\,\text{K}\)</span> and <span class="math notranslate nohighlight">\(T = 90\,\text{K}\)</span>,
+coinciding with the observed <span class="math notranslate nohighlight">\(R_1\)</span> peak. At low
+temperature (where <span class="math notranslate nohighlight">\(\tau\)</span> is the largest), spectral density is concentrated near
+zero frequency and contributes weakly to <span class="math notranslate nohighlight">\(R_1\)</span>. As <span class="math notranslate nohighlight">\(\tau\)</span>
+decreases, spectral density shifts toward the Larmor frequency
+<span class="math notranslate nohighlight">\(\omega_0\)</span>, increasing <span class="math notranslate nohighlight">\(R_1\)</span>, until <span class="math notranslate nohighlight">\(\tau\)</span> becomes short
+enough that the fluid enters the fast-motion (extreme narrowing) regime and
+<span class="math notranslate nohighlight">\(R_1\)</span> decreases again.</p>
 </section>
 </section>
 
@@ -386,23 +325,23 @@ fast-motion regime.</p>
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="lysozyme-in-water.html">
+          <a class="next-page" href="tutorial.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Lysozyme in water</div>
+                <div class="title">Tutorial</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="../theory/best-practice.html">
+          <a class="prev-page" href="../theory/mathematical-framework.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Best practices</div>
+                <div class="title">Mathematical framework</div>
                 
               </div>
             </a>
@@ -436,9 +375,9 @@ fast-motion regime.</p>
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">Lennard-Jones fluid</a><ul>
+<li><a class="reference internal" href="#">Code validation on a simple fluid</a><ul>
 <li><a class="reference internal" href="#system">System</a></li>
-<li><a class="reference internal" href="#benchmark-for-a-lennard-jones-fluid">Benchmark for a Lennard-Jones fluid</a></li>
+<li><a class="reference internal" href="#benchmark-results">Benchmark results</a></li>
 </ul>
 </li>
 </ul>
