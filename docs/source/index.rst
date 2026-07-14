@@ -83,6 +83,7 @@ tutorials or simply to test NMRDfromMD.
 
    theory/context
    theory/mathematical-framework
+   applications/lennard-jones-fluids
 
 .. toctree::
    :maxdepth: 2
@@ -97,7 +98,6 @@ tutorials or simply to test NMRDfromMD.
    :caption: Applications
    :hidden:
 
-   applications/lennard-jones-fluids
    applications/lysozyme-in-water
    applications/anisotropic-system
 
@@ -108,5 +108,6 @@ tutorials or simply to test NMRDfromMD.
 
    theory/microscopic-origin
    additional/scope
+   additional/simulation-methods
    additional/bibliography
    additional/acknowledgments
