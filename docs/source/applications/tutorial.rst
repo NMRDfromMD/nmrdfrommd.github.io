@@ -145,12 +145,15 @@ correctly loaded and to inspect its basic composition.
 
 .. code-block:: python
 
-    n_TOT = u.atoms.n_residues
-    n_H2O = u.select_atoms("type 6 7").n_residues
-    n_PEG = u.select_atoms("type 1 2 3 4 5").n_residues
+    H2O = u.select_atoms("type 6 7")
+    PEG = u.select_atoms("type 1 2 3 4 5")
+
+    n_TOT = len(u.residues)
+    n_H2O = len(H2O.residues)
+    n_PEG = len(PEG.residues)
 
     print(
-        f"Total molecules: {n_TOT} "
+        f"System: {n_TOT} molecules"
         f"({n_H2O} H2O, {n_PEG} PEG)"
     )
 
@@ -158,35 +161,34 @@ Executing the script using Python will return:
 
 .. code-block:: bw
 
-    Total molecules: 450 (420 H2O, 30 PEG)
+    System: 450 molecules (420 H2O, 30 PEG)
 
 This output confirms that the simulation contains the expected 450 molecules,
 correctly partitioned into 420 water molecules and 30 PEG chains.
 
-Let us also print information about the trajectory: ``timestep``
+Let us also print information about the trajectory: ``frame_dt``
 and the total duration of the simulation, ``total_time``:
 
 .. code-block:: python
 
-    timestep = np.int32(u.trajectory.dt)
+    frame_dt = np.int32(u.trajectory.dt)
     total_time = np.int32(u.trajectory.totaltime)
 
-    print(f"The timestep is {timestep} ps")
-    print(f"The total simulation time is {total_time//1000} ns")
+    print(f"Trajectory: {frame_dt} ps/frame, "
+        f"{total_time//1000} ns total")
 
 Executing the script using Python will return:
 
 .. code-block:: bw
 
-    The timestep is 2 ps
-    The total simulation time is 10 ns
+    Trajectory: 2 ps/frame, 10 ns total
 
-In MDAnalysis, the ``timestep`` refers to the time interval between two
+The ``frame_dt`` refers to the time interval between two
 stored frames in the trajectory file, not the integration timestep used
 in the molecular dynamics simulation. In this tutorial, the trajectory was generated with LAMMPS using a
 1 fs integration timestep, but atomic configurations were written to the
-``production.xtc`` file every 2 ps. As a result, the ``timestep`` reported by
-MDAnalysis corresponds to this 2 ps sampling interval, which determines the
+``production.xtc`` file every 2 ps. As a result, ``frame_dt`` corresponds to
+the 2 ps sampling interval, which determines the
 temporal resolution of all subsequent correlation functions and relaxation calculations.
 
 Run the :math:`^1\text{H}` NMR relaxation analysis
@@ -198,8 +200,8 @@ belonging to water, and the combined set containing all hydrogen atoms:
 
 .. code-block:: python
 
-    H_PEG = u.select_atoms("type 3 5")
-    H_H2O = u.select_atoms("type 7")
+    H_H2O = H2O.select_atoms("type 7")
+    H_PEG = PEG.select_atoms("type 3 5")
     H_ALL = H_PEG + H_H2O
 
 Next, we run ``NMRDfromMD`` for all hydrogen atoms:
@@ -209,8 +211,9 @@ Next, we run ``NMRDfromMD`` for all hydrogen atoms:
     nmr_all = NMRD(
         u=u,
         atom_group=H_ALL,
-        number_i=20)
-    nmr_results = nmr_all.run_analysis()
+        number_i=20
+    )
+    res_nmr = nmr_all.run_analysis()
 
 On a standard laptop (Intel Core i9-12900H processor), this step
 typically takes 1-2 minutes.
@@ -233,13 +236,13 @@ Increasing ``number_i`` improves the statistical precision of the
 calculated relaxation rates, while setting ``number_i = 0`` includes all
 eligible atoms in the calculation.
 
-All calculated values are stored within the ``nmr_results`` dictionary.
+All calculated values are stored within the ``res_nmr`` dictionary.
 Let us first extract the NMR relaxation time :math:`T_1` in
 the limit :math:`f \to 0`, add the following lines to the Python script:
 
 .. code-block:: python
 
-    T1 = nmr_results["T1"]
+    T1 = res_nmr["T1"]
 
     print(f"NMR relaxation time: T1 = {T1:.2f} s")
 
@@ -274,9 +277,9 @@ and ``nmr_all.R2``. The corresponding frequencies are stored in
 
 .. code-block:: python
 
-    R1_spectrum = nmr_results["R1"]
-    R2_spectrum = nmr_results["R2"]
-    f = nmr_results["f"]
+    R1_spectrum = res_nmr["R1"]
+    R2_spectrum = res_nmr["R2"]
+    f = res_nmr["f"]
 
 The spectra :math:`R_1 (f)` and :math:`R_2 (f)` can then be plotted as a
 function of :math:`f` using ``pyplot``:
@@ -302,10 +305,21 @@ function of :math:`f` using ``pyplot``:
         markersize=5
     )
     # Labels and Title
-    plt.xlabel("Frequency (MHz)", fontsize=12)
-    plt.ylabel("Relaxation Rates (s-1)", fontsize=12)
+    plt.xlabel(
+        "Frequency (MHz)",
+        fontsize=12
+    )
+    plt.ylabel(
+        "Relaxation Rates (s-1)",
+        fontsize=12
+    )
     # Grid and boundaries
-    plt.grid(True, which="both", linestyle='--', linewidth=0.7)
+    plt.grid(
+        True, 
+        which="both", 
+        linestyle='--', 
+        linewidth=0.7
+    )
     plt.xlim(80, 1e5)
     plt.ylim(0.05, 2)
     # Legend
@@ -362,14 +376,14 @@ both water and PEG, separately:
         atom_group=H_H2O,
         type_analysis="intra_molecular",
         number_i=200)
-    result_h2o_intra = nmr_h2o_intra.run_analysis()
+    res_h2o_intra = nmr_h2o_intra.run_analysis()
 
     nmr_peg_intra = NMRD(
         u=u,
         atom_group=H_PEG,
         type_analysis="intra_molecular",
         number_i=200)
-    result_peg_intra = nmr_peg_intra.run_analysis()
+    res_peg_intra = nmr_peg_intra.run_analysis()
 
 Similarly, we can also measure the intermolecular contributions:
 
@@ -380,14 +394,14 @@ Similarly, we can also measure the intermolecular contributions:
         atom_group=H_H2O,
         type_analysis="inter_molecular",
         number_i=20)
-    result_h2o_inter = nmr_h2o_inter.run_analysis()
+    res_h2o_inter = nmr_h2o_inter.run_analysis()
 
     nmr_peg_inter = NMRD(
         u=u,
         atom_group=H_PEG,
         type_analysis="inter_molecular",
         number_i=20)
-    result_peg_inter = nmr_peg_inter.run_analysis()
+    res_peg_inter = nmr_peg_inter.run_analysis()
 
 The intermolecular contribution is
 computed only between molecules belonging to the same chemical species.
@@ -405,7 +419,7 @@ hydrogen atoms as the interacting partner group (``neighbor_group``):
         atom_group=H_H2O,
         neighbor_group=H_PEG,
         number_i=20)
-    result_h2o_peg = nmr_h2o_peg.run_analysis()
+    res_h2o_peg = nmr_h2o_peg.run_analysis()
 
 In this case, the analysis is already restricted to intermolecular
 interactions between two different molecular species. Therefore, it is
