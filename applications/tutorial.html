@@ -366,18 +366,20 @@ correctly loaded and to inspect its basic composition.</p>
 <span class="n">n_H2O</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">select_atoms</span><span class="p">(</span><span class="s2">&quot;type 6 7&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">n_residues</span>
 <span class="n">n_PEG</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">select_atoms</span><span class="p">(</span><span class="s2">&quot;type 1 2 3 4 5&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">n_residues</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The total number of molecules is </span><span class="si">{</span><span class="n">n_TOT</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">n_H2O</span><span class="si">}</span><span class="s2"> H2O, </span><span class="si">{</span><span class="n">n_PEG</span><span class="si">}</span><span class="s2"> PEG)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">&quot;Total molecules: </span><span class="si">{</span><span class="n">n_TOT</span><span class="si">}</span><span class="s2"> &quot;</span>
+    <span class="sa">f</span><span class="s2">&quot;(</span><span class="si">{</span><span class="n">n_H2O</span><span class="si">}</span><span class="s2"> H2O, </span><span class="si">{</span><span class="n">n_PEG</span><span class="si">}</span><span class="s2"> PEG)&quot;</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 <p>Executing the script using Python will return:</p>
-<div class="highlight-bw notranslate"><div class="highlight"><pre><span></span>The total number of molecules is 450 (420 H2O, 30 PEG)
+<div class="highlight-bw notranslate"><div class="highlight"><pre><span></span>Total molecules: 450 (420 H2O, 30 PEG)
 </pre></div>
 </div>
 <p>This output confirms that the simulation contains the expected 450 molecules,
 correctly partitioned into 420 water molecules and 30 PEG chains.</p>
-<p>Let us also print information concerning the trajectory,
-namely the timestep, <code class="docutils literal notranslate"><span class="pre">timestep</span></code> and
-the total duration of the simulation, <code class="docutils literal notranslate"><span class="pre">total_time</span></code>:</p>
+<p>Let us also print information about the trajectory: <code class="docutils literal notranslate"><span class="pre">timestep</span></code>
+and the total duration of the simulation, <code class="docutils literal notranslate"><span class="pre">total_time</span></code>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">timestep</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">dt</span><span class="p">)</span>
 <span class="n">total_time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">totaltime</span><span class="p">)</span>
 
@@ -434,15 +436,15 @@ uncertainty.</p>
 calculated relaxation rates, while setting <code class="docutils literal notranslate"><span class="pre">number_i</span> <span class="pre">=</span> <span class="pre">0</span></code> includes all
 eligible atoms in the calculation.</p>
 <p>All calculated values are stored within the <code class="docutils literal notranslate"><span class="pre">nmr_results</span></code> dictionary.
-Lets first extract the NMR relaxation time <span class="math notranslate nohighlight">\(T_1\)</span> in
+Let us first extract the NMR relaxation time <span class="math notranslate nohighlight">\(T_1\)</span> in
 the limit <span class="math notranslate nohighlight">\(f \to 0\)</span>, add the following lines to the Python script:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">T1</span> <span class="o">=</span> <span class="n">nmr_results</span><span class="p">[</span><span class="s2">&quot;T1&quot;</span><span class="p">]</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The NMR relaxation time is T1 = </span><span class="si">{</span><span class="n">T1</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> s&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;NMR relaxation time: T1 = </span><span class="si">{</span><span class="n">T1</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> s&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The output should be similar to:</p>
-<div class="highlight-bw notranslate"><div class="highlight"><pre><span></span>The NMR relaxation time is T1 = 1.59 s
+<p>The expected output is</p>
+<div class="highlight-bw notranslate"><div class="highlight"><pre><span></span>NMR relaxation time: T1 = 1.59 s
 </pre></div>
 </div>
 <p>The exact value may vary slightly between runs because the reference
@@ -476,8 +478,20 @@ function of <span class="math notranslate nohighlight">\(f\)</span> using <code 
 
 <span class="c1"># Plot settings</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">R1_spectrum</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;R1&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">R2_spectrum</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;R2&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span>
+    <span class="n">f</span><span class="p">,</span>
+    <span class="n">R1_spectrum</span><span class="p">,</span>
+    <span class="s2">&quot;o&quot;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;R1&quot;</span><span class="p">,</span>
+    <span class="n">markersize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span>
+    <span class="n">f</span><span class="p">,</span>
+    <span class="n">R2_spectrum</span><span class="p">,</span>
+    <span class="s1">&#39;s&#39;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;R2&#39;</span><span class="p">,</span>
+    <span class="n">markersize</span><span class="o">=</span><span class="mi">5</span>
+<span class="p">)</span>
 <span class="c1"># Labels and Title</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Frequency (MHz)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Relaxation Rates (s-1)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>

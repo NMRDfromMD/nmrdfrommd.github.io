@@ -149,20 +149,22 @@ correctly loaded and to inspect its basic composition.
     n_H2O = u.select_atoms("type 6 7").n_residues
     n_PEG = u.select_atoms("type 1 2 3 4 5").n_residues
 
-    print(f"The total number of molecules is {n_TOT} ({n_H2O} H2O, {n_PEG} PEG)")
+    print(
+        f"Total molecules: {n_TOT} "
+        f"({n_H2O} H2O, {n_PEG} PEG)"
+    )
 
 Executing the script using Python will return:
 
 .. code-block:: bw
 
-    The total number of molecules is 450 (420 H2O, 30 PEG)
+    Total molecules: 450 (420 H2O, 30 PEG)
 
 This output confirms that the simulation contains the expected 450 molecules,
 correctly partitioned into 420 water molecules and 30 PEG chains.
 
-Let us also print information concerning the trajectory,
-namely the timestep, ``timestep`` and
-the total duration of the simulation, ``total_time``:
+Let us also print information about the trajectory: ``timestep``
+and the total duration of the simulation, ``total_time``:
 
 .. code-block:: python
 
@@ -232,20 +234,20 @@ calculated relaxation rates, while setting ``number_i = 0`` includes all
 eligible atoms in the calculation.
 
 All calculated values are stored within the ``nmr_results`` dictionary.
-Lets first extract the NMR relaxation time :math:`T_1` in
+Let us first extract the NMR relaxation time :math:`T_1` in
 the limit :math:`f \to 0`, add the following lines to the Python script:
 
 .. code-block:: python
 
     T1 = nmr_results["T1"]
 
-    print(f"The NMR relaxation time is T1 = {T1:.2f} s")
+    print(f"NMR relaxation time: T1 = {T1:.2f} s")
 
-The output should be similar to:
+The expected output is
 
 .. code-block:: bw
 
-    The NMR relaxation time is T1 = 1.59 s
+    NMR relaxation time: T1 = 1.59 s
 
 The exact value may vary slightly between runs because the reference
 atoms are selected randomly whenever ``number_i > 0``. Increasing
@@ -285,8 +287,20 @@ function of :math:`f` using ``pyplot``:
 
     # Plot settings
     plt.figure(figsize=(8, 5))
-    plt.loglog(f, R1_spectrum, 'o', label='R1', markersize=5)
-    plt.loglog(f, R2_spectrum, 's', label='R2', markersize=5)
+    plt.loglog(
+        f,
+        R1_spectrum,
+        "o",
+        label="R1",
+        markersize=5,
+    )
+    plt.loglog(
+        f,
+        R2_spectrum,
+        's',
+        label='R2',
+        markersize=5
+    )
     # Labels and Title
     plt.xlabel("Frequency (MHz)", fontsize=12)
     plt.ylabel("Relaxation Rates (s-1)", fontsize=12)
