@@ -38,7 +38,7 @@ from molecular dynamics simulations for three rigid water models,
 :math:`\text{TIP4P}-2005` :cite:`abascalGeneralPurposeModel2005`,
 :math:`\text{SPC/E}` :cite:`berendsenMissingTermEffective1987`, and
 :math:`\text{TIP3P}` :cite:`jorgensenComparisonSimplePotential1983`,
-and a flexible water model, :math:`\text{TIP4P}--\epsilon \text{Flex}` :cite:`fuentes-azcatlFlexibleModelWater2021`.
+and a flexible water model, :math:`\text{TIP4P}-\epsilon \text{Flex}` :cite:`fuentes-azcatlFlexibleModelWater2021`.
 
 Correlation functions extracted for all four models at
 :math:`T = 300\,\text{K}` highlight the differences between them, with
@@ -50,7 +50,7 @@ of these models :cite:`gonzalezShearViscosityRigid2010` at :math:`T = 298\,\text
 :math:`0.321 \, \text{mPa s}` for :math:`\text{TIP3P}`,
 :math:`0.729 \, \text{mPa s}` for :math:`\text{SPC/E}`, and
 :math:`0.855 \, \text{mPa s}` for :math:`\text{TIP4P/2005}`,
-and :math:`0.958 \, \text{mPa s}` for :math:`\text{TIP4P}--\epsilon \text{Flex}` model
+and :math:`0.958 \, \text{mPa s}` for :math:`\text{TIP4P}-\epsilon \text{Flex}` model
 Among the models considered, the :math:`\text{TIP4P/2005}` modes has a viscosity closest to
 the experimental value of :math:`0.896 \, \text{mPa s}`
 :cite:`harrisTemperatureVolumeDependence2004`.
