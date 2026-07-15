@@ -77,11 +77,7 @@ File preparation
 
 To access the LAMMPS input files and pre-computed trajectory data, either
 download the |zip-peg-water-mixture| archive or clone the
-|dataset-peg-water-mixture| repository:
-
-.. code-block:: bash
-
-    git clone https://github.com/NMRDfromMD/dataset-peg-water-mixture.git
+|dataset-peg-water-mixture| repository.
 
 The required trajectory files are located in the ``data/`` directory.
 
@@ -94,16 +90,16 @@ The required trajectory files are located in the ``data/`` directory.
 
     If Git LFS is not installed, install it first:
 
-.. code-block:: bash
+    .. code-block:: bash
 
-    apt install git-lfs
-    git lfs install
+        apt install git-lfs
+        git lfs install
 
-Then retrieve the trajectory files:
+    Then retrieve the trajectory files:
 
-.. code-block:: bash
+    .. code-block:: bash
 
-    git lfs pull
+        git lfs pull
 
 Alternatively, you can regenerate the trajectory by rerunning the LAMMPS
 simulation scripts provided in the repository.

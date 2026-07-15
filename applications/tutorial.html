@@ -313,10 +313,7 @@ functions computed later are limited by this sampling interval.</p>
 <h2>File preparation<a class="headerlink" href="#file-preparation" title="Link to this heading">¶</a></h2>
 <p>To access the LAMMPS input files and pre-computed trajectory data, either
 download the <a href="https://github.com/NMRDfromMD/dataset-peg-water-mixture/archive/refs/tags/v1.0-beta.zip" target="_blank">zip</a> archive or clone the
-<a href="https://github.com/NMRDfromMD/dataset-peg-water-mixture" target="_blank">peg-water-mixture dataset</a> repository:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/NMRDfromMD/dataset-peg-water-mixture.git
-</pre></div>
-</div>
+<a href="https://github.com/NMRDfromMD/dataset-peg-water-mixture" target="_blank">peg-water-mixture dataset</a> repository.</p>
 <p>The required trajectory files are located in the <code class="docutils literal notranslate"><span class="pre">data/</span></code> directory.</p>
 <div class="warning admonition">
 <p class="admonition-title">Important</p>
@@ -324,7 +321,6 @@ download the <a href="https://github.com/NMRDfromMD/dataset-peg-water-mixture/ar
 This means that after cloning the repository, you must download the
 actual trajectory data before using it.</p>
 <p>If Git LFS is not installed, install it first:</p>
-</div>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>apt<span class="w"> </span>install<span class="w"> </span>git-lfs
 git<span class="w"> </span>lfs<span class="w"> </span>install
 </pre></div>
@@ -332,6 +328,7 @@ git<span class="w"> </span>lfs<span class="w"> </span>install
 <p>Then retrieve the trajectory files:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>lfs<span class="w"> </span>pull
 </pre></div>
+</div>
 </div>
 <p>Alternatively, you can regenerate the trajectory by rerunning the LAMMPS
 simulation scripts provided in the repository.</p>
