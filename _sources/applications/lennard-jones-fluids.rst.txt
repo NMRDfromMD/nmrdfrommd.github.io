@@ -48,7 +48,8 @@ between the two data sets, with typical differences of about :math:`5-7\,\%`,
     Grivet :cite:`grivetNMRRelaxationParameters2005` (gray symbols). B)
     Product :math:`\omega_0 \tau` as a function of temperature. The dashed
     line marks :math:`\omega_0 \tau = 0.62`, the value expected at the BPP
-    relaxation maximum.
+    relaxation maximum. The insert shows a snapshot of the molecular dynamics,
+    with atoms represented as spheres.
 
 The relaxation rates exhibit the temperature dependence expected from the
 shortening of the molecular correlation time, :math:`\tau`, as the fluid
