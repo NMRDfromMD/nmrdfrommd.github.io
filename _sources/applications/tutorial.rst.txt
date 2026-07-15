@@ -289,7 +289,7 @@ function of :math:`f` using ``pyplot``:
     plt.loglog(f, R2_spectrum, 's', label='R2', markersize=5)
     # Labels and Title
     plt.xlabel("Frequency (MHz)", fontsize=12)
-    plt.ylabel("Relaxation Rates (s⁻¹)", fontsize=12)
+    plt.ylabel("Relaxation Rates (s-1)", fontsize=12)
     # Grid and boundaries
     plt.grid(True, which="both", linestyle='--', linewidth=0.7)
     plt.xlim(80, 1e5)
