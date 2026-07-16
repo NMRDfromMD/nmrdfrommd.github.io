@@ -63,7 +63,7 @@ directly related to molecular motions extracted from classical MD trajectories,
 some relaxation mechanisms require additional physical information beyond the
 current framework. These mechanisms involve interactions that are not fully
 captured by standard nuclear dipole-dipole relaxation models, such as
-fluctuations of electric field gradients or electron spin dynamics. The
+fluctuations of electric field gradients (EFG) or electron spin dynamics. The
 following sections describe relaxation processes that are currently outside the
 scope of NMRDfromMD and would require significant theoretical and
 methodological extensions.
@@ -76,9 +76,9 @@ interactions represent the dominant relaxation mechanism. Nuclei with spin
 quantum numbers :math:`I \geq 1`, such as :math:`^{2} \text{H}`,
 :math:`^{14} \text{N}`, or other quadrupolar nuclei, require a different
 theoretical treatment because quadrupolar relaxation originates from
-fluctuations of the electric field gradient (EFG) tensor at the nucleus,
+fluctuations of the EFG tensor at the nucleus,
 rather than from magnetic relaxation mechanisms such as dipole-dipole
-interactions or chemical shift anisotropy
+interactions or CSA
 :cite:`carofAccurateQuadrupolarNMR2014a, chubakQuadrupolar23NaNMR2023, vidalInitioMolecularDynamics2026`.
 
 Predicting quadrupolar relaxation from MD trajectories requires the
@@ -91,22 +91,25 @@ antishielding corrections :cite:`sternheimerShieldingAntishieldingEffects1966`. 
 introduce additional methodological and computational challenges and are
 therefore outside the current scope of NMRDfromMD.
 
-
 Paramagnetic relaxation
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-NMRDfromMD is also currently not designed for systems where paramagnetic 
-centers provide a significant contribution to nuclear relaxation. In the 
-presence of unpaired electron spins, such as in systems containing 
-transition-metal ions or other paramagnetic species, relaxation can be 
-dominated by electron-nuclear dipolar interactions and contact interactions. 
-These mechanisms depend on the dynamics of the electron spin, the 
-electron-nuclear distance distribution, and the electron spin relaxation 
-properties, which are not directly accessible from standard classical molecular 
-dynamics trajectories. A quantitative description of paramagnetic relaxation 
-would therefore require additional information, such as electron spin 
-relaxation times, hyperfine coupling parameters, or magnetic susceptibility 
-tensors, often obtained from quantum-mechanical calculations or specialized 
-spin dynamics approaches. Such extensions represent a major increase in 
-theoretical complexity and are therefore outside the current scope of 
-NMRDfromMD.
+NMRDfromMD is currently not designed for systems in which paramagnetic
+centers make a significant contribution to nuclear relaxation. In the
+presence of unpaired electron spins, such as in systems containing
+transition-metal ions or stable radicals, additional relaxation mechanisms
+arise from electron--nuclear magnetic interactions. Unlike dipole--dipole or
+CSA relaxation in diamagnetic systems, these mechanisms
+depend not only on molecular dynamics but also on the dynamics of the
+electron spin and its coupling to the surrounding nuclei
+:cite:`cloreTheoryPracticeApplications2009b`.
+
+Although molecular dynamics simulations can accurately describe structural
+fluctuations and electron--nucleus distance distributions, they do not
+provide the electronic properties required for quantitative predictions of
+paramagnetic relaxation, such as electron spin relaxation times, hyperfine
+coupling parameters, or magnetic susceptibility tensors. These quantities are
+typically obtained from quantum-mechanical calculations, EPR measurements, or
+dedicated spin dynamics approaches :cite:`westlundParamagneticEnhancedProton1993`.
+Supporting paramagnetic relaxation would therefore require a specific theoretical
+framework and is outside the current scope of NMRDfromMD.
