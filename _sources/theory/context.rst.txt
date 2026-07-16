@@ -1,38 +1,36 @@
 Context
 =======
 
-The measurement of NMR relaxation quantities allows for detailed studies of molecular motions
-on time scales ranging from microseconds to minutes in systems as diverse as gases,
-liquids, gels, polymers, adsorbed liquids, or solids
-:cite:`goreNMRRelaxationWater1989, greiner-schmidSelfdiffusionCompressedFluid1991`,
-as well as proteins and other biological systems
-:cite:`jacobsonProtonMagneticResonance1954, rorschachProteinDynamicsNMR1986`.
-
-A key ingredient for an accurate description of nuclear spin relaxation of
-:math:`^1 \text{H}` in soft matter systems is a realistic representation of
-the stochastic rotational and translational motions of molecules. Classical
-molecular dynamics (MD) simulations naturally provide access to these
-dynamics, making them a widely used tool for studying NMR relaxation.
-For simple fluids such as Lennard-Jones systems, MD has been used to
-characterize dipolar relaxation mechanisms
+A key ingredient for an accurate description of :math:`^1\mathrm{H}`
+nuclear spin relaxation in soft matter systems is a realistic
+representation of the stochastic rotational and translational motions
+of molecules. Classical molecular dynamics (MD) simulations naturally
+provide access to these dynamics and have therefore become the
+reference approach for studying NMR relaxation.
+Initially developed for simple fluids such as Lennard-Jones liquids,
+MD has been used to characterize dipolar relaxation mechanisms
 :cite:`odeliusIntermolecularDipoleDipoleRelaxation1993, grivetNMRRelaxationParameters2005`.
-For more realistic molecular systems,
-MD has been applied to water and small molecules
+It has since been extended to increasingly realistic systems,
+including water and other molecular liquids
 :cite:`lippensT1RelaxationTime1993, calero1HNuclearSpin2015, singerMolecularDynamicsSimulations2017, singerNMRSpinrotationRelaxation2018, philipsProtonNMRRelaxation2019, singerElucidating1NMR2020`,
-as well as to confined fluids in nanoporous materials
-:cite:`khudozhitkovDynamicsPropenePropane2020, gravelleNMRInvestigationWater2023`.
-It has also been used for polymers, lipid membranes, proteins, and glass-forming liquids such as glycerol
+confined fluids in nanoporous materials
+:cite:`khudozhitkovDynamicsPropenePropane2020, gravelleNMRInvestigationWater2023`,
+and more complex soft matter systems such as polymers, lipid
+membranes, proteins, and glass-forming liquids
 :cite:`pastorLipidBilayersNMR2002, klaudaCollectiveNoncollectiveModels2008, singerElucidating1NMR2020, becherMolecularDynamicsSimulations2021, stenstromHowDoesIt2022`.
 
-Beyond classical MD, ab initio molecular dynamics has been employed to
-compute NMR relaxation properties, particularly in cases where electronic
-structure effects are important, such as quadrupolar relaxation
-mechanisms :cite:`calero1HNuclearSpin2015, philipsQuadrupolarNMRRelaxation2020, chubakNMRRelaxationRates2021`.
-Monte Carlo simulations have also been used :cite:`friesMonteCarloCalculation1983`, although care must be taken
-when extracting time-dependent correlation functions from non-dynamical
-trajectories :cite:`huitemaCanMonteCarlo1999`. Coarse-grained
-models combined with structural backmapping have been shown to reproduce
-NMR relaxation observables :cite:`gravelleAssessingValidityNMR2023`.
+Beyond classical MD, other simulation techniques have also been
+employed. Ab initio molecular dynamics has been used when electronic
+structure effects are important, for example to study quadrupolar
+relaxation
+:cite:`calero1HNuclearSpin2015, philipsQuadrupolarNMRRelaxation2020, chubakNMRRelaxationRates2021`.
+Monte Carlo simulations have also been explored
+:cite:`friesMonteCarloCalculation1983`, although care must be taken
+when extracting time-dependent correlation functions from
+non-dynamical trajectories :cite:`huitemaCanMonteCarlo1999`.
+More recently, coarse-grained models combined with structural
+backmapping have been shown to reproduce NMR relaxation observables
+:cite:`gravelleAssessingValidityNMR2023`.
 
 Despite the breadth of existing work, publicly available codes for computing NMR
 relaxation from MD trajectories remain scarce. This limits reproducibility and
@@ -45,4 +43,3 @@ trajectories. It is designed to work with any MD engine capable of producing
 standard trajectory formats, and covers isotropic liquids, polymer solutions,
 and confined fluids. Numerical correctness and reproducibility are ensured
 through a series of automated tests validated against well-established reference systems.
-
