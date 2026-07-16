@@ -106,8 +106,10 @@ tutorials or simply to test NMRDfromMD.
    :caption: Additional
    :hidden:
 
-   theory/microscopic-origin
    additional/scope
+   additional/isotropic-consistency
+   additional/pair-dynamics
+   additional/correlation-spectra
    additional/simulation-methods
    additional/bibliography
    additional/acknowledgments
