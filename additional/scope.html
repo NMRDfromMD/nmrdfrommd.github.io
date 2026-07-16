@@ -263,46 +263,30 @@
 <p>NMRDfromMD is currently designed for the prediction and analysis of
 <span class="math notranslate nohighlight">\(^{1} \text{H}\)</span> nuclear magnetic relaxation dispersion (NMRD) profiles
 from molecular dynamics trajectories. The current implementation focuses on
-relaxation mechanisms dominated by magnetic dipole-dipole interactions, which
-can be directly described through the time-dependent fluctuations of
-internuclear vectors. In particular, <span class="math notranslate nohighlight">\(^{1} \text{H}\)</span> relaxation can be
-calculated from the rotational autocorrelation functions of relevant
-interatomic vectors extracted from MD trajectories, followed by the
-calculation of the corresponding spectral densities
-<span id="id1">[<a class="reference internal" href="bibliography.html#id617" title="Philip M. Singer, Dilip Asthagiri, Walter G. Chapman, and George J. Hirasaki. Molecular dynamics simulations of NMR relaxation and diffusion of bulk hydrocarbons and water. Journal of Magnetic Resonance, 277:15–24, April 2017. doi:10.1016/j.jmr.2017.02.001.">9</a>, <a class="reference internal" href="bibliography.html#id669" title="Arjun Valiya Parambathu, Thiago J. Pinheiro Dos Santos, Walter G. Chapman, George J. Hirasaki, Dilipkumar N. Asthagiri, and Philip M. Singer. Molecular Modes Elucidate the Nuclear Magnetic Resonance Relaxation of Viscous Fluids. The Journal of Physical Chemistry B, 128(33):8017–8028, August 2024. doi:10.1021/acs.jpcb.4c02631.">46</a>]</span>.</p>
-<p>The current framework is applicable to both isotropic and anisotropic
-molecular systems. For isotropic systems, such as bulk liquids or freely
-tumbling molecules, the relaxation analysis relies on the assumption of
-isotropic rotational diffusion. For anisotropic systems, such as confined
-liquids or molecules interacting with surfaces, the full
-orientation-dependent dynamics of internuclear vectors are retained, allowing
-the effect of restricted or heterogeneous molecular motions on the relaxation
-dispersion profile to be investigated
-<span id="id2">[<a class="reference internal" href="bibliography.html#id16" title="Jorge Ivan Amaro-Estrada, You Wang, and Carlos Torres-Verdín. Quantifying the Effect of Spatial Confinement on the Diffusion and Nuclear Magnetic Resonance Relaxation of Water/Hydrocarbon Mixtures: A Molecular Dynamics Simulation Study. Langmuir, 38(48):14540–14549, December 2022. doi:10.1021/acs.langmuir.2c01357.">47</a>, <a class="reference internal" href="bibliography.html#id236" title="Simon Gravelle, Benoit Coasne, Christian Holm, and Alexander Schlaich. Intermittent molecular motion and first passage statistics for the NMR relaxation of confined water. Physical Review E, 112(3):035502, September 2025. doi:10.1103/1j21-bqdm.">48</a>]</span>.
-This enables the study of systems where deviations from simple isotropic rotational
-diffusion play a key role in determining the observed NMR relaxation behaviour.</p>
+relaxation mechanisms that can be described from time-dependent fluctuations
+of molecular properties extracted directly from MD trajectories, from both isotropic and anisotropic
+molecular systems <span id="id1">[<a class="reference internal" href="bibliography.html#id16" title="Jorge Ivan Amaro-Estrada, You Wang, and Carlos Torres-Verdín. Quantifying the Effect of Spatial Confinement on the Diffusion and Nuclear Magnetic Resonance Relaxation of Water/Hydrocarbon Mixtures: A Molecular Dynamics Simulation Study. Langmuir, 38(48):14540–14549, December 2022. doi:10.1021/acs.langmuir.2c01357.">46</a>, <a class="reference internal" href="bibliography.html#id238" title="Simon Gravelle, Benoit Coasne, Christian Holm, and Alexander Schlaich. Intermittent molecular motion and first passage statistics for the NMR relaxation of confined water. Physical Review E, 112(3):035502, September 2025. doi:10.1103/1j21-bqdm.">47</a>]</span>.
+For protons, these fluctuations are typically dominated by dipole–dipole interactions.
+<span class="math notranslate nohighlight">\(^{1} \text{H}\)</span> relaxation can be calculated from the autocorrelation functions
+of interatomic vectors extracted from MD trajectories, followed by spectral densities calculations
+<span id="id2">[<a class="reference internal" href="bibliography.html#id619" title="Philip M. Singer, Dilip Asthagiri, Walter G. Chapman, and George J. Hirasaki. Molecular dynamics simulations of NMR relaxation and diffusion of bulk hydrocarbons and water. Journal of Magnetic Resonance, 277:15–24, April 2017. doi:10.1016/j.jmr.2017.02.001.">9</a>, <a class="reference internal" href="bibliography.html#id671" title="Arjun Valiya Parambathu, Thiago J. Pinheiro Dos Santos, Walter G. Chapman, George J. Hirasaki, Dilipkumar N. Asthagiri, and Philip M. Singer. Molecular Modes Elucidate the Nuclear Magnetic Resonance Relaxation of Viscous Fluids. The Journal of Physical Chemistry B, 128(33):8017–8028, August 2024. doi:10.1021/acs.jpcb.4c02631.">48</a>]</span>.</p>
 </section>
 <section id="future-extensions">
 <h2>Future extensions<a class="headerlink" href="#future-extensions" title="Link to this heading">¶</a></h2>
-<p>Currently, NMRDfromMD is focused on the prediction of
-<span class="math notranslate nohighlight">\(^{1}\mathrm{H}\)</span> nuclear magnetic relaxation dispersion. This focus is
-motivated by the relatively simple and well-established relationship between
-proton relaxation rates and molecular motion, where relaxation is often
-dominated by dipole-dipole interactions that can be directly described
-through the autocorrelation functions of internuclear vectors extracted from
-molecular dynamics trajectories.</p>
-<p>Extending the framework to other nuclei, such as
-<span class="math notranslate nohighlight">\(^{13}\mathrm{C}\)</span>, <span class="math notranslate nohighlight">\(^{15}\mathrm{N}\)</span>, and
-<span class="math notranslate nohighlight">\(^{19}\mathrm{F}\)</span>, is more challenging because the dominant relaxation
-mechanisms depend strongly on the chemical environment. For example,
-<span class="math notranslate nohighlight">\(^{13}\mathrm{C}\)</span> relaxation in protonated carbons is often governed by
-heteronuclear (<span class="math notranslate nohighlight">\(^{13}\mathrm{C}\)</span>–<span class="math notranslate nohighlight">\(^{1}\mathrm{H}\)</span>) dipolar
-interactions, whereas carbonyl and quaternary carbons require the inclusion of
-additional mechanisms such as chemical shift anisotropy (CSA), which arises
-from the orientation dependence of the chemical shielding tensor and its
-modulation by molecular rotational dynamics. Likewise, relaxation of
-<span class="math notranslate nohighlight">\(^{15}\mathrm{N}\)</span> nuclei generally requires a combined treatment of
-dipolar and CSA mechanisms <span id="id3">[<a class="reference internal" href="bibliography.html#id10" title="Peter Allard and Torleif Härd. NMR Relaxation Mechanisms for Backbone Carbonyl Carbons in a13C,15N-Labeled Protein. Journal of Magnetic Resonance, 126(1):48–57, May 1997. doi:10.1006/jmre.1997.1131.">49</a>]</span>.</p>
+<p>The dominant relaxation mechanisms depend strongly on the nuclear species and
+chemical environment. Therefore, extending the framework to nuclei other than
+<span class="math notranslate nohighlight">\(^{1} \text{H}\)</span>, such as <span class="math notranslate nohighlight">\(^{13}\mathrm{C}\)</span>,
+<span class="math notranslate nohighlight">\(^{15}\mathrm{N}\)</span>, and <span class="math notranslate nohighlight">\(^{19}\mathrm{F}\)</span>, requires the
+implementation of additional relaxation mechanisms that may become important
+for specific chemical environments. For example, <span class="math notranslate nohighlight">\(^{13}\mathrm{C}\)</span>
+relaxation in protonated carbons is often governed by heteronuclear
+(<span class="math notranslate nohighlight">\(^{13}\mathrm{C}\)</span> - <span class="math notranslate nohighlight">\(^{1}\mathrm{H}\)</span>) dipole–dipole
+interactions, whereas carbonyl and quaternary carbons may require the
+inclusion of chemical shift anisotropy (CSA), which arises from the
+orientation dependence of the chemical shielding tensor and its modulation
+by molecular rotational dynamics <span id="id3">[<a class="reference internal" href="bibliography.html#id10" title="Peter Allard and Torleif Härd. NMR Relaxation Mechanisms for Backbone Carbonyl Carbons in a13C,15N-Labeled Protein. Journal of Magnetic Resonance, 126(1):48–57, May 1997. doi:10.1006/jmre.1997.1131.">49</a>]</span>. Likewise, relaxation of <span class="math notranslate nohighlight">\(^{15}\mathrm{N}\)</span>
+nuclei generally requires a combined treatment of dipolar and CSA mechanisms
+<span id="id4">[<a class="reference internal" href="bibliography.html#id202" title="David Fushman, Nico Tjandra, and David Cowburn. Direct Measurement of\textsuperscript 15 N Chemical Shift Anisotropy in Solution. Journal of the American Chemical Society, 120(42):10947–10952, October 1998. doi:10.1021/ja981686m.">50</a>]</span>.</p>
 <p>Although these mechanisms are not currently implemented, extending
 NMRDfromMD to support multi-nuclear relaxation analysis represents a natural
 direction for future development.</p>
@@ -310,52 +294,46 @@ direction for future development.</p>
 <section id="out-of-scope-relaxation-mechanisms">
 <h2>Out-of-scope relaxation mechanisms<a class="headerlink" href="#out-of-scope-relaxation-mechanisms" title="Link to this heading">¶</a></h2>
 <p>While NMRDfromMD is designed to describe relaxation processes that can be
-directly related to molecular motions extracted from classical MD trajectories,
-some relaxation mechanisms require additional physical information beyond the
-current framework. These mechanisms involve interactions that are not fully
-captured by standard nuclear dipole-dipole relaxation models, such as
-fluctuations of electric field gradients or electron spin dynamics. The
-following sections describe relaxation processes that are currently outside the
-scope of NMRDfromMD and would require significant theoretical and
-methodological extensions.</p>
+related to molecular motions extracted from classical MD trajectories, some
+relaxation mechanisms require additional physical information not typically
+available from standard classical MD simulations. The following sections
+describe relaxation processes that are currently outside the scope of
+NMRDfromMD and would require significant theoretical and methodological
+extensions.</p>
 <section id="quadrupolar-relaxation">
 <h3>Quadrupolar relaxation<a class="headerlink" href="#quadrupolar-relaxation" title="Link to this heading">¶</a></h3>
-<p>NMRDfromMD is currently not intended for systems where quadrupolar
-interactions represent the dominant relaxation mechanism. Nuclei with spin
-quantum numbers <span class="math notranslate nohighlight">\(I \geq 1\)</span>, such as <span class="math notranslate nohighlight">\(^{2} \text{H}\)</span>,
-<span class="math notranslate nohighlight">\(^{14} \text{N}\)</span>, or other quadrupolar nuclei, require a different
-theoretical treatment because quadrupolar relaxation originates from
-fluctuations of the electric field gradient (EFG) tensor at the nucleus,
-rather than from magnetic relaxation mechanisms such as dipole-dipole
-interactions or chemical shift anisotropy
-<span id="id4">[<a class="reference internal" href="bibliography.html#id92" title="Antoine Carof, Mathieu Salanne, Thibault Charpentier, and Benjamin Rotenberg. Accurate Quadrupolar NMR Relaxation Rates of Aqueous Cations from Classical Molecular Dynamics. The Journal of Physical Chemistry B, 118(46):13252–13257, November 2014. doi:10.1021/jp5105054.">50</a>, <a class="reference internal" href="bibliography.html#id118" title="Iurii Chubak, Leeor Alon, Emilia V. Silletta, Guillaume Madelin, Alexej Jerschow, and Benjamin Rotenberg. Quadrupolar 23Na+ NMR relaxation as a probe of subpicosecond collective dynamics in aqueous electrolyte solutions. Nature Communications, 14(1):84, January 2023. doi:10.1038/s41467-022-35695-3.">51</a>, <a class="reference internal" href="bibliography.html#id678" title="Luciano N. Vidal, Lucas C. Ducati, and Jochen Autschbach. Ab Initio Molecular Dynamics Study of Quadrupolar Spin Relaxation in an Ionic Liquid. Journal of Computational Chemistry, 47(3):e70311, January 2026. doi:10.1002/jcc.70311.">52</a>]</span>.</p>
-<p>Predicting quadrupolar relaxation from MD trajectories requires the
-calculation of the time-dependent EFG tensor along the trajectory, followed
-by the evaluation of its autocorrelation function and corresponding spectral
-densities. The EFG can be obtained using quantum-mechanical calculations or suitable
-molecular models, for example classical force fields combined with an
-appropriate description of electronic response, such as Sternheimer
-antishielding corrections <span id="id5">[<a class="reference internal" href="bibliography.html#id634" title="R. M. Sternheimer. Shielding and Antishielding Effects for Various Ions and Atomic Systems. Physical Review, 146(1):140–160, June 1966. doi:10.1103/PhysRev.146.140.">53</a>]</span>. These developments
-introduce additional methodological and computational challenges and are
-therefore outside the current scope of NMRDfromMD.</p>
+<p>Nuclei with spin quantum numbers <span class="math notranslate nohighlight">\(I \geq 1\)</span>, such as
+<span class="math notranslate nohighlight">\(^{2} \text{H}\)</span> and <span class="math notranslate nohighlight">\(^{14} \text{N}\)</span>, often experience relaxation
+dominated by quadrupolar interactions. Quadrupolar relaxation originates from
+fluctuations of the electric field gradient (EFG) tensor at the nucleus
+<span id="id5">[<a class="reference internal" href="bibliography.html#id92" title="Antoine Carof, Mathieu Salanne, Thibault Charpentier, and Benjamin Rotenberg. Accurate Quadrupolar NMR Relaxation Rates of Aqueous Cations from Classical Molecular Dynamics. The Journal of Physical Chemistry B, 118(46):13252–13257, November 2014. doi:10.1021/jp5105054.">51</a>, <a class="reference internal" href="bibliography.html#id118" title="Iurii Chubak, Leeor Alon, Emilia V. Silletta, Guillaume Madelin, Alexej Jerschow, and Benjamin Rotenberg. Quadrupolar 23Na+ NMR relaxation as a probe of subpicosecond collective dynamics in aqueous electrolyte solutions. Nature Communications, 14(1):84, January 2023. doi:10.1038/s41467-022-35695-3.">52</a>, <a class="reference internal" href="bibliography.html#id680" title="Luciano N. Vidal, Lucas C. Ducati, and Jochen Autschbach. Ab Initio Molecular Dynamics Study of Quadrupolar Spin Relaxation in an Ionic Liquid. Journal of Computational Chemistry, 47(3):e70311, January 2026. doi:10.1002/jcc.70311.">53</a>]</span>.
+Therefore, predicting quadrupolar relaxation from MD trajectories requires the
+calculation of the time-dependent EFG tensor along the trajectory, followed by the
+evaluation of its autocorrelation function and corresponding spectral densities. The EFG can be
+obtained using quantum-mechanical calculations or suitable molecular models,
+for example classical force fields combined with an appropriate description
+of electronic response, such as Sternheimer antishielding corrections
+<span id="id6">[<a class="reference internal" href="bibliography.html#id636" title="R. M. Sternheimer. Shielding and Antishielding Effects for Various Ions and Atomic Systems. Physical Review, 146(1):140–160, June 1966. doi:10.1103/PhysRev.146.140.">54</a>]</span>. These developments
+introduce additional methodological requirements and are therefore outside the
+current scope of NMRDfromMD.</p>
 </section>
 <section id="paramagnetic-relaxation">
 <h3>Paramagnetic relaxation<a class="headerlink" href="#paramagnetic-relaxation" title="Link to this heading">¶</a></h3>
-<p>NMRDfromMD is also currently not designed for systems where paramagnetic
-centers provide a significant contribution to nuclear relaxation. In the
-presence of unpaired electron spins, such as in systems containing
-transition-metal ions or other paramagnetic species, relaxation can be
-dominated by electron-nuclear dipolar interactions and contact interactions.
-These mechanisms depend on the dynamics of the electron spin, the
-electron-nuclear distance distribution, and the electron spin relaxation
-properties, which are not directly accessible from standard classical molecular
-dynamics trajectories. A quantitative description of paramagnetic relaxation
-would therefore require additional information, such as electron spin
+<p>In the presence of paramagnetic centers containing unpaired electrons, such as
+transition-metal ions or stable radicals, additional relaxation mechanisms
+arise from electron–nuclear magnetic interactions. These mechanisms depend
+not only on molecular dynamics but also on electron spin dynamics and its
+coupling to surrounding nuclei
+<span id="id7">[<a class="reference internal" href="bibliography.html#id121" title="G. Marius Clore and Junji Iwahara. Theory, Practice, and Applications of Paramagnetic Relaxation Enhancement for the Characterization of Transient Low-Population States of Biological Macromolecules and Their Complexes. Chemical Reviews, 109(9):4108–4139, September 2009. doi:10.1021/cr900033p.">55</a>]</span>. Classical MD simulations can
+describe structural fluctuations and electron–nucleus distance distributions,
+but they do not typically provide the electronic properties required for
+quantitative predictions of paramagnetic relaxation, such as electron spin
 relaxation times, hyperfine coupling parameters, or magnetic susceptibility
-tensors, often obtained from quantum-mechanical calculations or specialized
-spin dynamics approaches. Such extensions represent a major increase in
-theoretical complexity and are therefore outside the current scope of
-NMRDfromMD.</p>
+tensors. These quantities can be obtained from quantum-mechanical
+calculations or dedicated spin dynamics approaches
+<span id="id8">[<a class="reference internal" href="bibliography.html#id705" title="P.-O. Westlund, T.P. Larsson, and O. Teleman. Paramagnetic enhanced proton spin-lattice relaxation in the Ni\textsuperscript 2+ hexa-aquo complex: A theoretical and molecular dynamics simulation study of the Bloembergen-Morgan decomposition approach. Molecular Physics, 78(6):1365–1384, April 1993. doi:10.1080/00268979300100911.">56</a>]</span>. Supporting paramagnetic
+relaxation would therefore require additional theoretical developments beyond
+the current MD-based relaxation framework.</p>
 </section>
 </section>
 </section>
