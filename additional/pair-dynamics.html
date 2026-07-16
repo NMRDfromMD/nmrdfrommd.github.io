@@ -3,11 +3,11 @@
   <head><meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="../_static/favicon-32x32.png" sizes="32x32" rel="icon" type="image/png"><link rel="index" title="Index" href="../genindex.html"><link rel="search" title="Search" href="../search.html">
+    <link href="../_static/favicon-32x32.png" sizes="32x32" rel="icon" type="image/png"><link rel="index" title="Index" href="../genindex.html"><link rel="search" title="Search" href="../search.html"><link rel="next" title="Lorentzian and diffusion models" href="correlation-spectra.html"><link rel="prev" title="Isotropic consistency of \(G^{(m)}\)" href="isotropic-consistency.html">
         <link rel="prefetch" href="../_static/logo-b.png" as="image">
 
     <!-- Generated with Sphinx 7.4.7 and Furo 2025.12.19 -->
-        <title>&lt;no title&gt; - </title>
+        <title>Microscopic origin of relaxation - </title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=8dab3a3b" />
@@ -174,7 +174,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
         <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
       </label>
     </div>
@@ -212,10 +212,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../applications/anisotropic-system.html">Anisotropic systems</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Additional</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="scope.html">Scope</a></li>
 <li class="toctree-l1"><a class="reference internal" href="isotropic-consistency.html">Isotropic consistency of <span class="math notranslate nohighlight">\(G^{(m)}\)</span></a></li>
-<li class="toctree-l1"><a class="reference internal" href="pair-dynamics.html">Microscopic origin of relaxation</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Microscopic origin of relaxation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="correlation-spectra.html">Lorentzian and diffusion models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="simulation-methods.html">Simulation methods</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
@@ -240,7 +240,7 @@
         </a>
         <div class="content-icon-container">
           <div class="view-this-page">
-  <a class="muted-link" href="../_sources/additional/links.rst.txt" title="View this page">
+  <a class="muted-link" href="../_sources/additional/pair-dynamics.rst.txt" title="View this page">
     <svg><use href="#svg-eye"></use></svg>
     <span class="visually-hidden">View this page</span>
   </a>
@@ -253,19 +253,125 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
             <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          
+          <section id="microscopic-origin-of-relaxation">
+<span id="pair-dynamics"></span><h1>Microscopic origin of relaxation<a class="headerlink" href="#microscopic-origin-of-relaxation" title="Link to this heading">¶</a></h1>
+<p>To understand the origin of the relaxation spectra, it is useful to
+return to the atomic trajectories themselves. The dipolar interaction
+between two nuclear spins depends on both their separation
+<span class="math notranslate nohighlight">\(r_{ij}\)</span> and their relative orientation
+<span class="math notranslate nohighlight">\(\Omega_{ij}\)</span>. Following the evolution of these quantities in
+time therefore provides direct insight into the microscopic origin of
+NMR relaxation.</p>
+<p>As a illustration, we consired a bulk water system.
+Given that this system is isotropic, the correlation functions satisfy
+<span class="math notranslate nohighlight">\(G^{(0)} = 6 G^{(1)} = 6/4 G^{(2)}\)</span>.
+It is therefore sufficient to compute only <span class="math notranslate nohighlight">\(G^{(0)}\)</span> and the
+corresponding spectral density <span class="math notranslate nohighlight">\(J^{(0)}\)</span>. In this case, the
+angular dependence reduces to the polar angle <span class="math notranslate nohighlight">\(\theta_{ij}\)</span>,
+since <span class="math notranslate nohighlight">\(Y_2^{(0)}\)</span> is independent of the azimuthal angle
+<span class="math notranslate nohighlight">\(\varphi\)</span>.</p>
+<section id="intra-molecular-contribution">
+<h2>Intra-molecular contribution<a class="headerlink" href="#intra-molecular-contribution" title="Link to this heading">¶</a></h2>
+<p>We first consider the two hydrogen atoms belonging to the same water
+molecule. Because the present water model (TIP4P/<span class="math notranslate nohighlight">\(\epsilon\)</span>) is
+rigid, the internuclear distance <span class="math notranslate nohighlight">\(r_{ij}\)</span> remains essentially
+constant (within the tolerance of the SHAKE algorithm used to enforce
+molecular rigidity).</p>
+<p>The only quantity that changes with time is therefore the orientation
+of the H-H vector with respect to the external magnetic field,
+described by the polar angle <span class="math notranslate nohighlight">\(\theta_{ij}\)</span> (see figure below).</p>
+<p>The dipolar interaction entering the relaxation equations is described
+by <span class="math notranslate nohighlight">\(F_2^{(0)}\)</span> (Eq. <a class="reference internal" href="../theory/mathematical-framework.html#equation-f-2-0">(7)</a>), which depends on both the
+internuclear distance and its orientation.</p>
+<p>Since <span class="math notranslate nohighlight">\(r_{ij}\)</span> is nearly constant for a rigid water molecule, the
+fluctuations of <span class="math notranslate nohighlight">\(F_2^{(0)}\)</span> arise almost entirely from the
+rotational motion of the molecule through changes in
+<span class="math notranslate nohighlight">\(\theta_{ij}\)</span>.</p>
+<p>For a typical H-H distance <span class="math notranslate nohighlight">\(a \approx 1.51\,\mathrm{Å}\)</span>,
+<span class="math notranslate nohighlight">\(F_2^{(0)}\)</span> varies between</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[\frac{3\cos^2 0 - 1}{a^3}
+\approx 0.58~\mathrm{Å}^{-3}\]</div>
+</div>
+<p>and</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[\frac{3\cos^2 (\pi/2) - 1}{a^3}
+\approx -0.29~\mathrm{Å}^{-3},\]</div>
+</div>
+<p>corresponding to the H–H vector being parallel and perpendicular to
+the magnetic field, respectively.</p>
+<p>Thus, although the internuclear distance is essentially fixed,
+molecular rotation produces substantial fluctuations of the dipolar
+interaction.</p>
+<img alt="NMR results obtained from the LAMMPS simulation of water" class="only-dark" src="../_images/intra-molecular-dm.png" />
+<img alt="NMR results obtained from the LAMMPS simulation of water" class="only-light" src="../_images/intra-molecular.png" />
+<div class="figurelegend docutils container">
+<p>Figure: A) <span class="math notranslate nohighlight">\(\theta_{ij}\)</span> as a function of the time
+<span class="math notranslate nohighlight">\(t\)</span>, where <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span> refer to two hydrogen
+atoms located within the same water molecule. B) <span class="math notranslate nohighlight">\(r_{ij}\)</span> as
+a function of time. C) <span class="math notranslate nohighlight">\(F_{2}^{(0)}\)</span> as a function of time.
+The temperature is 300 K, and the total number of water molecules
+is 2000.</p>
+</div>
+</section>
+<section id="inter-molecular-contribution">
+<h2>Inter-molecular contribution<a class="headerlink" href="#inter-molecular-contribution" title="Link to this heading">¶</a></h2>
+<p>We now consider two hydrogen atoms belonging to different water
+molecules. In contrast with the intramolecular case, both the
+internuclear distance and the relative orientation fluctuate because
+of translational diffusion.</p>
+<p>In this case, <span class="math notranslate nohighlight">\(r_{ij}\)</span> fluctuates significantly between
+<span class="math notranslate nohighlight">\(\approx 2.5\,\mathrm{Å}\)</span>, corresponding to molecules occupying
+their respective hydration shell, to larger values (potentially as
+large as the box permits).</p>
+<p>As can be seen, the function <span class="math notranslate nohighlight">\(F_2^{(0)}\)</span> reaches its largest
+absolute values, here about <span class="math notranslate nohighlight">\(0.02\,\mathrm{Å}^{-3}\)</span>, when
+<span class="math notranslate nohighlight">\(r_{ij}\)</span> is the shortest.</p>
+<img alt="NMR results obtained from the LAMMPS simulation of water" class="only-dark" src="../_images/inter-molecular-dm.png" />
+<img alt="NMR results obtained from the LAMMPS simulation of water" class="only-light" src="../_images/inter-molecular.png" />
+<div class="figurelegend docutils container">
+<p>Figure: A) <span class="math notranslate nohighlight">\(\theta_{ij}\)</span> as a function of the time
+<span class="math notranslate nohighlight">\(t\)</span>, where <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span> refer to two hydrogen
+atoms located within two different water molecules. B)
+<span class="math notranslate nohighlight">\(r_{ij}\)</span> as a function of time. C) <span class="math notranslate nohighlight">\(F_2^{(0)}\)</span> as a
+function of time. The temperature is 300 K, and the total number
+of water molecules is 2000.</p>
+</div>
+</section>
+</section>
+
         </article>
       </div>
       <footer>
         
         <div class="related-pages">
-          
-          
+          <a class="next-page" href="correlation-spectra.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Lorentzian and diffusion models</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="isotropic-consistency.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Isotropic consistency of <span class="math notranslate nohighlight">\(G^{(m)}\)</span></div>
+                
+              </div>
+            </a>
         </div>
         <div class="bottom-of-page">
           <div class="left-details">
@@ -284,8 +390,28 @@
         
       </footer>
     </div>
-    <aside class="toc-drawer no-toc">
+    <aside class="toc-drawer">
       
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Microscopic origin of relaxation</a><ul>
+<li><a class="reference internal" href="#intra-molecular-contribution">Intra-molecular contribution</a></li>
+<li><a class="reference internal" href="#inter-molecular-contribution">Inter-molecular contribution</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
       
       
     </aside>
@@ -294,5 +420,6 @@
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/furo.js?v=46bd48cc"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     </body>
 </html>

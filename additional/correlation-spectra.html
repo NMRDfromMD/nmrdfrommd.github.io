@@ -3,11 +3,11 @@
   <head><meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="../_static/favicon-32x32.png" sizes="32x32" rel="icon" type="image/png"><link rel="index" title="Index" href="../genindex.html"><link rel="search" title="Search" href="../search.html">
+    <link href="../_static/favicon-32x32.png" sizes="32x32" rel="icon" type="image/png"><link rel="index" title="Index" href="../genindex.html"><link rel="search" title="Search" href="../search.html"><link rel="next" title="Simulation methods" href="simulation-methods.html"><link rel="prev" title="Microscopic origin of relaxation" href="pair-dynamics.html">
         <link rel="prefetch" href="../_static/logo-b.png" as="image">
 
     <!-- Generated with Sphinx 7.4.7 and Furo 2025.12.19 -->
-        <title>&lt;no title&gt; - </title>
+        <title>Lorentzian and diffusion models - </title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=8dab3a3b" />
@@ -212,11 +212,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../applications/anisotropic-system.html">Anisotropic systems</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Additional</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="scope.html">Scope</a></li>
 <li class="toctree-l1"><a class="reference internal" href="isotropic-consistency.html">Isotropic consistency of <span class="math notranslate nohighlight">\(G^{(m)}\)</span></a></li>
 <li class="toctree-l1"><a class="reference internal" href="pair-dynamics.html">Microscopic origin of relaxation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="correlation-spectra.html">Lorentzian and diffusion models</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Lorentzian and diffusion models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="simulation-methods.html">Simulation methods</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
 <li class="toctree-l1"><a class="reference internal" href="acknowledgments.html">Acknowledgments</a></li>
@@ -240,7 +240,7 @@
         </a>
         <div class="content-icon-container">
           <div class="view-this-page">
-  <a class="muted-link" href="../_sources/additional/links.rst.txt" title="View this page">
+  <a class="muted-link" href="../_sources/additional/correlation-spectra.rst.txt" title="View this page">
     <svg><use href="#svg-eye"></use></svg>
     <span class="visually-hidden">View this page</span>
   </a>
@@ -258,14 +258,152 @@
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          
+          <section id="lorentzian-and-diffusion-models">
+<span id="correlation-spectra"></span><h1>Lorentzian and diffusion models<a class="headerlink" href="#lorentzian-and-diffusion-models" title="Link to this heading">¶</a></h1>
+<p>This section describes how molecular dynamics trajectories are used to
+identify the appropriate models for NMR relaxation. The dipolar
+fluctuations extracted from the trajectories are first converted into
+correlation functions and spectral densities. Their functional forms
+then reveal the underlying relaxation mechanisms: a Lorentzian model
+associated with rotational diffusion and a diffusion-based model
+associated with translational motion.</p>
+<p>Although the behaviour of a single pair of nuclei is informative, NMR
+relaxation is a collective property. The relaxation rates are obtained
+by averaging the fluctuations of <span class="math notranslate nohighlight">\(F_2^{(0)}\)</span> over all relevant
+pairs of nuclei and over the complete molecular dynamics trajectory.</p>
+<p>From the fluctuating quantities <span class="math notranslate nohighlight">\(F_2^{(0)}\)</span> summed over all
+available pairs of spins, one can extract the two correlation functions
+<span class="math notranslate nohighlight">\(G_\textrm{intra}^{(0)}\)</span> and <span class="math notranslate nohighlight">\(G_\textrm{inter}^{(0)}\)</span>
+(see Eqs. <a class="reference internal" href="../theory/mathematical-framework.html#equation-g-intra">(3)</a> and <a class="reference internal" href="../theory/mathematical-framework.html#equation-g-inter">(4)</a>).</p>
+<p>For comparison, the results obtained at two different temperatures,
+275 and 300 K, are reported.</p>
+<p>At short times, <span class="math notranslate nohighlight">\(t &lt; 40\)</span> ps, the intramolecular correlation
+functions follow an exponential decay,</p>
+<div class="math-wrapper docutils container" id="equation-eq-exp-g">
+<div class="math notranslate nohighlight" id="equation-eq-exp-g">
+<span class="eqno">(1)<a class="headerlink" href="#equation-eq-exp-g" title="Link to this equation">¶</a></span>\[G_\text{intra} (t) =
+G_\text{intra} (0) \exp{(-t / \tau_\text{intra})},\]</div>
+</div>
+<p>where <span class="math notranslate nohighlight">\(\tau_\text{intra} = 6.3\)</span> ps was used for <span class="math notranslate nohighlight">\(T = 300\)</span>
+K and <span class="math notranslate nohighlight">\(\tau_\text{intra} = 3.2\)</span> ps was used for <span class="math notranslate nohighlight">\(T = 275\)</span>
+K, see the figure below.</p>
+<p>An exponential decay, such as Eq. <a class="reference internal" href="#equation-eq-exp-g">(1)</a>, is characteristic of
+processes governed by a single correlation time. Such behaviour is
+commonly used to describe isotropic rotational diffusion and provides a
+good approximation for the short-time intramolecular dynamics of liquid
+water <span id="id1">[<a class="reference internal" href="bibliography.html#id403" title="G. Lippens, D. Van Belle, S.J. Wodak, and J. Jeener. T1 relaxation time of water from a molecular dynamics simulation. Molecular Physics, 80(6):1469–1484, December 1993. doi:10.1080/00268979300103151.">7</a>]</span>.</p>
+<p>The intermolecular correlation functions, however, display a different
+behaviour. They follow an exponential decay only at short times (a few
+tens of picoseconds). At longer times, translational diffusion
+continually brings new molecular neighbours into and out of the local
+environment. This leads to the characteristic power-law decay
+<span class="math notranslate nohighlight">\(G_\text{inter}(t) \sim t^{-3/2}\)</span>,
+which is a hallmark of diffusive dynamics.</p>
+<p>This scaling has been predicted theoretically for freely diffusing
+particles, and analytical expressions were derived by Ayant et al.
+<span id="id2">[<a class="reference internal" href="bibliography.html#id28" title="Y. Ayant, E. Belorizky, J. Aluzon, and J. Gallice. Calcul des densités spectrales résultant d'un mouvement aléatoire de translation en relaxation par interaction dipolaire magnétique dans les liquides. Journal de Physique, 36(10):991–1004, October 1975. doi:10.1051/jphys:019750036010099100.">54</a>]</span> and Hwang and Freed
+<span id="id3">[<a class="reference internal" href="bibliography.html#id316" title="Lian-Pin Hwang and Jack H. Freed. Dynamic effects of pair correlation functions on spin relaxation by translational diffusion in liquids. The Journal of Chemical Physics, 63(9):4017–4025, September 2008. doi:10.1063/1.431841.">55</a>]</span> in the context of hard-sphere
+diffusion.</p>
+<p>Following Ref. <span id="id4">[<a class="reference internal" href="bibliography.html#id250" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">6</a>]</span>, we refer to
+this description as ADHF.</p>
+<p>While the ADHF description captures the long-time decay of the
+correlation function, it does not lead to a Lorentzian spectral
+density. This reflects the fact that intermolecular relaxation is not
+controlled by a single correlation time, but by translational diffusion
+and molecular exchange processes.</p>
+<img alt="NMR results obtained from the LAMMPS simulation of water" class="only-dark" src="../_images/spectra-dm.png" />
+<img alt="NMR results obtained from the LAMMPS simulation of water" class="only-light" src="../_images/spectra.png" />
+<div class="figurelegend docutils container">
+<p>Figure: (A) Intramolecular dipolar correlation function
+<span class="math notranslate nohighlight">\(G^{(0)}_\mathrm{intra}(t)\)</span>. (B) Intermolecular dipolar
+correlation function <span class="math notranslate nohighlight">\(G^{(0)}_\mathrm{inter}(t)\)</span>, shown on
+a log-log scale. The dashed line indicates the long-time scaling
+<span class="math notranslate nohighlight">\(G(t) \propto t^{-3/2}\)</span>, characteristic of translational
+diffusion. (C) Intramolecular spectral density
+<span class="math notranslate nohighlight">\(J^{(0)}_\mathrm{intra}(f)\)</span>. The solid line corresponds to a
+Lorentzian fit based on a single correlation time approximation.
+(D) Intermolecular spectral density
+<span class="math notranslate nohighlight">\(J^{(0)}_\mathrm{inter}(f)\)</span>. The solid line shows the
+analytical prediction based on adsorption-diffusion.</p>
+</div>
+<p>The different physical origins of intra- and intermolecular relaxation
+are reflected in their spectral densities. Intramolecular relaxation is
+dominated by molecular rotation and can therefore be described by a
+single correlation time approximation. In contrast, intermolecular
+relaxation is affected by translational diffusion and requires a
+different description.</p>
+<p>The intramolecular spectrum <span class="math notranslate nohighlight">\(J_\textrm{intra}^{(0)}\)</span> can be
+reasonably well described by a Lorentzian:</p>
+<div class="math-wrapper docutils container" id="equation-eq-lorenzian-g">
+<div class="math notranslate nohighlight" id="equation-eq-lorenzian-g">
+<span class="eqno">(2)<a class="headerlink" href="#equation-eq-lorenzian-g" title="Link to this equation">¶</a></span>\[J_\text{intra} (f) =
+G_\text{intra} (0)
+\dfrac{2 \tau_\text{c}}
+{1 + 4 \pi^2 f^2 \tau_\text{c}^2}\]</div>
+</div>
+<p>using <span class="math notranslate nohighlight">\(\tau_\text{c} = 6.3\)</span> ps and
+<span class="math notranslate nohighlight">\(G(0) = 56300~\mathrm{Å}^{-6}\,\mathrm{ps}^{-2}\)</span> for
+<span class="math notranslate nohighlight">\(T = 300\)</span> K, and
+<span class="math notranslate nohighlight">\(\tau_\text{c} = 3.2\)</span> ps and
+<span class="math notranslate nohighlight">\(G(0) = 59500~\mathrm{Å}^{-6}\,\mathrm{ps}^{-2}\)</span> for
+<span class="math notranslate nohighlight">\(T = 275\)</span> K.</p>
+<p>The intermolecular spectral density
+<span class="math notranslate nohighlight">\(J_\mathrm{inter}^{(0)}\)</span>, however, does not exhibit a Lorentzian
+plateau at low frequencies. This deviation is directly related to the
+long-time power-law decay observed in the corresponding correlation
+function <span class="math notranslate nohighlight">\(G_\mathrm{inter}^{(0)}(t)\)</span>.</p>
+<p>In particular, the algebraic decay
+<span class="math notranslate nohighlight">\(G(t) \sim t^{-3/2}\)</span> is characteristic of translational diffusion
+and indicates that the relaxation dynamics is not governed by a single
+characteristic correlation time.</p>
+<p>In this regime, and following closely
+Ref. <span id="id5">[<a class="reference internal" href="bibliography.html#id233" title="Simon Gravelle, Roland R. Netz, and Lydéric Bocquet. Adsorption Kinetics in Open Nanopores as a Source of Low-Frequency Noise. Nano Letters, 19(10):7265–7272, October 2019. doi:10.1021/acs.nanolett.9b02858.">56</a>]</span>, the spectral density
+can be described by adsorption-diffusion, which yields an analytical
+expression based on first-passage statistics in a diffusive reservoir:</p>
+<div class="math-wrapper docutils container" id="equation-eq-spectrum-sqrt">
+<div class="math notranslate nohighlight" id="equation-eq-spectrum-sqrt">
+<span class="eqno">(3)<a class="headerlink" href="#equation-eq-spectrum-sqrt" title="Link to this equation">¶</a></span>\[J_\mathrm{inter}(f)
+= \left[1 + A + B \sqrt{2 \pi f}\right]^{-1}.\]</div>
+</div>
+<p>Within this framework, the parameters have a direct physical
+interpretation:
+<span class="math notranslate nohighlight">\(A = k r / D\)</span> and <span class="math notranslate nohighlight">\(B = r / \sqrt{D}\)</span>,
+where <span class="math notranslate nohighlight">\(r\)</span> is the molecular radius, <span class="math notranslate nohighlight">\(D\)</span> the self-diffusion
+coefficient, and <span class="math notranslate nohighlight">\(k\)</span> a phenomenological exchange rate
+(with units of m/s) describing effective adsorption-desorption kinetics.</p>
+<p>The resulting frequency dependence captures the crossover from a
+quasi-plateau at low frequency to a diffusion-dominated decay at higher
+frequencies.</p>
+<p>As shown in panel (D), the ADHF model provides a good description of
+the molecular dynamics results up to approximately
+<span class="math notranslate nohighlight">\(10^4\,\mathrm{MHz}\)</span>.</p>
+</section>
+
         </article>
       </div>
       <footer>
         
         <div class="related-pages">
-          
-          
+          <a class="next-page" href="simulation-methods.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Simulation methods</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="pair-dynamics.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Microscopic origin of relaxation</div>
+                
+              </div>
+            </a>
         </div>
         <div class="bottom-of-page">
           <div class="left-details">
@@ -294,5 +432,6 @@
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/furo.js?v=46bd48cc"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     </body>
 </html>

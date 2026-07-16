@@ -50,3 +50,40 @@ The imposed temperatures ranged from :math:`T = 30` to
     the natural scales of the system. Using reduced variables allows
     simulations with different physical parameters to be compared
     directly.
+
+Bulk water
+-----
+
+.. image:: ../figures/tutorials/bulk-water/water-dark-square.png
+    :class: only-dark
+    :alt: Water molecules simulated with lammps - NMR relaxation time calculation
+    :width: 250
+    :align: right
+
+.. image:: ../figures/tutorials/bulk-water/water-light-square.png
+    :class: only-light
+    :alt: Water molecules simulated with lammps - NMR relaxation time calculation
+    :width: 250
+    :align: right
+
+The system consists of a bulk liquid containing :math:`N = 4000` water
+molecules. The simulation box was cubic, with equilibrium dimensions of about
+:math:`(5\,\text{nm})^3`. Simulations were performed using LAMMPS. Non-bonded
+Lennard-Jones interactions were truncated at a cutoff :math:`r_\text{LJ}`
+distance of :math:`1.4\,\text{nm}`. The default water model used throughout
+this documentation is :math:`\text{TIP4P}-2005` :cite:`abascalGeneralPurposeModel2005`.
+The system was first equilibrated in the NPT ensemble at a
+temperature :math:`T`, with a default value of :math:`T = 300\,\text{K}`
+(values between 280 and 320 K were also considered), and a pressure of
+:math:`p = 1\,\text{atm}`, using a Nose-Hoover thermostat and barostat for
+temperature and pressure control. The trajectory was then recorded during a
+:math:`2\,\text{ns}` production run performed in the NVT ensemble, using a
+Nose-Hoover thermostat to control the temperature. A
+timestep of :math:`2\,\text{fs}` was used in combination with the
+SHAKE algorithm. The atomic positions were written every :math:`\Delta t = 20\,\text{fs}`.
+
+The parameters given here are the defaults, although other values were used in the
+:ref:`best-practice` section to test their effect on the NMR relaxation properties,
+including different values of :math:`N` and :math:`r_\text{LJ}`, as well as
+different water models.
+

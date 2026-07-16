@@ -3,7 +3,7 @@
   <head><meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="../_static/favicon-32x32.png" sizes="32x32" rel="icon" type="image/png"><link rel="index" title="Index" href="../genindex.html"><link rel="search" title="Search" href="../search.html"><link rel="next" title="Bibliography" href="bibliography.html"><link rel="prev" title="Scope" href="scope.html">
+    <link href="../_static/favicon-32x32.png" sizes="32x32" rel="icon" type="image/png"><link rel="index" title="Index" href="../genindex.html"><link rel="search" title="Search" href="../search.html"><link rel="next" title="Bibliography" href="bibliography.html"><link rel="prev" title="Lorentzian and diffusion models" href="correlation-spectra.html">
         <link rel="prefetch" href="../_static/logo-b.png" as="image">
 
     <!-- Generated with Sphinx 7.4.7 and Furo 2025.12.19 -->
@@ -213,8 +213,10 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Additional</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../theory/microscopic-origin.html">Microscopic mechanisms of relaxation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scope.html">Scope</a></li>
+<li class="toctree-l1"><a class="reference internal" href="isotropic-consistency.html">Isotropic consistency of <span class="math notranslate nohighlight">\(G^{(m)}\)</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="pair-dynamics.html">Microscopic origin of relaxation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="correlation-spectra.html">Lorentzian and diffusion models</a></li>
 <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Simulation methods</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
 <li class="toctree-l1"><a class="reference internal" href="acknowledgments.html">Acknowledgments</a></li>
@@ -295,6 +297,32 @@ simulations with different physical parameters to be compared
 directly.</p>
 </div>
 </section>
+<section id="bulk-water">
+<h2>Bulk water<a class="headerlink" href="#bulk-water" title="Link to this heading">¶</a></h2>
+<a class="only-dark reference internal image-reference" href="../_images/water-dark-square.png"><img alt="Water molecules simulated with lammps - NMR relaxation time calculation" class="only-dark align-right" src="../_images/water-dark-square.png" style="width: 250px;" />
+</a>
+<a class="only-light reference internal image-reference" href="../_images/water-light-square.png"><img alt="Water molecules simulated with lammps - NMR relaxation time calculation" class="only-light align-right" src="../_images/water-light-square.png" style="width: 250px;" />
+</a>
+<p>The system consists of a bulk liquid containing <span class="math notranslate nohighlight">\(N = 4000\)</span> water
+molecules. The simulation box was cubic, with equilibrium dimensions of about
+<span class="math notranslate nohighlight">\((5\,\text{nm})^3\)</span>. Simulations were performed using LAMMPS. Non-bonded
+Lennard-Jones interactions were truncated at a cutoff <span class="math notranslate nohighlight">\(r_\text{LJ}\)</span>
+distance of <span class="math notranslate nohighlight">\(1.4\,\text{nm}\)</span>. The default water model used throughout
+this documentation is <span class="math notranslate nohighlight">\(\text{TIP4P}-2005\)</span> <span id="id4">[<a class="reference internal" href="bibliography.html#id2" title="J. L. F. Abascal and C. Vega. A general purpose model for the condensed phases of water: TIP4P/2005. The Journal of Chemical Physics, 123(23):234505, December 2005. doi:10.1063/1.2121687.">28</a>]</span>.
+The system was first equilibrated in the NPT ensemble at a
+temperature <span class="math notranslate nohighlight">\(T\)</span>, with a default value of <span class="math notranslate nohighlight">\(T = 300\,\text{K}\)</span>
+(values between 280 and 320 K were also considered), and a pressure of
+<span class="math notranslate nohighlight">\(p = 1\,\text{atm}\)</span>, using a Nose-Hoover thermostat and barostat for
+temperature and pressure control. The trajectory was then recorded during a
+<span class="math notranslate nohighlight">\(2\,\text{ns}\)</span> production run performed in the NVT ensemble, using a
+Nose-Hoover thermostat to control the temperature. A
+timestep of <span class="math notranslate nohighlight">\(2\,\text{fs}\)</span> was used in combination with the
+SHAKE algorithm. The atomic positions were written every <span class="math notranslate nohighlight">\(\Delta t = 20\,\text{fs}\)</span>.</p>
+<p>The parameters given here are the defaults, although other values were used in the
+<a class="reference internal" href="../theory/best-practice.html#best-practice"><span class="std std-ref">Best practices</span></a> section to test their effect on the NMR relaxation properties,
+including different values of <span class="math notranslate nohighlight">\(N\)</span> and <span class="math notranslate nohighlight">\(r_\text{LJ}\)</span>, as well as
+different water models.</p>
+</section>
 </section>
 
         </article>
@@ -311,14 +339,14 @@ directly.</p>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="scope.html">
+          <a class="prev-page" href="correlation-spectra.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Scope</div>
+                <div class="title">Lorentzian and diffusion models</div>
                 
               </div>
             </a>
@@ -354,6 +382,7 @@ directly.</p>
             <ul>
 <li><a class="reference internal" href="#">Simulation methods</a><ul>
 <li><a class="reference internal" href="#lennard-jones-fluid">Lennard-Jones fluid</a></li>
+<li><a class="reference internal" href="#bulk-water">Bulk water</a></li>
 </ul>
 </li>
 </ul>
