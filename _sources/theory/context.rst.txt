@@ -13,16 +13,16 @@ A key ingredient for an accurate description of nuclear spin relaxation of
 the stochastic rotational and translational motions of molecules. Classical
 molecular dynamics (MD) simulations naturally provide access to these
 dynamics, making them a widely used tool for studying NMR relaxation.
-
 For simple fluids such as Lennard-Jones systems, MD has been used to
 characterize dipolar relaxation mechanisms
-:cite:`odeliusIntermolecularDipoleDipoleRelaxation1993, grivetNMRRelaxationParameters2005`. For more realistic molecular systems,
+:cite:`odeliusIntermolecularDipoleDipoleRelaxation1993, grivetNMRRelaxationParameters2005`.
+For more realistic molecular systems,
 MD has been applied to water and small molecules
 :cite:`lippensT1RelaxationTime1993, calero1HNuclearSpin2015, singerMolecularDynamicsSimulations2017, singerNMRSpinrotationRelaxation2018, philipsProtonNMRRelaxation2019, singerElucidating1NMR2020`,
 as well as to confined fluids in nanoporous materials
-:cite:`khudozhitkovDynamicsPropenePropane2020, gravelleNMRInvestigationWater2023`. It has also been used for polymers,
-lipid membranes, proteins, and glass-forming liquids such as glycerol
-:cite:`becherMolecularDynamicsSimulations2021`.
+:cite:`khudozhitkovDynamicsPropenePropane2020, gravelleNMRInvestigationWater2023`.
+It has also been used for polymers, lipid membranes, proteins, and glass-forming liquids such as glycerol
+:cite:`pastorLipidBilayersNMR2002, klaudaCollectiveNoncollectiveModels2008, singerElucidating1NMR2020, becherMolecularDynamicsSimulations2021, stenstromHowDoesIt2022`.
 
 Beyond classical MD, ab initio molecular dynamics has been employed to
 compute NMR relaxation properties, particularly in cases where electronic
