@@ -126,3 +126,23 @@ The temperature was set to :math:`T = 300~\text{K}` and the pressure to
 :math:`2~\mathrm{ps}`. Non-bonded
 Lennard-Jones interactions were truncated at a cutoff :math:`r_\text{LJ}`
 distance of :math:`1.4\,\text{nm}
+
+Lysozyme in water
+-----------------
+
+.. image:: ../applications/lysozyme-in-water/snapshot-dark.png
+    :class: only-dark
+    :alt: lysozyme in water simulated with GROMACS - Dipolar NMR relaxation time calculation
+    :width: 250
+    :align: right
+
+.. image:: ../applications/lysozyme-in-water/snapshot-light.png
+    :class: only-light
+    :alt: lysozyme in water simulated with GROMACS - Dipolar NMR relaxation time calculation
+    :width: 250
+    :align: right
+
+The system is made of a lysozyme (HEWL) with 594 water molecules, which
+corresponds to water-to-protein mass ratio of :math:`73\,\%`.
+The simulation was performed using GROMACS with a :math:`2\,\text{fs}`. timestep,
+a :math:`100\,\text{ns}`, and trajectories recorded every 1 ps at 300 K.

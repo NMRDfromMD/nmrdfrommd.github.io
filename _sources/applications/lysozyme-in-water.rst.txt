@@ -3,30 +3,7 @@
 Lysozyme in water
 =================
 
-MD system
----------
-
-.. image:: ../figures/illustrations/lysozyme-in-water/snapshot-dark.png
-    :class: only-dark
-    :alt: lysozyme in water simulated with GROMACS - Dipolar NMR relaxation time calculation
-    :width: 250
-    :align: right
-
-.. image:: ../figures/illustrations/lysozyme-in-water/snapshot-light.png
-    :class: only-light
-    :alt: lysozyme in water simulated with GROMACS - Dipolar NMR relaxation time calculation
-    :width: 250
-    :align: right
-
-The system is made of a lysozyme (HEWL) with 594 water molecules, which
-corresponds to water-to-protein mass ratio of :math:`73\,\%`.
-The simulation was made using GROMACS using a timestep of :math:`2\,\text{fs}`.
-The simulation was performed using GROMACS with a :math:`2\,\text{fs}`. timestep,
-a :math:`100\,\text{ns}`, and trajectories recorded every 1 ps at 300 K.
-
-Results
--------
-
+The system is made of a lysozyme (HEWL) with 594 water molecules.
 The total NMR relaxation rate :math:`R_1` exhibits a strong frequency dependence
 across the entire accessible frequency range, in contrast to simple bulk liquids
 where :math:`R_1` reaches a low-frequency plateau. Decomposing the signal into
@@ -45,11 +22,11 @@ the expected slowdown of translational and rotational dynamics of adsorbed water
 molecules, whose motion is partially constrained by interactions with the protein
 surface.
 
-.. image:: ../figures/illustrations/lysozyme-in-water/R1_spectra-dark.png
+.. image:: lysozyme-in-water/R1_spectra-dark.png
     :class: only-dark
     :alt: NMR results obtained from the LAMMPS simulation of water and lysozyme
 
-.. image:: ../figures/illustrations/lysozyme-in-water/R1_spectra-light.png
+.. image:: lysozyme-in-water/R1_spectra-light.png
     :class: only-light
     :alt: NMR results obtained from the LAMMPS simulation of water and lysozyme
 
@@ -63,11 +40,11 @@ calculations: the ability to decompose the total signal into contributions from
 distinct molecular species, providing physical insight that is inaccessible from
 experiment alone.
 
-.. image:: ../figures/illustrations/lysozyme-in-water/R1_spectra_water-dark.png
+.. image:: lysozyme-in-water/R1_spectra_water-dark.png
     :class: only-dark
     :alt: NMR results obtained from the LAMMPS simulation of water and lysozyme
 
-.. image:: ../figures/illustrations/lysozyme-in-water/R1_spectra_water-light.png
+.. image:: lysozyme-in-water/R1_spectra_water-light.png
     :class: only-light
     :alt: NMR results obtained from the LAMMPS simulation of water and lysozyme
 
