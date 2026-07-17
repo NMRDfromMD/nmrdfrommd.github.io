@@ -89,9 +89,10 @@ expression for :math:`R_1`, the maximum occurs when
 
 .. math::
 
-    \omega_0 \tau \approx 0.62.
+    \omega \tau \approx 0.62.
 
-The product :math:`\omega_0 \tau` obtained directly from the
-simulations crosses this value around :math:`T = 80`--:math:`90\,\text{K}`,
+The product :math:`\omega_0 \tau`, with :math:`\omega_0 = 2 \pi f_0` and :math:`\tau`
+obtained directly from the simulations, crosses this value
+around :math:`T = 80`--:math:`90\,\text{K}`,
 which coincides with the maximum observed in :math:`R_1`
 (:ref:`Fig. 1 <fig:nmr-relaxation>`, panel B).
