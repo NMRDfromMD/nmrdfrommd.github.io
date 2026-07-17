@@ -1,3 +1,4 @@
+.. include:: ../additional/links.rst
 .. _best-practice:
 
 Best practices

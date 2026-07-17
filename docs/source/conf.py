@@ -43,3 +43,5 @@ favicons = [
 ]
 
 html_logo = "figures/logo/logo-b.png"
+
+numfig = True
