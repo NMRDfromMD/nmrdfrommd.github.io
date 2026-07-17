@@ -2,66 +2,96 @@
 .. _lennard-jones-label:
 
 Code validation on a simple fluid
-==================================
- 
-Here, NMRDfromMD is applied to a simple Lennard--Jones (LJ) fluid to reproduce
-its :math:`^1\mathrm{H}`-NMR relaxation properties and confront its output to
-calculations from Grivet as reference :cite:`grivetNMRRelaxationParameters2005`.
-The system consists of 16,000 particles interacting through the classical
-LJ (12-6) potential, at a reduced density :math:`\rho^* = 0.84`
-and reduced temperatures :math:`T^* = 0.8`\ -\ :math:`3.0`
-(corresponding to :math:`T = 30`\ -\ :math:`160\,\text{K}`), matching the conditions of Grivet
-:cite:`grivetNMRRelaxationParameters2005`. Full simulation details are given
-in :ref:`simulation-methods`; input and analysis scripts are available on
-GitHub, see |dataset-LJ-fluid|.
+=================================
+
+Here, the formalism presented in Section
+:ref:`mathematical-framework` and implemented in NMRDfromMD is used
+to predict the :math:`^1\mathrm{H}`-NMR relaxation properties of a
+simple Lennard--Jones (LJ) fluid. The results are compared with the
+reference calculations of Grivet :cite:`grivetNMRRelaxationParameters2005`.
+The system consists of 16,000 particles interacting through the
+classical LJ (12-6) potential, at a reduced density
+:math:`\rho^* = 0.84` and reduced temperatures :math:`T^* = 0.8`\ -\ :math:`3.0`
+(corresponding to :math:`T = 30`\ -\ :math:`160\,\text{K}`), matching the conditions of
+Ref. :cite:`grivetNMRRelaxationParameters2005`. Simulation details are given
+in :ref:`simulation-methods`; the input files and analysis scripts are available
+on GitHub, see |dataset-LJ-fluid|.
 
 Benchmark results
 -----------------
 
-The NMR relaxation rates :math:`R_1` and :math:`R_2` were evaluated at a fixed
-frequency of :math:`f_0 = 150\,\mathrm{GHz}` (0.07 in reduced units) across
-the full temperature range. Results show relatively good agreement
-with the data from Grivet, with typical differences of about :math:`5-7\,\%`,
-
-.. image:: lennard-jones-fluids/nmr-relaxation-rates-at-target-dm.png
-    :class: only-dark
-    :alt: NMR relaxation rate of a LJ fluid simulated with LAMMPS
- 
-.. image:: lennard-jones-fluids/nmr-relaxation-rates-at-target.png
-    :class: only-light
-    :alt: NMR relaxation rate of a LJ fluid simulated with LAMMPS
- 
-.. container:: figurelegend
-
-    Figure: A) NMR relaxation rates :math:`R_1` (disks) and :math:`R_2` (squares) computed from
-    the Lennard--Jones simulations at a frequency of 0.07 (dimensionless), or
-    :math:`f_0 = 150\,\text{GHz}`, compared with the reference data from
-    Grivet :cite:`grivetNMRRelaxationParameters2005` (gray symbols). B)
-    Product :math:`\omega_0 \tau` as a function of temperature. The dashed
-    line marks :math:`\omega_0 \tau = 0.62`, the value expected at the BPP
-    relaxation maximum. The insert shows a snapshot of the molecular dynamics,
-    with atoms represented as spheres.
-
-The relaxation rates exhibit the temperature dependence expected from the
-shortening of the molecular correlation time, :math:`\tau`, as the fluid
-becomes more mobile. :math:`R_2` decreases monotonically from
+The NMR relaxation rates :math:`R_1` and :math:`R_2` were evaluated at
+a fixed frequency of :math:`f_0 = 150\,\mathrm{GHz}` (0.07 in reduced
+units) over the full temperature range. The results show that
+:math:`R_2` decreases monotonically from
 :math:`5.6\,\mathrm{ms}^{-1}` at :math:`T = 30\,\text{K}` to
-:math:`2.3\,\mathrm{ms}^{-1}` at :math:`T = 160\,\text{K}`, reflecting the reduction of
-the zero-frequency spectral density :math:`J(0)`, which dominates :math:`R_2`
-but does not contribute to :math:`R_1`. :math:`R_1` instead passes through a
-maximum: it rises from :math:`1.6\,\mathrm{ms}^{-1}` at :math:`T = 30\,\text{K}` to a
-peak of :math:`1.9\,\mathrm{ms}^{-1}` around :math:`T = 80\,\text{K}`, then decreases
-to :math:`1.7\,\mathrm{ms}^{-1}` at :math:`T = 160\,\text{K}`. This non-monotonic
-behaviour is the signature of the BPP relaxation maximum, expected when the
-correlation time satisfies :math:`\omega_0 \tau \approx 0.62`. Computing
-:math:`\tau` directly from the simulations confirms this: :math:`\omega_0 \tau`
-decreases from :math:`1.74` at :math:`T = 30\,\text{K}` to :math:`0.37` at
-:math:`T = 160\,\text{K}`, crossing :math:`0.62` near 
-:math:`T = 80\,\text{K}` and :math:`T = 90\,\text{K}`,
-coinciding with the observed :math:`R_1` peak. At low
-temperature (where :math:`\tau` is the largest), spectral density is concentrated near
-zero frequency and contributes weakly to :math:`R_1`. As :math:`\tau`
-decreases, spectral density shifts toward the Larmor frequency
-:math:`\omega_0`, increasing :math:`R_1`, until :math:`\tau` becomes short
-enough that the fluid enters the fast-motion (extreme narrowing) regime and
-:math:`R_1` decreases again.
+:math:`2.3\,\mathrm{ms}^{-1}` at :math:`T = 160\,\text{K}`. In
+contrast, :math:`R_1` exhibits a maximum: it increases from
+:math:`1.6\,\mathrm{ms}^{-1}` at :math:`T = 30\,\text{K}` to
+:math:`1.9\,\mathrm{ms}^{-1}` around :math:`T = 80\,\text{K}`, before
+decreasing to :math:`1.7\,\mathrm{ms}^{-1}` at
+:math:`T = 160\,\text{K}` (:ref:`Fig. 1 <fig:nmr-relaxation>`, panel A).
+The results are in good agreement with the reference calculations of
+Grivet :cite:`grivetNMRRelaxationParameters2005`, with typical
+differences of approximately :math:`5\text{--}7\,\%`.
+
+.. _fig:nmr-relaxation:
+
+.. container:: figure
+
+    .. image:: lennard-jones-fluids/nmr-relaxation-rates-at-target-dm.png
+        :class: only-dark
+        :alt: NMR relaxation rate of a LJ fluid simulated with LAMMPS
+    
+    .. image:: lennard-jones-fluids/nmr-relaxation-rates-at-target.png
+        :class: only-light
+        :alt: NMR relaxation rate of a LJ fluid simulated with LAMMPS
+    
+    .. container:: figurelegend
+
+        Figure 1: A) NMR relaxation rates :math:`R_1` (circles) and
+        :math:`R_2` (squares) as a function of temperature :math:`T`,
+        computed from a Lennard--Jones simulation at a reduced frequency
+        of 0.07, corresponding to
+        :math:`f_0 = \omega_0/(2\pi) = 150\,\text{GHz}`.
+        Results are compared with the reference data from
+        Ref. :cite:`grivetNMRRelaxationParameters2005` (gray symbols).
+        B) Product :math:`\omega_0 \tau` as a function of temperature.
+        The dashed line indicates the condition
+        :math:`\omega_0 \tau = 0.62`, corresponding to the BPP
+        relaxation maximum. The inset shows a snapshot of the
+        simulation, with atoms represented as spheres.
+
+The temperature dependence of the relaxation rates can be understood in
+terms of the evolution of the molecular correlation time, :math:`\tau`.
+For this LJ fluid, the single-correlation-time approximation provides a
+good description of the spectral density
+:cite:`grivetNMRRelaxationParameters2005`. In this framework, the
+spectral density follows a Lorentzian form:
+
+.. math::
+    :label: eq_J_Lorentzian
+
+    J(\omega) = \frac{2 \tau}{1 + \omega^2 \tau^2}.
+
+As shown in panel B, the correlation time decreases with increasing
+temperature due to faster molecular motion. As a consequence,
+:math:`J(0)`, which from Eq. :eq:`eq_J_Lorentzian` satisfies
+:math:`J(0)=2\tau`, also decreases. A reduction of :math:`J(0)` leads to a
+reduction of :math:`R_2` (Eq. :eq:`eq_BPP_R2`) and
+explains the observed variation :math:`R_2` with :math:`T`.
+
+In contrast, :math:`R_1` exhibits a non-monotonic temperature
+dependence, with a maximum near :math:`T = 80`--:math:`90\,\text{K}`.
+This behaviour is explained by the BPP relaxation model
+(Eq. :eq:`eq_BPP_R1`). Inserting Eq. :eq:`eq_J_Lorentzian` into the BPP
+expression for :math:`R_1`, the maximum occurs when
+
+.. math::
+
+    \omega_0 \tau \approx 0.62.
+
+The product :math:`\omega_0 \tau` obtained directly from the
+simulations crosses this value around :math:`T = 80`--:math:`90\,\text{K}`,
+which coincides with the maximum observed in :math:`R_1`
+(:ref:`Fig. 1 <fig:nmr-relaxation>`, panel B).

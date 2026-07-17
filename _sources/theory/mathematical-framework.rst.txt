@@ -1,3 +1,7 @@
+
+.. include:: ../additional/links.rst
+.. _mathematical-framework:
+
 Mathematical framework
 ======================
 
@@ -45,7 +49,7 @@ where
 where :math:`\mu_0` is the vacuum permeability, and :math:`\hbar` the Planck
 constant (divided by :math:`2 \pi`). The constant :math:`K` has units of
 :math:`\text{m}^6/\text{s}^2`. The spectral densities :math:`J^{(m)} (\omega)` in
-Eq. :eq:`eq_BPP` can be obtained as the Fourier transform of the
+Eqs. :eq:`eq_BPP_R1` - :eq:`eq_BPP_R2` can be obtained as the Fourier transform of the
 autocorrelation functions :math:`G^{(m)}(\tau)`:
 
 .. math::
