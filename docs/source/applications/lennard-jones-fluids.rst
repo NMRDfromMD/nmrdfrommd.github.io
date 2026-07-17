@@ -4,21 +4,13 @@
 Code validation on a simple fluid
 ==================================
  
-This example validates NMRDfromMD by reproducing the :math:`^1\mathrm{H}`-NMR
-relaxation properties of a Lennard--Jones (LJ) fluid, using the reference
-calculations of Grivet :cite:`grivetNMRRelaxationParameters2005` as ground
-truth. Because the system consists of identical spherical particles
-interacting through a single distance-dependent pair potential, it provides a
-clean, well-characterized benchmark, free of the ambiguities of molecular
-geometry or intra-molecular contributions.
-
-System
-------
-
+Here, NMRDfromMD is applied to a simple Lennard--Jones (LJ) fluid to reproduce
+its :math:`^1\mathrm{H}`-NMR relaxation properties and confront its output to
+calculations from Grivet as reference :cite:`grivetNMRRelaxationParameters2005`.
 The system consists of 16,000 particles interacting through the classical
-Lennard--Jones (12-6) potential, at a reduced density :math:`\rho^* = 0.84`
+LJ (12-6) potential, at a reduced density :math:`\rho^* = 0.84`
 and reduced temperatures :math:`T^* = 0.8`\ -\ :math:`3.0`
-(:math:`T = 30`\ -\ :math:`160\,\text{K}`), matching the conditions of Grivet
+(corresponding to :math:`T = 30`\ -\ :math:`160\,\text{K}`), matching the conditions of Grivet
 :cite:`grivetNMRRelaxationParameters2005`. Full simulation details are given
 in :ref:`simulation-methods`; input and analysis scripts are available on
 GitHub, see |dataset-LJ-fluid|.
@@ -26,11 +18,10 @@ GitHub, see |dataset-LJ-fluid|.
 Benchmark results
 -----------------
 
-We evaluate the NMR relaxation rates :math:`R_1` and :math:`R_2` at a fixed
+The NMR relaxation rates :math:`R_1` and :math:`R_2` were evaluated at a fixed
 frequency of :math:`f_0 = 150\,\mathrm{GHz}` (0.07 in reduced units) across
-the full temperature range, and compare them with the reference data of
-Grivet :cite:`grivetNMRRelaxationParameters2005`. Results show relatively good agreement
-between the two data sets, with typical differences of about :math:`5-7\,\%`,
+the full temperature range. Results show relatively good agreement
+with the data from Grivet, with typical differences of about :math:`5-7\,\%`,
 
 .. image:: lennard-jones-fluids/nmr-relaxation-rates-at-target-dm.png
     :class: only-dark
