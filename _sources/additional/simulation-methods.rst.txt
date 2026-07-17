@@ -1,3 +1,4 @@
+.. include:: ../additional/links.rst
 .. _simulation-methods:
  
 Simulation methods
@@ -7,6 +8,13 @@ This page collects the molecular dynamics (MD) simulation details for the
 systems presented throughout this documentation. Each application or
 validation page links back here rather than repeating the full setup, so
 that simulation parameters are documented in a single, consistent location.
+
+.. admonition:: Note
+    :class: non-title-info
+
+    If you'd like to learn LAMMPS and generate your own trajectories, beginner
+    |lammps-tutorials| are available here :cite:`gravelleSetTutorialsLAMMPS2025`.
+    GROMACS |gromacs-tutorials| are also available.
 
 Lennard-Jones fluid
 --------------------
@@ -52,7 +60,7 @@ The imposed temperatures ranged from :math:`T = 30` to
     directly.
 
 Bulk water
------
+----------
 
 .. image:: ../figures/tutorials/bulk-water/water-dark-square.png
     :class: only-dark
@@ -87,3 +95,34 @@ The parameters given here are the defaults, although other values were used in t
 including different values of :math:`N` and :math:`r_\text{LJ}`, as well as
 different water models.
 
+Bulk polymer-water
+------------------
+
+.. image:: ../applications/tutorial/snapshot-dark.png
+    :class: only-dark
+    :alt: PEG-water mixture simulated with LAMMPS - Dipolar NMR relaxation time calculation
+    :width: 250
+    :align: right
+
+.. image:: ../applications/tutorial/snapshot-light.png
+    :class: only-light
+    :alt: PEG-water mixture simulated with LAMMPS - Dipolar NMR relaxation time calculation
+    :width: 250
+    :align: right
+
+The system consists of a bulk mixture containing
+420 :math:`\mathrm{H_2O}` molecules and 30 :math:`\mathrm{PEG\ 300}`
+polymer molecules. Water is described using the
+:math:`\mathrm{TIP4P}-\epsilon` force field
+:cite:`fuentes-azcatlNonPolarizableForceField2014`.
+:math:`\mathrm{PEG\ 300}` denotes polyethylene glycol chains with a
+molar mass of :math:`300~\mathrm{g/mol}`.
+
+The trajectory was recorded during a
+:math:`10~\text{ns}` production run performed using LAMMPS in the
+:math:`NpT` ensemble with a timestep of :math:`1~\text{fs}`.
+The temperature was set to :math:`T = 300~\text{K}` and the pressure to
+:math:`p = 1~\text{atm}`. Atomic positions were saved every
+:math:`2~\mathrm{ps}`. Non-bonded
+Lennard-Jones interactions were truncated at a cutoff :math:`r_\text{LJ}`
+distance of :math:`1.4\,\text{nm}

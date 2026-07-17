@@ -47,7 +47,8 @@ Correlation functions extracted for all four models at
 :math:`T = 300\,\text{K}` highlight the differences between them, with
 :math:`\text{TIP3P}` showing much faster decorrelation compared to
 :math:`\text{SPC/E}`, which itself decorrelates slightly faster than
-:math:`\text{TIP4P}`. This ordering of the molecular dynamics timescales
+:math:`\text{TIP4P-2005}` (:ref:`Fig. 1 <fig:water-ff>`, panel A).
+This ordering of the molecular dynamics timescales
 is consistent with the known viscosities
 of these models :cite:`gonzalezShearViscosityRigid2010` at :math:`T = 298\,\text{K}`:
 :math:`0.321 \, \text{mPa s}` for :math:`\text{TIP3P}`,
@@ -58,44 +59,47 @@ Among the models considered, the :math:`\text{TIP4P/2005}` modes has a viscosity
 the experimental value of :math:`0.896 \, \text{mPa s}`
 :cite:`harrisTemperatureVolumeDependence2004`.
 
-The NMR relaxation time :math:`T_1` was extracted as a function of
-temperature. The :math:`\text{TIP4P}-2005` model shows excellent
+The NMR relaxation rate, :math:`R_1`, was extracted as a function of
+temperature. The :math:`\text{TIP4P}-2005` model good excellent
 agreement with experimental measurements by Krynicki
 :cite:`krynickiProtonSpinlatticeRelaxation1966` and Hindman et al.
 :cite:`hindmanRelaxationProcessesWater2003`. By contrast, both
-:math:`\text{SPC/E}` and :math:`\text{TIP3P}` overestimate the relaxation time
-:math:`T_1`, consistent with their higher deviations in viscosity and with
-previous observations by Calero et al.
-:cite:`calero1HNuclearSpin2015`.
+:math:`\text{SPC/E}` and :math:`\text{TIP3P}` underestimate the relaxation rate,
+consistent with their higher deviations in viscosity and with
+previous observations by Calero et al. :cite:`calero1HNuclearSpin2015`.
 
-.. image:: best-practice/water-ff-dm.png
-    :class: only-dark
-    :alt: NMR results obtained from the LAMMPS simulation of water
+.. _fig:water-ff:
 
-.. image:: best-practice/water-ff.png
-    :class: only-light
-    :alt: NMR results obtained from the LAMMPS simulation of water
+.. container:: figure
 
-.. container:: figurelegend
+    .. image:: best-practice/water-ff-dm.png
+        :class: only-dark
+        :alt: NMR results obtained from the LAMMPS simulation of water
 
-    Figure: A) Correlation functions extracted from molecular dynamics
-    simulations for three water models:
-    :math:`\text{TIP4P}` (blue disks), :math:`\text{SPC/E}` (cyan squares),
-    and :math:`\text{TIP3P}` (green pentagons) at
-    :math:`T = 300\,\text{K}`.
-    B) Temperature dependence of the NMR relaxation time :math:`T_1` for
-    bulk water obtained from molecular dynamics simulations using the
-    :math:`\text{TIP4P}`, :math:`\text{SPC/E}`, and
-    :math:`\text{TIP3P}` models. Simulation results are compared with
-    experimental measurements reported by Krynicki
-    :cite:`krynickiProtonSpinlatticeRelaxation1966` and Hindman et al.
-    :cite:`hindmanRelaxationProcessesWater2003`.
+    .. image:: best-practice/water-ff.png
+        :class: only-light
+        :alt: NMR results obtained from the LAMMPS simulation of water
+
+    .. container:: figurelegend
+
+        Figure 1: A) Correlation functions extracted from molecular dynamics
+        simulations for three water models:
+        :math:`\text{TIP4P}` (blue disks), :math:`\text{SPC/E}` (cyan squares),
+        and :math:`\text{TIP3P}` (green pentagons) at
+        :math:`T = 300\,\text{K}`.
+        B) Temperature dependence of the NMR relaxation rate :math:`R_1` for
+        bulk water obtained from molecular dynamics simulations using the
+        :math:`\text{TIP4P-2005}`, :math:`\text{SPC/E}`, and
+        :math:`\text{TIP3P}` models. Simulation results are compared with
+        experimental measurements reported by Krynicki
+        :cite:`krynickiProtonSpinlatticeRelaxation1966` and Hindman et al.
+        :cite:`hindmanRelaxationProcessesWater2003`.
 
 The water example illustrates a more general principle: NMR relaxation
 provides a demanding test of molecular dynamics force fields because it is
 sensitive to both equilibrium structure and molecular motions over a wide
 range of timescales. Agreement with thermodynamic or structural properties
-alone does not guarantee accurate relaxation times. Consequently,
+alone does not guarantee accurate relaxation rates. Consequently,
 NMR relaxation calculations from MD simulations can be used not only to interpret
 experimental measurements, but also to assess and compare force fields based on
 their ability to reproduce dynamical observables.
@@ -146,22 +150,26 @@ cutoff. These observations are consistent with previous measurements
 carefully selecting the cutoff distance when aiming to accurately reproduce
 NMR relaxation quantities.
 
-.. image:: best-practice/water-co-dm.png
-    :class: only-dark
-    :alt: NMR results obtained from the LAMMPS simulation of water
+.. _fig:water-co:
 
-.. image:: best-practice/water-co.png
-    :class: only-light
-    :alt: NMR results obtained from the LAMMPS simulation of water
+.. container:: figure
 
-.. container:: figurelegend
+    .. image:: best-practice/water-co-dm.png
+        :class: only-dark
+        :alt: NMR results obtained from the LAMMPS simulation of water
 
-    Figure: a) Inter-molecular characteristic time :math:`\tau_\text{inter}`
-    as a function of the LJ cutoff.
-    The dashed line is a guide to the eye, indicating the value obtained
-    for the largest cutoff.
-    b) Inter-molecular NMR relaxation time :math:`T_1^\text{inter}`
-    as a function of the LJ cutoff for a bulk water system.
+    .. image:: best-practice/water-co.png
+        :class: only-light
+        :alt: NMR results obtained from the LAMMPS simulation of water
+
+    .. container:: figurelegend
+
+        Figure 2: a) Inter-molecular characteristic time :math:`\tau_\text{inter}`
+        as a function of the LJ cutoff.
+        The dashed line is a guide to the eye, indicating the value obtained
+        for the largest cutoff.
+        b) Inter-molecular NMR relaxation time :math:`T_1^\text{inter}`
+        as a function of the LJ cutoff for a bulk water system.
 
 Integration timestep
 ~~~~~~~~~~~~~~~~~~~~
@@ -228,24 +236,28 @@ Note that :math:`R_1^\text{intra}`, which is the dominant contribution to
 by the box size and therefore the resulting error induced on the 
 total relaxation rate :math:`R_1` remains small for :math:`N > 1000`.
 
-.. image:: best-practice/water-N-dm.png
-    :class: only-dark
-    :alt: NMR results obtained from the LAMMPS simulation of water
+.. _fig:water-N:
 
-.. image:: best-practice/water-N.png
-    :class: only-light
-    :alt: NMR results obtained from the LAMMPS simulation of water
+.. container:: figure
 
-.. container:: figurelegend
+    .. image:: best-practice/water-N-dm.png
+        :class: only-dark
+        :alt: NMR results obtained from the LAMMPS simulation of water
 
-    Figure: A) Inter-molecular NMR relaxation rate :math:`R_\text{1, T}` as a function of the number of molecules :math:`N`
-    for a bulk water system. For the smallest systems, results were averaged
-    from up to 10 independent simulations and the error bar is calculated from
-    the standard deviation.
-    The dashed line is a guide to the eye, indicating the value obtained
-    for the largest value of :math:`N`.
-    b) Inter-molecular correlation function :math:`G_{ij, \text{T}}`
-    for two different numbers of molecules, :math:`N = 158` (cyan squares) and :math:`N = 10000` (green disks).
+    .. image:: best-practice/water-N.png
+        :class: only-light
+        :alt: NMR results obtained from the LAMMPS simulation of water
+
+    .. container:: figurelegend
+
+        Figure 3: A) Inter-molecular NMR relaxation rate :math:`R_\text{1, T}` as a function of the number of molecules :math:`N`
+        for a bulk water system. For the smallest systems, results were averaged
+        from up to 10 independent simulations and the error bar is calculated from
+        the standard deviation.
+        The dashed line is a guide to the eye, indicating the value obtained
+        for the largest value of :math:`N`.
+        b) Inter-molecular correlation function :math:`G_{ij, \text{T}}`
+        for two different numbers of molecules, :math:`N = 158` (cyan squares) and :math:`N = 10000` (green disks).
 
 Trajectory output frequency
 ---------------------------
@@ -273,23 +285,27 @@ time :math:`\tau_\text{inter}`. Both effects are consistent with
 insufficient sampling of fast rotational and translational motions of
 the water molecules.
 
-.. image:: best-practice/water-dump-dm.png
-    :class: only-dark
-    :alt: NMR results obtained from the LAMMPS simulation of water
+.. _fig:water-dump:
 
-.. image:: best-practice/water-dump.png
-    :class: only-light
-    :alt: NMR results obtained from the LAMMPS simulation of water
+.. container:: figure
 
-.. container:: figurelegend
+    .. image:: best-practice/water-dump-dm.png
+        :class: only-dark
+        :alt: NMR results obtained from the LAMMPS simulation of water
 
-    Figure: A) Intermolecular NMR relaxation time :math:`T_\text{1, T}`
-    as a function of the trajectory dumping frequency :math:`\Delta t`
-    for a bulk water system at :math:`T = 300 \text{K}`.
-    The dashed line show the value for :math:`T_1`
-    for :math:`\Delta t \to 0`.
-    B) Intramolecular NMR relaxation time :math:`T_\text{1, R}`
-    as a function of :math:`\Delta t`.
+    .. image:: best-practice/water-dump.png
+        :class: only-light
+        :alt: NMR results obtained from the LAMMPS simulation of water
+
+    .. container:: figurelegend
+
+        Figure 4: A) Intermolecular NMR relaxation time :math:`T_\text{1, T}`
+        as a function of the trajectory dumping frequency :math:`\Delta t`
+        for a bulk water system at :math:`T = 300 \text{K}`.
+        The dashed line show the value for :math:`T_1`
+        for :math:`\Delta t \to 0`.
+        B) Intramolecular NMR relaxation time :math:`T_\text{1, R}`
+        as a function of :math:`\Delta t`.
 
 Analysis parameters
 -------------------
