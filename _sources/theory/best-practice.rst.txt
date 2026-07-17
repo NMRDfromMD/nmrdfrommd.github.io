@@ -143,10 +143,10 @@ to the intermolecular correlation functions. For a cutoff of
 simulations, the deviation is reduced to approximately :math:`1\,\%`.
 
 The variation of :math:`\tau_\text{inter}` affects the calculated
-intermolecular contribution to the relaxation time
-:math:`T_1^\text{inter}`, which is slightly underestimated for the smallest
-cutoff. These observations are consistent with previous measurements
-:cite:`gravelleNMRInvestigationWater2023` and highlight the importance of
+intermolecular contribution to the relaxation rate
+:math:`R_\text{1, T}`, which is overestimated for the smallest
+cutoffs. These observations are consistent with previous measurements, see for instance Ref.
+:cite:`gravelleNMRInvestigationWater2023`, and highlight the importance of
 carefully selecting the cutoff distance when aiming to accurately reproduce
 NMR relaxation quantities.
 
@@ -164,12 +164,12 @@ NMR relaxation quantities.
 
     .. container:: figurelegend
 
-        Figure 2: a) Inter-molecular characteristic time :math:`\tau_\text{inter}`
-        as a function of the LJ cutoff.
-        The dashed line is a guide to the eye, indicating the value obtained
-        for the largest cutoff.
-        b) Inter-molecular NMR relaxation time :math:`T_1^\text{inter}`
-        as a function of the LJ cutoff for a bulk water system.
+        Figure 2: a) Inter-molecular characteristic time :math:`\tau_\text{T}`
+        as a function of the LJ cutoff, :math:`r_\text{LJ}`. The dashed line is a guide to the eye,
+        indicating the value :math:`\tau_\text{T} = 3.78 \, \text{ps}` obtained for the
+        largest cutoffs.
+        b) Inter-molecular NMR relaxation rate :math:`R_\text{1, T}`
+        as a function of :math:`r_\text{LJ}`.  The dashed line is :math:`R_\text{1, T} = 0.125 \, \text{s}^{-1}`
 
 Integration timestep
 ~~~~~~~~~~~~~~~~~~~~

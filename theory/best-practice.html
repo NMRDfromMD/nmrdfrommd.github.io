@@ -379,22 +379,22 @@ to the intermolecular correlation functions. For a cutoff of
 <span class="math notranslate nohighlight">\(1\,\text{nm}\)</span>, which is a commonly used value in molecular dynamics
 simulations, the deviation is reduced to approximately <span class="math notranslate nohighlight">\(1\,\%\)</span>.</p>
 <p>The variation of <span class="math notranslate nohighlight">\(\tau_\text{inter}\)</span> affects the calculated
-intermolecular contribution to the relaxation time
-<span class="math notranslate nohighlight">\(T_1^\text{inter}\)</span>, which is slightly underestimated for the smallest
-cutoff. These observations are consistent with previous measurements
-<span id="id15">[<a class="reference internal" href="../additional/bibliography.html#id241" title="Simon Gravelle, Sabina Haber-Pohlmeier, Carlos Mattea, Siegfried Stapf, Christian Holm, and Alexander Schlaich. NMR Investigation of Water in Salt Crusts: Insights from Experiments and Molecular Simulations. Langmuir, 39(22):7548–7556, June 2023. doi:10.1021/acs.langmuir.3c00036.">10</a>]</span> and highlight the importance of
+intermolecular contribution to the relaxation rate
+<span class="math notranslate nohighlight">\(R_\text{1, T}\)</span>, which is overestimated for the smallest
+cutoffs. These observations are consistent with previous measurements, see for instance Ref.
+<span id="id15">[<a class="reference internal" href="../additional/bibliography.html#id241" title="Simon Gravelle, Sabina Haber-Pohlmeier, Carlos Mattea, Siegfried Stapf, Christian Holm, and Alexander Schlaich. NMR Investigation of Water in Salt Crusts: Insights from Experiments and Molecular Simulations. Langmuir, 39(22):7548–7556, June 2023. doi:10.1021/acs.langmuir.3c00036.">10</a>]</span>, and highlight the importance of
 carefully selecting the cutoff distance when aiming to accurately reproduce
 NMR relaxation quantities.</p>
 <div class="figure docutils container" id="fig-water-co">
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-dark" src="../_images/water-co-dm.png" />
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-light" src="../_images/water-co.png" />
 <div class="figurelegend docutils container">
-<p>Figure 2: a) Inter-molecular characteristic time <span class="math notranslate nohighlight">\(\tau_\text{inter}\)</span>
-as a function of the LJ cutoff.
-The dashed line is a guide to the eye, indicating the value obtained
-for the largest cutoff.
-b) Inter-molecular NMR relaxation time <span class="math notranslate nohighlight">\(T_1^\text{inter}\)</span>
-as a function of the LJ cutoff for a bulk water system.</p>
+<p>Figure 2: a) Inter-molecular characteristic time <span class="math notranslate nohighlight">\(\tau_\text{T}\)</span>
+as a function of the LJ cutoff, <span class="math notranslate nohighlight">\(r_\text{LJ}\)</span>. The dashed line is a guide to the eye,
+indicating the value <span class="math notranslate nohighlight">\(\tau_\text{T} = 3.78 \, \text{ps}\)</span> obtained for the
+largest cutoffs.
+b) Inter-molecular NMR relaxation rate <span class="math notranslate nohighlight">\(R_\text{1, T}\)</span>
+as a function of <span class="math notranslate nohighlight">\(r_\text{LJ}\)</span>.  The dashed line is <span class="math notranslate nohighlight">\(R_\text{1, T} = 0.125 \, \text{s}^{-1}\)</span></p>
 </div>
 </div>
 </section>
