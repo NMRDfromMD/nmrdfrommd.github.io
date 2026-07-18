@@ -270,17 +270,16 @@ hydroxyl (-OH) groups of the silica. The individual contributions to
 <span class="math notranslate nohighlight">\(R_1\)</span> and <span class="math notranslate nohighlight">\(R_2\)</span>, namely, intra-molecular, inter-molecular, and
 water-hydroxyl interactions, are computed separately.</p>
 <p>Let us access the NMR relaxation rate <span class="math notranslate nohighlight">\(R_1\)</span>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">R1_spectrum_H2O_SIL</span> <span class="o">=</span> <span class="n">nmr_H2O_SIL</span><span class="o">.</span><span class="n">R1</span>
-<span class="n">R1_spectrum_H2O_INTRA</span> <span class="o">=</span> <span class="n">nmr_H2O_INTRA</span><span class="o">.</span><span class="n">R1</span>
-<span class="n">R1_spectrum_H2O_INTER</span> <span class="o">=</span> <span class="n">nmr_H2O_INTER</span><span class="o">.</span><span class="n">R1</span>
-<span class="n">f</span> <span class="o">=</span> <span class="n">nmr_H2O_SIL</span><span class="o">.</span><span class="n">f</span>
-</pre></div>
-</div>
-<img alt="NMR results obtained from the GROMACS simulation of water in silica" class="only-dark" src="../_images/spectra-dark.png" />
-<img alt="NMR results obtained from the GROMACS simulation of water in silica" class="only-light" src="../_images/spectra-light.png" />
+<div class="figure docutils container" id="fig-nmr-relaxation">
+<img alt="NMR results obtained from the GROMACS simulation of water in silica" class="only-dark" src="../_images/nmr-water-silica-dm.png" />
+<img alt="NMR results obtained from the GROMACS simulation of water in silica" class="only-light" src="../_images/nmr-water-silica.png" />
 <div class="figurelegend docutils container">
-<p>Figure: NMR relaxation rates <span class="math notranslate nohighlight">\(R_1\)</span> for the water confined in
-a silica slit.</p>
+<p>Figure 1: A) NMR relaxation rates <span class="math notranslate nohighlight">\(R_1\)</span> for the water confined in
+a silica slit. The contribution to the total relaxation induced by the
+interaction between water and oxygen atoms from the surface of the silica
+is given by pink pentagons. B) Snapshot of the molecular dynamics system,
+with water molecules in red and white, and silicon atoms in yellow.</p>
+</div>
 </div>
 <p>Note that the <span class="math notranslate nohighlight">\(\text{H}_2\text{O}-\text{silica}\)</span> contribution is much
 smaller than the intra- and intermolecular contributions from the water. This

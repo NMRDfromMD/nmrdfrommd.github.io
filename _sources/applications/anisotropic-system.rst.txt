@@ -16,25 +16,25 @@ water-hydroxyl interactions, are computed separately.
 
 Let us access the NMR relaxation rate :math:`R_1`:
 
-.. code-block:: python
+.. _fig:nmr-relaxation:
 
-    R1_spectrum_H2O_SIL = nmr_H2O_SIL.R1
-    R1_spectrum_H2O_INTRA = nmr_H2O_INTRA.R1
-    R1_spectrum_H2O_INTER = nmr_H2O_INTER.R1
-    f = nmr_H2O_SIL.f
+.. container:: figure
 
-.. image:: ../figures/tutorials/anisotropic-systems/spectra-dark.png
-    :class: only-dark
-    :alt: NMR results obtained from the GROMACS simulation of water in silica
+    .. image:: anisotropic-system/nmr-water-silica-dm.png
+        :class: only-dark
+        :alt: NMR results obtained from the GROMACS simulation of water in silica
 
-.. image:: ../figures/tutorials/anisotropic-systems/spectra-light.png
-    :class: only-light
-    :alt: NMR results obtained from the GROMACS simulation of water in silica
+    .. image:: anisotropic-system/nmr-water-silica.png
+        :class: only-light
+        :alt: NMR results obtained from the GROMACS simulation of water in silica
 
-.. container:: figurelegend
+    .. container:: figurelegend
 
-    Figure: NMR relaxation rates :math:`R_1` for the water confined in
-    a silica slit.
+        Figure 1: A) NMR relaxation rates :math:`R_1` for the water confined in
+        a silica slit. The contribution to the total relaxation induced by the
+        interaction between water and oxygen atoms from the surface of the silica
+        is given by pink pentagons. B) Snapshot of the molecular dynamics system,
+        with water molecules in red and white, and silicon atoms in yellow.
 
 Note that the :math:`\text{H}_2\text{O}-\text{silica}` contribution is much
 smaller than the intra- and intermolecular contributions from the water. This
