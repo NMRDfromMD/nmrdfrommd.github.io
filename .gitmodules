@@ -15,3 +15,9 @@
 	url = git@github.com:NMRDfromMD/dataset-pure-water.git
 	branch = main
 
+[submodule ".submodules/dataset-water-in-silica"]
+	path = .submodules/dataset-water-in-silica
+	url = git@github.com:NMRDfromMD/dataset-water-in-silica.git
+[submodule ".submodules/dataset-protein-in-water"]
+	path = .submodules/dataset-protein-in-water
+	url = git@github.com:NMRDfromMD/dataset-protein-in-water.git
