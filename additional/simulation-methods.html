@@ -209,7 +209,7 @@
 <p class="caption" role="heading"><span class="caption-text">Applications</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../applications/lysozyme-in-water.html">Lysozyme in water</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../applications/anisotropic-system.html">Anisotropic systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../applications/anisotropic-system.html">Nanoconfined water</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Additional</span></p>
 <ul class="current">
@@ -267,7 +267,7 @@ that simulation parameters are documented in a single, consistent location.</p>
 <div class="non-title-info admonition">
 <p class="admonition-title">Note</p>
 <p>If you’d like to learn LAMMPS and generate your own trajectories, beginner
-<a href="https://lammpstutorials.github.io/" target="_blank">tutorials</a> are available here <span id="id2">[<a class="reference internal" href="bibliography.html#id243" title="Simon Gravelle, Jacob R. Gissinger, and Axel Kohlmeyer. A Set of Tutorials for the LAMMPS Simulation Package. March 2025. arXiv:2503.14020, doi:10.48550/arXiv.2503.14020.">55</a>]</span>.
+<a href="https://lammpstutorials.github.io/" target="_blank">tutorials</a> are available here <span id="id2">[<a class="reference internal" href="bibliography.html#id243" title="Simon Gravelle, Jacob R. Gissinger, and Axel Kohlmeyer. A Set of Tutorials for the LAMMPS Simulation Package. March 2025. arXiv:2503.14020, doi:10.48550/arXiv.2503.14020.">56</a>]</span>.
 GROMACS <a href="https://gromacstutorials.github.io/" target="_blank">tutorials</a> are also available.</p>
 </div>
 <section id="lennard-jones-fluid">
@@ -278,7 +278,7 @@ GROMACS <a href="https://gromacstutorials.github.io/" target="_blank">tutorials<
 </a>
 <p>The simulated system contains 16,000 particles interacting through the
 classical Lennard–Jones (12-6) potential and was simulated using
-LAMMPS <span id="id3">[<a class="reference internal" href="bibliography.html#id659" title="Aidan P. Thompson, H. Metin Aktulga, Richard Berger, Dan S. Bolintineanu, W. Michael Brown, Paul S. Crozier, Pieter J. In 'T Veld, Axel Kohlmeyer, Stan G. Moore, Trung Dac Nguyen, Ray Shan, Mark J. Stevens, Julien Tranchida, Christian Trott, and Steven J. Plimpton. LAMMPS - a flexible simulation tool for particle-based materials modeling at the atomic, meso, and continuum scales. Computer Physics Communications, 271:108171, February 2022. doi:10.1016/j.cpc.2021.108171.">56</a>]</span>. Each particle has a
+LAMMPS <span id="id3">[<a class="reference internal" href="bibliography.html#id659" title="Aidan P. Thompson, H. Metin Aktulga, Richard Berger, Dan S. Bolintineanu, W. Michael Brown, Paul S. Crozier, Pieter J. In 'T Veld, Axel Kohlmeyer, Stan G. Moore, Trung Dac Nguyen, Ray Shan, Mark J. Stevens, Julien Tranchida, Christian Trott, and Steven J. Plimpton. LAMMPS - a flexible simulation tool for particle-based materials modeling at the atomic, meso, and continuum scales. Computer Physics Communications, 271:108171, February 2022. doi:10.1016/j.cpc.2021.108171.">57</a>]</span>. Each particle has a
 mass <span class="math notranslate nohighlight">\(m = 1\,\mathrm{g/mol}\)</span> together with LJ parameters
 <span class="math notranslate nohighlight">\(\sigma = 3\,\text{Å}\)</span> and <span class="math notranslate nohighlight">\(\epsilon = 0.1\,\mathrm{kcal/mol}\)</span>.
 All reduced simulation parameters were chosen to reproduce the study of
@@ -314,7 +314,7 @@ molecules. The simulation box was cubic, with equilibrium dimensions of about
 <span class="math notranslate nohighlight">\((5\,\text{nm})^3\)</span>. Simulations were performed using LAMMPS. Non-bonded
 Lennard-Jones interactions were truncated at a cutoff <span class="math notranslate nohighlight">\(r_\text{LJ}\)</span>
 distance of <span class="math notranslate nohighlight">\(1.4\,\text{nm}\)</span>. The default water model used throughout
-this documentation is <span class="math notranslate nohighlight">\(\text{TIP4P}-2005\)</span> <span id="id5">[<a class="reference internal" href="bibliography.html#id2" title="J. L. F. Abascal and C. Vega. A general purpose model for the condensed phases of water: TIP4P/2005. The Journal of Chemical Physics, 123(23):234505, December 2005. doi:10.1063/1.2121687.">26</a>]</span>.
+this documentation is <span class="math notranslate nohighlight">\(\text{TIP4P}-2005\)</span> <span id="id5">[<a class="reference internal" href="bibliography.html#id2" title="J. L. F. Abascal and C. Vega. A general purpose model for the condensed phases of water: TIP4P/2005. The Journal of Chemical Physics, 123(23):234505, December 2005. doi:10.1063/1.2121687.">27</a>]</span>.
 The system was first equilibrated in the NPT ensemble at a
 temperature <span class="math notranslate nohighlight">\(T\)</span>, with a default value of <span class="math notranslate nohighlight">\(T = 300\,\text{K}\)</span>
 (values between 280 and 320 K were also considered), and a pressure of
@@ -339,7 +339,7 @@ different water models.</p>
 420 <span class="math notranslate nohighlight">\(\mathrm{H_2O}\)</span> molecules and 30 <span class="math notranslate nohighlight">\(\mathrm{PEG\ 300}\)</span>
 polymer molecules. Water is described using the
 <span class="math notranslate nohighlight">\(\mathrm{TIP4P}-\epsilon\)</span> force field
-<span id="id6">[<a class="reference internal" href="bibliography.html#id199" title="Raúl Fuentes-Azcatl and José Alejandre. Non-Polarizable Force Field of Water Based on the Dielectric Constant: TIP4P/epsilon. The Journal of Physical Chemistry B, 118(5):1263–1272, February 2014. doi:10.1021/jp410865y.">57</a>]</span>.
+<span id="id6">[<a class="reference internal" href="bibliography.html#id199" title="Raúl Fuentes-Azcatl and José Alejandre. Non-Polarizable Force Field of Water Based on the Dielectric Constant: TIP4P/epsilon. The Journal of Physical Chemistry B, 118(5):1263–1272, February 2014. doi:10.1021/jp410865y.">58</a>]</span>.
 <span class="math notranslate nohighlight">\(\mathrm{PEG\ 300}\)</span> denotes polyethylene glycol chains with a
 molar mass of <span class="math notranslate nohighlight">\(300~\mathrm{g/mol}\)</span>.</p>
 <p>The trajectory was recorded during a
@@ -361,6 +361,21 @@ distance of :math:<a href="#id7"><span class="problematic" id="id8">`</span></a>
 corresponds to water-to-protein mass ratio of <span class="math notranslate nohighlight">\(73\,\%\)</span>.
 The simulation was performed using GROMACS with a <span class="math notranslate nohighlight">\(2\,\text{fs}\)</span>. timestep,
 a <span class="math notranslate nohighlight">\(100\,\text{ns}\)</span>, and trajectories recorded every 1 ps at 300 K.</p>
+</section>
+<section id="nanoconfined-water">
+<h2>Nanoconfined water<a class="headerlink" href="#nanoconfined-water" title="Link to this heading">¶</a></h2>
+<a class="only-dark reference internal image-reference" href="../_images/snapshot-dark2.png"><img alt="Water confined in silica slit with GROMACS - Dipolar NMR relaxation time calculation" class="only-dark align-right" src="../_images/snapshot-dark2.png" style="width: 250px;" />
+</a>
+<a class="only-light reference internal image-reference" href="../_images/snapshot-light2.png"><img alt="Water confined in silica slit with GROMACS - Dipolar NMR relaxation time calculation" class="only-light align-right" src="../_images/snapshot-light2.png" style="width: 250px;" />
+</a>
+<p>The system consists of 602 <span class="math notranslate nohighlight">\(\text{TIP4P}-\epsilon\)</span> water molecules
+confined within a silica slit nanopore. The trajectory was recorded during a
+<span class="math notranslate nohighlight">\(10\,\text{ns}\)</span> production run performed using the open-source GROMACS
+software, in the anisotropic <span class="math notranslate nohighlight">\(NP_zT\)</span> ensemble, with a timestep of
+<span class="math notranslate nohighlight">\(1\,\text{fs}\)</span>. To balance the surface charge, 20 sodium ions were added
+to the slit. The system was maintained at a temperature of <span class="math notranslate nohighlight">\(T = 300\,\text{K}\)</span>
+and a pressure of <span class="math notranslate nohighlight">\(p = 1\,\text{bar}\)</span>. Atomic positions were saved to the
+every <span class="math notranslate nohighlight">\(2\,\text{ps}\)</span>.</p>
 </section>
 </section>
 
@@ -424,6 +439,7 @@ a <span class="math notranslate nohighlight">\(100\,\text{ns}\)</span>, and traj
 <li><a class="reference internal" href="#bulk-water">Bulk water</a></li>
 <li><a class="reference internal" href="#bulk-polymer-water">Bulk polymer-water</a></li>
 <li><a class="reference internal" href="#lysozyme-in-water">Lysozyme in water</a></li>
+<li><a class="reference internal" href="#nanoconfined-water">Nanoconfined water</a></li>
 </ul>
 </li>
 </ul>

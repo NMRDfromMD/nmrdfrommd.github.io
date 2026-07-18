@@ -14,7 +14,7 @@ It has since been extended to increasingly realistic systems,
 including water and other molecular liquids
 :cite:`lippensT1RelaxationTime1993, calero1HNuclearSpin2015, singerMolecularDynamicsSimulations2017, singerNMRSpinrotationRelaxation2018, philipsProtonNMRRelaxation2019, singerElucidating1NMR2020`,
 confined fluids in nanoporous materials
-:cite:`khudozhitkovDynamicsPropenePropane2020, gravelleNMRInvestigationWater2023`,
+:cite:`khudozhitkovDynamicsPropenePropane2020, gravelleNMRInvestigationWater2023, tianNMRRelaxationGas2024`,
 and more complex soft matter systems such as polymers, lipid
 membranes, proteins, and glass-forming liquids
 :cite:`pastorLipidBilayersNMR2002, klaudaCollectiveNoncollectiveModels2008, singerElucidating1NMR2020, becherMolecularDynamicsSimulations2021, stenstromHowDoesIt2022`.
