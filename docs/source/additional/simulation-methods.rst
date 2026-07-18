@@ -146,3 +146,27 @@ The system is made of a lysozyme (HEWL) with 594 water molecules, which
 corresponds to water-to-protein mass ratio of :math:`73\,\%`.
 The simulation was performed using GROMACS with a :math:`2\,\text{fs}`. timestep,
 a :math:`100\,\text{ns}`, and trajectories recorded every 1 ps at 300 K.
+
+Nanoconfined water
+------------------
+
+.. image:: ../figures/tutorials/anisotropic-systems/snapshot-dark.png
+    :class: only-dark
+    :alt: Water confined in silica slit with GROMACS - Dipolar NMR relaxation time calculation
+    :width: 250
+    :align: right
+
+.. image:: ../figures/tutorials/anisotropic-systems/snapshot-light.png
+    :class: only-light
+    :alt: Water confined in silica slit with GROMACS - Dipolar NMR relaxation time calculation
+    :width: 250
+    :align: right
+
+The system consists of 602 :math:`\text{TIP4P}-\epsilon` water molecules
+confined within a silica slit nanopore. The trajectory was recorded during a
+:math:`10\,\text{ns}` production run performed using the open-source GROMACS
+software, in the anisotropic :math:`NP_zT` ensemble, with a timestep of
+:math:`1\,\text{fs}`. To balance the surface charge, 20 sodium ions were added
+to the slit. The system was maintained at a temperature of :math:`T = 300\,\text{K}`
+and a pressure of :math:`p = 1\,\text{bar}`. Atomic positions were saved to the
+every :math:`2\,\text{ps}`.
