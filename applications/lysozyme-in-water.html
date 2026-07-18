@@ -260,38 +260,36 @@
         <article role="main" id="furo-main-content">
           <section id="lysozyme-in-water">
 <span id="lysozyme-label"></span><h1>Lysozyme in water<a class="headerlink" href="#lysozyme-in-water" title="Link to this heading">¶</a></h1>
-<p>The system is made of a lysozyme (HEWL) with 594 water molecules.
-The total NMR relaxation rate <span class="math notranslate nohighlight">\(R_1\)</span> exhibits a strong frequency dependence
-across the entire accessible frequency range, in contrast to simple bulk liquids
-where <span class="math notranslate nohighlight">\(R_1\)</span> reaches a low-frequency plateau. Decomposing the signal into
-water and lysozyme contributions reveals that the low-frequency dispersion is
-dominated by the protein. This reflects the slow rotational tumbling of the
-lysozyme molecule, which has a much longer correlation time than small solvent
-molecules.</p>
+<p>The system consists of a lysozyme (HEWL) and 594 water molecules. The
+temperature is <span class="math notranslate nohighlight">\(T = 300~\mathrm{K}\)</span>, and the water model is
+<span class="math notranslate nohighlight">\(\text{TIP4P}-\epsilon\)</span>. Simulation details are provided in
+<a class="reference internal" href="../additional/simulation-methods.html#simulation-methods"><span class="std std-ref">Simulation methods</span></a>.</p>
+<p>The total NMR relaxation rate <span class="math notranslate nohighlight">\(R_1\)</span> exhibits a strong frequency
+dependence across the entire accessible frequency range, in contrast to simple
+bulk liquids, where <span class="math notranslate nohighlight">\(R_1\)</span> reaches a low-frequency plateau. Decomposing
+the signal into water and lysozyme contributions reveals that the
+low-frequency dispersion is dominated by the protein
+(<a class="reference internal" href="#fig-lysozyme"><span class="std std-ref">Fig. 1</span></a>). This reflects the slow rotational tumbling of
+the lysozyme molecule, which has a much longer correlation time than the small
+solvent molecules.</p>
 <p>The water contribution alone also shows a residual frequency dependence at low
-frequencies, which is absent in pure bulk water. In bulk water, <span class="math notranslate nohighlight">\(R_1\)</span>
-reaches a plateau below approximately <span class="math notranslate nohighlight">\(2 \cdot 10^3\,\text{MHz}\)</span>,
-indicating that molecular motion is fast relative to the NMR timescale. In
-contrast, water molecules in contact with the lysozyme surface show dispersion
-extending down to approximately <span class="math notranslate nohighlight">\(10\,\text{MHz}\)</span>. This is consistent with
-the expected slowdown of translational and rotational dynamics of adsorbed water
-molecules, whose motion is partially constrained by interactions with the protein
-surface.</p>
-<img alt="NMR results obtained from the LAMMPS simulation of water and lysozyme" class="only-dark" src="../_images/R1_spectra-dark.png" />
-<img alt="NMR results obtained from the LAMMPS simulation of water and lysozyme" class="only-light" src="../_images/R1_spectra-light.png" />
+frequencies, which is absent in bulk water. In bulk water,
+<span class="math notranslate nohighlight">\(R_1\)</span> reaches a plateau below approximately
+<span class="math notranslate nohighlight">\(2 \cdot 10^3\,\text{MHz}\)</span>, indicating that molecular motion is fast
+relative to the NMR timescale. In contrast, water molecules in contact with
+the lysozyme surface show dispersion extending down to approximately
+<span class="math notranslate nohighlight">\(10\,\text{MHz}\)</span>. This is consistent with the expected slowdown of the
+translational and rotational dynamics of adsorbed water molecules, whose
+motion is partially constrained by interactions with the protein surface.</p>
+<div class="figure docutils container" id="fig-lysozyme">
+<img alt="NMR results obtained from the LAMMPS simulation of water and lysozyme" class="only-dark" src="../_images/nmr-water-hewl-dm.png" />
+<img alt="NMR results obtained from the LAMMPS simulation of water and lysozyme" class="only-light" src="../_images/nmr-water-hewl.png" />
 <div class="figurelegend docutils container">
-<p>Figure: NMR relaxation rate <span class="math notranslate nohighlight">\(R_1\)</span> for the lysozyme-water system.
-The spectra for water alone and lysozyme alone are also given.</p>
+<p>Figure 1. (A) NMR relaxation rate <span class="math notranslate nohighlight">\(R_1\)</span> for the
+lysozyme–water system. The spectra for water alone and lysozyme alone
+are shown, alongside the contribution for the water-lysozyme interaction.
+(B) Snapshot of the molecular dynamics simulation.</p>
 </div>
-<p>This comparison illustrates a key advantage of MD-based NMR relaxation
-calculations: the ability to decompose the total signal into contributions from
-distinct molecular species, providing physical insight that is inaccessible from
-experiment alone.</p>
-<img alt="NMR results obtained from the LAMMPS simulation of water and lysozyme" class="only-dark" src="../_images/R1_spectra_water-dark.png" />
-<img alt="NMR results obtained from the LAMMPS simulation of water and lysozyme" class="only-light" src="../_images/R1_spectra_water-light.png" />
-<div class="figurelegend docutils container">
-<p>Figure: Contribution to the NMR relaxation rate <span class="math notranslate nohighlight">\(R_1\)</span> from the water only,
-comparing the residual water in contact with the lysozyme, and pure bulk water.</p>
 </div>
 </section>
 
