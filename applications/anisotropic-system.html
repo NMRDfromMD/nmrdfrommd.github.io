@@ -261,37 +261,48 @@
           <section id="nanoconfined-water">
 <span id="anisotropic-label"></span><h1>Nanoconfined water<a class="headerlink" href="#nanoconfined-water" title="Link to this heading">¶</a></h1>
 <p>Here, the <span class="math notranslate nohighlight">\(^1\text{H}\)</span> NMR relaxation rate <span class="math notranslate nohighlight">\(R_1\)</span> of water confined
-within a silica nanoslit is calculated from molecular dynamics simulations. Simulation
-details are provided in <a class="reference internal" href="../additional/simulation-methods.html#simulation-methods"><span class="std std-ref">Simulation methods</span></a>. Because this is an anisotropic
-system, all three correlation functions, <span class="math notranslate nohighlight">\(G^{(1)}\)</span>, <span class="math notranslate nohighlight">\(G^{(2)}\)</span>, and <span class="math notranslate nohighlight">\(G^{(3)}\)</span>,
-must be evaluated. Interestingly, hydrogen atoms belonging both to the water molecules
-and to the hydroxyl groups on the silica surface contribute to the relaxation.</p>
-<p>Using NMRDfromMD, we calculated both the total relaxation rate and the contribution
-arising from water-surface interactions. Our results indicate that the contribution
-from the water-silica interaction is approximately one order of magnitude smaller
-than the total relaxation rate, indicating that most of the relaxation originates
-from the water itself through its rotational motion and intermolecular
-interactions (<a class="reference internal" href="#fig-confined"><span class="std std-ref">Fig. 1</span></a>). This is mainly due to the relatively
-small number of hydrogen atoms on the silica surface (92), compared with the 1204
-hydrogen atoms belonging to the water molecules.</p>
-<p>Although the direct contribution of water–surface interactions to the NMR relaxation
-is small, confinement still significantly affects the relaxation rate by modifying
-the structure and dynamics of the confined water. In particular, confinement
-generally slows the molecular dynamics of water, resulting in altered relaxation
-rates. Furthermore, the confined water can be viewed as consisting of two populations:
-a slow, highly structured interfacial population located near the silica surface,
-and a bulk-like population farther from the surface whose properties are only
-weakly affected by confinement <span id="id1">[<a class="reference internal" href="../additional/bibliography.html#id238" title="Simon Gravelle, Benoit Coasne, Christian Holm, and Alexander Schlaich. Intermittent molecular motion and first passage statistics for the NMR relaxation of confined water. Physical Review E, 112(3):035502, September 2025. doi:10.1103/1j21-bqdm.">42</a>]</span>.</p>
+within a silica nanoslit is calculated from molecular dynamics simulations. The
+temperature is <span class="math notranslate nohighlight">\(T = 300~\mathrm{K}\)</span>, and the water model is
+<span class="math notranslate nohighlight">\(\text{TIP4P}-\epsilon\)</span>. Simulation details are provided in
+<a class="reference internal" href="../additional/simulation-methods.html#simulation-methods"><span class="std std-ref">Simulation methods</span></a>. For such an anisotropic system, all three
+correlation functions, <span class="math notranslate nohighlight">\(G^{(1)}\)</span>, <span class="math notranslate nohighlight">\(G^{(2)}\)</span>, and
+<span class="math notranslate nohighlight">\(G^{(3)}\)</span>, must be evaluated. Hydrogen atoms belonging to both the water
+molecules and the hydroxyl groups on the silica surface contribute to the
+relaxation, particularly because water forms hydrogen bonds with the surface.</p>
+<p>Using NMRDfromMD, we calculated both the total relaxation rate and the
+contribution arising from water-surface interactions. Our results indicate
+that the contribution from water-silica interactions is approximately one
+order of magnitude smaller than the total relaxation rate, indicating that
+most of the relaxation originates from the water itself through its rotational
+motion and intermolecular interactions (<a class="reference internal" href="#fig-confined"><span class="std std-ref">Fig. 1</span></a>). This is
+mainly due to the relatively small number of hydrogen atoms on the silica
+surface (92), compared with the 1204 hydrogen atoms belonging to the water
+molecules.</p>
 <div class="figure docutils container" id="fig-confined">
 <img alt="NMR results obtained from the GROMACS simulation of water in silica" class="only-dark" src="../_images/nmr-water-silica-dm.png" />
 <img alt="NMR results obtained from the GROMACS simulation of water in silica" class="only-light" src="../_images/nmr-water-silica.png" />
 <div class="figurelegend docutils container">
-<p>Figure 1. (A) <span class="math notranslate nohighlight">\(^1\text{H}\)</span> NMR relaxation rate <span class="math notranslate nohighlight">\(R_1\)</span> of water confined
-within a silica slit. The contribution arising from water-silica interactions is
-shown by the pink pentagons. (B) Snapshot of the molecular dynamics system,
-with water molecules shown in red and white and silicon atoms in yellow.</p>
+<p>Figure 1. (A) <span class="math notranslate nohighlight">\(^1\text{H}\)</span> NMR relaxation rate <span class="math notranslate nohighlight">\(R_1\)</span> of
+water confined within a silica slit. The contribution arising from
+water-silica interactions is shown by the pink pentagons. The dashed
+line marks the expected relaxation rate of
+<span class="math notranslate nohighlight">\(0.28~\mathrm{s}^{-1}\)</span> for the same TIP4P water model at the
+same temperature, <span class="math notranslate nohighlight">\(T = 300~\mathrm{K}\)</span>. (B) Snapshot of the
+molecular dynamics system, with water molecules shown in red and
+white, silicon atoms in yellow, and sodium counterions in blue.</p>
 </div>
 </div>
+<p>Although the direct contribution of water-surface interactions to NMR
+relaxation is small, confinement still significantly affects the relaxation
+rate by modifying the structure and dynamics of the confined water. In
+particular, confinement generally slows the molecular dynamics of water,
+resulting in altered relaxation rates. Furthermore, the confined water can be
+viewed as consisting of two populations: a slow, highly structured
+interfacial population located near the silica surface, and a bulk-like
+population farther from the surface whose properties are only weakly affected
+by confinement <span id="id1">[<a class="reference internal" href="../additional/bibliography.html#id238" title="Simon Gravelle, Benoit Coasne, Christian Holm, and Alexander Schlaich. Intermittent molecular motion and first passage statistics for the NMR relaxation of confined water. Physical Review E, 112(3):035502, September 2025. doi:10.1103/1j21-bqdm.">42</a>]</span>. As a
+consequence, the total relaxation rate is slightly larger than that measured
+for bulk water under the same conditions (<a class="reference internal" href="#fig-confined"><span class="std std-ref">Fig. 1</span></a>).</p>
 </section>
 
         </article>
