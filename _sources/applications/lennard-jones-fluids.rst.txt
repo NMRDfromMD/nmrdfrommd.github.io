@@ -4,7 +4,7 @@
 Code validation on a simple fluid
 =================================
 
-Here, the formalism presented in Section
+Here, the formalism presented in
 :ref:`mathematical-framework` and implemented in NMRDfromMD is used
 to predict the :math:`^1\mathrm{H}`-NMR relaxation properties of a
 simple Lennard--Jones (LJ) fluid. The results are compared with the
@@ -76,15 +76,15 @@ spectral density follows a Lorentzian form:
 
 As shown in panel B, the correlation time decreases with increasing
 temperature due to faster molecular motion. As a consequence,
-:math:`J(0)`, which from Eq. :eq:`eq_J_Lorentzian` satisfies
+:math:`J(0)`, which from :eq:`eq_J_Lorentzian` satisfies
 :math:`J(0)=2\tau`, also decreases. A reduction of :math:`J(0)` leads to a
-reduction of :math:`R_2` (Eq. :eq:`eq_BPP_R2`) and
+reduction of :math:`R_2` (:eq:`eq_BPP_R2`) and
 explains the observed variation :math:`R_2` with :math:`T`.
 
 In contrast, :math:`R_1` exhibits a non-monotonic temperature
 dependence, with a maximum near :math:`T = 80`--:math:`90\,\text{K}`.
 This behaviour is explained by the BPP relaxation model
-(Eq. :eq:`eq_BPP_R1`). Inserting Eq. :eq:`eq_J_Lorentzian` into the BPP
+(:eq:`eq_BPP_R1`). Inserting :eq:`eq_J_Lorentzian` into the BPP
 expression for :math:`R_1`, the maximum occurs when
 
 .. math::
