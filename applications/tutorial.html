@@ -476,7 +476,7 @@ function of <span class="math notranslate nohighlight">\(f\)</span> using pyplot
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>The resulting spectra should resemble <a class="reference internal" href="lennard-jones-fluids.html#fig-nmr-relaxation"><span class="std std-ref">Fig. 1</span></a>, panel A. For an
+<p>The resulting spectra should resemble <a class="reference internal" href="#fig-nmr-tutorial1"><span class="std std-ref">Fig. 1</span></a>, panel A. For an
 isotropic liquid, <span class="math notranslate nohighlight">\(R_1(f)\)</span> and <span class="math notranslate nohighlight">\(R_2(f)\)</span> are expected to
 approach similar values in the low-frequency limit. In this regime, both relaxation
 rates probe the low-frequency limit of the spectral density, which is
@@ -484,7 +484,8 @@ dominated by long-time molecular reorientations and translational diffusion.</p>
 <p>Because only <code class="docutils literal notranslate"><span class="pre">number_i</span> <span class="pre">=</span> <span class="pre">20</span></code> reference atoms are sampled here, the
 spectra exhibit noticeable statistical noise. Repeating the calculation
 with a larger value for <code class="docutils literal notranslate"><span class="pre">number_i</span></code> produces much smoother curves, as
-shown <a class="reference internal" href="lennard-jones-fluids.html#fig-nmr-relaxation"><span class="std std-ref">Fig. 1</span></a>, panel B.</p>
+shown <a class="reference internal" href="#fig-nmr-tutorial1"><span class="std std-ref">Fig. 1</span></a>, panel B.</p>
+<div class="figure docutils container" id="fig-nmr-tutorial1">
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-dark" src="../_images/nmr-total-dm.png" />
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-light" src="../_images/nmr-total.png" />
 <div class="figurelegend docutils container">
@@ -495,6 +496,7 @@ function of the frequency <span class="math notranslate nohighlight">\(f\)</span
 a small value of <code class="docutils literal notranslate"><span class="pre">number_i</span></code>, <span class="math notranslate nohighlight">\(n_i = 20\)</span>.
 (B) Same quantity as in panel A, but performed using all hydrogen atoms
 using <span class="math notranslate nohighlight">\(n_i = 0\)</span>.</p>
+</div>
 </div>
 </section>
 <section id="separating-intra-and-intermolecular">
@@ -559,21 +561,23 @@ interactions between two different molecular species. Therefore, it is
 not necessary to explicitly set <code class="docutils literal notranslate"><span class="pre">type_analysis=&quot;inter_molecular&quot;</span></code>.</p>
 <p>Comparing the calculated spectra reveals that the
 intramolecular contribution is larger than the intermolecular one for
-this system. More importantly, the two contributions exhibit distinct
+this system (<a class="reference internal" href="#fig-nmr-tutorial2"><span class="std std-ref">Fig. 2</span></a>). More importantly, the two contributions exhibit distinct
 frequency dependences because they originate from different molecular
 motions. Intramolecular relaxation is mainly governed by rotational motion and
 internal molecular flexibility, whereas intermolecular relaxation reflects
 translational diffusion and inter-molecular collisions.</p>
+<div class="figure docutils container" id="fig-nmr-tutorial2">
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-dark" src="../_images/nmr-intra-dm.png" />
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-light" src="../_images/nmr-intra.png" />
 <div class="figurelegend docutils container">
-<p>Figure: Intramolecular <span class="math notranslate nohighlight">\(^1\text{H}\)</span>-NMR
+<p>Figure 2: Intramolecular <span class="math notranslate nohighlight">\(^1\text{H}\)</span>-NMR
 relaxation rates <span class="math notranslate nohighlight">\(R_{1 \text{R}}\)</span> (A) and
 Intermolecular <span class="math notranslate nohighlight">\(^1\text{H}\)</span>-NMR relaxation
 rates <span class="math notranslate nohighlight">\(R_{1 \text{T}}\)</span> (B) as a
 function of the frequency <span class="math notranslate nohighlight">\(f\)</span> for
 PEG and <span class="math notranslate nohighlight">\(\text{H}_2\text{O}\)</span> separately.
 Results are shown for <span class="math notranslate nohighlight">\(n_i = 0\)</span>.</p>
+</div>
 </div>
 </section>
 </section>

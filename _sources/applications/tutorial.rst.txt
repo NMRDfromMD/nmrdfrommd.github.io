@@ -265,7 +265,7 @@ function of :math:`f` using pyplot:
     plt.tight_layout()
     plt.show()
 
-The resulting spectra should resemble :ref:`Fig. 1 <fig:nmr-relaxation>`, panel A. For an
+The resulting spectra should resemble :ref:`Fig. 1 <fig:nmr-tutorial1>`, panel A. For an
 isotropic liquid, :math:`R_1(f)` and :math:`R_2(f)` are expected to
 approach similar values in the low-frequency limit. In this regime, both relaxation
 rates probe the low-frequency limit of the spectral density, which is
@@ -274,25 +274,29 @@ dominated by long-time molecular reorientations and translational diffusion.
 Because only ``number_i = 20`` reference atoms are sampled here, the
 spectra exhibit noticeable statistical noise. Repeating the calculation
 with a larger value for ``number_i`` produces much smoother curves, as
-shown :ref:`Fig. 1 <fig:nmr-relaxation>`, panel B.
+shown :ref:`Fig. 1 <fig:nmr-tutorial1>`, panel B.
 
-.. image:: tutorial/nmr-total-dm.png
-    :class: only-dark
-    :alt: NMR results obtained from the LAMMPS simulation of water
+.. _fig:nmr-tutorial1:
 
-.. image:: tutorial/nmr-total.png
-    :class: only-light
-    :alt: NMR results obtained from the LAMMPS simulation of water
+.. container:: figure
 
-.. container:: figurelegend
+    .. image:: tutorial/nmr-total-dm.png
+        :class: only-dark
+        :alt: NMR results obtained from the LAMMPS simulation of water
 
-    Figure 1: (A) :math:`^1\text{H}`-NMR relaxation
-    rates :math:`R_1` and :math:`R_2` as a
-    function of the frequency :math:`f` for the 
-    :math:`\text{PEG-H}_2\text{O}` bulk mixture. Results are given for
-    a small value of ``number_i``, :math:`n_i = 20`.
-    (B) Same quantity as in panel A, but performed using all hydrogen atoms
-    using :math:`n_i = 0`.
+    .. image:: tutorial/nmr-total.png
+        :class: only-light
+        :alt: NMR results obtained from the LAMMPS simulation of water
+
+    .. container:: figurelegend
+
+        Figure 1: (A) :math:`^1\text{H}`-NMR relaxation
+        rates :math:`R_1` and :math:`R_2` as a
+        function of the frequency :math:`f` for the 
+        :math:`\text{PEG-H}_2\text{O}` bulk mixture. Results are given for
+        a small value of ``number_i``, :math:`n_i = 20`.
+        (B) Same quantity as in panel A, but performed using all hydrogen atoms
+        using :math:`n_i = 0`.
 
 Separating intra and intermolecular
 -----------------------------------
@@ -366,26 +370,30 @@ not necessary to explicitly set ``type_analysis="inter_molecular"``.
 
 Comparing the calculated spectra reveals that the
 intramolecular contribution is larger than the intermolecular one for
-this system. More importantly, the two contributions exhibit distinct
+this system (:ref:`Fig. 2 <fig:nmr-tutorial2>`). More importantly, the two contributions exhibit distinct
 frequency dependences because they originate from different molecular
 motions. Intramolecular relaxation is mainly governed by rotational motion and
 internal molecular flexibility, whereas intermolecular relaxation reflects
 translational diffusion and inter-molecular collisions.
 
-.. image:: tutorial/nmr-intra-dm.png
-    :class: only-dark
-    :alt: NMR results obtained from the LAMMPS simulation of water
+.. _fig:nmr-tutorial2:
 
-.. image:: tutorial/nmr-intra.png
-    :class: only-light
-    :alt: NMR results obtained from the LAMMPS simulation of water
+.. container:: figure
 
-.. container:: figurelegend
+    .. image:: tutorial/nmr-intra-dm.png
+        :class: only-dark
+        :alt: NMR results obtained from the LAMMPS simulation of water
 
-    Figure: Intramolecular :math:`^1\text{H}`-NMR
-    relaxation rates :math:`R_{1 \text{R}}` (A) and
-    Intermolecular :math:`^1\text{H}`-NMR relaxation
-    rates :math:`R_{1 \text{T}}` (B) as a
-    function of the frequency :math:`f` for 
-    PEG and :math:`\text{H}_2\text{O}` separately.
-    Results are shown for :math:`n_i = 0`.
+    .. image:: tutorial/nmr-intra.png
+        :class: only-light
+        :alt: NMR results obtained from the LAMMPS simulation of water
+
+    .. container:: figurelegend
+
+        Figure 2: Intramolecular :math:`^1\text{H}`-NMR
+        relaxation rates :math:`R_{1 \text{R}}` (A) and
+        Intermolecular :math:`^1\text{H}`-NMR relaxation
+        rates :math:`R_{1 \text{T}}` (B) as a
+        function of the frequency :math:`f` for 
+        PEG and :math:`\text{H}_2\text{O}` separately.
+        Results are shown for :math:`n_i = 0`.
