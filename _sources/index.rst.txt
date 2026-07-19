@@ -4,7 +4,7 @@ NMRDfromMD
 ==========
 
 NMRDfromMD is a Python toolkit for computing nuclear magnetic resonance (NMR)
-relaxation properties directly from molecular dynamics (MD) trajectories.
+relaxation properties directly from molecular dynamics (MD) trajectories (:ref:`Figure 1 <fig:examples>`).
 From atomistic simulations, it evaluates the dipolar interactions between
 nuclear spins to calculate the longitudinal (:math:`T_1`) and transverse
 (:math:`T_2`) relaxation times. NMR relaxation is sensitive to molecular
@@ -26,20 +26,24 @@ For a full list of supported formats, see the |MDAnalysis| documentation.
 
 This package builds on the now discontinued |NMRforMD|.
 
-.. image:: ../../avatars/avatars.png
-    :class: only-dark
-    :alt: molecular dynamics systems used in these examples 
+.. _fig:examples:
 
-.. image:: ../../avatars/avatars.png
-    :class: only-light
-    :alt: molecular dynamics systems used in these examples
+.. container:: figure
 
-.. container:: figurelegend
+    .. image:: ../../avatars/avatars.png
+        :class: only-dark
+        :alt: molecular dynamics systems used in these examples 
 
-    Figure: Examples of systems that can be analyzed with NMRDfromMD, spanning
-    simple bulk liquids (water, left), idealized Lennard-Jones fluids (center),
-    and biologically relevant systems such as a lysozyme protein and its
-    hydration shell (right).
+    .. image:: ../../avatars/avatars.png
+        :class: only-light
+        :alt: molecular dynamics systems used in these examples
+
+    .. container:: figurelegend
+
+        Figure 1: Examples of systems that can be analyzed with NMRDfromMD, spanning
+        simple bulk liquids (water, left), idealized Lennard-Jones fluids (center),
+        and biologically relevant systems such as a lysozyme protein and its
+        hydration shell (right).
 
 Installation
 ------------
