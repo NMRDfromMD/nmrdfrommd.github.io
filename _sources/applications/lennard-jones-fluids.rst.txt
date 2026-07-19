@@ -30,7 +30,7 @@ contrast, :math:`R_1` exhibits a maximum: it increases from
 :math:`1.6\,\mathrm{ms}^{-1}` at :math:`T = 30\,\text{K}` to
 :math:`1.9\,\mathrm{ms}^{-1}` around :math:`T = 80\,\text{K}`, before
 decreasing to :math:`1.7\,\mathrm{ms}^{-1}` at
-:math:`T = 160\,\text{K}` (:ref:`Fig. 1 <fig:nmr-relaxation>`, panel A).
+:math:`T = 160\,\text{K}` (:ref:`Figure 1 <fig:nmr-relaxation>`, panel A).
 The results are in good agreement with the reference calculations of
 Grivet :cite:`grivetNMRRelaxationParameters2005`, with typical
 differences of approximately :math:`5\text{--}7\,\%`.
@@ -95,4 +95,4 @@ The product :math:`\omega_0 \tau`, with :math:`\omega_0 = 2 \pi f_0` and :math:`
 obtained directly from the simulations, crosses this value
 around :math:`T = 80`--:math:`90\,\text{K}`,
 which coincides with the maximum observed in :math:`R_1`
-(:ref:`Fig. 1 <fig:nmr-relaxation>`, panel B).
+(:ref:`Figure 1 <fig:nmr-relaxation>`, panel B).

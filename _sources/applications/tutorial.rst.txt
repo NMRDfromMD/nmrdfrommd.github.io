@@ -265,7 +265,7 @@ function of :math:`f` using pyplot:
     plt.tight_layout()
     plt.show()
 
-The resulting spectra should resemble :ref:`Fig. 1 <fig:nmr-tutorial1>`, panel A. For an
+The resulting spectra should resemble :ref:`Figure 1 <fig:nmr-tutorial1>`, panel A. For an
 isotropic liquid, :math:`R_1(f)` and :math:`R_2(f)` are expected to
 approach similar values in the low-frequency limit. In this regime, both relaxation
 rates probe the low-frequency limit of the spectral density, which is
@@ -274,7 +274,7 @@ dominated by long-time molecular reorientations and translational diffusion.
 Because only ``number_i = 20`` reference atoms are sampled here, the
 spectra exhibit noticeable statistical noise. Repeating the calculation
 with a larger value for ``number_i`` produces much smoother curves, as
-shown :ref:`Fig. 1 <fig:nmr-tutorial1>`, panel B.
+shown :ref:`Figure 1 <fig:nmr-tutorial1>`, panel B.
 
 .. _fig:nmr-tutorial1:
 
@@ -370,7 +370,7 @@ not necessary to explicitly set ``type_analysis="inter_molecular"``.
 
 Comparing the calculated spectra reveals that the
 intramolecular contribution is larger than the intermolecular one for
-this system (:ref:`Fig. 2 <fig:nmr-tutorial2>`). More importantly, the two contributions exhibit distinct
+this system (:ref:`Figure 2 <fig:nmr-tutorial2>`). More importantly, the two contributions exhibit distinct
 frequency dependences because they originate from different molecular
 motions. Intramolecular relaxation is mainly governed by rotational motion and
 internal molecular flexibility, whereas intermolecular relaxation reflects
