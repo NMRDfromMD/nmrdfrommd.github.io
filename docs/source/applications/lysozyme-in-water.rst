@@ -13,7 +13,7 @@ dependence across the entire accessible frequency range, in contrast to simple
 bulk liquids, where :math:`R_1` reaches a low-frequency plateau. Decomposing
 the signal into water and lysozyme contributions reveals that the
 low-frequency dispersion is dominated by the protein
-(:ref:`Fig. 1 <fig:lysozyme>`). This reflects the slow rotational tumbling of
+(:ref:`Figure 1 <fig:lysozyme>`). This reflects the slow rotational tumbling of
 the lysozyme molecule, which has a much longer correlation time than the small
 solvent molecules.
 
