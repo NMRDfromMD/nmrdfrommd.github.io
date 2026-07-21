@@ -47,24 +47,23 @@ Correlation functions extracted for all three models at
 :math:`\text{TIP3P}` showing much faster decorrelation compared to
 :math:`\text{SPC/E}`, which itself decorrelates slightly faster than
 :math:`\text{TIP4P-2005}` (:ref:`Fig. 1 <fig:water-ff>`, panel A).
-This ordering of the molecular dynamics timescales
-is consistent with the known viscosities
-of these models :cite:`gonzalezShearViscosityRigid2010` at :math:`T = 298\,\text{K}`:
+This ordering of the molecular dynamics timescales is consistent with the
+relative viscosities reported for these models :cite:`gonzalezShearViscosityRigid2010` at :math:`T = 298\,\text{K}`:
 :math:`0.321 \, \text{mPa s}` for :math:`\text{TIP3P}`,
 :math:`0.729 \, \text{mPa s}` for :math:`\text{SPC/E}`, and
 :math:`0.855 \, \text{mPa s}` for :math:`\text{TIP4P/2005}`.
-Among the models considered, the :math:`\text{TIP4P/2005}` modes has a viscosity closest to
+Among the models considered, the :math:`\text{TIP4P/2005}` model has a viscosity closest to
 the experimental value of :math:`0.896 \, \text{mPa s}`
 :cite:`harrisTemperatureVolumeDependence2004`.
 
 The NMR relaxation rate, :math:`R_1`, was extracted as a function of
-temperature. The :math:`\text{TIP4P/2005}` model good excellent
-agreement with experimental measurements by Krynicki
+temperature. The :math:`\text{TIP4P/2005}` model shows excellent agreement
+with experimental measurements reported by Krynicki
 :cite:`krynickiProtonSpinlatticeRelaxation1966` and Hindman et al.
 :cite:`hindmanRelaxationProcessesWater2003`. By contrast, both
 :math:`\text{SPC/E}` and :math:`\text{TIP3P}` underestimate the relaxation rate,
-consistent with their higher deviations in viscosity and with
-previous observations by Calero et al. :cite:`calero1HNuclearSpin2015`.
+consistent with their larger deviations in viscosity and with previous
+observations by Calero et al. :cite:`calero1HNuclearSpin2015`.
 
 .. _fig:water-ff:
 
@@ -112,10 +111,10 @@ carefully chosen alongside the force field discussed above. Important aspects
 of the simulation protocol include the integration timestep, cutoff distances,
 thermostat and barostat settings, and the equilibration procedure
 :cite:`frenkelUnderstandingMolecularSimulation2002,allenComputerSimulationLiquids2017`.
-An excessively large integration timestep introduces errors in the equations
-of motion, insufficient cutoff distances truncate relevant pair correlations,
-and inappropriate thermostat coupling parameters can artificially affect
-dynamical properties. These effects can alter the structural
+An excessively large integration timestep introduces errors in the equations of
+motion, insufficient sampling can bias calculated properties, and inappropriate
+thermostat or barostat coupling parameters can artificially affect dynamical
+properties. These effects can alter the structural
 and dynamical properties of the system, which are directly reflected in the
 time correlation functions used to calculate NMR relaxation rates and can
 therefore lead to inaccurate relaxation predictions.
@@ -123,31 +122,30 @@ therefore lead to inaccurate relaxation predictions.
 Cutoff
 ~~~~~~
 
-The cutoff distance used for non-bonded interactions can affect the accuracy of
-NMR relaxation calculations by modifying the intermolecular structure and
-dynamics of the simulated system. In particular, an insufficient cutoff may
-truncate long-range pair correlations, which can alter the intermolecular time
-correlation functions used to calculate relaxation rates.
+The treatment of non-bonded interactions is an important consideration for NMR
+relaxation calculations, as these interactions influence both the equilibrium
+structure and molecular dynamics. These properties influence the time
+correlation functions underlying relaxation rates. To quantify this effect, the NMR
+relaxation rate :math:`R_1` of bulk water was calculated for different
+Lennard-Jones cutoff distances :math:`r_\text{LJ}` using the
+:math:`\text{TIP4P/2005}` model.
 
-As an illustration, the NMR relaxation time :math:`T_1` of bulk water was
-calculated for different Lennard-Jones cutoff distances
-:math:`r_\text{LJ}` using the :math:`\text{TIP4P}` model. The intermolecular characteristic time
-:math:`\tau_\text{inter}` shows a clear dependence on the cutoff distance,
-increasing by up to :math:`5\,\%` for the smallest cutoff considered
-(:math:`r_\text{LJ} = 0.7\,\text{nm}`). This reflects the weakening of
-intermolecular interactions caused by the truncation of the Lennard-Jones
+The intermolecular characteristic time, :math:`\tau_\text{T}`, shows a clear dependence
+on the cutoff distance. For the smallest cutoff considered
+(:math:`r_\text{LJ} = 0.6\,\text{nm}`), :math:`\tau_\text{T}` increases by about
+:math:`10\,\%` compared to the converged value obtained for the largest cutoff
+distances (:ref:`Fig. 2 <fig:water-co>`, panel A). This reflects
+the weakening of intermolecular interactions caused by the truncation of the Lennard-Jones
 potential, which modifies the liquid structure and the molecular motions contributing
 to the intermolecular correlation functions. For a cutoff of
 :math:`1\,\text{nm}`, which is a commonly used value in molecular dynamics
-simulations, the deviation is reduced to approximately :math:`1\,\%`.
+simulations, the deviation is reduced to approximately :math:`2\,\%`.
 
-The variation of :math:`\tau_\text{inter}` affects the calculated
-intermolecular contribution to the relaxation rate
+The variation of :math:`\tau_\text{T}` affects the calculated
+intermolecular contribution to the relaxation rate,
 :math:`R_\text{1, T}`, which is overestimated for the smallest
-cutoffs. These observations are consistent with previous measurements, see for instance Ref.
-:cite:`gravelleNMRInvestigationWater2023`, and highlight the importance of
-carefully selecting the cutoff distance when aiming to accurately reproduce
-NMR relaxation quantities.
+cutoffs (:ref:`Fig. 2 <fig:water-co>`, panel B). These observations are consistent
+with previous measurements, see for instance Ref. :cite:`gravelleNMRInvestigationWater2023`.
 
 .. _fig:water-co:
 
@@ -163,12 +161,13 @@ NMR relaxation quantities.
 
     .. container:: figurelegend
 
-        Figure 2: a) Inter-molecular characteristic time :math:`\tau_\text{T}`
-        as a function of the LJ cutoff, :math:`r_\text{LJ}`. The dashed line is a guide to the eye,
-        indicating the value :math:`\tau_\text{T} = 3.78 \, \text{ps}` obtained for the
-        largest cutoffs.
-        b) Inter-molecular NMR relaxation rate :math:`R_\text{1, T}`
-        as a function of :math:`r_\text{LJ}`.  The dashed line is :math:`R_\text{1, T} = 0.125 \, \text{s}^{-1}`
+        Figure 2: a) Inter-molecular characteristic time, :math:`\tau_\text{T}`,
+        as a function of the LJ cutoff, :math:`r_\text{LJ}`. The dashed line is a
+        guide to the eye, indicating the value :math:`\tau_\text{T} = 3.78 \, \text{ps}`
+        obtained for the largest cutoffs.
+        b) Inter-molecular NMR relaxation rate, :math:`R_\text{1, T}`,
+        as a function of :math:`r_\text{LJ}`.  The dashed line
+        is :math:`R_\text{1, T} = 0.125 \, \text{s}^{-1}`.
 
 Integration timestep
 ~~~~~~~~~~~~~~~~~~~~
