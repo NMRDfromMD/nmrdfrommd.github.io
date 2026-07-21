@@ -175,21 +175,25 @@ Integration timestep
 The integration timestep determines the numerical accuracy of the molecular
 dynamics trajectory. If the timestep is too large, the equations of motion are
 not accurately integrated, resulting in systematic errors in both structural
-and dynamical properties
-:cite:`izaguirreLongerTimeSteps1999`.
-Since NMR relaxation rates are directly related to
-molecular motions, these integration errors can propagate into the calculated
-correlation functions and relaxation rates. The timestep should therefore be
-chosen according to established best practices for the selected force field and
-simulation conditions, and its adequacy should be verified through convergence
-testing when high accuracy is required.
+and dynamical properties :cite:`izaguirreLongerTimeSteps1999`.
+Since NMR relaxation rates are directly related to molecular motions, these
+integration errors can propagate into the calculated correlation functions and
+relaxation rates. The timestep should therefore be chosen according to
+established best practices for the selected force field and simulation
+conditions, and its adequacy should be verified through convergence testing
+when high accuracy is required.
+
+For rigid water models such as :math:`\text{TIP4P/2005}` combined with the SHAKE
+algorithm :cite:`ryckaertNumericalIntegrationCartesian1977`, a timestep
+of :math:`2\,\text{fs}` is commonly used.
 
 Thermostat
 ~~~~~~~~~~
 
-The thermostat controls the temperature of the simulated system, but it can
-also influence molecular dynamics if applied too aggressively
-:cite:`noseMolecularDynamicsMethod1984, berendsenMolecularDynamicsCoupling1984, hooverCanonicalDynamicsEquilibrium1985, tuckermanLiouvilleoperatorDerivedMeasurepreserving2006`.
+The thermostat controls the temperature of the simulated system
+:cite:`noseMolecularDynamicsMethod1984, berendsenMolecularDynamicsCoupling1984, hooverCanonicalDynamicsEquilibrium1985, tuckermanLiouvilleoperatorDerivedMeasurepreserving2006`,
+but it can also influence molecular dynamics if applied too aggressively
+:cite:`basconiEffectsTemperatureControl2013, frenkelUnderstandingMolecularSimulation2002, ruiz-francoEffectThermostatNonequilibrium2018`.
 Strong coupling or inappropriate thermostat parameters may artificially damp or modify
 translational and rotational motions, leading to biased time-correlation
 functions and relaxation rates. For NMR relaxation calculations, it is
@@ -200,18 +204,25 @@ the system.
 Simulation length
 -----------------
 
-The minimum simulation duration required to accurately calculate the NMR relaxation rate (e.g., :math:`R_1`)
-depends on the quantity of interest. To obtain a converged value of :math:`R_1` in the zero-frequency limit,
-the trajectory must be long enough for the correlation function
-:math:`G(t)` to fully decay to zero, meaning the simulation duration
-must significantly exceed the longest correlation time :math:`\tau_c`
-of the system. For frequency-dependent quantities :math:`R_1(f)`, the
-lowest accessible frequency is bounded by :math:`f_\text{min} \sim 1/T_\text{sim}`,
-where :math:`T_\text{sim}` is the total simulation
-duration. Frequencies below :math:`f_\text{min}` cannot be probed
-regardless of the trajectory sampling interval. In practice, convergence
-can be verified by comparing results obtained from simulations of
-increasing duration.
+The required simulation duration depends on the quantity of interest. For the
+zero-frequency relaxation rate, :math:`R_1(0)`, the trajectory must be
+sufficiently long for the correlation function :math:`G(t)` to decay to zero.
+In practice, the total simulation time should significantly exceed the longest
+correlation time, :math:`\tau_c`, of the system so that all relevant molecular
+motions contributing to the relaxation process are adequately sampled. For
+water at ambient temperature, the longest correlation time is the
+intermolecular time, :math:`\tau_\text{T} \approx 4\,\text{ps}`. In systems with slower dynamics,
+such as polymer melts or highly viscous liquids, :math:`\tau_c` can be orders
+of magnitude larger, requiring substantially longer simulations to obtain a
+converged estimate of :math:`R_1(0)`.
+
+A different consideration applies when evaluating the frequency-dependent
+relaxation rate, :math:`R_1(f)`. Because the trajectory has a finite duration
+:math:`T_\text{sim}`, its frequency resolution is approximately
+:math:`1/T_\text{sim}`. Consequently, frequencies smaller than
+:math:`1/T_\text{sim}` cannot be resolved, irrespective of the sampling
+interval or analysis method. Extending the simulation is therefore the only
+way to improve the accessible low-frequency range of :math:`R_1(f)`.
 
 Box size
 --------
