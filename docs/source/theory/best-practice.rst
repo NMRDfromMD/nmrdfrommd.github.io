@@ -9,41 +9,40 @@ careful attention to both the simulation protocol and the subsequent analysis.
 Because relaxation rates depend on molecular structure and dynamics over a broad
 range of timescales, they are sensitive to simulation parameters such as the force
 field, trajectory length, sampling frequency, simulation box size, and analysis
-settings. This section explores some of the main factors that influence the accuracy of
-NMR relaxation calculations from molecular dynamics and provides practical
-recommendations for obtaining reliable and reproducible results.
+settings. Here, some of the main factors that influence the accuracy of
+NMR relaxation calculations from molecular dynamics are discussed, and practical
+recommendations for obtaining reliable and reproducible results are provided.
 
-Choosing the force field
-------------------------
+Force field
+-----------
 
-The agreement between experiments and simulations is limited by the quality of
-the chosen force field. While some force fields show excellent agreement with
-experimental data, for instance, in simulations of water, hydrocarbons, or
-polymer melts
+The agreement between experiments and simulations is limited by the
+quality of the chosen force field. While some force fields show excellent
+agreement with NMR experimental data, for instance in simulations of water,
+hydrocarbons, or polymer melts
 :cite:`singerMolecularDynamicsSimulations2017,gravelleNMRInvestigationWater2023,gravelleAssessingValidityNMR2023`,
-it is important to remember that force fields are generally parametrized to
-reproduce selected thermodynamic, structural, and, in some cases, dynamical
-properties, but usually not NMR relaxation observables
+it is important to recognize that they are generally not parametrized
+specifically to reproduce NMR relaxation observables. Instead, they are
+typically optimized for selected thermodynamic, structural, and, in some
+cases, dynamical properties
 :cite:`mackerellEmpiricalForceFields2004,leachMolecularModellingPrinciples2001a`.
 These target properties may include densities, heats of vaporization, phase
-equilibria, solvation energies, radial distribution functions, or selected
-dynamical observables. However, NMR relaxation rates are determined by time
-correlation functions that depend on both the equilibrium structure and
-molecular dynamics. Consequently, force fields that accurately reproduce
-thermodynamic or structural properties may still yield inaccurate relaxation
-rates if they do not correctly describe the relevant molecular motions.
+equilibria, solvation energies, radial distribution functions, or dynamical
+observables. Since NMR relaxation rates are governed by time correlation
+functions that reflect both equilibrium structure and molecular dynamics, the
+suitability of a force field for relaxation studies depends on its ability to
+capture the relevant motions on the corresponding timescales.
 
 Impact of the water model
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 As an example, the NMR relaxation properties of bulk water were calculated
-from molecular dynamics simulations for three rigid water models,
-:math:`\text{TIP4P}-2005` :cite:`abascalGeneralPurposeModel2005`,
+from molecular dynamics simulations for three water models,
+:math:`\text{TIP4P/2005}` :cite:`abascalGeneralPurposeModel2005`,
 :math:`\text{SPC/E}` :cite:`berendsenMissingTermEffective1987`, and
-:math:`\text{TIP3P}` :cite:`jorgensenComparisonSimplePotential1983`,
-and a flexible water model, :math:`\text{TIP4P}-\epsilon \text{Flex}` :cite:`fuentes-azcatlFlexibleModelWater2021`.
+:math:`\text{TIP3P}` :cite:`jorgensenComparisonSimplePotential1983`.
 
-Correlation functions extracted for all four models at
+Correlation functions extracted for all three models at
 :math:`T = 300\,\text{K}` highlight the differences between them, with
 :math:`\text{TIP3P}` showing much faster decorrelation compared to
 :math:`\text{SPC/E}`, which itself decorrelates slightly faster than
@@ -53,14 +52,13 @@ is consistent with the known viscosities
 of these models :cite:`gonzalezShearViscosityRigid2010` at :math:`T = 298\,\text{K}`:
 :math:`0.321 \, \text{mPa s}` for :math:`\text{TIP3P}`,
 :math:`0.729 \, \text{mPa s}` for :math:`\text{SPC/E}`, and
-:math:`0.855 \, \text{mPa s}` for :math:`\text{TIP4P/2005}`,
-and :math:`0.958 \, \text{mPa s}` for :math:`\text{TIP4P}-\epsilon \text{Flex}` model
+:math:`0.855 \, \text{mPa s}` for :math:`\text{TIP4P/2005}`.
 Among the models considered, the :math:`\text{TIP4P/2005}` modes has a viscosity closest to
 the experimental value of :math:`0.896 \, \text{mPa s}`
 :cite:`harrisTemperatureVolumeDependence2004`.
 
 The NMR relaxation rate, :math:`R_1`, was extracted as a function of
-temperature. The :math:`\text{TIP4P}-2005` model good excellent
+temperature. The :math:`\text{TIP4P/2005}` model good excellent
 agreement with experimental measurements by Krynicki
 :cite:`krynickiProtonSpinlatticeRelaxation1966` and Hindman et al.
 :cite:`hindmanRelaxationProcessesWater2003`. By contrast, both
@@ -84,12 +82,13 @@ previous observations by Calero et al. :cite:`calero1HNuclearSpin2015`.
 
         Figure 1: A) Correlation functions extracted from molecular dynamics
         simulations for three water models:
-        :math:`\text{TIP4P}` (blue disks), :math:`\text{SPC/E}` (cyan squares),
+        :math:`\text{TIP4P/2005}` (blue disks), :math:`\text{SPC/E}` (cyan squares),
         and :math:`\text{TIP3P}` (green pentagons) at
         :math:`T = 300\,\text{K}`.
-        B) Temperature dependence of the NMR relaxation rate :math:`R_1` for
+        B) NMR relaxation rate, :math:`R_1`, as a function of the scaled inverse
+        temperature, :math:`1000 [\text{K}]/T`, for
         bulk water obtained from molecular dynamics simulations using the
-        :math:`\text{TIP4P-2005}`, :math:`\text{SPC/E}`, and
+        :math:`\text{TIP4P/2005}`, :math:`\text{SPC/E}`, and
         :math:`\text{TIP3P}` models. Simulation results are compared with
         experimental measurements reported by Krynicki
         :cite:`krynickiProtonSpinlatticeRelaxation1966` and Hindman et al.

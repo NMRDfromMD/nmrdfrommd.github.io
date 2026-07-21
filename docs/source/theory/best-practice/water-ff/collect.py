@@ -204,9 +204,9 @@ np.savetxt("T1_TIP4P.dat", out, header="T T1 T1_error R1T R1T_error R1T R1R_erro
 
 
 
-# TIP4P
+# TIP4P-epsF
 
-data_path = "/media/simon/data1/data-nmrdfrommd/TIP4P/analysis/results/"
+data_path = "/media/simon/data1/data-nmrdfrommd/TIP4P-epsF/analysis/results/"
 
 co = 14
 N = 4000
@@ -283,9 +283,9 @@ for T0 in T:
         GT_error = np.real(dataT["gij_std"][0][::jump])/np.sqrt(n_inter)
         GR_error = np.real(dataR["gij_std"][0][::jump])/np.sqrt(n_intra)
         
-        np.savetxt("GR_T300K_TIP4P.dat", np.vstack([t, GR, GR_error]).T, header="t Gij Gij_error", fmt="%.8e")
-        np.savetxt("GT_T300K_TIP4P.dat", np.vstack([t, GT, GT_error]).T, header="t Gij Gij_error", fmt="%.8e")
+        np.savetxt("GR_T300K_TIP4P-epsF.dat", np.vstack([t, GR, GR_error]).T, header="t Gij Gij_error", fmt="%.8e")
+        np.savetxt("GT_T300K_TIP4P-epsF.dat", np.vstack([t, GT, GT_error]).T, header="t Gij Gij_error", fmt="%.8e")
 
 out = np.array(out)
 
-np.savetxt("T1_TIP4P.dat", out, header="T T1 T1_error R1T R1T_error R1T R1R_error", fmt="%.8e")
+np.savetxt("T1_TIP4P-epsF.dat", out, header="T T1 T1_error R1T R1T_error R1T R1R_error", fmt="%.8e")
