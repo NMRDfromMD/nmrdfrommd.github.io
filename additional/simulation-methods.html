@@ -267,7 +267,7 @@ that simulation parameters are documented in a single, consistent location.</p>
 <div class="non-title-info admonition">
 <p class="admonition-title">Note</p>
 <p>If you’d like to learn LAMMPS and generate your own trajectories, beginner
-<a href="https://lammpstutorials.github.io/" target="_blank">tutorials</a> are available here <span id="id2">[<a class="reference internal" href="bibliography.html#id243" title="Simon Gravelle, Jacob R. Gissinger, and Axel Kohlmeyer. A Set of Tutorials for the LAMMPS Simulation Package. March 2025. arXiv:2503.14020, doi:10.48550/arXiv.2503.14020.">55</a>]</span>.
+<a href="https://lammpstutorials.github.io/" target="_blank">tutorials</a> are available here <span id="id2">[<a class="reference internal" href="bibliography.html#id244" title="Simon Gravelle, Jacob R. Gissinger, and Axel Kohlmeyer. A Set of Tutorials for the LAMMPS Simulation Package. March 2025. arXiv:2503.14020, doi:10.48550/arXiv.2503.14020.">58</a>]</span>.
 GROMACS <a href="https://gromacstutorials.github.io/" target="_blank">tutorials</a> are also available.</p>
 </div>
 <section id="lennard-jones-fluid">
@@ -278,11 +278,11 @@ GROMACS <a href="https://gromacstutorials.github.io/" target="_blank">tutorials<
 </a>
 <p>The simulated system contains 16,000 particles interacting through the
 classical Lennard–Jones (12-6) potential and was simulated using
-LAMMPS <span id="id3">[<a class="reference internal" href="bibliography.html#id659" title="Aidan P. Thompson, H. Metin Aktulga, Richard Berger, Dan S. Bolintineanu, W. Michael Brown, Paul S. Crozier, Pieter J. In 'T Veld, Axel Kohlmeyer, Stan G. Moore, Trung Dac Nguyen, Ray Shan, Mark J. Stevens, Julien Tranchida, Christian Trott, and Steven J. Plimpton. LAMMPS - a flexible simulation tool for particle-based materials modeling at the atomic, meso, and continuum scales. Computer Physics Communications, 271:108171, February 2022. doi:10.1016/j.cpc.2021.108171.">56</a>]</span>. Each particle has a
+LAMMPS <span id="id3">[<a class="reference internal" href="bibliography.html#id661" title="Aidan P. Thompson, H. Metin Aktulga, Richard Berger, Dan S. Bolintineanu, W. Michael Brown, Paul S. Crozier, Pieter J. In 'T Veld, Axel Kohlmeyer, Stan G. Moore, Trung Dac Nguyen, Ray Shan, Mark J. Stevens, Julien Tranchida, Christian Trott, and Steven J. Plimpton. LAMMPS - a flexible simulation tool for particle-based materials modeling at the atomic, meso, and continuum scales. Computer Physics Communications, 271:108171, February 2022. doi:10.1016/j.cpc.2021.108171.">59</a>]</span>. Each particle has a
 mass <span class="math notranslate nohighlight">\(m = 1\,\mathrm{g/mol}\)</span> together with LJ parameters
 <span class="math notranslate nohighlight">\(\sigma = 3\,\text{Å}\)</span> and <span class="math notranslate nohighlight">\(\epsilon = 0.1\,\mathrm{kcal/mol}\)</span>.
 All reduced simulation parameters were chosen to reproduce the study of
-Grivet <span id="id4">[<a class="reference internal" href="bibliography.html#id250" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">2</a>]</span>. In particular, the
+Grivet <span id="id4">[<a class="reference internal" href="bibliography.html#id251" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">2</a>]</span>. In particular, the
 interaction cutoff was set to <span class="math notranslate nohighlight">\(4 \sigma\)</span>, while the cubic
 simulation box had a side length of <span class="math notranslate nohighlight">\(26.9 \sigma\)</span>, corresponding to
 the reduced density <span class="math notranslate nohighlight">\(\rho^*=0.84\)</span>. Production runs were performed in the
@@ -323,7 +323,8 @@ temperature and pressure control. The trajectory was then recorded during a
 <span class="math notranslate nohighlight">\(2\,\text{ns}\)</span> production run performed in the NVT ensemble, using a
 Nose-Hoover thermostat to control the temperature. A
 timestep of <span class="math notranslate nohighlight">\(2\,\text{fs}\)</span> was used in combination with the
-SHAKE algorithm. The atomic positions were written every <span class="math notranslate nohighlight">\(\Delta t = 20\,\text{fs}\)</span>.</p>
+SHAKE algorithm <span id="id6">[<a class="reference internal" href="bibliography.html#id580" title="Jean-Paul Ryckaert, Giovanni Ciccotti, and Herman J. C Berendsen. Numerical integration of the cartesian equations of motion of a system with constraints: molecular dynamics of \emph n-alkanes. Journal of Computational Physics, 23(3):327–341, March 1977. doi:10.1016/0021-9991(77)90098-5.">37</a>]</span>. The atomic
+positions were written every <span class="math notranslate nohighlight">\(\Delta t = 20\,\text{fs}\)</span>.</p>
 <p>The parameters given here are the defaults, although other values were used in the
 <a class="reference internal" href="../theory/best-practice.html#best-practice"><span class="std std-ref">Best practices</span></a> section to test their effect on the NMR relaxation properties,
 including different values of <span class="math notranslate nohighlight">\(N\)</span> and <span class="math notranslate nohighlight">\(r_\text{LJ}\)</span>, as well as
@@ -339,7 +340,7 @@ different water models.</p>
 420 <span class="math notranslate nohighlight">\(\mathrm{H_2O}\)</span> molecules and 30 <span class="math notranslate nohighlight">\(\mathrm{PEG\ 300}\)</span>
 polymer molecules. Water is described using the
 <span class="math notranslate nohighlight">\(\mathrm{TIP4P}-\epsilon\)</span> force field
-<span id="id6">[<a class="reference internal" href="bibliography.html#id199" title="Raúl Fuentes-Azcatl and José Alejandre. Non-Polarizable Force Field of Water Based on the Dielectric Constant: TIP4P/epsilon. The Journal of Physical Chemistry B, 118(5):1263–1272, February 2014. doi:10.1021/jp410865y.">57</a>]</span>.
+<span id="id7">[<a class="reference internal" href="bibliography.html#id200" title="Raúl Fuentes-Azcatl and José Alejandre. Non-Polarizable Force Field of Water Based on the Dielectric Constant: TIP4P/epsilon. The Journal of Physical Chemistry B, 118(5):1263–1272, February 2014. doi:10.1021/jp410865y.">60</a>]</span>.
 <span class="math notranslate nohighlight">\(\mathrm{PEG\ 300}\)</span> denotes polyethylene glycol chains with a
 molar mass of <span class="math notranslate nohighlight">\(300~\mathrm{g/mol}\)</span>.</p>
 <p>The trajectory was recorded during a
@@ -349,7 +350,7 @@ The temperature was set to <span class="math notranslate nohighlight">\(T = 300~
 <span class="math notranslate nohighlight">\(p = 1~\text{atm}\)</span>. Atomic positions were saved every
 <span class="math notranslate nohighlight">\(2~\mathrm{ps}\)</span>. Non-bonded
 Lennard-Jones interactions were truncated at a cutoff <span class="math notranslate nohighlight">\(r_\text{LJ}\)</span>
-distance of :math:<a href="#id7"><span class="problematic" id="id8">`</span></a>1.4,text{nm}</p>
+distance of :math:<a href="#id8"><span class="problematic" id="id9">`</span></a>1.4,text{nm}</p>
 </section>
 <section id="lysozyme-in-water">
 <h2>Lysozyme in water<a class="headerlink" href="#lysozyme-in-water" title="Link to this heading">¶</a></h2>

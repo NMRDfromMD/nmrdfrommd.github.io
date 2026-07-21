@@ -88,7 +88,8 @@ temperature and pressure control. The trajectory was then recorded during a
 :math:`2\,\text{ns}` production run performed in the NVT ensemble, using a
 Nose-Hoover thermostat to control the temperature. A
 timestep of :math:`2\,\text{fs}` was used in combination with the
-SHAKE algorithm. The atomic positions were written every :math:`\Delta t = 20\,\text{fs}`.
+SHAKE algorithm :cite:`ryckaertNumericalIntegrationCartesian1977`. The atomic
+positions were written every :math:`\Delta t = 20\,\text{fs}`.
 
 The parameters given here are the defaults, although other values were used in the
 :ref:`best-practice` section to test their effect on the NMR relaxation properties,
