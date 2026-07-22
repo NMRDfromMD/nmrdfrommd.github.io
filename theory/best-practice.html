@@ -449,34 +449,38 @@ way to improve the accessible low-frequency range of <span class="math notransla
 </section>
 <section id="box-size">
 <h2>Box size<a class="headerlink" href="#box-size" title="Link to this heading">¶</a></h2>
-<p>NMR relaxation measurements are sensitive to the
-finite-size effects that can occur with small simulation boxes <span id="id19">[<a class="reference internal" href="../additional/bibliography.html#id251" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">2</a>]</span>.</p>
-<p>As an illustration, the NMR relaxation rate <span class="math notranslate nohighlight">\(R_1\)</span>
-was measured for water with different number of molecules
-<span class="math notranslate nohighlight">\(N \in [100,\,10000]\)</span>, which correspond to equilibrium
-box of lateral sizes <span class="math notranslate nohighlight">\(L \in [1.4,\,6.7]\,\text{nm}\)</span>.
-Our results show that the inter-molecular
-relaxation rate <span class="math notranslate nohighlight">\(R_1^\text{inter}\)</span> is sensitive to the
-box size even for the largest boxes considered here.
-With small box size, the tail of <span class="math notranslate nohighlight">\(G_\text{inter}\)</span>,
-which decreases as <span class="math notranslate nohighlight">\(G_\text{inter} \sim t^{-3/2}\)</span>, is cutoff
-which lead to an error on <span class="math notranslate nohighlight">\(R_1^\text{inter}\)</span>.
-Note that <span class="math notranslate nohighlight">\(R_1^\text{intra}\)</span>, which is the dominant contribution to
-<span class="math notranslate nohighlight">\(R_1\)</span> for water at ambient temperature, is barely affected
-by the box size and therefore the resulting error induced on the
-total relaxation rate <span class="math notranslate nohighlight">\(R_1\)</span> remains small for <span class="math notranslate nohighlight">\(N &gt; 1000\)</span>.</p>
+<p>NMR relaxation calculations can be sensitive to finite-size effects arising from
+the limited size of the simulation box
+<span id="id19">[<a class="reference internal" href="../additional/bibliography.html#id251" title="Jean-Philippe Grivet. NMR relaxation parameters of a Lennard-Jones fluid from molecular-dynamics simulations. The Journal of Chemical Physics, 123(3):034503, July 2005. doi:10.1063/1.1955447.">2</a>]</span>. To assess this effect, NMR
+relaxation properties were calculated for water boxes containing different
+numbers of molecules, <span class="math notranslate nohighlight">\(N \in [25,\,6100]\)</span>, corresponding to equilibrium
+box lengths of <span class="math notranslate nohighlight">\(L \in [0.9,\,5.6]\,\text{nm}\)</span>.</p>
+<p>The influence of the box size is not immediately apparent from the
+intermolecular correlation function, <span class="math notranslate nohighlight">\(G_{ij, \text{T}}(t)\)</span>, over the main
+decay region. However, finite-size effects become significant at long times,
+where <span class="math notranslate nohighlight">\(G_{ij, \text{T}}(t)\)</span> follows the hydrodynamic decay
+<span class="math notranslate nohighlight">\(G_{ij, \text{T}}(t) \sim t^{-3/2}\)</span> (<a class="reference internal" href="#fig-water-n"><span class="std std-ref">Fig. 3</span></a>, panel A). In small simulation boxes, this
+long-time contribution is artificially truncated, affecting the integral of
+the correlation function and therefore the intermolecular contribution to the
+relaxation rate, <span class="math notranslate nohighlight">\(R_{1,\text{T}}\)</span>.</p>
+<p>The effect on <span class="math notranslate nohighlight">\(R_{1,\text{T}}\)</span> remains significant even for the largest boxes
+considered in this study. Our results indicate that even for the largest boxes with
+<span class="math notranslate nohighlight">\(N = 6100\)</span>, <span class="math notranslate nohighlight">\(R_{1,\text{T}}\)</span> may not be fully converged
+(<a class="reference internal" href="#fig-water-n"><span class="std std-ref">Fig. 3</span></a>, panel B). It should be noted that the intramolecular contribution,
+<span class="math notranslate nohighlight">\(R_{1,\text{T}}\)</span>, which dominates the total relaxation rate of water at ambient
+temperature, is only weakly affected by the box size.</p>
 <div class="figure docutils container" id="fig-water-n">
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-dark" src="../_images/water-N-dm.png" />
 <img alt="NMR results obtained from the LAMMPS simulation of water" class="only-light" src="../_images/water-N.png" />
 <div class="figurelegend docutils container">
-<p>Figure 3: A) Inter-molecular NMR relaxation rate <span class="math notranslate nohighlight">\(R_\text{1, T}\)</span> as a function of the number of molecules <span class="math notranslate nohighlight">\(N\)</span>
-for a bulk water system. For the smallest systems, results were averaged
-from up to 10 independent simulations and the error bar is calculated from
-the standard deviation.
-The dashed line is a guide to the eye, indicating the value obtained
-for the largest value of <span class="math notranslate nohighlight">\(N\)</span>.
-b) Inter-molecular correlation function <span class="math notranslate nohighlight">\(G_{ij, \text{T}}\)</span>
-for two different numbers of molecules, <span class="math notranslate nohighlight">\(N = 158\)</span> (cyan squares) and <span class="math notranslate nohighlight">\(N = 10000\)</span> (green disks).</p>
+<p>Figure 3:
+A) Inter-molecular correlation function <span class="math notranslate nohighlight">\(G_{ij, \text{T}}\)</span>
+for different numbers of molecules (see the legend).
+B) Inter-molecular NMR relaxation rate, <span class="math notranslate nohighlight">\(R_\text{1, T}\)</span>, as a function
+of the number of molecules <span class="math notranslate nohighlight">\(N\)</span> for a bulk water system. For the
+smallest systems, results were averaged from up to 20 independent simulations
+and the error bar is calculated from the standard deviation.
+The dashed line is <span class="math notranslate nohighlight">\(R_\text{1, T} = 0.125 \, \text{s}^{-1}\)</span>.</p>
 </div>
 </div>
 </section>

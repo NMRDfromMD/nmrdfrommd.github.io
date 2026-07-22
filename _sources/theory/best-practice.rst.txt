@@ -227,23 +227,28 @@ way to improve the accessible low-frequency range of :math:`R_1(f)`.
 Box size
 --------
 
-NMR relaxation measurements are sensitive to the 
-finite-size effects that can occur with small simulation boxes :cite:`grivetNMRRelaxationParameters2005`.
+NMR relaxation calculations can be sensitive to finite-size effects arising from
+the limited size of the simulation box
+:cite:`grivetNMRRelaxationParameters2005`. To assess this effect, NMR
+relaxation properties were calculated for water boxes containing different
+numbers of molecules, :math:`N \in [25,\,6100]`, corresponding to equilibrium
+box lengths of :math:`L \in [0.9,\,5.6]\,\text{nm}`.
 
-As an illustration, the NMR relaxation rate :math:`R_1`
-was measured for water with different number of molecules
-:math:`N \in [100,\,10000]`, which correspond to equilibrium
-box of lateral sizes :math:`L \in [1.4,\,6.7]\,\text{nm}`.
-Our results show that the inter-molecular
-relaxation rate :math:`R_1^\text{inter}` is sensitive to the 
-box size even for the largest boxes considered here.
-With small box size, the tail of :math:`G_\text{inter}`, 
-which decreases as :math:`G_\text{inter} \sim t^{-3/2}`, is cutoff
-which lead to an error on :math:`R_1^\text{inter}`.
-Note that :math:`R_1^\text{intra}`, which is the dominant contribution to 
-:math:`R_1` for water at ambient temperature, is barely affected
-by the box size and therefore the resulting error induced on the 
-total relaxation rate :math:`R_1` remains small for :math:`N > 1000`.
+The influence of the box size is not immediately apparent from the
+intermolecular correlation function, :math:`G_{ij, \text{T}}(t)`, over the main
+decay region. However, finite-size effects become significant at long times,
+where :math:`G_{ij, \text{T}}(t)` follows the hydrodynamic decay
+:math:`G_{ij, \text{T}}(t) \sim t^{-3/2}` (:ref:`Fig. 3 <fig:water-N>`, panel A). In small simulation boxes, this
+long-time contribution is artificially truncated, affecting the integral of
+the correlation function and therefore the intermolecular contribution to the
+relaxation rate, :math:`R_{1,\text{T}}`.
+
+The effect on :math:`R_{1,\text{T}}` remains significant even for the largest boxes
+considered in this study. Our results indicate that even for the largest boxes with 
+:math:`N = 6100`, :math:`R_{1,\text{T}}` may not be fully converged
+(:ref:`Fig. 3 <fig:water-N>`, panel B). It should be noted that the intramolecular contribution,
+:math:`R_{1,\text{T}}`, which dominates the total relaxation rate of water at ambient
+temperature, is only weakly affected by the box size.
 
 .. _fig:water-N:
 
@@ -259,14 +264,14 @@ total relaxation rate :math:`R_1` remains small for :math:`N > 1000`.
 
     .. container:: figurelegend
 
-        Figure 3: A) Inter-molecular NMR relaxation rate :math:`R_\text{1, T}` as a function of the number of molecules :math:`N`
-        for a bulk water system. For the smallest systems, results were averaged
-        from up to 10 independent simulations and the error bar is calculated from
-        the standard deviation.
-        The dashed line is a guide to the eye, indicating the value obtained
-        for the largest value of :math:`N`.
-        b) Inter-molecular correlation function :math:`G_{ij, \text{T}}`
-        for two different numbers of molecules, :math:`N = 158` (cyan squares) and :math:`N = 10000` (green disks).
+        Figure 3: 
+        A) Inter-molecular correlation function :math:`G_{ij, \text{T}}`
+        for different numbers of molecules (see the legend).
+        B) Inter-molecular NMR relaxation rate, :math:`R_\text{1, T}`, as a function
+        of the number of molecules :math:`N` for a bulk water system. For the
+        smallest systems, results were averaged from up to 20 independent simulations
+        and the error bar is calculated from the standard deviation.
+        The dashed line is :math:`R_\text{1, T} = 0.125 \, \text{s}^{-1}`.
 
 Trajectory output frequency
 ---------------------------
