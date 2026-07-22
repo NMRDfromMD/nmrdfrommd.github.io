@@ -128,18 +128,74 @@ for N0 in N:
 
     out.append([N0, R1, R1_error, R1T[0], R1T_error[0], R1R[0], R1R_error[0], tau_T, tau_R, tau_T_error, tau_R_error])
 
-    # if T0 == 300:
 
-    #     jump = 10
+    if N0 == 1717:
 
-    #     t = np.real(dataT["t"])[::jump]
-    #     GT = np.real(dataT["C"][0][::jump])
-    #     GR = np.real(dataR["C"][0][::jump])
-    #     GT_error = np.real(dataT["gij_std"][0][::jump])/np.sqrt(n_inter)
-    #     GR_error = np.real(dataR["gij_std"][0][::jump])/np.sqrt(n_intra)
+        jump = 10
+
+        t = np.real(dataT["t"])[::jump]
+        GT = np.real(dataT["C"][0][::jump])
+        GR = np.real(dataR["C"][0][::jump])
+        GT_error = np.real(dataT["gij_std"][0][::jump])/np.sqrt(n_inter)
+        GR_error = np.real(dataR["gij_std"][0][::jump])/np.sqrt(n_intra)
         
-    #     np.savetxt("GR_T300K_TIP4P.dat", np.vstack([t, GR, GR_error]).T, header="t Gij Gij_error", fmt="%.8e")
-    #     np.savetxt("GT_T300K_TIP4P.dat", np.vstack([t, GT, GT_error]).T, header="t Gij Gij_error", fmt="%.8e")
+        np.savetxt("GR_N1717_TIP4P.dat", np.vstack([t, GR, GR_error]).T, header="t Gij Gij_error", fmt="%.8e")
+        np.savetxt("GT_N1717_TIP4P.dat", np.vstack([t, GT, GT_error]).T, header="t Gij Gij_error", fmt="%.8e")
+
+
+    if N0 == 6106:
+
+        jump = 10
+
+        t = np.real(dataT["t"])[::jump]
+        GT = np.real(dataT["C"][0][::jump])
+        GR = np.real(dataR["C"][0][::jump])
+        GT_error = np.real(dataT["gij_std"][0][::jump])/np.sqrt(n_inter)
+        GR_error = np.real(dataR["gij_std"][0][::jump])/np.sqrt(n_intra)
+        
+        np.savetxt("GR_N6106_TIP4P.dat", np.vstack([t, GR, GR_error]).T, header="t Gij Gij_error", fmt="%.8e")
+        np.savetxt("GT_N6106_TIP4P.dat", np.vstack([t, GT, GT_error]).T, header="t Gij Gij_error", fmt="%.8e")
+
+
+    if N0 == 4000:
+
+        jump = 10
+
+        t = np.real(dataT["t"])[::jump]
+        GT = np.real(dataT["C"][0][::jump])
+        GR = np.real(dataR["C"][0][::jump])
+        GT_error = np.real(dataT["gij_std"][0][::jump])/np.sqrt(n_inter)
+        GR_error = np.real(dataR["gij_std"][0][::jump])/np.sqrt(n_intra)
+        
+        np.savetxt("GR_N4000_TIP4P.dat", np.vstack([t, GR, GR_error]).T, header="t Gij Gij_error", fmt="%.8e")
+        np.savetxt("GT_N4000_TIP4P.dat", np.vstack([t, GT, GT_error]).T, header="t Gij Gij_error", fmt="%.8e")
+
+    if N0 == 316:
+
+        jump = 10
+
+        t = np.real(dataT["t"])[::jump]
+        GT = np.real(dataT["C"][0][::jump])
+        GR = np.real(dataR["C"][0][::jump])
+        GT_error = np.real(dataT["gij_std"][0][::jump])/np.sqrt(n_inter)
+        GR_error = np.real(dataR["gij_std"][0][::jump])/np.sqrt(n_intra)
+        
+        np.savetxt("GR_N316_TIP4P.dat", np.vstack([t, GR, GR_error]).T, header="t Gij Gij_error", fmt="%.8e")
+        np.savetxt("GT_N316_TIP4P.dat", np.vstack([t, GT, GT_error]).T, header="t Gij Gij_error", fmt="%.8e")
+
+    if N0 == 135:
+
+        jump = 10
+
+        t = np.real(dataT["t"])[::jump]
+        GT = np.real(dataT["C"][0][::jump])
+        GR = np.real(dataR["C"][0][::jump])
+        GT_error = np.real(dataT["gij_std"][0][::jump])/np.sqrt(n_inter)
+        GR_error = np.real(dataR["gij_std"][0][::jump])/np.sqrt(n_intra)
+        
+        np.savetxt("GR_N135_TIP4P.dat", np.vstack([t, GR, GR_error]).T, header="t Gij Gij_error", fmt="%.8e")
+        np.savetxt("GT_N135_TIP4P.dat", np.vstack([t, GT, GT_error]).T, header="t Gij Gij_error", fmt="%.8e")
+
 
 out = np.array(out)
 
