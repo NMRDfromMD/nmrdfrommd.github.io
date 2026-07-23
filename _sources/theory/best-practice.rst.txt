@@ -276,28 +276,25 @@ temperature, is only weakly affected by the box size.
 Trajectory output frequency
 ---------------------------
 
-The trajectory output frequency sets the temporal resolution of the
-analysis and determines the shortest correlation times that can be
-resolved. The sampling interval :math:`\Delta t` must be significantly
-smaller than the shortest relevant correlation time in the system,
-otherwise fast molecular motions are not captured and the correlation
-function :math:`G(t)` is undersampled. This leads to an overestimation
-of the characteristic times :math:`\tau`, and consequently to errors
-in the computed relaxation rates. If the characteristic correlation
-times of the system are not known a priori, the appropriate
-:math:`\Delta t` should be identified from convergence testing.
-Note that a small sampling interval increases the size of the
-trajectory files and the computational cost of the analysis.
+The trajectory output frequency determines the temporal resolution of the
+analysis and therefore the fastest molecular motions that can be resolved.
+The sampling interval, :math:`\Delta t`, must be significantly smaller than the
+shortest relevant correlation time of the system. Otherwise, the rapid decay of
+the correlation function :math:`G_{ij}(t)` is undersampled
+(:ref:`Fig. 4 <fig:water-dump>`, panel A), leading to an inaccurate estimate of
+the characteristic times, :math:`\tau`, and consequently of the relaxation
+rates. When the relevant correlation times are not known a priori,
+the appropriate value of :math:`\Delta t` can be determined through convergence
+testing. A smaller sampling interval, however, increases the trajectory size
+and the computational cost of the subsequent analysis.
 
-As an illustration, the NMR relaxation time :math:`T_1` of bulk water
-was measured for sampling intervals ranging from
-:math:`\Delta t = 0.02\,\text{ps}` to :math:`5\,\text{ps}`. Using a
-sampling interval larger than approximately :math:`\Delta t =
-0.5\,\text{ps}` leads to a significant underestimation of :math:`T_1`,
-accompanied by an overestimation of the inter-molecular characteristic
-time :math:`\tau_\text{inter}`. Both effects are consistent with
-insufficient sampling of fast rotational and translational motions of
-the water molecules.
+As an illustration, the intermolecular NMR relaxation rate,
+:math:`R_{1,T}`, of bulk water was calculated for sampling intervals ranging
+from :math:`\Delta t = 20\,\text{fs}` to :math:`1.2\,\text{ps}`. Sampling
+intervals larger than approximately :math:`100\,\text{fs}` lead to an
+overestimation of :math:`R_{1,T}`. This behavior is consistent with an
+insufficient temporal resolution of the fast molecular motions contributing to
+the intermolecular correlation function.
 
 .. _fig:water-dump:
 
@@ -313,13 +310,15 @@ the water molecules.
 
     .. container:: figurelegend
 
-        Figure 4: A) Intermolecular NMR relaxation time :math:`T_\text{1, T}`
-        as a function of the trajectory dumping frequency :math:`\Delta t`
-        for a bulk water system at :math:`T = 300 \text{K}`.
-        The dashed line show the value for :math:`T_1`
-        for :math:`\Delta t \to 0`.
-        B) Intramolecular NMR relaxation time :math:`T_\text{1, R}`
-        as a function of :math:`\Delta t`.
+        Figure 4: A) Intermolecular correlation functions extracted from
+        molecular dynamics simulations using two sampling intervals,
+        :math:`\Delta t = 20\,\text{fs}` and
+        :math:`\Delta t = 1.3\,\text{ps}`. The characteristic
+        time :math:`\tau_\text{T} \approx 3.8 ~\text{ps}` is indicated by the vertical dashed line.
+        B) Intermolecular NMR relaxation
+        rate, :math:`R_{1,T}`, as a function of the sampling interval
+        :math:`\Delta t`.
+        The dashed line is :math:`R_\text{1, T} = 0.125 \, \text{s}^{-1}`.
 
 Analysis parameters
 -------------------
